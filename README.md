@@ -1,2 +1,2 @@
 # t-array
-Typescript array
+typescript array
