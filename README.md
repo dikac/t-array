@@ -1,0 +1,2 @@
+# t-array
+Typescript array
