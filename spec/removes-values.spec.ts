@@ -7,8 +7,8 @@ describe("exists", function() {
 
     let array : number[] = [1,2,3,1,5];
     let removed = RemovesValues(array, [1, 5]);
-    expect([1,1,5]).toEqual(removed);
-    expect([2,3]).toEqual(array);
+    it("removed", () => expect([1,1,5]).toEqual(removed));
+    it("original", () =>expect([2,3]).toEqual(array));
 
 });
 
@@ -17,7 +17,7 @@ describe("limit", function() {
 
     let array : number[] = [1,2,3,1,5];
     let removed = RemovesValues(array, [1, 1], undefined, undefined, undefined, 2);
-    expect([1,1]).toEqual(removed);
-    expect([2,3, 5]).toEqual(array);
+    it("removed", () => expect([1,1]).toEqual(removed));
+    it("original", () =>expect([2,3, 5]).toEqual(array));
 
 });
