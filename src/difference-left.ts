@@ -1,9 +1,9 @@
-export default function Difference<Value>(
+export default function DifferenceLeft<Value>(
     targets: Value[],
     comparisons : Value[],
     compare : (target : Value, comparison : Value) => boolean
         = (target : Value, comparison : Value) => target === comparison
-) {
+) : Value[] {
     let results : Value[] = [];
 
     TARGET : for(let target of targets) {
