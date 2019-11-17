@@ -1,4 +1,5 @@
-export default function Shuffle<V>(array : V[]) {
+export default function Shuffle<V>(array : V[]) : V[] {
+
     let j, x, i;
 
     for (i = array.length - 1; i > 0; i--) {
@@ -7,6 +8,6 @@ export default function Shuffle<V>(array : V[]) {
         array[i] = array[j];
         array[j] = x;
     }
-    return array;
 
+    return array;
 }
