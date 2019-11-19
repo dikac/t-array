@@ -1,4 +1,4 @@
-export default function Type<Value>(values : Value[]) : values is Value[] {
+export default function Type<Value>(values : any) : values is Value[] {
 
     return Array.isArray(values);
 }
