@@ -9,7 +9,9 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const Type = Array.isArray;
+    function Type(values) {
+        return Array.isArray(values);
+    }
     exports.default = Type;
 });
 //# sourceMappingURL=type.js.map
