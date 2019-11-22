@@ -1,6 +1,6 @@
 {
   "name": "t-array",
-  "version": "0.9.6",
+  "version": "0.9.7",
   "description": "Typescript array",
   "dependencies": {
     "@types/node": "^12.12.11",

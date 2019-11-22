@@ -1,2 +1,1 @@
-declare const Type: (arg: any) => arg is any[];
-export default Type;
+export default function Type<Value>(values: any): values is Value[];
