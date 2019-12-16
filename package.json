@@ -1,6 +1,6 @@
 {
   "name": "t-array",
-  "version": "0.9.8",
+  "version": "0.9.10",
   "description": "Typescript array",
   "dependencies": {
     "@types/node": "^12.12.11",
@@ -26,7 +26,6 @@
   },
   "files": [
     "tsconfig.json",
-    "src/",
     "dist/",
     "LICENSE",
     "Readme.md"
