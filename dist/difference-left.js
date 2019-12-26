@@ -9,6 +9,14 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    /**
+     * return all data from targets that does not exists in comparison
+     *
+     * @param targets
+     * @param comparisons
+     * @param compare
+     * @constructor
+     */
     function DifferenceLeft(targets, comparisons, compare = (target, comparison) => target === comparison) {
         let results = [];
         TARGET: for (let target of targets) {
