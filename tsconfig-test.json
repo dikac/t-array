@@ -5,15 +5,15 @@
     "module": "commonjs",
     "declaration": true,
     "target": "es2016",
-    "outDir": "dist-spec",
+    "outDir": "dist-test",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
     "downlevelIteration" : true,
     "strictNullChecks": true,
-    "rootDir" : "spec",
+    "rootDir" : "test",
     "incremental": true,
-    "tsBuildInfoFile": "./dist-spec/compiler-cache",
+    "tsBuildInfoFile": "./dist-test/compiler-cache",
     "strictPropertyInitialization": true,
     "lib": [
       "es2016",
@@ -23,7 +23,7 @@
     ]
   },
   "include":  [
-    "spec/**/*"
+    "test/**/*"
   ],
   "exclude":   [
   ]

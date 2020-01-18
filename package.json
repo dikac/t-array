@@ -1,6 +1,6 @@
 {
   "name": "@dikac/t-array",
-  "version": "0.9.16",
+  "version": "0.10.0",
   "description": "Typescript array",
   "dependencies": {},
   "devDependencies": {
@@ -15,12 +15,11 @@
     "rimraf": "^3.0.0"
   },
   "scripts": {
-    "spec-run": "jasmine --config=./jasmine.json",
-    "spec": "npm-run-all compile spec-compile spec-run",
-    "spec-compile": "npm-run-all --parallel spec-compile-script ",
-    "spec-compile-watch": "npm-run-all --parallel spec-compile-watch-script",
-    "spec-compile-script": "tsc -p tsconfig-spec.json",
-    "spec-compile-watch-script": "tsc -w -p tsconfig-spec.json",
+    "test": "jasmine --config=./jasmine.json",
+    "test-compile": "npm-run-all --parallel test-compile-script ",
+    "test-compile-watch": "npm-run-all --parallel test-compile-watch-script",
+    "test-compile-script": "tsc -p tsconfig-test.json",
+    "test-compile-watch-script": "tsc -w -p tsconfig-test.json",
     "compile": "tsc",
     "compile-watch": "tsc -w",
     "release": "remove-json-properties dist/package.json private",
