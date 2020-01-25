@@ -10,7 +10,7 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     /**
-     * return all data from targets that does not exists in comparison
+     * return data which exists in all array
      *
      * @param compare
      * @param arrays

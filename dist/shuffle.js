@@ -1,3 +1,10 @@
+/**
+ * randomize array position
+ * non cryptographic random
+ *
+ * @param array
+ * @constructor
+ */
 (function (factory) {
     if (typeof module === "object" && typeof module.exports === "object") {
         var v = factory(require, exports);

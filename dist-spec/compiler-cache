@@ -130,16 +130,16 @@
         "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6"
       },
       "../dist/intersection.d.ts": {
-        "version": "f6afc3f1bdabf961ec887f833110f521c52189c8b82b5ad9e8f380574a704495",
-        "signature": "f6afc3f1bdabf961ec887f833110f521c52189c8b82b5ad9e8f380574a704495"
+        "version": "641bd08c2f4f0a30e6bd1719b0b0c7e7b95c16f0a33d22ec644aeacb0f46675e",
+        "signature": "641bd08c2f4f0a30e6bd1719b0b0c7e7b95c16f0a33d22ec644aeacb0f46675e"
       },
       "../spec/intersection.spec.ts": {
         "version": "f4e07edfcdc15247441c78b34297bc22204f614ef62a00390464d1e65d0bf237",
         "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6"
       },
       "../dist/random-gets.d.ts": {
-        "version": "cf549568e257b768b6fdfd1f21ea5bdef4d17561fc3a077d2f7d4292066cf6d6",
-        "signature": "cf549568e257b768b6fdfd1f21ea5bdef4d17561fc3a077d2f7d4292066cf6d6"
+        "version": "631b358429e39b2a4330ab4a84644fd3a1030fa5f5ea0bfe0718046fad2d6388",
+        "signature": "631b358429e39b2a4330ab4a84644fd3a1030fa5f5ea0bfe0718046fad2d6388"
       },
       "../spec/random-gets.spec.ts": {
         "version": "24011ae17ead360ed1d23fcc954ebd04c396e4ef0a071d41a26871e3a5405027",
@@ -178,8 +178,8 @@
         "signature": "dacea6a776fd21d87dd464326800de34079623e581a953f2ed7cf31e2336838e"
       },
       "../dist/shuffle.d.ts": {
-        "version": "3d6509a1f04ff7ddec6dd89b4e5d16074e11d6b9f104ab8fc22d2b1a64bf7c89",
-        "signature": "3d6509a1f04ff7ddec6dd89b4e5d16074e11d6b9f104ab8fc22d2b1a64bf7c89"
+        "version": "6ea368391d2edc55862d38d743507b87794e61e7f8c08706c91021003a1024af",
+        "signature": "6ea368391d2edc55862d38d743507b87794e61e7f8c08706c91021003a1024af"
       },
       "../spec/boolean/equal.spec.ts": {
         "version": "0e591f3b0d28bde6bee63be5235ed6977187f03aeefb88dcc59a912e86610365",
@@ -1752,7 +1752,6 @@
       "../spec/any/extract.spec.ts",
       "../dist/boolean/remove-index.d.ts",
       "../dist/boolean/equal.d.ts",
-      "../dist/shuffle.d.ts",
       "../spec/boolean/remove-index.spec.ts",
       "../node_modules/@types/events/index.d.ts",
       "../node_modules/@types/node/globals.d.ts",
@@ -1803,6 +1802,7 @@
       "../node_modules/@types/minimatch/index.d.ts",
       "../node_modules/@types/glob/index.d.ts",
       "../node_modules/@types/jasmine/ts3.1/index.d.ts",
+      "../dist/shuffle.d.ts",
       "../spec/boolean/equal.spec.ts"
     ]
   },

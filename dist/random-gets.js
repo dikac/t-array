@@ -10,10 +10,17 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const random_1 = require("@dikac/t-boolean/random");
-    function RandomGets(array) {
+    /**
+     * pick a random values
+     *
+     * @param array
+     * @param random
+     * @constructor
+     */
+    function RandomGets(array, random = random_1.default) {
         let gets = [];
         for (let data of array) {
-            if (random_1.default()) {
+            if (random()) {
                 gets.push(data);
             }
         }
