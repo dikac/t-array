@@ -1,6 +1,6 @@
 {
   "name": "@dikac/t-array",
-  "version": "0.11.1",
+  "version": "0.12.0",
   "description": "Typescript array",
   "dependencies": {
     "@dikac/t-boolean": "^0.5.0"
@@ -20,8 +20,8 @@
     "test": "jasmine --config=./jasmine.json",
     "test-compile": "npm-run-all --parallel test-compile-script ",
     "test-compile-watch": "npm-run-all --parallel test-compile-watch-script",
-    "test-compile-script": "tsc -p tsconfig-test.json",
-    "test-compile-watch-script": "tsc -w -p tsconfig-test.json",
+    "test-compile-script": "tsc -p tsconfig-spec.json",
+    "test-compile-watch-script": "tsc -w -p tsconfig-spec.json",
     "compile": "tsc",
     "compile-watch": "tsc -w",
     "release": "remove-json-properties dist/package.json private",
