@@ -130,11 +130,11 @@
         "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6"
       },
       "../dist/intersection.d.ts": {
-        "version": "641bd08c2f4f0a30e6bd1719b0b0c7e7b95c16f0a33d22ec644aeacb0f46675e",
-        "signature": "641bd08c2f4f0a30e6bd1719b0b0c7e7b95c16f0a33d22ec644aeacb0f46675e"
+        "version": "fd8ab4d0f92575f94e4e740933736569dbaf1f17722bde7db44bde7b49d68587",
+        "signature": "fd8ab4d0f92575f94e4e740933736569dbaf1f17722bde7db44bde7b49d68587"
       },
       "../spec/intersection.spec.ts": {
-        "version": "f4e07edfcdc15247441c78b34297bc22204f614ef62a00390464d1e65d0bf237",
+        "version": "4df6ce58b0285255ab641d4cda33205f95a9d2d959cfd8597a2e12e7192cd22e",
         "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6"
       },
       "../dist/random-gets.d.ts": {
@@ -1740,8 +1740,6 @@
       "../spec/difference-both.spec.ts",
       "../dist/difference-left.d.ts",
       "../spec/difference-left.spec.ts",
-      "../dist/intersection.d.ts",
-      "../spec/intersection.spec.ts",
       "../dist/random-gets.d.ts",
       "../spec/random-gets.spec.ts",
       "../dist/removes-value.d.ts",
@@ -1752,6 +1750,8 @@
       "../spec/any/extract.spec.ts",
       "../dist/boolean/remove-index.d.ts",
       "../dist/boolean/equal.d.ts",
+      "../dist/shuffle.d.ts",
+      "../spec/boolean/equal.spec.ts",
       "../spec/boolean/remove-index.spec.ts",
       "../node_modules/@types/events/index.d.ts",
       "../node_modules/@types/node/globals.d.ts",
@@ -1802,8 +1802,8 @@
       "../node_modules/@types/minimatch/index.d.ts",
       "../node_modules/@types/glob/index.d.ts",
       "../node_modules/@types/jasmine/ts3.1/index.d.ts",
-      "../dist/shuffle.d.ts",
-      "../spec/boolean/equal.spec.ts"
+      "../dist/intersection.d.ts",
+      "../spec/intersection.spec.ts"
     ]
   },
   "version": "3.7.4"

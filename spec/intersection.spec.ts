@@ -15,3 +15,14 @@ describe("test 2", function() {
     it("intersected", () => expect([2]).toEqual(intersected));
 
 });
+
+describe("test object", function() {
+
+    let a = [{number:1},{number:2}];
+    let b = [{number:2},{number:3},{number:1}];
+    let c = [{number:2},{number:3},{number:1}];
+
+    let intersected = Intersection((v1, v2)=>v1.number === v2.number, a, b, c);
+    it("intersected", () => expect([a[0], a[1]]).toEqual(intersected));
+
+});
