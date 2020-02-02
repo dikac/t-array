@@ -6,5 +6,4 @@
  * @param compare
  * @constructor
  */
-import DifferenceLeft from "./difference";
-export default DifferenceLeft;
+export default function Difference<Value>(targets: Value[], comparisons: Value[], compare?: (target: Value, comparison: Value) => boolean): Value[];
