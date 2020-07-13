@@ -1,9 +1,8 @@
 /**
- * randomize array position
+ * randomize {@param array} array position
  * non cryptographic random
  *
- * @param array
- * @constructor
+ * @return the same as argument {@param array}
  */
 (function (factory) {
     if (typeof module === "object" && typeof module.exports === "object") {

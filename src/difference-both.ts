@@ -1,4 +1,4 @@
-import DifferenceLeft from "./difference-left";
+import DifferenceLeft from "./difference";
 
 export default function DifferenceBoth<Value>(
     array1: Value[],

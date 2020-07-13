@@ -1,5 +1,5 @@
 /**
- * return data from the first array which exists in all array
+ * return data which exists in all array
  *
  * @param compare
  * @param arrays

@@ -11,17 +11,12 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     function Unique(values, compare = (value1, value2) => value1 === value2) {
         let results = [];
-        let added = [];
         PARENT: for (let index1 in values) {
-            //if(added.includes(index1)) {
-            //continue;
-            // }
             for (let result of results) {
                 if (compare(values[index1], result)) {
                     continue PARENT;
                 }
             }
-            //added.push(index1);
             results.push(values[index1]);
         }
         return results;

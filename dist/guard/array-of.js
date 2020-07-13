@@ -4,15 +4,22 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../number"], factory);
+        define(["require", "exports"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const number_1 = require("../number");
-    function Has(array, compare, validator = (value1, value2) => value1 === value2, fromIndex = 0) {
-        return number_1.default(array, compare, validator, fromIndex) !== null;
+    function ArrayOf(value, singular) {
+        if (!Array.isArray(value)) {
+            return false;
+        }
+        for (let val of value) {
+            if (!singular(val)) {
+                return false;
+            }
+        }
+        return true;
     }
-    exports.default = Has;
+    exports.default = ArrayOf;
 });
-//# sourceMappingURL=has.js.map
+//# sourceMappingURL=array-of.js.map

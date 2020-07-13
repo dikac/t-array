@@ -6,14 +6,7 @@ export default function Unique<Value>(
 
     let results : Value[] = [];
 
-    let added : string[] = [];
-
     PARENT: for(let index1 in values) {
-
-        //if(added.includes(index1)) {
-
-            //continue;
-       // }
 
         for(let result of results) {
 
@@ -22,9 +15,6 @@ export default function Unique<Value>(
                 continue PARENT;
             }
         }
-
-        //added.push(index1);
-
 
         results.push(values[index1]);
     }

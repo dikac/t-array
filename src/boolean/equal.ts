@@ -1,10 +1,11 @@
 import RemoveIndex from "./remove-index";
+import Function from "@dikac/t-function/function";
 
 export default function Equal<Value>(
     array1 : Value[],
     array2 : Value[],
-    compare : (value1 : Value, value2 : Value) => boolean
-    = (value1 : Value, value2 : Value) => value1 === value2) : boolean {
+    compare : Function<[Value, Value], boolean> = (value1 : Value, value2 : Value) => value1 === value2
+) : boolean {
 
     if(array1.length !== array2.length) {
 

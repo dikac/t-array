@@ -9,17 +9,19 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    function ArrayOf(values, singular) {
-        if (!Array.isArray(values)) {
-            return false;
+    function Or(booleans, defaults = true) {
+        if (!booleans.length) {
+            return defaults;
         }
-        for (let value of values) {
-            if (!singular(value)) {
-                return false;
+        let result = false;
+        for (let boolean of booleans) {
+            result = result || boolean;
+            if (boolean) {
+                return true;
             }
         }
-        return true;
+        return false;
     }
-    exports.default = ArrayOf;
+    exports.default = Or;
 });
-//# sourceMappingURL=array-of.js.map
+//# sourceMappingURL=or.js.map
