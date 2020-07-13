@@ -1,4 +1,4 @@
-import ArrayOf from "../../dist/guard/array-of";
+import ArrayOf from "../../dist/boolean/array-of";
 import GuardBoolean from "@dikac/t-boolean/boolean";
 
 it("enable console log", () => { spyOn(console, 'log').and.callThrough();});
