@@ -1,11 +1,11 @@
 {
   "name": "@dikac/t-array",
-  "version": "0.15.2",
+  "version": "0.15.3",
   "description": "Typescript array",
   "dependencies": {
     "@dikac/deployer": "^0.1.5",
-    "@dikac/t-boolean": "^0.6.1",
-    "@dikac/t-function": "^0.4.2"
+    "@dikac/t-boolean": "^0.6.4",
+    "@dikac/t-function": "^0.5.0"
   },
   "devDependencies": {
     "@types/jasmine": "^3.5.11",
@@ -20,7 +20,8 @@
     "typescript": "^3.9.6"
   },
   "scripts": {
-    "spec": "jasmine --reporter=jasmine-ts-console-reporter --config=./jasmine.json",
+    "spec-run": "jasmine --reporter=jasmine-ts-console-reporter --config=./jasmine.json",
+    "spec": "npm-run-all spec-compile spec-run",
     "spec-compile": "npm-run-all --parallel spec-compile-script ",
     "spec-compile-watch": "npm-run-all --parallel spec-compile-watch-script",
     "spec-compile-script": "tsc -p tsconfig-spec.json",
