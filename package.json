@@ -1,11 +1,11 @@
 {
   "name": "@dikac/t-array",
-  "version": "0.15.5",
+  "version": "0.15.6",
   "description": "Typescript array",
   "dependencies": {
     "@dikac/deployer": "^0.1.5",
-    "@dikac/t-boolean": "^0.7.1",
-    "@dikac/t-function": "^0.6.1"
+    "@dikac/t-boolean": "^0.7.2",
+    "@dikac/t-function": "^0.7.0"
   },
   "devDependencies": {
     "@types/jasmine": "^3.5.11",
