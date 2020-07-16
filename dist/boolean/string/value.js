@@ -11,15 +11,15 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     /**
      * {@param valid} type is valid or not
-     * {@param property} object property
+     * {@param index} object property
      * {@param type} expected type
      */
-    function Value(valid, property, type) {
+    function Value(valid, index, type) {
         if (valid) {
-            return `index "${property}" value is "${type}"`;
+            return `index "${index}" value is "${type}"`;
         }
         else {
-            return `index "${property}" value is not "${type}"`;
+            return `index "${index}" value is not "${type}"`;
         }
     }
     exports.default = Value;

@@ -1,1 +1,1 @@
-export default function Value(property: number, type: string): Error;
+export default function Value(index: number, type: string): Error;

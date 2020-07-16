@@ -1,6 +1,6 @@
 /**
  * {@param valid} type is valid or not
- * {@param property} object property
+ * {@param index} object property
  * {@param type} expected type
  */
-export default function Value(valid: boolean, property: number, type: string): string;
+export default function Value(valid: boolean, index: number, type: string): string;

@@ -1,20 +1,20 @@
 /**
  * {@param valid} type is valid or not
- * {@param property} object property
+ * {@param index} object property
  * {@param type} expected type
  */
 export default function Value(
     valid : boolean,
-    property : number,
+    index : number,
     type : string
 ) : string {
 
     if(valid) {
 
-        return `index "${property}" value is "${type}"`;
+        return `index "${index}" value is "${type}"`;
 
     } else {
 
-        return `index "${property}" value is not "${type}"`;
+        return `index "${index}" value is not "${type}"`;
     }
 }

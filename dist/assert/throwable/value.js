@@ -10,8 +10,8 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const value_1 = require("../../boolean/string/value");
-    function Value(property, type) {
-        return new Error(value_1.default(false, property, type));
+    function Value(index, type) {
+        return new Error(value_1.default(false, index, type));
     }
     exports.default = Value;
 });
