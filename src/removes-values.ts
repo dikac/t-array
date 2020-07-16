@@ -1,5 +1,3 @@
-import Extract from "./any/extract";
-import Index from "./number";
 import RemovesValue from "./removes-value";
 
 export default function RemovesValues<Value = any>(

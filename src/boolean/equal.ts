@@ -1,4 +1,3 @@
-import RemoveIndex from "./remove-index";
 import Function from "@dikac/t-function/function";
 
 export default function Equal<Value>(
