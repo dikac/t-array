@@ -5,5 +5,5 @@ export default function And<Message extends MessageInterface<string>[]>(
     messages : Message,
 ) : Message & MessageInterface <string>{
 
-    return Join(messages, ' and ')
+    return Join(messages, ' or ')
 }

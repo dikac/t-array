@@ -11,8 +11,8 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     const join_1 = require("./join");
     function And(messages) {
-        return join_1.default(messages, ' and ');
+        return join_1.default(messages, ' or ');
     }
     exports.default = And;
 });
-//# sourceMappingURL=and.js.map
+//# sourceMappingURL=or.js.map
