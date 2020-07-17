@@ -17,7 +17,7 @@
      * @param random
      * @constructor
      */
-    function RandomGets(array, random = random_1.default) {
+    function Random(array, random = random_1.default) {
         let gets = [];
         for (let data of array) {
             if (random()) {
@@ -26,6 +26,6 @@
         }
         return gets;
     }
-    exports.default = RandomGets;
+    exports.default = Random;
 });
-//# sourceMappingURL=random-gets.js.map
+//# sourceMappingURL=random.js.map

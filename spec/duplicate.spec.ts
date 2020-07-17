@@ -1,5 +1,3 @@
-import RemovesValue from "../dist/random-gets";
-import RandomGets from "../dist/random-gets";
 import Duplicate from "../dist/duplicate";
 
 

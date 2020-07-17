@@ -5,4 +5,4 @@
  * @param random
  * @constructor
  */
-export default function RandomGets<T>(array: T[], random?: () => boolean): T[];
+export default function Random<T>(array: T[], random?: () => boolean): T[];

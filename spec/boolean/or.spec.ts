@@ -1,7 +1,3 @@
-import DifferenceBoth from "../../dist/difference-both";
-import RemoveIndex from "../../dist/boolean/remove-index";
-import Equal from "../../dist/boolean/equal";
-import Shuffle from "../../dist/shuffle";
 import Or from "../../dist/boolean/or";
 
 it("force console log", () => { spyOn(console, 'log').and.callThrough();});

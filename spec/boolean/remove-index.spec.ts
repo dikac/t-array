@@ -1,4 +1,3 @@
-import DifferenceBoth from "../../dist/difference-both";
 import RemoveIndex from "../../dist/boolean/remove-index";
 
 it("force console log", () => { spyOn(console, 'log').and.callThrough();});

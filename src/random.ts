@@ -1,4 +1,4 @@
-import Random from "@dikac/t-boolean/random";
+import RandomBoolean from "@dikac/t-boolean/random";
 
 /**
  * pick a random values
@@ -7,7 +7,7 @@ import Random from "@dikac/t-boolean/random";
  * @param random
  * @constructor
  */
-export default function RandomGets<T>(array : T[], random : ()=> boolean = Random) : T[] {
+export default function Random<T>(array : T[], random : ()=> boolean = RandomBoolean) : T[] {
 
     let gets : T[]= [];
 
