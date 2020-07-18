@@ -17,10 +17,18 @@ describe('structure', function () {
             expect(Equal(subjects, and)).toBeTrue();
         });
 
+        it("value", () => {
+            expect([...and.value]).toEqual([...subjects]);
+        });
+
         it("set", () => {
             and.push({valid:false});
             expect(Equal(subjects, and)).toBeFalse();
             expect(and[0].valid).toBeFalse();
+        });
+
+        it("value", () => {
+            expect(and.value).toEqual(and);
         });
 
     });
@@ -33,6 +41,7 @@ describe('structure', function () {
         it("constructor", () => {
             expect(initial === and.defaults).toBeTrue()
         });
+
 
         it("set", () => {
             let initial2 = false;

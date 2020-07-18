@@ -19,6 +19,9 @@
             get valid() {
                 return or_1.default(this, this.defaults);
             }
+            get value() {
+                return this;
+            }
         };
         return values;
     }
