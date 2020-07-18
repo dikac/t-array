@@ -4,7 +4,7 @@ import And from "../validatable/and";
 import RecursiveInferReturn from "./validatable/recursive/recursive";
 import Validator from "@dikac/t-validator/validator";
 
-export default class Array<
+export default class Value<
     Val,
     Container extends Validator<Val>[]
 > implements Validator<

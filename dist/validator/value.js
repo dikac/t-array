@@ -11,7 +11,7 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     const value_1 = require("./validatable/recursive/value");
     const and_1 = require("../validatable/and");
-    class Array {
+    class Value {
         constructor(validators) {
             this.validators = validators;
         }
@@ -20,6 +20,6 @@
             return and_1.default(results);
         }
     }
-    exports.default = Array;
+    exports.default = Value;
 });
 //# sourceMappingURL=value.js.map

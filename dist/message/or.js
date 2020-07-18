@@ -10,9 +10,9 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const join_1 = require("./join");
-    function And(messages) {
+    function Or(messages) {
         return join_1.default(messages, ' or ');
     }
-    exports.default = And;
+    exports.default = Or;
 });
 //# sourceMappingURL=or.js.map
