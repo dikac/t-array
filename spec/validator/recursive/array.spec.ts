@@ -161,7 +161,7 @@ describe("extended validatable", function() {
         } catch (e) {
 
             expect(e).toBeInstanceOf(Error);
-            expect(e.message).toBe('ExtendedNumAny');
+            expect(e.message).toBe('Validatable "ReadonlyMerge" is not valid');
         }
     });
 
@@ -181,7 +181,7 @@ describe("extended validatable", function() {
         } catch (e) {
 
             expect(e).toBeInstanceOf(Error);
-            expect(e.message).toBe('ExtendedStrAny');
+            expect(e.message).toBe('Validatable "ReadonlyMerge" is not valid');
         }
 
        // expect(result.validator6.validator9.validator11.value).toBe(10)
