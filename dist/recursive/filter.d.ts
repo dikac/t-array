@@ -12,4 +12,4 @@ import Guard from "@dikac/t-function/boolean/guard";
  * {@param empty} default {false}, keep empty array or remove on sub array
  *
  */
-export default function Filter<Type, Object extends Recursive<Type> = Recursive<Type>>(record: Object, validation: Guard<any, Type>, filter: Fn<[Type], boolean>, empty?: boolean): O.Partial<Object, 'deep'>;
+export default function Filter<Type, Object extends Recursive<Type> = Recursive<Type>>(record: Object, validation: Guard<unknown, Type>, filter: Fn<[Type], boolean>, empty?: boolean): O.Partial<Object, 'deep'>;

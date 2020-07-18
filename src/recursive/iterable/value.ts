@@ -11,7 +11,7 @@ export default class Value<
 
     constructor(
         public record : Object,
-        public validation : Guard<any, Type>,
+        public validation : Guard<unknown, Type>,
     ) {
 
     }

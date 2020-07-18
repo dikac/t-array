@@ -15,7 +15,7 @@
  *
  * @constructor
  */
-export default function Index<Value = any>(
+export default function Index<Value = unknown>(
     array : Value[],
     value : Value,
     validator : (value : Value, argument : Value) => boolean

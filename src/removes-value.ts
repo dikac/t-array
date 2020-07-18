@@ -1,7 +1,7 @@
 import Extract from "./any/extract";
 import Index from "./number";
 
-export default function RemovesValue<Value = any>(
+export default function RemovesValue<Value>(
     array : Value[],
     value : Value,
     validator : (arrayValue : Value, valueArgument : Value) => boolean

@@ -1,6 +1,6 @@
 import RemovesValue from "./removes-value";
 
-export default function RemovesValues<Value = any>(
+export default function RemovesValues<Value>(
     array : Value[],
     values : Iterable<Value>,
     validator : (arrayValue : Value, valueArgument : Value) => boolean

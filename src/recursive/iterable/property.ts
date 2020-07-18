@@ -14,7 +14,7 @@ export default class Property<
 
     constructor(
         public record : Object,
-        public validation : Guard<any, Type>,
+        public validation : Guard<unknown, Type>,
     ) {
 
     }

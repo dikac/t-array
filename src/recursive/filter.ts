@@ -19,7 +19,7 @@ export default function Filter<
     Object extends Recursive<Type> = Recursive<Type>
 >(
     record : Object,
-    validation : Guard<any, Type>,
+    validation : Guard<unknown, Type>,
     filter : Fn<[Type], boolean>,
     empty : boolean = false
 ) : O.Partial<Object, 'deep'> {

@@ -15,4 +15,4 @@
  *
  * @constructor
  */
-export default function Index<Value = any>(array: Value[], value: Value, validator?: (value: Value, argument: Value) => boolean, start?: number, end?: number): number | null;
+export default function Index<Value = unknown>(array: Value[], value: Value, validator?: (value: Value, argument: Value) => boolean, start?: number, end?: number): number | null;
