@@ -1,4 +1,4 @@
-import CallValidator from "../../../dist/validator/recursive/array";
+import Map from "../../../dist/validator/validatable/recursive/map";
 import Num from "../num";
 import ExtendedNum from "../extended-num";
 import ExtendedNumAny from "../extended-num-any";
@@ -41,7 +41,7 @@ describe("simple validatable", function() {
         ]
     ];
 
-    let result = CallValidator(validator, value);
+    let result = Map(validator, value);
     it('match validator1', ()=> expect(result[0].valid).toBe(true));
     it('match validator2', ()=> expect(result[1].valid).toBe(true));
     it('match validator4', ()=> expect(result[2][0].valid).toBe(true));
@@ -84,7 +84,7 @@ describe("simple validatable", function() {
         ]
     ];
 
-    let result = CallValidator(validator, value);
+    let result = Map(validator, value);
     it('match validator1', ()=> expect(result[0].valid).toBe(true));
     it('match validator2', ()=> expect(result[1].valid).toBe(true));
     it('match validator4', ()=> expect(result[2][0].valid).toBe(true));
@@ -127,7 +127,7 @@ describe("extended validatable", function() {
         ]
     ];
 
-    let result = CallValidator(validator, value);
+    let result = Map(validator, value);
 
     it('match validator1', ()=> expect(result[0].valid).toBe(true));
     it('match validator1', ()=> expect(result[0].message).toBe('ExtendedNum'));

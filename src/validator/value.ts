@@ -1,7 +1,7 @@
 import Validatable from "@dikac/t-validatable/validatable";
-import ValidateValue from "./recursive/value";
+import ValidateValue from "./validatable/recursive/value";
 import And from "../validatable/and";
-import RecursiveInferReturn from "./recursive/infer/return";
+import RecursiveInferReturn from "./validatable/recursive/recursive";
 import Validator from "@dikac/t-validator/validator";
 
 export default class Array<

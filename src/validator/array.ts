@@ -1,8 +1,8 @@
 import Validatable from "@dikac/t-validatable/validatable";
-import Validate from "./recursive/array";
+import Validate from "./validatable/recursive/map";
 import And from "../validatable/and";
-import RecursiveInferReturn from "./recursive/infer/return";
-import RecursiveInferArgument from "./recursive/infer/argument";
+import RecursiveInferReturn from "./validatable/recursive/recursive";
+import RecursiveInferArgument from "./parameter/recursive/recursive";
 import Validator from "@dikac/t-validator/validator";
 import Recursive from "../recursive/recursive";
 

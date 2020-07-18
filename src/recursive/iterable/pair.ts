@@ -1,5 +1,5 @@
 import Recursive from "../recursive";
-import Property from "../infer/property";
+import Index from "../index";
 import ValueValidation from "../../assert/throwable/value-validation";
 import Guard from "@dikac/t-function/boolean/guard";
 
@@ -7,7 +7,7 @@ export default class Pair<
     Type,
     Object extends Recursive<Type> = Recursive<Type>
 > implements
-    Iterable<[Property<Object>[], Type]>
+    Iterable<[Index<Object>[], Type]>
 {
 
     protected keys : number[] = [];
@@ -19,7 +19,7 @@ export default class Pair<
 
     }
 
-    * [Symbol.iterator](): Iterator<[Property<Object>[], Type]> {
+    * [Symbol.iterator](): Iterator<[Index<Object>[], Type]> {
 
         for(const [property, value] of this.record.entries()) {
 
@@ -28,7 +28,7 @@ export default class Pair<
 
             if(this.validation(value)) {
 
-                yield [<Property<Object>[]>properties, value];
+                yield [<Index<Object>[]>properties, value];
 
             } else if(Array.isArray(value)) {
 

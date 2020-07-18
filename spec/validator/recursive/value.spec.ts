@@ -1,4 +1,4 @@
-import CallValidator from "../../../dist/validator/recursive/value";
+import CallValidator from "../../../dist/validator/validatable/recursive/value";
 import Num from "../num";
 import ExtendedNum from "../extended-num";
 import ExtendedNumAny from "../extended-num-any";

@@ -1,5 +1,5 @@
 import Recursive from "../recursive";
-import PropertyInfer from "../infer/property";
+import PropertyInfer from "../index";
 import Pair from "./pair";
 import Guard from "@dikac/t-function/boolean/guard";
 

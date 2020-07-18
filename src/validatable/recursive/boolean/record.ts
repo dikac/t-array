@@ -1,5 +1,5 @@
 import Validatable from "@dikac/t-validatable/validatable";
-import TypeRecord from "../../../recursive/boolean/array-of";
+import TypeRecord from "../../../recursive/boolean/guards";
 import ValidatableType from "@dikac/t-validatable/boolean/validatable";
 import RecursiveRecord from "../../../recursive/recursive";
 
