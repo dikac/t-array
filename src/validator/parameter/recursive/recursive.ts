@@ -1,5 +1,5 @@
 import Validator from "@dikac/t-validator/validator";
-import InferArgument from "@dikac/t-validator/infer/argument";
+import InferArgument from "@dikac/t-validator/parameter/parameter";
 import RecursiveArray from "../../../recursive/recursive";
 
 type Recursive<Schema extends RecursiveArray<Validator<unknown>>> = {
