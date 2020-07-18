@@ -1,10 +1,11 @@
 import Validatable from "@dikac/t-validatable/validatable";
 import Validate from "./validatable/recursive/map";
-import And from "../validatable/and";
 import RecursiveInferReturn from "./validatable/recursive/recursive";
 import RecursiveInferArgument from "./parameter/recursive/recursive";
 import Validator from "@dikac/t-validator/validator";
 import Recursive from "../recursive/recursive";
+import IterableAnd from "@dikac/t-iterable/validatable/boolean/and";
+import ValidatableArray from "../validatable/array";
 
 export default class Array<
     Container extends Recursive<Validator<unknown>>
@@ -13,7 +14,8 @@ export default class Array<
     RecursiveInferReturn<Container> & Validatable
 > {
     constructor(
-        public validators : Container
+        public validators : Container,
+        public defaults : boolean = true
     ) {
     }
 
@@ -21,7 +23,7 @@ export default class Array<
 
         let results : RecursiveInferReturn<Container> = Validate(this.validators, value);
 
-        return And(results);
+        return <any> new ValidatableArray(results, IterableAnd, this.defaults, value);
 
     }
 }

@@ -4,22 +4,22 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "./validatable/recursive/map", "@dikac/t-iterable/validatable/boolean/and", "../validatable/array"], factory);
+        define(["require", "exports", "@dikac/t-iterable/validatable/boolean/and"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const map_1 = require("./validatable/recursive/map");
     const and_1 = require("@dikac/t-iterable/validatable/boolean/and");
-    const array_1 = require("../validatable/array");
-    class Array {
-        constructor(validators, defaults = true) {
-            this.validators = validators;
+    class Array extends globalThis.Array {
+        constructor(validatables, validation = and_1.default, defaults, value) {
+            super(...validatables);
+            this.validation = validation;
             this.defaults = defaults;
+            this.value = value;
+            this[Symbol.species] = globalThis.Array;
         }
-        validate(value) {
-            let results = map_1.default(this.validators, value);
-            return new array_1.default(results, and_1.default, this.defaults, value);
+        get valid() {
+            return this.validation(this, this.defaults);
         }
     }
     exports.default = Array;

@@ -1,6 +1,5 @@
 import MessageInterface from "@dikac/t-message/message";
 import {List} from "ts-toolbelt";
-import IterableAnd from "@dikac/t-iterable/validatable/boolean/and";
 
 export default function Join<Message extends MessageInterface<string>[]>(
     messages : Message,

@@ -4,26 +4,17 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "@dikac/t-iterable/validatable/boolean/or"], factory);
+        define(["require", "exports", "@dikac/t-iterable/validatable/boolean/or", "./array"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const or_1 = require("@dikac/t-iterable/validatable/boolean/or");
+    const array_1 = require("./array");
     function Or(validatables, defaults = true) {
-        let values = new class extends Array {
-            constructor() {
-                super(...validatables);
-                this.defaults = defaults;
-            }
-            get valid() {
-                return or_1.default(this, this.defaults);
-            }
-            get value() {
-                return this;
-            }
-        };
-        return values;
+        let array = new array_1.default(validatables, or_1.default, defaults, null);
+        array.value = array;
+        return array;
     }
     exports.default = Or;
 });
