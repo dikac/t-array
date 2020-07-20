@@ -19,26 +19,20 @@ export default function MapCallback<Replace, Value, Key extends PropertyKey, Obj
     replace : Function<[Value], Replace>
 ) : Map<Replace, Value, Object> {
 
-    let result : Map<Replace, Value, Object> = <Map<Replace, Value, Object>>{};
-
+    let result : any[] = [];
 
     for(const [index, value] of object.entries()) {
 
-       // const value = object[property];
-
         if(validation(value)) {
 
-            // @ts-ignore
             result[index] = replace(value);
 
         } else if(Object(value)) {
 
-            // @ts-ignore
             const val = MapCallback(value, validation, replace);
 
             if(!Empty(val, true)) {
 
-                // @ts-ignore
                 result[index] = val;
             }
 
@@ -50,6 +44,6 @@ export default function MapCallback<Replace, Value, Key extends PropertyKey, Obj
         }
     }
 
-    return result;
+    return <any> result;
 }
 

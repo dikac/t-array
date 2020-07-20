@@ -20,18 +20,14 @@
      * {@param validation} is used for distinguish value to be used for {@param replace} or to be used for recursion
      */
     function MapCallback(object, validation, replace) {
-        let result = {};
+        let result = [];
         for (const [index, value] of object.entries()) {
-            // const value = object[property];
             if (validation(value)) {
-                // @ts-ignore
                 result[index] = replace(value);
             }
             else if (Object(value)) {
-                // @ts-ignore
                 const val = MapCallback(value, validation, replace);
                 if (!empty_1.default(val, true)) {
-                    // @ts-ignore
                     result[index] = val;
                 }
             }

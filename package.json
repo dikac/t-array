@@ -1,6 +1,6 @@
 {
   "name": "@dikac/t-array",
-  "version": "0.17.1",
+  "version": "0.17.2",
   "description": "Typescript array",
   "dependencies": {
     "@dikac/deployer": "^0.1.5",
