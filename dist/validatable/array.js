@@ -4,24 +4,16 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "./recursive/boolean/and"], factory);
+        define(["require", "exports", "@dikac/t-value/message/callback", "../boolean/array"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const and_1 = require("./recursive/boolean/and");
-    class Array extends globalThis.Array {
-        constructor(validatables, validation = and_1.default, defaults, value) {
-            super(...validatables);
-            this.validation = validation;
-            this.defaults = defaults;
-            this.value = value;
-            this[Symbol.species] = globalThis.Array;
-        }
-        get valid() {
-            return this.validation(this, this.defaults);
-        }
+    const callback_1 = require("@dikac/t-value/message/callback");
+    const array_1 = require("../boolean/array");
+    function Object_(value, message) {
+        return callback_1.default(value, array_1.default, message);
     }
-    exports.default = Array;
+    exports.default = Object_;
 });
 //# sourceMappingURL=array.js.map

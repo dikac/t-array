@@ -1,0 +1,57 @@
+import Invalid from "../../../dist/validatable/list/invalid";
+import Validatable from "@dikac/t-validatable/validatable";
+
+
+it("force console log", () => { spyOn(console, 'log').and.callThrough();});
+
+let record : [
+    Validatable,
+    Validatable,
+    Validatable,
+    Validatable
+] = [
+    {valid:false},
+    {valid:true},
+    {valid:false},
+    {valid:true},
+];
+
+describe("check property", function() {
+
+    let result = Invalid(record);
+
+    it("invalid", () => {
+
+        if(result[0]) {
+
+            expect(result[0].valid).toBe(false);
+
+        } else {
+
+            fail('property is not exits')
+        }
+    });
+
+    it("valid", () => {
+
+        expect(result[1]).toBeUndefined();
+    });
+
+    it("invalid", () => {
+
+        if(result[2]) {
+
+            expect(result[2].valid).toBe(false);
+
+        } else {
+
+            fail('property is not exits')
+        }
+    });
+
+    it("valid", () => {
+
+        expect(result[3]).toBeUndefined();
+    });
+
+});

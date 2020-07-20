@@ -1,25 +1,16 @@
-import Value from "@dikac/t-value/value";
+import Callback from "@dikac/t-value/message/callback";
+import ObjectGuard from "../boolean/array";
 import Validatable from "@dikac/t-validatable/validatable";
+import Message from "@dikac/t-message/message";
+import Value from "@dikac/t-value/value";
 import Function from "@dikac/t-function/function";
-import And from "./recursive/boolean/and";
 
-export default class Array<Valid extends Validatable, Val> extends globalThis.Array<Valid>  implements Value<Val> {
+type Return<Msg, Argument> = Readonly<Validatable<false> & Message<Msg> & Value<Argument>> | Readonly<Validatable<true> & Message<Msg> & Value<any[]>>;
 
-    [Symbol.species] = globalThis.Array;
+export default function Object_<Msg, Argument>(
+    value : Argument,
+    message : Function<[Readonly<Value<Argument> & Validatable>], Msg>
+) : Return<Msg, Argument> {
 
-    constructor(
-        validatables : Valid[],
-        public validation : Function<[Valid[], boolean], boolean> = And,
-        public defaults : boolean,
-        public value : Val
-    ) {
-
-        super(...validatables);
-    }
-
-    get valid() : boolean {
-
-        return this.validation(this, this.defaults);
-    }
-
+    return <Return<Msg, Argument>> Callback(value, ObjectGuard, message);
 }

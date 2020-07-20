@@ -1,1 +1,1 @@
-export default function Empty(array: unknown[], empty?: boolean): boolean;
+export default function Empty(array: ReadonlyArray<unknown>, empty?: boolean): boolean;
