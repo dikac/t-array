@@ -1,7 +1,7 @@
-import IterableAnd from "@dikac/t-iterable/validatable/boolean/and";
 import Value from "@dikac/t-value/value";
 import Validatable from "@dikac/t-validatable/validatable";
 import Function from "@dikac/t-function/function";
+import And from "./recursive/boolean/and";
 
 export default class Array<Valid extends Validatable, Val> extends globalThis.Array<Valid>  implements Value<Val> {
 
@@ -9,7 +9,7 @@ export default class Array<Valid extends Validatable, Val> extends globalThis.Ar
 
     constructor(
         validatables : Valid[],
-        public validation : Function<[Valid[], boolean], boolean> = IterableAnd,
+        public validation : Function<[Valid[], boolean], boolean> = And,
         public defaults : boolean,
         public value : Val
     ) {
