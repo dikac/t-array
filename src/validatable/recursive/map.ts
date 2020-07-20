@@ -41,14 +41,13 @@ export default function Map<
 
         if(ValidatorType(validator)) {
 
-            let validatable = validator.validate(value);
+            object[property] = validator.validate(value);
 
-            if(stopInvalid && !validatable.valid) {
+            if(stopInvalid && !object[property].valid) {
 
                 return object;
             }
 
-            object[property] = validatable;
             continue;
         }
 

@@ -17,11 +17,10 @@
         [];
         for (let [property, validator] of validators.entries()) {
             if (validator_1.default(validator)) {
-                let validatable = validator.validate(value);
-                if (stopInvalid && !validatable.valid) {
+                array[property] = validator.validate(value);
+                if (stopInvalid && !array[property].valid) {
                     return array;
                 }
-                array[property] = validatable;
                 continue;
             }
             if (globalThis.Array.isArray(validator)) {

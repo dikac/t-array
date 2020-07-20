@@ -40,14 +40,13 @@ export default function Value<
 
         if(ValidatorType(validator)) {
 
-            let validatable = validator.validate(value);
+            array[property] = validator.validate(value);
 
-            if(stopInvalid && !validatable.valid) {
+            if(stopInvalid && !array[property].valid) {
 
                 return array;
             }
 
-            array[property] = validatable;
             continue;
         }
 

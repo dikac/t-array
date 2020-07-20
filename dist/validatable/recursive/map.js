@@ -19,11 +19,10 @@
         for (let [property, validator] of validators.entries()) {
             const value = values[property];
             if (validator_1.default(validator)) {
-                let validatable = validator.validate(value);
-                if (stopInvalid && !validatable.valid) {
+                object[property] = validator.validate(value);
+                if (stopInvalid && !object[property].valid) {
                     return object;
                 }
-                object[property] = validatable;
                 continue;
             }
             if (globalThis.Array.isArray(validator)) {
