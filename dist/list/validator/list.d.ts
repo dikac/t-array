@@ -4,6 +4,6 @@ import RecursiveInferArgument from "./parameter/parameter";
 import Validator from "@dikac/t-validator/validator";
 import Default from "./default";
 import Value from "@dikac/t-value/value";
-export default class Recursive<Container extends Validator[]> extends Default<Container, RecursiveInferArgument<Container>, RecursiveInferReturn<Container> & Validatable> {
+export default class List<Container extends Validator[]> extends Default<Container, RecursiveInferArgument<Container>, RecursiveInferReturn<Container> & Validatable> {
     validate(value: RecursiveInferArgument<Container>): RecursiveInferReturn<Container> & Validatable & Value<RecursiveInferReturn<Container>>;
 }

@@ -5,7 +5,7 @@ import Guard from "@dikac/t-function/boolean/guard";
  *
  * {@param validation} is use to validate for {@template Value}
  */
-export default function Guards<
+export default function List<
     Value,
     Assumption extends Value[]
 >(
@@ -30,7 +30,7 @@ export default function Guards<
 
         if(Array.isArray(value)) {
 
-            if(Guards(value, validation)) {
+            if(List(value, validation)) {
 
                 continue;
             }

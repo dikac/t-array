@@ -5,20 +5,21 @@ import RecursiveInferArgument from "./parameter/parameter";
 import Validator from "@dikac/t-validator/validator";
 import ValidatableArray from "../../validatable/combine";
 import Default from "./default";
-import Value from "@dikac/t-value/value";
+import {Object} from "ts-toolbelt";
 import And from "../../validatable/list/boolean/and";
+import Value from "@dikac/t-value/value";
 
-export default class Recursive<
+export default class ListPartial<
     Container extends Validator[]
-    > extends Default<
+> extends Default<
     Container,
     RecursiveInferArgument<Container>,
-    RecursiveInferReturn<Container> & Validatable
-    > {
+    Object.Partial<RecursiveInferReturn<Container>, 'deep'> & Validatable
+> {
 
-    validate(value: RecursiveInferArgument<Container>) :RecursiveInferReturn<Container> & Validatable & Value<RecursiveInferReturn<Container>> {
+    validate(value: RecursiveInferArgument<Container>) : Object.Partial<RecursiveInferReturn<Container>, 'deep'> & Validatable & Value<Object.Partial<RecursiveInferReturn<Container>, 'deep'>> {
 
-        let results :  RecursiveInferReturn<Container> = Validate(this.validators, value, false);
+        let results :  Object.Partial<RecursiveInferReturn<Container>, 'deep'> = Validate(this.validators, value, true);
 
         return <any> new ValidatableArray(<any>results, And, this.defaults, value);
 

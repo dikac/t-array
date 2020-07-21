@@ -13,12 +13,12 @@
     const combine_1 = require("../../validatable/combine");
     const default_1 = require("./default");
     const and_1 = require("../../validatable/list/boolean/and");
-    class Recursive extends default_1.default {
+    class ListPartial extends default_1.default {
         validate(value) {
-            let results = map_1.default(this.validators, value, false);
+            let results = map_1.default(this.validators, value, true);
             return new combine_1.default(results, and_1.default, this.defaults, value);
         }
     }
-    exports.default = Recursive;
+    exports.default = ListPartial;
 });
-//# sourceMappingURL=recursive.js.map
+//# sourceMappingURL=list-partial.js.map

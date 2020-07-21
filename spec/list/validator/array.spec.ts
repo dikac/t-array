@@ -1,5 +1,5 @@
 import Validator from "../../validator/factory";
-import Array from "../../../dist/list/validator/recursive";
+import Array from "../../../dist/list/validator/list";
 
 it("force console log", () => { spyOn(console, 'log').and.callThrough();});
 

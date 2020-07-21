@@ -1,1 +1,1 @@
-{"version":3,"file":"record.js","sourceRoot":"","sources":["../../../../src/validatable/list/boolean/record.ts"],"names":[],"mappings":";;;;;;;;;;;IACA,yDAAsD;IACtD,0EAAuE;IAEvE;;OAEG;IACH,SAAwB,MAAM,CAG1B,MAAgB;QAGhB,OAAO,gBAAU,CAAC,MAAM,EAAE,qBAAe,CAAC,CAAA;IAC9C,CAAC;IAPD,yBAOC"}
+{"version":3,"file":"record.js","sourceRoot":"","sources":["../../../../src/validatable/list/boolean/record.ts"],"names":[],"mappings":";;;;;;;;;;;IACA,qDAAoD;IACpD,0EAAuE;IAEvE;;OAEG;IACH,SAAwB,MAAM,CAG1B,MAAgB;QAGhB,OAAO,cAAU,CAAC,MAAM,EAAE,qBAAe,CAAC,CAAA;IAC9C,CAAC;IAPD,yBAOC"}

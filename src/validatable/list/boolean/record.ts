@@ -1,5 +1,5 @@
 import Validatable from "@dikac/t-validatable/validatable";
-import TypeRecord from "../../../list/boolean/guards";
+import TypeRecord from "../../../list/boolean/list";
 import ValidatableType from "@dikac/t-validatable/boolean/validatable";
 
 /**

@@ -1,6 +1,6 @@
 import ResetFlat from "../reset";
 
-export default function Reset<Argument extends unknown[]/*Recursive<unknown>*/>(argument : Argument) : Argument {
+export default function Reset<Argument extends unknown[]>(argument : Argument) : Argument {
 
    let buffer =  ResetFlat(argument);
 

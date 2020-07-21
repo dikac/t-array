@@ -14,7 +14,7 @@
      *
      * {@param validation} is use to validate for {@template Value}
      */
-    function Guards(record, validation) {
+    function List(record, validation) {
         if (!Array.isArray(record)) {
             return false;
         }
@@ -25,7 +25,7 @@
                 continue;
             }
             if (Array.isArray(value)) {
-                if (Guards(value, validation)) {
+                if (List(value, validation)) {
                     continue;
                 }
             }
@@ -33,6 +33,6 @@
         }
         return true;
     }
-    exports.default = Guards;
+    exports.default = List;
 });
-//# sourceMappingURL=guards.js.map
+//# sourceMappingURL=list.js.map

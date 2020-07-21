@@ -4,18 +4,18 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../../../list/boolean/guards", "@dikac/t-validatable/boolean/validatable"], factory);
+        define(["require", "exports", "../../../list/boolean/list", "@dikac/t-validatable/boolean/validatable"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const guards_1 = require("../../../list/boolean/guards");
+    const list_1 = require("../../../list/boolean/list");
     const validatable_1 = require("@dikac/t-validatable/boolean/validatable");
     /**
      * Check if {@param record} is array of {@link Validatable}
      */
     function Record(record) {
-        return guards_1.default(record, validatable_1.default);
+        return list_1.default(record, validatable_1.default);
     }
     exports.default = Record;
 });
