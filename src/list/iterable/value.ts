@@ -1,10 +1,9 @@
-// import Recursive from "../recursive";
 import Pair from "./pair";
 import Guard from "@dikac/t-function/boolean/guard";
 
 export default class Value<
     Type,
-    Object extends Type[] = Type[]//Recursive<Type> = Recursive<Type>
+    Object extends Type[] = Type[]
 > implements
     Iterable<Type>
 {

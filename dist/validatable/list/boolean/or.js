@@ -9,7 +9,6 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    //import Record from "../../../recursive/recursive";
     const valid_1 = require("../valid");
     const empty_1 = require("../../../boolean/empty");
     function Or(object) {

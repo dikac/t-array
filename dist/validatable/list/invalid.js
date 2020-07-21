@@ -9,7 +9,6 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    // import Record from "../../recursive/recursive";
     const filter_1 = require("../../list/filter");
     const validatable_1 = require("@dikac/t-validatable/boolean/validatable");
     /**

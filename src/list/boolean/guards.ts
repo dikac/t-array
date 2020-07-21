@@ -1,4 +1,3 @@
-// import RecordInterface from "../recursive";
 import Guard from "@dikac/t-function/boolean/guard";
 
 /**
@@ -8,7 +7,7 @@ import Guard from "@dikac/t-function/boolean/guard";
  */
 export default function Guards<
     Value,
-    Assumption extends Value[] // RecordInterface<Value>,
+    Assumption extends Value[]
 >(
     record : unknown,
     validation : Guard<unknown,  Value>,

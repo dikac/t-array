@@ -11,7 +11,6 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     const value_1 = require("../../validatable/list/value");
     const combine_1 = require("../../validatable/combine");
-    //import Recursive from "../recursive";
     const default_1 = require("./default");
     const and_1 = require("../../validatable/list/boolean/and");
     class Value extends default_1.default {

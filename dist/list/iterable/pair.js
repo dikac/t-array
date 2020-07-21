@@ -9,8 +9,6 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    //import Recursive from "../recursive";
-    //import Index from "../index";
     const value_validation_1 = require("../../assert/throwable/value-validation");
     class Pair {
         constructor(record, validation) {
@@ -20,7 +18,6 @@
         }
         *[Symbol.iterator]() {
             for (const [property, value] of this.record.entries()) {
-                // const value : Type = <Type>this.record[property];
                 const properties = [...this.keys, property];
                 if (this.validation(value)) {
                     yield [properties, value];

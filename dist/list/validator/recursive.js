@@ -10,7 +10,6 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const map_1 = require("../../validatable/list/map");
-    //import RecursiveInterface from "../recursive";
     const combine_1 = require("../../validatable/combine");
     const default_1 = require("./default");
     const and_1 = require("../../validatable/list/boolean/and");

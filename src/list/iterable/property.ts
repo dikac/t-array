@@ -1,12 +1,10 @@
-//import Recursive from "../recursive";
-//import PropertyInfer from "../index";
 import Pair from "./pair";
 import Guard from "@dikac/t-function/boolean/guard";
 import {List} from "ts-toolbelt";
 
 export default class Property<
     Type,
-    Object extends Type[] = Type[]// Recursive<Type> = Recursive<Type>
+    Object extends Type[] = Type[]
 > implements
     Iterable<List.Keys<Object>[]>
 {
@@ -26,39 +24,5 @@ export default class Property<
 
             yield properties
         }
-
     }
 }
-//
-// export default function Pair<
-//     Type,
-//     Object extends Record<keyof any, Type> = Record<keyof any, Type>
-//     >(
-//     record : Object,
-//     validation : (value : any) => value is Type,
-// ) : DeepPartial<Object> {
-//
-//     let result : DeepPartial<Object> = <DeepPartial<Object>>{};
-//
-//     for(const property in record) {
-//
-//         const value : Type = <Type>record[property];
-//
-//         if(validation(value)) {
-//
-//             // @ts-ignore
-//             result[property] = value;
-//
-//         } else if(ObjectType(value)) {
-//
-//             const results =  Pair(value, validation);
-//
-//             if(!Empty(results)) {
-//
-//                 result[property] = results;
-//             }
-//         }
-//     }
-//
-//     return <DeepPartial<Object>> result;
-// }

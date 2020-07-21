@@ -13,7 +13,6 @@
     const combine_1 = require("../../validatable/combine");
     const default_1 = require("./default");
     const and_1 = require("../../validatable/list/boolean/and");
-    // import Recursive from "../recursive";
     class ValuePartial extends default_1.default {
         validate(value) {
             let results = value_1.default(this.validators, value, true);

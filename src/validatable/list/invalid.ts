@@ -1,5 +1,4 @@
 import Validatable from "@dikac/t-validatable/validatable";
-// import Record from "../../recursive/recursive";
 import Filter from "../../list/filter";
 import GuardValidatable from "@dikac/t-validatable/boolean/validatable";
 import {O} from "ts-toolbelt";
@@ -9,7 +8,7 @@ import {O} from "ts-toolbelt";
  */
 export default function Invalid<
     V extends Validatable = Validatable,
-    Object extends V[] = V[]//Record<V> = Record<V>
+    Object extends V[] = V[]
 >(
     record : Object
 ) : O.Partial<Object, 'deep'> {

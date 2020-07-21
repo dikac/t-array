@@ -1,12 +1,10 @@
-//import Recursive from "../recursive";
-//import Index from "../index";
 import ValueValidation from "../../assert/throwable/value-validation";
 import Guard from "@dikac/t-function/boolean/guard";
 import {List} from "ts-toolbelt";
 
 export default class Pair<
     Type,
-    Object extends Type[] = Type[]//Recursive<Type> = Recursive<Type>
+    Object extends Type[] = Type[]
 > implements
     Iterable<[List.Keys<Object>[], Type]>
 {
@@ -24,7 +22,7 @@ export default class Pair<
 
         for(const [property, value] of this.record.entries()) {
 
-           // const value : Type = <Type>this.record[property];
+
             const properties = [...this.keys, property];
 
             if(this.validation(value)) {

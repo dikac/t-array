@@ -11,7 +11,6 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     const guards_1 = require("../../../list/boolean/guards");
     const validatable_1 = require("@dikac/t-validatable/boolean/validatable");
-    //import RecursiveRecord from "../../../recursive/recursive";
     /**
      * Check if {@param record} is array of {@link Validatable}
      */

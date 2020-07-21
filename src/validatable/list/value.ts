@@ -2,7 +2,6 @@ import ValidatorType from "@dikac/t-validator/boolean/validator";
 import RecursiveInferReturn from "./recursive";
 import ThrowableValue from "./assert/throwable/value";
 import Validator from "@dikac/t-validator/validator";
-//import Recursive from "../../recursive/recursive";
 import {List} from "ts-toolbelt";
 
 export default function Value<

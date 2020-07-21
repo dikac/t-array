@@ -1,5 +1,4 @@
 import ResetFlat from "../reset";
-// import Recursive from "./recursive";
 
 export default function Reset<Argument extends unknown[]/*Recursive<unknown>*/>(argument : Argument) : Argument {
 

@@ -9,7 +9,6 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    // import Recursive from "../recursive";
     const pair_1 = require("./pair");
     class Value {
         constructor(record, validation) {

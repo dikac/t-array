@@ -4,13 +4,12 @@ import RecursiveInferReturn from "../../validatable/list/recursive";
 import Validator from "@dikac/t-validator/validator";
 import ValueInterface from "@dikac/t-value/value";
 import Combine from "../../validatable/combine";
-//import Recursive from "../recursive";
 import Default from "./default";
 import And from "../../validatable/list/boolean/and";
 
 export default class Value<
     Val,
-    Container extends Validator[]//Recursive<Validator>
+    Container extends Validator[]
 > extends Default<
     Container,
     Val,

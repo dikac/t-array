@@ -1,4 +1,3 @@
-// import Recursive from "./recursive";
 import Empty from "../boolean/empty";
 import {List} from "ts-toolbelt";
 import Fn from "@dikac/t-function/function";
@@ -16,7 +15,7 @@ import Guard from "@dikac/t-function/boolean/guard";
  */
 export default function Filter<
     Type,
-    Object extends List.List<Type>//Recursive<Type> = Recursive<Type>
+    Object extends List.List<Type>
 >(
     record : Object,
     validation : Guard<unknown, Type>,

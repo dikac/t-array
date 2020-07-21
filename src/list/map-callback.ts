@@ -1,5 +1,4 @@
 import Empty from "../boolean/empty";
-//import Recursive from "./recursive";
 import Map from "./map";
 import ValueValidation from "../assert/throwable/value-validation";
 import Function from "@dikac/t-function/function";

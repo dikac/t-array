@@ -9,7 +9,6 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    // import Recursive from "./recursive";
     const empty_1 = require("../boolean/empty");
     /**
      * recursively filter {@param record} value, returning new object with all value allowed

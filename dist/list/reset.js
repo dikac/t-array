@@ -10,7 +10,6 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const reset_1 = require("../reset");
-    // import Recursive from "./recursive";
     function Reset(argument) {
         let buffer = reset_1.default(argument);
         for (let [index, value] of argument.entries()) {

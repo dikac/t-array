@@ -9,7 +9,6 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    // import Recursive from "../recursive";
     class Default {
         constructor(validators, defaults = true) {
             this.validators = validators;

@@ -7,11 +7,10 @@ import Combine from "../../validatable/combine";
 import Default from "./default";
 import {Object} from "ts-toolbelt";
 import And from "../../validatable/list/boolean/and";
-// import Recursive from "../recursive";
 
 export default class ValuePartial<
     Val,
-    Container extends Validator[]//Recursive<Validator>
+    Container extends Validator[]
 > extends Default<
     Container,
     Val,

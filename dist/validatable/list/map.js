@@ -15,31 +15,10 @@
         [];
         for (let [property, validator] of validators.entries()) {
             const value = values[property];
-            // if(ValidatorType(validator)) {
             object[property] = validator.validate(value);
             if (stopInvalid && !object[property].valid) {
                 return object;
             }
-            //  continue;
-            // }
-            //
-            //  if(globalThis.Array.isArray(validator)) {
-            //
-            //      if(globalThis.Array.isArray(value)) {
-            //
-            //          // @ts-ignore
-            //          object[property] =
-            //              Map(validator,  <RecursiveInferArgument<Validators>>value, <any>stopInvalid);
-            //
-            //      } else {
-            //
-            //          throw ThrowableObjectValue(property, 'array');
-            //      }
-            //
-            //  } else {
-            //
-            //      throw ThrowableValue(property);
-            //  }
         }
         return object;
     }
