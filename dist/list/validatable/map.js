@@ -4,22 +4,22 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../../list/validatable/value"], factory);
+        define(["require", "exports"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const value_1 = require("../../list/validatable/value");
-    class Value {
-        constructor(validators, handler, validation) {
+    class Map {
+        constructor(value, validators, handler, validation) {
+            this.value = value;
             this.validators = validators;
             this.handler = handler;
             this.validation = validation;
-        }
-        validate(value) {
-            return new value_1.default(value, this.validators, this.handler, this.validation);
+            this.validatables = this.handler(value, this.validators);
+            this.validatable = validation(this.validatables);
+            this.valid = this.validatable.valid;
         }
     }
-    exports.default = Value;
+    exports.default = Map;
 });
-//# sourceMappingURL=value.js.map
+//# sourceMappingURL=map.js.map

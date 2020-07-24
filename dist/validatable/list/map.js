@@ -9,7 +9,7 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    function Map(validators, values, stopInvalid) {
+    function Map(values, validators, stopInvalid) {
         let object = 
         // @ts-ignore
         [];

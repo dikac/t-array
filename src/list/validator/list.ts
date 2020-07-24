@@ -1,27 +1,61 @@
-import Validatable from "@dikac/t-validatable/validatable";
-import Validate from "../../validatable/list/map";
-import RecursiveInferReturn from "../../validatable/list/recursive";
-import RecursiveInferArgument from "./parameter/parameter";
 import Validator from "@dikac/t-validator/validator";
-import ValidatableArray from "../../validatable/combine";
-import Default from "./default";
-import Value from "@dikac/t-value/value";
-import And from "../../validatable/list/boolean/and";
+import ValidatableInterface from "@dikac/t-validatable/validatable";
+import RecordParameter from "./parameter/parameter";
+import RecordValidatable from "../../validator/validatable/list/record";
+import OptionalInferReturn from "../../validator/validatable/list/optional";
+import ValueInterface from "@dikac/t-value/value";
+import Function from "@dikac/t-function/function";
+import Validators from "../validators/validators";
+import ValidatableMap from "../validatable/map";
 
-export default class List<
-    Container extends Validator[]
-    > extends Default<
-    Container,
-    RecursiveInferArgument<Container>,
-    RecursiveInferReturn<Container> & Validatable
-    > {
+export type ValidationReturn<
+    Container extends Validator<RecordParameter<Container>>[]
+> = RecordValidatable<Container>|OptionalInferReturn<Container>;
 
-    validate(value: RecursiveInferArgument<Container>) :RecursiveInferReturn<Container> & Validatable & Value<RecursiveInferReturn<Container>> {
+export type ValidatorReturn<
+    Container extends Validator<RecordParameter<Container>>[],
+    Result extends ValidatableInterface[],
+    Validatable extends ValidatableInterface
+> =  Readonly<ValueInterface<RecordParameter<Container>> & ValidatableInterface & {validatables:Result} & {validatable : Validatable}>;
 
-        let results :  RecursiveInferReturn<Container> = Validate(this.validators, value, false);
+export default class Map<
+    Container extends Validator[] = Validator[],
+    Result extends ValidatableInterface[] = ValidatableInterface[],
+    Validatable extends ValidatableInterface = ValidatableInterface
+> implements Validator<
+    RecordParameter<Container>,
+    ValidatorReturn<Container, Result, Validatable>
+>, Validators<Container> {
+    constructor(
+        public validators : Container,
+        public handler : Function<[RecordParameter<Container>, Container], Result>,
+        public validation : Function<[Result], Validatable>
+    ) {
+    }
 
-        return <any> new ValidatableArray(<any>results, And, this.defaults, value);
+    validate(argument: RecordParameter<Container>) : ValidatorReturn<Container, Result, Validatable> {
 
+        return new ValidatableMap(argument, this.validators, this.handler, this.validation);
+        //
+        // let validatables = this.handler(argument, this.validators);
+        // let validation = this.validation;
+        // let validatable = validation(validatables);
+        //
+        // return  {
+        //
+        //     get validatables () {
+        //         return validatables;
+        //     },
+        //     get validatable () {
+        //         return validatable;
+        //     },
+        //     get value () {
+        //         return argument;
+        //     },
+        //     get valid  () {
+        //         return this.validatable.valid;
+        //     }
+        // }
     }
 }
 

@@ -4,21 +4,42 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../../validatable/list/map", "../../validatable/combine", "./default", "../../validatable/list/boolean/and"], factory);
+        define(["require", "exports", "../validatable/map"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const map_1 = require("../../validatable/list/map");
-    const combine_1 = require("../../validatable/combine");
-    const default_1 = require("./default");
-    const and_1 = require("../../validatable/list/boolean/and");
-    class List extends default_1.default {
-        validate(value) {
-            let results = map_1.default(this.validators, value, false);
-            return new combine_1.default(results, and_1.default, this.defaults, value);
+    const map_1 = require("../validatable/map");
+    class Map {
+        constructor(validators, handler, validation) {
+            this.validators = validators;
+            this.handler = handler;
+            this.validation = validation;
+        }
+        validate(argument) {
+            return new map_1.default(argument, this.validators, this.handler, this.validation);
+            //
+            // let validatables = this.handler(argument, this.validators);
+            // let validation = this.validation;
+            // let validatable = validation(validatables);
+            //
+            // return  {
+            //
+            //     get validatables () {
+            //         return validatables;
+            //     },
+            //     get validatable () {
+            //         return validatable;
+            //     },
+            //     get value () {
+            //         return argument;
+            //     },
+            //     get valid  () {
+            //         return this.validatable.valid;
+            //     }
+            // }
         }
     }
-    exports.default = List;
+    exports.default = Map;
 });
 //# sourceMappingURL=list.js.map

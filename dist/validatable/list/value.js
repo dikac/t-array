@@ -11,7 +11,7 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     const validator_1 = require("@dikac/t-validator/boolean/validator");
     const value_1 = require("./assert/throwable/value");
-    function Value(validators, value, stopInvalid) {
+    function Value(value, validators, stopInvalid) {
         let array = 
         // @ts-ignore
         [];
@@ -26,7 +26,7 @@
             if (globalThis.Array.isArray(validator)) {
                 // @ts-ignore
                 array[property] =
-                    Value(validator, value, stopInvalid);
+                    Value(value, validator, stopInvalid);
             }
             else {
                 throw value_1.default(property);

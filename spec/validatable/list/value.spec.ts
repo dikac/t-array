@@ -36,7 +36,7 @@ describe("compiler compatibility", function() {
             Validator<any, Validatable>,
             Validator<any, Validatable>,
             Validator<any, Validatable>
-        ]>(validator, value, false);
+        ]>(value, validator, false);
 
         let valdiatable : Validatable|undefined;
 
@@ -62,7 +62,7 @@ describe("compiler compatibility", function() {
 
         let value : any = 10;
 
-        let result = Value(validator, value, false);
+        let result = Value(value, validator, false);
 
         let valdiatable : Validatable|undefined;
 
@@ -94,7 +94,7 @@ describe("simple validatable", function() {
 
     let value = 10;
 
-    let result = Value<any, typeof validator>(validator, value, false);
+    let result = Value<any, typeof validator>(value, validator, false);
     it('match validator1', ()=> expect(result[0].valid).toBe(true));
     it('match validator2', ()=> expect(result[1].valid).toBe(true));
     it('match validator4', ()=> expect(result[2].valid).toBe(false));
@@ -122,7 +122,7 @@ describe("simple validatable", function() {
 
     let value = 'str';
 
-    let result = Value<any, typeof validator>(validator, value, false);
+    let result = Value<any, typeof validator>(value, validator, false);
     it('match validator1', ()=> expect(result[0].valid).toBe(false));
     it('match validator2', ()=> expect(result[1].valid).toBe(false));
     it('match validator4', ()=> expect(result[2].valid).toBe(true));
@@ -150,7 +150,7 @@ describe("extended validatable", function() {
 
     let value = 10;
 
-    let result = Value<any, typeof validator>(validator, value, false);
+    let result = Value<any, typeof validator>(value, validator, false);
 
     it('match validator1', ()=> expect(result[0].valid).toBe(true));
     it('match validator1', ()=> expect(result[0].message).toBe('ExtendedNum'));

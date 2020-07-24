@@ -1,26 +1,41 @@
-import Validatable from "@dikac/t-validatable/validatable";
-import ValidateValue from "../../validatable/list/value";
-import RecursiveInferReturn from "../../validatable/list/recursive";
 import Validator from "@dikac/t-validator/validator";
 import ValueInterface from "@dikac/t-value/value";
-import Combine from "../../validatable/combine";
-import Default from "./default";
-import And from "../../validatable/list/boolean/and";
+import RecordValidatable from "../../validator/validatable/list/record";
+import OptionalValidatable from "../../validator/validatable/list/optional";
+import Function from "@dikac/t-function/function";
+import ValidatableInterface from "@dikac/t-validatable/validatable";
+import ValidatableValue from "../../list/validatable/value";
+
+export type ValidationReturn<Val, Container extends Validator<Val>[]> = RecordValidatable<Container>|OptionalValidatable<Container>;
+
+export type ValidatorReturn<
+    Val,
+    Container extends Validator[] = Validator[],
+    Result extends ValidatableInterface[] = ValidatableInterface[],
+    Validatable extends ValidatableInterface = ValidatableInterface
+> = Readonly<{validatables:Result} & ValidatableInterface  & ValueInterface<Val> & {validatable : Validatable}>;
 
 export default class Value<
     Val,
-    Container extends Validator[]
-> extends Default<
-    Container,
+    Container extends Validator[] = Validator[],
+    Result extends ValidatableInterface[] = ValidatableInterface[],
+    Validatable extends ValidatableInterface = ValidatableInterface
+> implements Validator<
+/*    Container,*/
     Val,
-    RecursiveInferReturn<Container> & Validatable  & ValueInterface<Val>
+    ValidatorReturn<Val, Container, Result, Validatable>
 >{
 
-    validate(value: Val) : RecursiveInferReturn<Container> & Validatable & ValueInterface<Val> {
+    constructor(
+        public validators : Container,
+        public handler : Function<[Val, Container], Result>,
+        public validation : Function<[Result], Validatable>
+    ) {
+    }
 
-        let results : RecursiveInferReturn<Container> = ValidateValue(this.validators, value, false);
+    validate(value: Val) : ValidatorReturn<Val, Container, Result, Validatable> {
 
-        return <any> new Combine(<any>results, And, this.defaults, value);
+        return new ValidatableValue(value, this.validators, this.handler, this.validation)
     }
 }
 

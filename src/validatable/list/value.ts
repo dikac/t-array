@@ -7,27 +7,27 @@ import {List} from "ts-toolbelt";
 export default function Value<
     Val,
     Validators extends Validator<Val>[]
-    >(
-    validators : Validators,
+>(
     value : Val,
+    validators : Validators,
     stopInvalid : true
 ) : List.Partial<RecursiveInferReturn<Validators>>;
 
 export default function Value<
     Val,
     Validators extends Validator<Val>[]
-    >(
-    validators : Validators,
+>(
     value : Val,
+    validators : Validators,
     stopInvalid : false
 ) : RecursiveInferReturn<Validators>;
 
 export default function Value<
     Val,
     Validators extends Validator<Val>[]
-    >(
-    validators : Validators,
+>(
     value : Val,
+    validators : Validators,
     stopInvalid : boolean
 ) : RecursiveInferReturn<Validators> | List.Partial<RecursiveInferReturn<Validators>> {
 
@@ -53,7 +53,7 @@ export default function Value<
 
             // @ts-ignore
             array[property] =
-                Value(validator, value, <any>stopInvalid);
+                Value(value, validator, <any>stopInvalid);
 
         } else {
 
