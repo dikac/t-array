@@ -4,12 +4,12 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../../validatable/list/value", "./value-callback"], factory);
+        define(["require", "exports", "../../validator/validatable/list/value", "./value-callback"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const value_1 = require("../../validatable/list/value");
+    const value_1 = require("../../validator/validatable/list/value");
     const value_callback_1 = require("./value-callback");
     class ValueAll {
         constructor(validators, validation) {

@@ -4,12 +4,11 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../boolean/empty", "../assert/throwable/value-validation"], factory);
+        define(["require", "exports", "../assert/throwable/value-validation"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const empty_1 = require("../boolean/empty");
     const value_validation_1 = require("../assert/throwable/value-validation");
     /**
      * Calls {@param replace} on each property value from {@param object} recursively
@@ -24,12 +23,6 @@
         for (const [index, value] of object.entries()) {
             if (validation(value)) {
                 result[index] = replace(value);
-            }
-            else if (Object(value)) {
-                const val = MapCallback(value, validation, replace);
-                if (!empty_1.default(val, true)) {
-                    result[index] = val;
-                }
             }
             else {
                 // TODO IMPROVE VALIDATION TO STRING

@@ -1,12 +1,12 @@
-import MapStandard from "../../../dist/validatable/list/map-standard";
-import Num from "../../validator/num";
-import ExtendedNum from "../../validator/extended-num";
-import ExtendedNumAny from "../../validator/extended-num-any";
-import ExtendedStr from "../../validator/extended-str";
-import ExtendedStrAny from "../../validator/extended-str-any";
-import NumAny from "../../validator/num-any";
-import Str from "../../validator/str";
-import StrAny from "../../validator/str-any";
+import Standard from "../../../../dist/validator/validatable/list/standard";
+import Num from "../../num";
+import ExtendedNum from "../../extended-num";
+import ExtendedNumAny from "../../extended-num-any";
+import ExtendedStr from "../../extended-str";
+import ExtendedStrAny from "../../extended-str-any";
+import NumAny from "../../num-any";
+import Str from "../../str";
+import StrAny from "../../str-any";
 
 
 it("force console log", () => spyOn(console, 'log').and.callThrough());
@@ -35,7 +35,7 @@ describe("simple validatable", function() {
         10,
     ];
 
-    let result = MapStandard(value, validator, false);
+    let result = Standard(value, validator, false);
     it('match validator1', ()=> expect(result[0].valid).toBe(true));
     it('match validator2', ()=> expect(result[1].valid).toBe(true));
     it('match validator4', ()=> expect(result[2].valid).toBe(true));
@@ -73,7 +73,7 @@ describe("simple validatable", function() {
         10,
     ];
 
-    let result = MapStandard(value, validator, false);
+    let result = Standard(value, validator, false);
     it('match validator1', ()=> expect(result[0].valid).toBe(true));
     it('match validator2', ()=> expect(result[1].valid).toBe(true));
     it('match validator4', ()=> expect(result[2].valid).toBe(true));
@@ -111,7 +111,7 @@ describe("extended validatable", function() {
 
     ];
 
-    let result = MapStandard(value, validator, false);
+    let result = Standard(value, validator, false);
 
     it('match validator1', ()=> expect(result[0].valid).toBe(true));
     it('match validator1', ()=> expect(result[0].message).toBe('ExtendedNum'));

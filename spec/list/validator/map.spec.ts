@@ -1,6 +1,5 @@
 import Validator from "../../validator/factory";
 import Map from "../../../dist/list/validator/map";
-import ValidateValue from "../../../dist/validatable/list/map";
 import And from "../../../dist/list/validatable/and";
 import Or from "../../../dist/list/validatable/or";
 import Validatable from "@dikac/t-validatable/validatable";

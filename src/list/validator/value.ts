@@ -2,21 +2,20 @@ import Validator from "@dikac/t-validator/validator";
 import ValueInterface from "@dikac/t-value/value";
 import Function from "@dikac/t-function/function";
 import ValidatableInterface from "@dikac/t-validatable/validatable";
-import ValidateValue from "../../validatable/list/value";
-import {List} from "ts-toolbelt";
-import RecursiveInferReturn from "../../validatable/list/map";
+import ValidateValue from "../../validator/validatable/list/value";
 import ValueCallback from "./value-callback";
-
-export type Return<Validators extends Validator[] = Validator[]> =
-    List.Partial<RecursiveInferReturn<Validators>> |
-    List.UnionOf<RecursiveInferReturn<Validators>>[] |
-    RecursiveInferReturn<Validators>;
+import PartialUnion from "../../validator/validatable/list/partial-union";
 
 export type ValidatorReturn<
     Val,
     Container extends Validator[] = Validator[],
     Validatable extends ValidatableInterface = ValidatableInterface
-> = Readonly<{validatables:Return<Container>} & ValidatableInterface  & ValueInterface<Val> & {validatable : Validatable} & {validation:Function<[Return<Container>], Validatable>}>;
+> = Readonly<{validatables:PartialUnion<Container>} &
+    ValidatableInterface  &
+    ValueInterface<Val> &
+    {validatable : Validatable} &
+    {validation:Function<[PartialUnion<Container>], Validatable>}
+>;
 
 export default class Value<
     Val,
@@ -30,7 +29,7 @@ export default class Value<
 
     constructor(
         public validators : Container,
-        public validation : Function<[Return<Container>], Validatable>
+        public validation : Function<[PartialUnion<Container>], Validatable>
     ) {
 
     }

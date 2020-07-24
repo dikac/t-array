@@ -1,4 +1,3 @@
-import Empty from "../boolean/empty";
 import Map from "./map";
 import ValueValidation from "../assert/throwable/value-validation";
 import Function from "@dikac/t-function/function";
@@ -16,7 +15,7 @@ export default function MapCallback<Replace, Value, Key extends PropertyKey, Obj
     object : Object,
     validation : Guard<unknown, Value>,
     replace : Function<[Value], Replace>
-) : Map<Replace, Value, Object> {
+) : Map<Object, Value, Replace> {
 
     let result : any[] = [];
 
@@ -26,17 +25,7 @@ export default function MapCallback<Replace, Value, Key extends PropertyKey, Obj
 
             result[index] = replace(value);
 
-        } else if(Object(value)) {
-
-            const val = MapCallback(value, validation, replace);
-
-            if(!Empty(val, true)) {
-
-                result[index] = val;
-            }
-
-        } else {
-
+        }  else {
 
             // TODO IMPROVE VALIDATION TO STRING
             throw ValueValidation(index, 'valid', validation.toString())

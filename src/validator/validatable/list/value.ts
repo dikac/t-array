@@ -1,8 +1,8 @@
 import ValidatorType from "@dikac/t-validator/boolean/validator";
 import RecursiveInferReturn from "./map";
-import ThrowableValue from "./assert/throwable/value";
+import ThrowableValue from "../../../validatable/list/assert/throwable/value";
 import Validator from "@dikac/t-validator/validator";
-import {List} from "ts-toolbelt";
+import PartialUnion from "./partial-union";
 
 export default function Value<
     Val,
@@ -11,7 +11,7 @@ export default function Value<
     value : Val,
     validators : Validators,
     stopInvalid : true
-) : List.Partial<RecursiveInferReturn<Validators>>|List.UnionOf<RecursiveInferReturn<Validators>>[];
+) : PartialUnion<Validators>;
 
 export default function Value<
     Val,
@@ -29,7 +29,7 @@ export default function Value<
     value : Val,
     validators : Validators,
     stopInvalid : boolean
-) : RecursiveInferReturn<Validators> | List.Partial<RecursiveInferReturn<Validators>> {
+) : RecursiveInferReturn<Validators> | PartialUnion<Validators> {
 
     let array : RecursiveInferReturn<Validators> =
         // @ts-ignore

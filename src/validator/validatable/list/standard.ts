@@ -1,17 +1,17 @@
-import RecursiveInferArgument from "../../list/validator/parameter/parameter";
+import RecursiveInferArgument from "../../../list/validator/parameter/parameter";
 import RecursiveInferReturn from "./map";
 import Validator from "@dikac/t-validator/validator";
-import {List} from "ts-toolbelt";
+import PartialUnion from "./partial-union";
 
-export default function MapStandard<
+export default function Standard<
     Validators extends Validator[]
 >(
     values : RecursiveInferArgument<Validators>,
     validators : Validators,
     stopInvalid : true
-) : List.Writable<List.Partial<RecursiveInferArgument<Validators>>>|List.UnionOf<RecursiveInferReturn<Validators>>[];
+) : PartialUnion<Validators>;
 
-export default function MapStandard<
+export default function Standard<
     Validators extends Validator[]
     >(
     values : RecursiveInferArgument<Validators>,
@@ -19,13 +19,13 @@ export default function MapStandard<
     stopInvalid : false
 ) : RecursiveInferReturn<Validators>;
 
-export default function MapStandard<
+export default function Standard<
     Validators extends Validator[]
     >(
     values : RecursiveInferArgument<Validators>,
     validators : Validators,
     stopInvalid : boolean
-) : RecursiveInferReturn<Validators>|Partial<Validators> {
+) : RecursiveInferReturn<Validators>|PartialUnion<Validators> {
 
     let object : RecursiveInferReturn<Validators> =
         // @ts-ignore

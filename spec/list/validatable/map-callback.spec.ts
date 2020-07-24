@@ -1,6 +1,6 @@
 import Validator from "../../validator/factory";
 import Map from "../../../dist/list/validatable/map-callback";
-import ValidateValue from "../../../dist/validatable/list/map-standard";
+import Standard from "../../../dist/validator/validatable/list/standard";
 import And from "../../../dist/list/validatable/and";
 import Or from "../../../dist/list/validatable/or";
 import Validatable from "@dikac/t-validatable/validatable";
@@ -36,7 +36,7 @@ describe("compiler compatibility", function() {
         describe("auto", function() {
 
             let validatable = new Map(value, validator,
-                (value, validators) => ValidateValue(value, validators, false),
+                (value, validators) => Standard(value, validators, false),
                 And
             );
 
@@ -56,7 +56,7 @@ describe("compiler compatibility", function() {
         describe("auto partial", function() {
 
             let validatable = new Map(value, validator,
-                (value, validators) => <(Validatable & Message<string>)[]>ValidateValue(value, validators, true),
+                (value, validators) => <(Validatable & Message<string>)[]>Standard(value, validators, true),
                 And
             );
 
@@ -88,7 +88,7 @@ describe("compiler compatibility", function() {
         describe("auto", function() {
 
             let validatable = new Map(value, validator,
-                (value, validators) => ValidateValue(value, validators, false),
+                (value, validators) => Standard(value, validators, false),
                 And
             );
 
@@ -110,7 +110,7 @@ describe("compiler compatibility", function() {
         describe("auto partial", function() {
 
             let validatable = new Map(value, validator,
-                (value, validators) => <(Validatable & Message<string>)[]>ValidateValue(value, validators, true),
+                (value, validators) => <(Validatable & Message<string>)[]>Standard(value, validators, true),
                 And
             );
 
@@ -167,7 +167,7 @@ describe("explicit", function() {
             it(`and validation`, () => {
 
                 let validatable = new Map(value, validator,
-                    (value, validators) => ValidateValue(value, validators, false),
+                    (value, validators) => Standard(value, validators, false),
                     And
                 );
 
@@ -190,7 +190,7 @@ describe("explicit", function() {
             it(`or validation`, () => {
 
                 let validatable = new Map(value, validator,
-                    (value, validators) => ValidateValue(value, validators, false),
+                    (value, validators) => Standard(value, validators, false),
                     Or
                 );
 
@@ -217,7 +217,7 @@ describe("explicit", function() {
             it(`and validation`, () => {
 
                 let validatable = new Map(value, validator,
-                    (value, validators) => <(Validatable & Message<string>)[]>ValidateValue(value, validators, true),
+                    (value, validators) => <(Validatable & Message<string>)[]>Standard(value, validators, true),
                     And
                 );
 
@@ -240,7 +240,7 @@ describe("explicit", function() {
             it(`or validation`, () => {
 
                 let validatable = new Map(value, validator,
-                    (value, validators) => <(Validatable & Message<string>)[]>ValidateValue(value, validators, true),
+                    (value, validators) => <(Validatable & Message<string>)[]>Standard(value, validators, true),
                     Or
                 );
 
@@ -295,7 +295,7 @@ describe("explicit", function() {
             it(`and validation`, () => {
 
                 let and = new Map(value, validator,
-                    (value, validators) => ValidateValue(value, validators, false),
+                    (value, validators) => Standard(value, validators, false),
                     (v)=>And(v)
                 );
 
@@ -319,7 +319,7 @@ describe("explicit", function() {
             it(`or validation `, () => {
 
                 let or = new Map(value, validator,
-                    (value, validators) => ValidateValue(value, validators, false),
+                    (value, validators) => Standard(value, validators, false),
                     (v)=>Or(v)
                 );
 
@@ -347,7 +347,7 @@ describe("explicit", function() {
             it(`and validation`, () => {
 
                 let and = new Map(value, validator,
-                    (value, validators) => <(Validatable & Message<string>)[]>ValidateValue(value, validators, true),
+                    (value, validators) => <(Validatable & Message<string>)[]>Standard(value, validators, true),
                     (v)=>And(v)
                 );
 
@@ -368,7 +368,7 @@ describe("explicit", function() {
             it(`or validation `, () => {
 
                 let or = new Map(value, validator,
-                    (value, validators) => <(Validatable & Message<string>)[]>ValidateValue(value, validators, true),
+                    (value, validators) => <(Validatable & Message<string>)[]>Standard(value, validators, true),
                     (v)=>Or(v)
                 );
 
@@ -414,7 +414,7 @@ describe("explicit", function() {
             it(`and validation`, () => {
 
                 let and = new Map(value, validator,
-                    (value, validators) => ValidateValue(value, validators, false),
+                    (value, validators) => Standard(value, validators, false),
                     (v)=>And(v)
                 );
 
@@ -437,7 +437,7 @@ describe("explicit", function() {
             it(`or validation `, () => {
 
                 let or = new Map(value, validator,
-                    (value, validators) => ValidateValue(value, validators, false),
+                    (value, validators) => Standard(value, validators, false),
                     (v)=>Or(v)
                 );
 
@@ -463,7 +463,7 @@ describe("explicit", function() {
             it(`and validation`, () => {
 
                 let and = new Map(value, validator,
-                    (value, validators) => <(Validatable & Message<string>)[]>ValidateValue(value, validators, true),
+                    (value, validators) => <(Validatable & Message<string>)[]>Standard(value, validators, true),
                     (v)=>And(v)
                 );
 
@@ -481,7 +481,7 @@ describe("explicit", function() {
             it(`or validation `, () => {
 
                 let or = new Map(value, validator,
-                    (value, validators) => <(Validatable & Message<string>)[]>ValidateValue(value, validators, true),
+                    (value, validators) => <(Validatable & Message<string>)[]>Standard(value, validators, true),
                     (v)=>Or(v)
                 );
 

@@ -9,7 +9,7 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    function MapStandard(values, validators, stopInvalid) {
+    function Standard(values, validators, stopInvalid) {
         let object = 
         // @ts-ignore
         [];
@@ -22,6 +22,6 @@
         }
         return object;
     }
-    exports.default = MapStandard;
+    exports.default = Standard;
 });
-//# sourceMappingURL=map-standard.js.map
+//# sourceMappingURL=standard.js.map

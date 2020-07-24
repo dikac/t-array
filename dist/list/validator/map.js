@@ -4,12 +4,12 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../../validatable/list/map-standard", "./map-callback"], factory);
+        define(["require", "exports", "../../validator/validatable/list/standard", "./map-callback"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const map_standard_1 = require("../../validatable/list/map-standard");
+    const standard_1 = require("../../validator/validatable/list/standard");
     const map_callback_1 = require("./map-callback");
     class Map {
         constructor(validators, validation) {
@@ -17,7 +17,7 @@
             this.validation = validation;
         }
         validate(value) {
-            let validator = new map_callback_1.default(this.validators, (value, validators) => map_standard_1.default(value, validators, true), this.validation);
+            let validator = new map_callback_1.default(this.validators, (value, validators) => standard_1.default(value, validators, true), this.validation);
             return validator.validate(value);
         }
     }

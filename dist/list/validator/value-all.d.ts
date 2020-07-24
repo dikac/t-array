@@ -2,7 +2,7 @@ import Validator from "@dikac/t-validator/validator";
 import ValueInterface from "@dikac/t-value/value";
 import Function from "@dikac/t-function/function";
 import ValidatableInterface from "@dikac/t-validatable/validatable";
-import RecursiveInferReturn from "../../validatable/list/map";
+import RecursiveInferReturn from "../../validator/validatable/list/map";
 import Validatables from "../validatable/validatables";
 export declare type ValidatorReturn<Val, Container extends Validator[] = Validator[], Validatable extends ValidatableInterface = ValidatableInterface> = Readonly<Validatables<RecursiveInferReturn<Container>> & ValidatableInterface & ValueInterface<Val> & {
     validatable: Validatable;

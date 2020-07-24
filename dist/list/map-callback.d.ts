@@ -9,4 +9,4 @@ import Guard from "@dikac/t-function/boolean/guard";
  * {@param replace} is only called when {@param validation} result of value is true
  * {@param validation} is used for distinguish value to be used for {@param replace} or to be used for recursion
  */
-export default function MapCallback<Replace, Value, Key extends PropertyKey, Object extends Value[] = Value[]>(object: Object, validation: Guard<unknown, Value>, replace: Function<[Value], Replace>): Map<Replace, Value, Object>;
+export default function MapCallback<Replace, Value, Key extends PropertyKey, Object extends Value[] = Value[]>(object: Object, validation: Guard<unknown, Value>, replace: Function<[Value], Replace>): Map<Object, Value, Replace>;

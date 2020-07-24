@@ -1,6 +1,6 @@
 import Validator from "../../validator/factory";
 import Value from "../../../dist/list/validatable/value-callback";
-import ValidateValue from "../../../dist/validatable/list/value";
+import ValidateValue from "../../../dist/validator/validatable/list/value";
 import And from "../../../dist/list/validatable/and";
 import Or from "../../../dist/list/validatable/or";
 import Validatables from "../../../dist/list/validatable/validatables";
