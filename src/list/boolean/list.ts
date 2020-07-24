@@ -1,7 +1,7 @@
 import Guard from "@dikac/t-function/boolean/guard";
 
 /**
- * Check if {@param record} is {@link Recursive} with {@template Value} value
+ * Check if {@param list} is {@link Recursive} with {@template Value} value
  *
  * {@param validation} is use to validate for {@template Value}
  */
@@ -9,19 +9,19 @@ export default function List<
     Value,
     Assumption extends Value[]
 >(
-    record : unknown,
+    list : unknown,
     validation : Guard<unknown,  Value>,
-) : record is Assumption {
+) : list is Assumption {
 
-    if(!Array.isArray(record)) {
+    if(!Array.isArray(list)) {
 
         return false;
     }
 
-    for(let property in record) {
+    for(let property in list) {
 
         // @ts-ignore
-        const value = record[property];
+        const value = list[property];
 
         if(validation(value)) {
 

@@ -11,22 +11,24 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     const value_validation_1 = require("../../assert/throwable/value-validation");
     class Pair {
-        constructor(record, validation) {
-            this.record = record;
+        constructor(list, validation) {
+            this.list = list;
             this.validation = validation;
             this.keys = [];
         }
         *[Symbol.iterator]() {
-            for (const [property, value] of this.record.entries()) {
+            for (const [property, value] of this.list.entries()) {
                 const properties = [...this.keys, property];
                 if (this.validation(value)) {
                     yield [properties, value];
-                }
-                else if (Array.isArray(value)) {
+                } /*else if(Array.isArray(value)) {
+    
                     let recursive = new Pair(value, this.validation);
                     recursive.keys.push(...properties);
-                    yield* recursive;
-                }
+    
+                    yield * recursive;
+    
+                }*/
                 else {
                     // TODO IMPROVE VALIDATION TO STRING
                     // @ts-ignore

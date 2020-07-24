@@ -1,5 +1,5 @@
 import ValidatorType from "@dikac/t-validator/boolean/validator";
-import RecursiveInferReturn from "./recursive";
+import RecursiveInferReturn from "./map";
 import ThrowableValue from "./assert/throwable/value";
 import Validator from "@dikac/t-validator/validator";
 import {List} from "ts-toolbelt";
@@ -11,7 +11,7 @@ export default function Value<
     value : Val,
     validators : Validators,
     stopInvalid : true
-) : List.Partial<RecursiveInferReturn<Validators>>;
+) : List.Partial<RecursiveInferReturn<Validators>>|List.UnionOf<RecursiveInferReturn<Validators>>[];
 
 export default function Value<
     Val,
@@ -49,17 +49,7 @@ export default function Value<
             continue;
         }
 
-        if(globalThis.Array.isArray(validator)) {
-
-            // @ts-ignore
-            array[property] =
-                Value(value, validator, <any>stopInvalid);
-
-        } else {
-
-            throw ThrowableValue(property);
-        }
-
+        throw ThrowableValue(property);
     }
 
     return  array;

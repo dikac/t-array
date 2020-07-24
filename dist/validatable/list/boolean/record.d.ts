@@ -1,5 +1,5 @@
 import Validatable from "@dikac/t-validatable/validatable";
 /**
- * Check if {@param record} is array of {@link Validatable}
+ * Check if {@param list} is array of {@link Validatable}
  */
-export default function Record<Object extends Validatable[]>(record: unknown): record is Object;
+export default function Record<Object extends Validatable[]>(list: unknown): list is Object;

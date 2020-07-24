@@ -4,7 +4,7 @@ import Fn from "@dikac/t-function/function";
 import Guard from "@dikac/t-function/boolean/guard";
 
 /**
- * recursively filter {@param record} value, returning new object with all value allowed
+ * recursively filter {@param list} value, returning new object with all value allowed
  * by {@param filter}
  *
  * {@param validation} is used to distinguish between value to be validated by {@param filter} or tobe called
@@ -17,7 +17,7 @@ export default function Filter<
     Type,
     Object extends List.List<Type>
 >(
-    record : Object,
+    list : Object,
     validation : Guard<unknown, Type>,
     filter : Fn<[Type], boolean>,
     empty : boolean = false
@@ -25,9 +25,9 @@ export default function Filter<
 
     let result : [] = [];
 
-    for(const property in record) {
+    for(const property in list) {
 
-        const value : Type = <Type>record[property];
+        const value : Type = <Type>list[property];
 
         if(validation(value)) {
 

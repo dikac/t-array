@@ -16,6 +16,7 @@
             this.message = message;
         }
         validate(value) {
+            // todo FIX WITHOTUT ANY
             return new empty_1.default(value, this.empty, this.message);
         }
     }

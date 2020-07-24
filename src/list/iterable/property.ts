@@ -12,7 +12,7 @@ export default class Property<
     protected keys : number[] = [];
 
     constructor(
-        public record : Object,
+        public list : Object,
         public validation : Guard<unknown, Type>,
     ) {
 
@@ -20,7 +20,7 @@ export default class Property<
 
     * [Symbol.iterator](): Iterator<List.Keys<Object>[]> {
 
-        for (let [properties, value] of new Pair(this.record, this.validation)) {
+        for (let [properties, value] of new Pair(this.list, this.validation)) {
 
             yield properties
         }

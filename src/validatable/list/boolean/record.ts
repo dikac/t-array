@@ -3,13 +3,13 @@ import TypeRecord from "../../../list/boolean/list";
 import ValidatableType from "@dikac/t-validatable/boolean/validatable";
 
 /**
- * Check if {@param record} is array of {@link Validatable}
+ * Check if {@param list} is array of {@link Validatable}
  */
 export default function Record<
     Object extends Validatable[]
 >(
-    record : unknown,
-) : record is Object {
+    list : unknown,
+) : list is Object {
 
-    return TypeRecord(record, ValidatableType)
+    return TypeRecord(list, ValidatableType)
 }

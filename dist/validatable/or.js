@@ -13,7 +13,6 @@
     const combine_1 = require("./combine");
     function Or(validatables, defaults = true) {
         let array = new combine_1.default(validatables, or_1.default, defaults, null);
-        array.value = array;
         return array;
     }
     exports.default = Or;

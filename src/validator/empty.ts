@@ -7,7 +7,7 @@ import Function from "@dikac/t-function/function";
 
 export default class Empty<Msg>
     implements
-        Validator<object, Readonly<Validatable<boolean> & Message<Msg> & Value<unknown[]>>>,
+        Validator<unknown[], Readonly<Validatable<boolean> & Message<Msg> & Value<unknown[]>>>,
         Message<Function<[Readonly<Value> & Readonly<Validatable>], Msg>>
 {
 
@@ -17,8 +17,9 @@ export default class Empty<Msg>
     ) {
     }
 
-    validate(value: unknown[]): Readonly<Validatable<boolean> & Message<Msg> & Value<unknown[]>> {
+    validate<V extends unknown[]= unknown[]>(value: V): Readonly<Validatable<boolean> & Message<Msg> & Value<V>> {
 
-        return new EmptyValidatable(value, this.empty, this.message);
+        // todo FIX WITHOTUT ANY
+        return <any>new EmptyValidatable(value, this.empty, this.message);
     }
 }

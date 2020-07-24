@@ -10,17 +10,17 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     /**
-     * Check if {@param record} is {@link Recursive} with {@template Value} value
+     * Check if {@param list} is {@link Recursive} with {@template Value} value
      *
      * {@param validation} is use to validate for {@template Value}
      */
-    function List(record, validation) {
-        if (!Array.isArray(record)) {
+    function List(list, validation) {
+        if (!Array.isArray(list)) {
             return false;
         }
-        for (let property in record) {
+        for (let property in list) {
             // @ts-ignore
-            const value = record[property];
+            const value = list[property];
             if (validation(value)) {
                 continue;
             }

@@ -14,21 +14,21 @@ describe('structure', function () {
         let and = And<Validatable[]>(subjects, true);
 
         it("constructor", () => {
-            expect(Equal(subjects, and)).toBeTrue();
+            expect(Equal(subjects, and.validatables)).toBeTrue();
         });
 
         it("value", () => {
-            expect([...and.value]).toEqual([...subjects]);
+            expect([...and.validatables]).toEqual([...subjects]);
         });
 
         it("set", () => {
-            and.push({valid:false});
-            expect(Equal(subjects, and)).toBeFalse();
-            expect(and[0].valid).toBeFalse();
+            and.validatables.push({valid:false});
+            expect(Equal(subjects, and.validatables)).toBeTrue();
+            expect(and.validatables[0].valid).toBeFalse();
         });
 
         it("value", () => {
-            expect(and.value).toEqual(and);
+            expect(<Validatable[]>subjects).toEqual(and.validatables);
         });
 
     });
@@ -109,13 +109,13 @@ describe("single", function() {
 
         it("true", () => {
             and.defaults = false;
-            and.push({valid:true});
+            and.validatables.push({valid:true});
             expect(and.valid).toBe(true)
         });
 
         it("false", () => {
             and.defaults = true;
-            and.push({valid:false});
+            and.validatables.push({valid:false});
             expect(and.valid).toBe(false)
         });
 
@@ -129,7 +129,7 @@ describe("multi same", function() {
 
     it("valids", () => {
         and.defaults = false;
-        and.push({valid:true}, {valid:true});
+        and.validatables.push({valid:true}, {valid:true});
         expect(and.valid).toBe(true)
     });
 
@@ -137,7 +137,7 @@ describe("multi same", function() {
 
         let number = 0;
 
-        for(let value of and) {
+        for(let value of and.validatables) {
 
             number++;
             expect(Guard(value)).toBeTrue();
@@ -149,7 +149,7 @@ describe("multi same", function() {
 
     it("invalids", () => {
         and.defaults = true;
-        and.push({valid:false}, {valid:false});
+        and.validatables.push({valid:false}, {valid:false});
         expect(and.valid).toBe(false)
     });
 
@@ -157,7 +157,7 @@ describe("multi same", function() {
 
         let number = 0;
 
-        for(let value of and) {
+        for(let value of and.validatables) {
 
             number++;
             expect(Guard(value)).toBeTrue();
@@ -175,7 +175,7 @@ describe("multi mixed", function() {
 
     it("valids", () => {
         and.defaults = true;
-        and.push({valid:true}, {valid:false});
+        and.validatables.push({valid:true}, {valid:false});
         expect(and.valid).toBe(false)
     });
 
@@ -183,7 +183,7 @@ describe("multi mixed", function() {
 
         let number = 0;
 
-        for(let value of and) {
+        for(let value of and.validatables) {
 
             number++;
             expect(Guard(value)).toBeTrue();
@@ -195,7 +195,7 @@ describe("multi mixed", function() {
 
     it("invalids", () => {
         and.defaults = false;
-        and.push({valid:true}, {valid:false});
+        and.validatables.push({valid:true}, {valid:false});
         expect(and.valid).toBe(false)
     });
 
@@ -203,7 +203,7 @@ describe("multi mixed", function() {
 
         let number = 0;
 
-        for(let value of and) {
+        for(let value of and.validatables) {
 
             number++;
             expect(Guard(value)).toBeTrue();

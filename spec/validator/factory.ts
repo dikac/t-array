@@ -1,11 +1,11 @@
 import ValidatableFactory from "../validatable/factory";
 
-export default class Factoryz<Value = unknown>  {
+export default class Factory  {
 
     constructor(private type : string) {
     }
 
-    validate(value : Value) : ValidatableFactory {
+    validate(value : unknown) : ValidatableFactory {
 
         return new ValidatableFactory(value, this.type);
     }

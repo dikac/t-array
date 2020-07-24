@@ -9,10 +9,10 @@ import {List} from "ts-toolbelt";
 export default function Valid<
     Object extends List.List<Validatable>
 >(
-    record : Object
+    list : Object
 ) : List.Partial<Object> {
 
-    let filter = Filter(record, GuardValidatable, (v : Validatable) => v.valid);
-    return <any> filter;
+    let filter = Filter(list, GuardValidatable, (v : Validatable) => v.valid);
+    return filter;
 }
 

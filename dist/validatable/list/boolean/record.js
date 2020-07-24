@@ -12,10 +12,10 @@
     const list_1 = require("../../../list/boolean/list");
     const validatable_1 = require("@dikac/t-validatable/boolean/validatable");
     /**
-     * Check if {@param record} is array of {@link Validatable}
+     * Check if {@param list} is array of {@link Validatable}
      */
-    function Record(record) {
-        return list_1.default(record, validatable_1.default);
+    function Record(list) {
+        return list_1.default(list, validatable_1.default);
     }
     exports.default = Record;
 });

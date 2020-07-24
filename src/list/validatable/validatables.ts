@@ -9,7 +9,6 @@ export default class Validatables<
     Validatable,
     ValidatablesInterface<Record>
 {
-
     constructor(
         public validatables : Record,
         public validation : FunctionSingle<Record, Boolean>

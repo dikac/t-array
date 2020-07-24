@@ -10,8 +10,8 @@ export default function Invalid<
     V extends Validatable = Validatable,
     Object extends V[] = V[]
 >(
-    record : Object
+    list : Object
 ) : O.Partial<Object, 'deep'> {
 
-    return Filter(record, GuardValidatable, (v : Validatable) => !v.valid);
+    return Filter(list, GuardValidatable, (v : Validatable) => !v.valid);
 }

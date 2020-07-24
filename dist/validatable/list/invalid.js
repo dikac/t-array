@@ -14,8 +14,8 @@
     /**
      * filter all invalid {@link Validatable} while retain its original structure
      */
-    function Invalid(record) {
-        return filter_1.default(record, validatable_1.default, (v) => !v.valid);
+    function Invalid(list) {
+        return filter_1.default(list, validatable_1.default, (v) => !v.valid);
     }
     exports.default = Invalid;
 });

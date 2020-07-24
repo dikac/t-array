@@ -1,44 +1,52 @@
 import Validator from "../../validator/factory";
-import Record from "../../../dist/list/validator/list";
+import Map from "../../../dist/list/validator/map";
 import ValidateValue from "../../../dist/validatable/list/map";
 import And from "../../../dist/list/validatable/and";
+import Or from "../../../dist/list/validatable/or";
 import Validatable from "@dikac/t-validatable/validatable";
 import ValidatorInterface from "@dikac/t-validator/validator";
 import Message from "@dikac/t-message/message";
+import Validatables from "../../../dist/list/validatables/validatables";
+import ValidatablesInterface from "../../../dist/list/validatables/validatables";
 
 
 it("force console log", () => { spyOn(console, 'log').and.callThrough();});
 
 describe("compiler compatibility", function() {
 
-    let validator = [
-        new Validator('string'),
-        new Validator('string'),
-    ];
 
-    type TypeValidator = [
-        ValidatorInterface<string, Validatable & Message<string>>,
-        ValidatorInterface<string, Validatable & Message<string>>,
-    ];
+    describe("implicit partial", function() {
 
-    type Type = [
-        string,
-        string,
-    ];
+        let validator = [
+            new Validator('string'),
+            new Validator('string'),
+        ];
 
-    let value = [
-        'name',
-        'address',
-    ];
+        let value = [
+            'name',
+            'address',
+        ];
 
-    describe("implicit complete", function() {
-
-        let property = new Record(validator,
-            (value, validators) => ValidateValue(value, validators, false),
-            And
-        );
+        let property = new Map(validator, (v)=>And(<Validatable[]>v));
 
         let validatable = property.validate(value);
+
+        let key : Validatable;
+        // @ts-expect-error
+        key = validatable.validatables[0];
+        // @ts-expect-error
+        key = validatable.validatables[1];
+        // @ts-expect-error
+        key = validatable.validatables[2];
+
+        // @ts-expect-error
+        let validatables : ValidatablesInterface = validatable;
+
+        // @ts-expect-error
+        let record : Validatable[] = validatable.validatables;
+
+        // @ts-expect-error
+        let validatable1 : Validatables = validatable;
 
         let unknown : unknown = validatable.value;
 
@@ -49,542 +57,260 @@ describe("compiler compatibility", function() {
 
     describe("explicit complete", function() {
 
+
+        type TypeValidator = [
+            ValidatorInterface<string, Validatable & Message<string>>,
+            ValidatorInterface<string, Validatable & Message<string>>,
+        ];
+
+        let validator : TypeValidator = [
+            new Validator('string'),
+            new Validator('string'),
+        ];
+
+        type Type = [
+            string,
+            string,
+        ];
+
+        let value : Type = [
+            'name',
+            'address',
+        ];
+
         describe("auto", function() {
 
-
-            let property = new Record<ValidatorInterface<string, Validatable & Message<string>>[]>(validator,
-                (value, validators) => ValidateValue(value, validators, false),
-                (v)=>And(<Validatable[]>v)
-            );
+            let property = new Map(validator, (v)=>And(<Validatable[]>v));
 
             let validatable = property.validate(value);
 
-            let unknown : unknown = validatable.value;
+            let key : Validatable;
             // @ts-expect-error
-            let record : Type = validatable.value;
+            key = validatable.validatables[0];
+            // @ts-expect-error
+            key = validatable.validatables[1];
+            // @ts-expect-error
+            key = validatable.validatables[2];
+
+            // @ts-expect-error
+            let validatables : ValidatablesInterface = validatable;
+
+            // @ts-expect-error
+            let record : Validatable[] = validatable.validatables;
+
+            // @ts-expect-error
+            let validatable1 : Validatables = validatable;
+
+            let unknown : unknown = validatable.value;
+
+            let string : Type = validatable.value;
 
         });
 
         describe("direct", function() {
 
-            let validator : TypeValidator = [
-                new Validator('string'),
-                new Validator('string'),
-            ];
+            let property = new Map<TypeValidator>(validator, (v)=>And(<Validatable[]>v));
 
-            let property = new Record<TypeValidator>(validator,
-                (value, validators) => ValidateValue(value, validators, false),
-                (v)=>And(<Validatable[]>v)
-            );
+            let validatable = property.validate(value);
 
-            let validatable = property.validate(<[string, string]>value);
+
+            let key : Validatable;
+            // @ts-expect-error
+            key = validatable.validatables[0];
+            // @ts-expect-error
+            key = validatable.validatables[1];
+            // @ts-expect-error
+            key = validatable.validatables[2];
+
+            // @ts-expect-error
+            let validatables : ValidatablesInterface = validatable;
+
+            // @ts-expect-error
+            let record : Validatable[] = validatable.validatables;
+
+            // @ts-expect-error
+            let validatable1 : Validatables = validatable;
 
             let unknown : unknown = validatable.value;
-            let record : Type = validatable.value;
 
+            let string : Type = validatable.value;
         });
     });
-    //
-    // describe("implicit partial", function() {
-    //
-    //     let validator : TypeValidator = [
-    //         new Validator('string'),
-    //         new Validator('string'),
-    //     ];
-    //
-    //     let value : [string, string] = [
-    //         'name',
-    //         'address',
-    //     ];
-    //
-    //     let property = new Record<ValidatorInterface<string, Validatable & Message<string>>[]>(validator,
-    //         (value, validators) => <(Validatable & Message<string>)[]> ValidateValue(<any>value, <ValidatorInterface<string, Validatable & Message<string>>[]>validators, true),
-    //         (v)=>And(<Validatable[]>v)
-    //     );
-    //
-    //     let validatable = property.validate(value);
-    //
-    //     let unknown : unknown = validatable.value;
-    //     // @ts-expect-error
-    //     let string : Type = validatable.value;
-    //
-    // });
-    //
-    // describe("explicit complete", function() {
-    //
-    //     describe("auto", function() {
-    //
-    //         let property = new Record<globalThis.Record<keyof typeof validator, ValidatorInterface<string, Validatable & Message<string>>>>(validator,
-    //             (value, validators) => ValidateValue(value, validators, true),
-    //             (v)=>And(<globalThis.Record<PropertyKey, Validatable>>v)
-    //         );
-    //
-    //         let validatable = property.validate(value);
-    //
-    //         let unknown : unknown = validatable.value;
-    //         let string : Type = validatable.value;
-    //
-    //     });
-    //
-    //     describe("direct", function() {
-    //
-    //         let property = new Record<TypeValidator>(validator,
-    //             (value, validators) => ValidateValue(value, validators, true),
-    //             (v)=>And(<globalThis.Record<PropertyKey, Validatable>>v)
-    //         );
-    //
-    //         let validatable = property.validate(value);
-    //
-    //         let unknown : unknown = validatable.value;
-    //         let string : Type = validatable.value;
-    //
-    //     });
-    // });
 });
-//
-//
-// describe("implicit complete", function() {
-//
-//     describe("all valid", function() {
-//
-//         let validator = {
-//             name : new Validator('string'),
-//             address : new Validator('string'),
-//             user : new Validator('string'),
-//         };
-//
-//         type TypeValidator = {
-//             name : ValidatorInterface<string, Validatable & Message<string>>,
-//             user :ValidatorInterface<string, Validatable & Message<string>>,
-//             address :ValidatorInterface<string, Validatable & Message<string>>,
-//         };
-//
-//         type Type = {
-//             user : string,
-//             address : string,
-//             name : string,
-//         }
-//
-//         let value = {
-//             user : 'user',
-//             name : 'name',
-//             address : 'address',
-//         };
-//
-//         let property = new Record(validator,
-//             (value, validators) => ValidateValue(value, validators, false),
-//             (v)=>And(v)
-//         );
-//
-//         it(`and validation`, () => {
-//
-//             let validatable = property.validate(value);
-//
-//             expect(validatable.valid).toBe(true);
-//             expect(validatable.value).toBe(value);
-//
-//             expect(validatable.validatables.name.valid).toBe(true);
-//             expect(validatable.validatables.name.message).toBe('name valid');
-//
-//             expect(validatable.validatables.address.valid).toBe(true);
-//             expect(validatable.validatables.address.message).toBe('address valid');
-//
-//             expect(validatable.validatables.user.valid).toBe(true);
-//             expect(validatable.validatables.user.message).toBe('user valid');
-//         });
-//
-//
-//         it(`or validation`, () => {
-//
-//             property.validation = (v)=>Or(v);
-//             let validatable = property.validate(value);
-//
-//             expect(validatable.valid).toBe(true);
-//             expect(validatable.value).toBe(value);
-//
-//             expect(validatable.validatables.name.valid).toBe(true);
-//             expect(validatable.validatables.name.message).toBe('name valid');
-//
-//             expect(validatable.validatables.address.valid).toBe(true);
-//             expect(validatable.validatables.address.message).toBe('address valid');
-//
-//             expect(validatable.validatables.user.valid).toBe(true);
-//             expect(validatable.validatables.user.message).toBe('user valid');
-//         });
-//
-//     });
-//
-//
-//     describe("mixed", function() {
-//
-//         let validator = {
-//             name : new Validator('string'),
-//             age : new Validator('number'),
-//             address : new Validator('string'),
-//         };
-//
-//         let value = {
-//             age : "11",
-//             name : 'name',
-//             address : 'address',
-//         };
-//
-//         let property = new Record(validator,
-//             (value, validators) => ValidateValue(value, validators, false),
-//             (v)=>And(v)
-//         );
-//
-//         it(`and validation`, () => {
-//
-//             let and = property.validate(value);
-//
-//             expect(and.valid).toBe(false);
-//             expect(and.value).toBe(value);
-//
-//             expect(and.validatables.name.valid).toBe(true);
-//             expect(and.validatables.name.message).toBe('name valid');
-//
-//             expect(and.validatables.age.valid).toBe(false);
-//             expect(and.validatables.age.message).toBe('11 invalid');
-//
-//             expect(and.validatables.address.valid).toBe(true);
-//             expect(and.validatables.address.message).toBe('address valid');
-//
-//         });
-//
-//
-//         it(`or validation `, () => {
-//
-//             property.validation = (v)=>Or(v);
-//
-//             let or = property.validate(value);
-//
-//             expect(or.valid).toBe(true);
-//             expect(or.value).toBe(value);
-//
-//             expect(or.validatables.name.message).toBe('name valid');
-//             expect(or.validatables.name.valid).toBe(true);
-//
-//             expect(or.validatables.age.message).toBe('11 invalid');
-//             expect(or.validatables.age.valid).toBe(false);
-//
-//             expect(or.validatables.address.message).toBe('address valid');
-//             expect(or.validatables.address.valid).toBe(true);
-//
-//         });
-//     });
-//
-//
-//     describe("all invalid", function() {
-//
-//         let validator = {
-//             name : new Validator('string'),
-//             age : new Validator('number'),
-//             address : new Validator('string'),
-//         };
-//
-//         let value = {
-//             name : {},
-//             age : {},
-//             address : {},
-//         };
-//
-//         let property = new Record(validator,
-//             (value, validators) => ValidateValue(value, validators, false),
-//             (v)=>And(v)
-//         );
-//
-//         it(`and validation`, () => {
-//
-//             let and = property.validate(value);
-//
-//             expect(and.valid).toBe(false);
-//             expect(and.value).toEqual(value);
-//
-//             expect(and.validatables.name.valid).toBe(false);
-//             expect(and.validatables.name.message).toBe('[object Object] invalid');
-//
-//             expect(and.validatables.age.valid).toBe(false);
-//             expect(and.validatables.age.message).toBe('[object Object] invalid');
-//
-//             expect(and.validatables.address.valid).toBe(false);
-//             expect(and.validatables.address.message).toBe('[object Object] invalid');
-//         });
-//
-//         it(`or validation `, () => {
-//
-//             property.validation = (v)=>Or(v);
-//
-//             let or = property.validate(value);
-//             expect(or.valid).toBe(false);
-//             expect(or.value).toEqual(value);
-//
-//             expect(or.validatables.name.message).toBe('[object Object] invalid');
-//             expect(or.validatables.name.valid).toBe(false);
-//
-//             expect(or.validatables.age.message).toBe('[object Object] invalid');
-//             expect(or.validatables.age.valid).toBe(false);
-//
-//             expect(or.validatables.address.message).toBe('[object Object] invalid');
-//             expect(or.validatables.address.valid).toBe(false);
-//         });
-//     });
-// });
-//
-//
-// describe("implicit incomplete", function() {
-//
-//     describe("all valid", function() {
-//
-//         let validator = {
-//             name : new Validator('string'),
-//             address : new Validator('string'),
-//             user : new Validator('string'),
-//         };
-//
-//         let value = {
-//             name : 'name',
-//             address : 'age',
-//             user : 'address',
-//         };
-//
-//         let property = new Record(validator,
-//             (value, validators) => ValidateValue(value, validators, true),
-//             (v)=>And(<globalThis.Record<PropertyKey, Validatable>>v)
-//         );
-//
-//
-//         it(`and validation`, () => {
-//
-//             let validatable = property.validate(value);
-//
-//             expect(validatable.valid).toBe(true);
-//             expect(validatable.value).toBe(value);
-//
-//             if(validatable.validatables.name) {
-//
-//                 expect(validatable.validatables.name.valid).toBe(true);
-//                 expect(validatable.validatables.name.message).toBe('name valid');
-//
-//             } else {
-//
-//                 fail('validatable.validatables.name should exist');
-//             }
-//
-//
-//             if(validatable.validatables.address) {
-//
-//                 expect(validatable.validatables.address.valid).toBe(true);
-//                 expect(validatable.validatables.address.message).toBe('age valid');
-//
-//             } else {
-//
-//                 fail('validatable.validatables.address should exist');
-//             }
-//
-//
-//             if(validatable.validatables.user) {
-//
-//                 expect(validatable.validatables.user.valid).toBe(true);
-//                 expect(validatable.validatables.user.message).toBe('address valid');
-//
-//             } else {
-//
-//                 fail('validatable.validatables.user should exist');
-//             }
-//
-//         });
-//
-//
-//         it(`or validation`, () => {
-//
-//             property.validation = (v)=>Or(<globalThis.Record<PropertyKey, Validatable>>v);
-//             let validatable = property.validate(value);
-//
-//             expect(validatable.valid).toBe(true);
-//             expect(validatable.value).toBe(value);
-//
-//
-//             if(validatable.validatables.name) {
-//
-//                 expect(validatable.validatables.name.valid).toBe(true);
-//                 expect(validatable.validatables.name.message).toBe('name valid');
-//
-//             } else {
-//
-//                 fail('validatable.validatables.name should exist');
-//             }
-//
-//
-//             if(validatable.validatables.address) {
-//
-//                 expect(validatable.validatables.address.valid).toBe(true);
-//                 expect(validatable.validatables.address.message).toBe('age valid');
-//
-//             } else {
-//
-//                 fail('validatable.validatables.address should exist');
-//             }
-//
-//
-//             if(validatable.validatables.user) {
-//
-//                 expect(validatable.validatables.user.valid).toBe(true);
-//                 expect(validatable.validatables.user.message).toBe('address valid');
-//
-//             } else {
-//
-//                 fail('validatable.validatables.user should exist');
-//             }
-//         });
-//     });
-//
-//
-//     describe("mixed", function() {
-//
-//         let validator = {
-//             name : new Validator('string'),
-//             age : new Validator('number'),
-//             address : new Validator('string'),
-//         };
-//
-//         let value = {
-//             name : 'name',
-//             age : "15",
-//             address : 'address',
-//         };
-//
-//         let property = new Record(validator,
-//             (value, validators) => ValidateValue(value, validators, true),
-//             (v)=>And(<globalThis.Record<PropertyKey, Validatable>>v)
-//         );
-//
-//         it(`and validation`, () => {
-//
-//             let and = property.validate(value);
-//
-//             expect(and.valid).toBe(false);
-//             expect(and.value).toBe(value);
-//
-//             if(and.validatables.name) {
-//                 expect(and.validatables.name.valid).toBe(true);
-//                 expect(and.validatables.name.message).toBe('name valid');
-//
-//             } else {
-//                 fail('validatable.validatables.name should exist');
-//             }
-//
-//             if(and.validatables.age) {
-//                 expect(and.validatables.age.valid).toBe(false);
-//                 expect(and.validatables.age.message).toBe('15 invalid');
-//
-//             } else {
-//                 fail('validatable.validatables.age should exist');
-//             }
-//
-//             if(and.validatables.address) {
-//                 fail('validatable.validatables.address should exist');
-//             }
-//         });
-//
-//
-//         it(`or validation `, () => {
-//
-//             property.validation = (v)=>Or(<globalThis.Record<PropertyKey, Validatable>>v);
-//
-//             let or = property.validate(value);
-//             expect(or.value).toBe(value);
-//             expect(or.valid).toBe(true);
-//
-//             if(or.validatables.name) {
-//                 expect(or.validatables.name.message).toBe('name valid');
-//                 expect(or.validatables.name.valid).toBe(true);
-//             } else {
-//                 fail('validatable.validatables.name should exist');
-//             }
-//
-//             if(or.validatables.age) {
-//                 expect(or.validatables.age.message).toBe('15 invalid');
-//                 expect(or.validatables.age.valid).toBe(false);
-//             } else {
-//                 fail('validatable.validatables.age should exist');
-//             }
-//
-//             if(or.validatables.address) {
-//                 fail('validatable.validatables.address should exist');
-//             }
-//
-//         });
-//     });
-//
-//
-//     describe("all invalid", function() {
-//
-//         let validator = {
-//             name : new Validator('string'),
-//             age : new Validator('number'),
-//             address : new Validator('string'),
-//         };
-//
-//         let value = {
-//             name : {},
-//             age : {},
-//             address : {},
-//         };
-//
-//         let property = new Record(validator,
-//             (value, validators) => ValidateValue(value, validators, true),
-//             (v)=>And(<globalThis.Record<PropertyKey, Validatable>>v)
-//         );
-//
-//         it(`and validation`, () => {
-//
-//             let and = property.validate(value);
-//
-//             expect(and.valid).toBe(false);
-//             expect(and.value).toEqual(value);
-//
-//             if(and.validatables.name) {
-//                 expect(and.validatables.name.valid).toBe(false);
-//                 expect(and.validatables.name.message).toBe('[object Object] invalid');
-//             } else {
-//                 fail('validatable.validatables.name should exist');
-//             }
-//
-//             if(and.validatables.age) {
-//                 fail('validatable.validatables.age should not exist');
-//             }
-//
-//             if(and.validatables.address) {
-//                 fail('validatable.validatables.address should not exist');
-//             }
-//         });
-//
-//         it(`or validation `, () => {
-//
-//             property.validation = (v)=>Or(<globalThis.Record<PropertyKey, Validatable>>v);
-//
-//             let or = property.validate(value);
-//
-//             expect(or.value).toEqual(value);
-//             expect(or.valid).toBe(false);
-//
-//             if(or.validatables.name) {
-//                 expect(or.validatables.name.message).toBe('[object Object] invalid');
-//                 expect(or.validatables.name.valid).toBe(false);
-//             } else {
-//                 fail('validatable.validatables.name should exist');
-//             }
-//
-//             if(or.validatables.age) {
-//                 fail('validatable.validatables.age should not exist');
-//             }
-//
-//             if(or.validatables.address) {
-//                 fail('validatable.validatables.address should not exist');
-//             }
-//
-//         });
-//     });
-// });
-//
+
+
+
+
+describe("all valid", function() {
+
+    let validator = [
+        new Validator('string'),
+        new Validator('string'),
+        new Validator('string'),
+    ];
+
+    let value = [
+        'user',
+        'name',
+        'address',
+    ];
+
+    it(`check validate return`, () => {
+
+        let property = new Map(validator,(v)=>And(<Validatable[]>v));
+        let validatable = property.validate(value);
+
+        if(validatable.validatables[0]) {
+            expect(validatable.validatables[0].valid).toBe(true);
+            expect(validatable.validatables[0].message).toBe('user valid');
+        } else {
+            fail('index 0 should exits')
+        }
+
+        if(validatable.validatables[1]) {
+            expect(validatable.validatables[1].valid).toBe(true);
+            expect(validatable.validatables[1].message).toBe('name valid');
+        } else {
+            fail('index 1 should exits')
+        }
+
+        if(validatable.validatables[2]) {
+            expect(validatable.validatables[2].valid).toBe(true);
+            expect(validatable.validatables[2].message).toBe('address valid');
+        } else {
+            fail('index 2 should exits')
+        }
+    });
+
+    it(`check handler and`, () => {
+
+        let property = new Map(validator,(v)=>And(<Validatable[]>v));
+        let validatable = property.validate(value);
+
+        expect(validatable.valid).toBe(true);
+        expect(validatable.value).toBe(value);
+    });
+
+    it(`check handler or`, () => {
+
+        let property = new Map(validator,(v)=>Or(<Validatable[]>v));
+        let validatable = property.validate(value);
+
+        expect(validatable.valid).toBe(true);
+        expect(validatable.value).toBe(value);
+    });
+
+});
+
+describe("mixed", function() {
+
+    let validator = [
+        new Validator('string'),
+        new Validator('number'),
+        new Validator('string'),
+    ];
+
+    let value = [
+        'user',
+        'name',
+        'address',
+    ];
+
+    it(`check validate return`, () => {
+
+        let property = new Map(validator,(v)=>And(<Validatable[]>v));
+        let validatable = property.validate(value);
+
+        if(validatable.validatables[0]) {
+            expect(validatable.validatables[0].valid).toBe(true);
+            expect(validatable.validatables[0].message).toBe('user valid');
+        } else {
+            fail('index 0 should exits')
+        }
+
+        if(validatable.validatables[1]) {
+            expect(validatable.validatables[1].valid).toBe(false);
+            expect(validatable.validatables[1].message).toBe('name invalid');
+        } else {
+            fail('index 1 should exits')
+        }
+
+        if(validatable.validatables[2]) {
+            fail('index 2 should not exits')
+        }
+    });
+
+    it(`check handler and`, () => {
+
+        let property = new Map(validator,(v)=>And(<Validatable[]>v));
+        let validatable = property.validate(value);
+
+        expect(validatable.valid).toBe(false);
+        expect(validatable.value).toBe(value);
+    });
+
+    it(`check handler or`, () => {
+
+        let property = new Map(validator,(v)=>Or(<Validatable[]>v));
+        let validatable = property.validate(value);
+
+        expect(validatable.valid).toBe(true);
+        expect(validatable.value).toBe(value);
+    });
+
+});
+
+describe("all invalid", function() {
+
+    let validator = [
+        new Validator('number'),
+        new Validator('number'),
+        new Validator('number'),
+    ];
+
+    let value = [
+        'user',
+        'name',
+        'address',
+    ];
+
+    it(`check validate return`, () => {
+
+        let property = new Map(validator,(v)=>And(<Validatable[]>v));
+        let validatable = property.validate(value);
+
+        if(validatable.validatables[0]) {
+            expect(validatable.validatables[0].valid).toBe(false);
+            expect(validatable.validatables[0].message).toBe('user invalid');
+        } else {
+            fail('index 1 should exits')
+        }
+
+        if(validatable.validatables[2]) {
+            fail('index 2 should not exits')
+        }
+
+        if(validatable.validatables[2]) {
+            fail('index 3 should not exits')
+        }
+    });
+
+    it(`check handler and`, () => {
+
+        let property = new Map(validator,(v)=>And(<Validatable[]>v));
+        let validatable = property.validate(value);
+
+        expect(validatable.valid).toBe(false);
+        expect(validatable.value).toBe(value);
+    });
+
+    it(`check handler or`, () => {
+
+        let property = new Map(validator,(v)=>Or(<Validatable[]>v));
+        let validatable = property.validate(value);
+
+        expect(validatable.valid).toBe(false);
+        expect(validatable.value).toBe(value);
+    });
+
+});

@@ -9,7 +9,7 @@ export default class Value<
 {
 
     constructor(
-        public record : Object,
+        public list : Object,
         public validation : Guard<unknown, Type>,
     ) {
 
@@ -17,7 +17,7 @@ export default class Value<
 
     * [Symbol.iterator](): Iterator<Type> {
 
-        for (let [properties, value] of new Pair(this.record, this.validation)) {
+        for (let [properties, value] of new Pair(this.list, this.validation)) {
 
             yield value
         }

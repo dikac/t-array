@@ -11,7 +11,7 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     const empty_1 = require("../boolean/empty");
     /**
-     * recursively filter {@param record} value, returning new object with all value allowed
+     * recursively filter {@param list} value, returning new object with all value allowed
      * by {@param filter}
      *
      * {@param validation} is used to distinguish between value to be validated by {@param filter} or tobe called
@@ -20,10 +20,10 @@
      * {@param empty} default {false}, keep empty array or remove on sub array
      *
      */
-    function Filter(record, validation, filter, empty = false) {
+    function Filter(list, validation, filter, empty = false) {
         let result = [];
-        for (const property in record) {
-            const value = record[property];
+        for (const property in list) {
+            const value = list[property];
             if (validation(value)) {
                 if (filter(value)) {
                     // @ts-ignore

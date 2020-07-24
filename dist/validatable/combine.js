@@ -10,16 +10,15 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const and_1 = require("./list/boolean/and");
-    class Combine extends globalThis.Array {
+    class Combine {
         constructor(validatables, validation = and_1.default, defaults, value) {
-            super(...validatables);
+            this.validatables = validatables;
             this.validation = validation;
             this.defaults = defaults;
             this.value = value;
-            this[Symbol.species] = globalThis.Array;
         }
         get valid() {
-            return this.validation(this, this.defaults);
+            return this.validation(this.validatables, this.defaults);
         }
     }
     exports.default = Combine;

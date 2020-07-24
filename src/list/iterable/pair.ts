@@ -12,7 +12,7 @@ export default class Pair<
     protected keys : number[] = [];
 
     constructor(
-        public record : Object,
+        public list : Object,
         public validation : Guard<unknown, Type>,
     ) {
 
@@ -20,7 +20,7 @@ export default class Pair<
 
     * [Symbol.iterator](): Iterator<[List.Keys<Object>[], Type]> {
 
-        for(const [property, value] of this.record.entries()) {
+        for(const [property, value] of this.list.entries()) {
 
 
             const properties = [...this.keys, property];
@@ -29,14 +29,14 @@ export default class Pair<
 
                 yield [<List.Keys<Object>[]>properties, value];
 
-            } else if(Array.isArray(value)) {
+            } /*else if(Array.isArray(value)) {
 
                 let recursive = new Pair(value, this.validation);
                 recursive.keys.push(...properties);
 
                 yield * recursive;
 
-            } else {
+            }*/ else {
 
                 // TODO IMPROVE VALIDATION TO STRING
                 // @ts-ignore

@@ -11,13 +11,13 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     const pair_1 = require("./pair");
     class Property {
-        constructor(record, validation) {
-            this.record = record;
+        constructor(list, validation) {
+            this.list = list;
             this.validation = validation;
             this.keys = [];
         }
         *[Symbol.iterator]() {
-            for (let [properties, value] of new pair_1.default(this.record, this.validation)) {
+            for (let [properties, value] of new pair_1.default(this.list, this.validation)) {
                 yield properties;
             }
         }

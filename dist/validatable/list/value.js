@@ -23,14 +23,7 @@
                 }
                 continue;
             }
-            if (globalThis.Array.isArray(validator)) {
-                // @ts-ignore
-                array[property] =
-                    Value(value, validator, stopInvalid);
-            }
-            else {
-                throw value_1.default(property);
-            }
+            throw value_1.default(property);
         }
         return array;
     }
