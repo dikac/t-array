@@ -28,14 +28,6 @@ export default function List<
            continue;
         }
 
-        if(Array.isArray(value)) {
-
-            if(List(value, validation)) {
-
-                continue;
-            }
-        }
-
         return false;
     }
 

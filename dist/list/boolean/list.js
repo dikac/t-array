@@ -24,11 +24,6 @@
             if (validation(value)) {
                 continue;
             }
-            if (Array.isArray(value)) {
-                if (List(value, validation)) {
-                    continue;
-                }
-            }
             return false;
         }
         return true;

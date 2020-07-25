@@ -1,4 +1,4 @@
-import Extract from "./any/extract";
+import Extract from "./value/value/extract";
 import Index from "./number";
 
 export default function RemovesValue<Value>(
