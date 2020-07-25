@@ -1,7 +1,7 @@
 import Validatable from "@dikac/t-validatable/validatable";
 import Filter from "../../list/filter";
 import GuardValidatable from "@dikac/t-validatable/boolean/validatable";
-import {List, O} from "ts-toolbelt";
+import {List} from "ts-toolbelt";
 
 /**
  * filter all invalid {@link Validatable} while retain its original structure

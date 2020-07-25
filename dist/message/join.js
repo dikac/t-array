@@ -4,22 +4,21 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports"], factory);
+        define(["require", "exports", "../reset"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    function Join(messages, delimiter) {
-        let values = new class extends Array {
-            constructor() {
-                super(...messages);
-                this.delimiter = delimiter;
-            }
-            get message() {
-                return this.map(message => message.message).join(this.delimiter);
-            }
-        };
-        return values;
+    const reset_1 = require("../reset");
+    class Join {
+        constructor(messages, delimiter) {
+            this.messages = messages;
+            this.delimiter = delimiter;
+        }
+        get message() {
+            let messages = reset_1.default(this.messages);
+            return messages.map(message => message.message).join(this.delimiter);
+        }
     }
     exports.default = Join;
 });

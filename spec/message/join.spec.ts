@@ -11,17 +11,17 @@ let messages = [
     {message:'e'},
 ];
 
-let join = Join(messages, ',');
+let join = new Join(messages, ',');
 it('check data', ()=>{
 
    expect(join.delimiter).toBe(',')
 
-   expect(join[0].message).toBe('a');
-   expect(join[1].message).toBe('b');
-   expect(join[2].message).toBe('c');
-   expect(join[3].message).toBe('d');
-   expect(join[4].message).toBe('e');
-   expect(join[5]).toBeUndefined();
+   expect(join.messages[0].message).toBe('a');
+   expect(join.messages[1].message).toBe('b');
+   expect(join.messages[2].message).toBe('c');
+   expect(join.messages[3].message).toBe('d');
+   expect(join.messages[4].message).toBe('e');
+   expect(join.messages[5]).toBeUndefined();
 
 });
 
@@ -43,7 +43,7 @@ it('change delimiter', ()=>{
 
 it('add value', ()=>{
 
-    join.push({message:'f'});
+    join.messages.push({message:'f'});
    expect(join.message).toBe('a|b|c|d|e|f')
 
 });

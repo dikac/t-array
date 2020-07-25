@@ -1,12 +1,14 @@
-export default function Reset<Argument extends unknown[]>(argument : Argument) : Argument {
+import {List} from "ts-toolbelt";
 
-    let buffer : Argument =
-        // @ts-ignore
-        <Argument>[];
+export default function Reset<
+    Argument extends List.Partial<unknown[]>
+>(argument : Argument) : List.UnionOf<List.Required<Argument>>[] {
+
+    let buffer : List.UnionOf<List.Required<Argument>>[] = [];
 
     argument.forEach(function (v, i) {
-        buffer.push(v);
+        buffer.push(<List.UnionOf<List.Required<Argument>>>v);
     })
 
-    return <Argument> buffer;
+    return <List.UnionOf<List.Required<Argument>>[]> buffer;
 }

@@ -1,4 +1,3 @@
-import Empty from "../boolean/empty";
 import {List} from "ts-toolbelt";
 import Fn from "@dikac/t-function/function";
 import Guard from "@dikac/t-function/boolean/guard";

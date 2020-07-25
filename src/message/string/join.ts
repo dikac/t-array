@@ -6,5 +6,5 @@ export default function Join<Message extends MessageInterface<string>[]>(
     delimiter : string
 ) : string {
 
-    return JoinObject(messages, delimiter).message
+    return new JoinObject(messages, delimiter).message
 }

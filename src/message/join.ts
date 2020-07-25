@@ -1,25 +1,19 @@
 import MessageInterface from "@dikac/t-message/message";
 import {List} from "ts-toolbelt";
+import Messages from "../list/messages/messages";
+import Reset from "../reset";
 
-export default function Join<Message extends MessageInterface<string>[]>(
-    messages : Message,
-    delimiter : string
-) : Message & MessageInterface <string> & {delimiter:string} {
+export default class Join<Message extends List.Partial<MessageInterface<string>[]>> implements Messages<Message>, MessageInterface <string> {
 
-    let values =  new class extends Array<List.UnionOf<Message>> {
-
-        readonly delimiter : string = delimiter;
-
-        constructor() {
-
-            super(...messages);
-        }
-
-        get message() : string {
-
-            return this.map(message=>message.message).join(this.delimiter);
-        }
+    constructor(
+        public messages : Message,
+        public delimiter : string
+    ) {
     }
 
-    return <any> values;
+    get message() : string {
+
+        let messages = Reset(this.messages);
+        return messages.map(message=>message.message).join(this.delimiter);
+    }
 }

@@ -10,9 +10,7 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     function Reset(argument) {
-        let buffer = 
-        // @ts-ignore
-        [];
+        let buffer = [];
         argument.forEach(function (v, i) {
             buffer.push(v);
         });
