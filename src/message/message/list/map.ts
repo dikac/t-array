@@ -2,7 +2,7 @@ import MessageInterface from "@dikac/t-message/message";
 import RecordInfer from "./list";
 import MapCallback from "../../../list/map-callback";
 import MessageGuard from "@dikac/t-message/boolean/message";
-import ValueMessage from "@dikac/t-message/return/value";
+import ValueMessage from "@dikac/t-message/message/value";
 
 export default function Map<
     Instance extends MessageInterface<unknown>[]
