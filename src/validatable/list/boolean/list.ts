@@ -5,7 +5,7 @@ import ValidatableType from "@dikac/t-validatable/boolean/validatable";
 /**
  * Check if {@param list} is array of {@link Validatable}
  */
-export default function Record<
+export default function List<
     Object extends Validatable[]
 >(
     list : unknown,

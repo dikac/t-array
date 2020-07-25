@@ -3,8 +3,8 @@
  *
  * {@template Value} is required, while {@tempalte Key} is optional to use for distinguish condition recursive {@template Container}
  */
-type Map<Container extends Value[],  Value, Replace> = {
-    [K in keyof Container]: Container[K] extends Container ? Map<Container[K], Value, Replace>  : Replace
+type Map<Container extends unknown[],  Replace> = {
+    [K in keyof Container] :  Replace
 }
 
 export default Map;

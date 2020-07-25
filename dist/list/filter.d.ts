@@ -11,4 +11,5 @@ import Guard from "@dikac/t-function/boolean/guard";
  * {@param empty} default {false}, keep empty array or remove on sub array
  *
  */
-export default function Filter<Type, Object extends List.List<Type>>(list: Object, validation: Guard<unknown, Type>, filter: Fn<[Type], boolean>, empty?: boolean): List.Partial<Object>;
+export default function Filter<Type extends List.UnionOf<Object>, Object extends any[]>(list: Object, filter: Guard<Type, Type>): List.Select<Object, Type>;
+export default function Filter<Object extends any[]>(list: Object, filter: Fn<[List.UnionOf<Object>], boolean>): List.Partial<Object>;

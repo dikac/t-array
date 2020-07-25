@@ -1,4 +1,4 @@
-import Standard from "../../../../dist/message/return/list/map-standard";
+import Standard from "../../../../dist/message/return/list/map";
 import Message from "@dikac/t-message/message";
 
 it("enable console log", () => { spyOn(console, 'log').and.callThrough();});

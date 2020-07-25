@@ -26,7 +26,7 @@ describe("compiler compatibility", function() {
             'address',
         ];
 
-        let property = new Map(validator, (v)=>And(<Validatable[]>v));
+        let property = new Map(validator, (v)=>And(v));
 
         let validatable = property.validate(value);
 
@@ -38,14 +38,13 @@ describe("compiler compatibility", function() {
         // @ts-expect-error
         key = validatable.validatables[2];
 
-        // @ts-expect-error
-        let validatables : ValidatablesInterface = validatable;
+        let validatables : Validatables = validatable;
 
         // @ts-expect-error
         let record : Validatable[] = validatable.validatables;
 
         // @ts-expect-error
-        let validatable1 : Validatables = validatable;
+        let validatable1 : Validatables<Validatable[]> = validatable;
 
         let unknown : unknown = validatable.value;
 
@@ -79,7 +78,7 @@ describe("compiler compatibility", function() {
 
         describe("auto", function() {
 
-            let property = new Map(validator, (v)=>And(<Validatable[]>v));
+            let property = new Map(validator, (v)=>And(v));
 
             let validatable = property.validate(value);
 
@@ -91,14 +90,13 @@ describe("compiler compatibility", function() {
             // @ts-expect-error
             key = validatable.validatables[2];
 
-            // @ts-expect-error
-            let validatables : ValidatablesInterface = validatable;
+            let validatables : Validatables = validatable;
 
             // @ts-expect-error
             let record : Validatable[] = validatable.validatables;
 
             // @ts-expect-error
-            let validatable1 : Validatables = validatable;
+            let validatable1 : Validatables<Validatable[]> = validatable;
 
             let unknown : unknown = validatable.value;
 
@@ -108,7 +106,7 @@ describe("compiler compatibility", function() {
 
         describe("direct", function() {
 
-            let property = new Map<TypeValidator>(validator, (v)=>And(<Validatable[]>v));
+            let property = new Map<TypeValidator>(validator, (v)=>And(v));
 
             let validatable = property.validate(value);
 
@@ -121,14 +119,13 @@ describe("compiler compatibility", function() {
             // @ts-expect-error
             key = validatable.validatables[2];
 
-            // @ts-expect-error
-            let validatables : ValidatablesInterface = validatable;
+            let validatables : Validatables = validatable;
 
             // @ts-expect-error
             let record : Validatable[] = validatable.validatables;
 
             // @ts-expect-error
-            let validatable1 : Validatables = validatable;
+            let validatable1 : Validatables<Validatable[]> = validatable;
 
             let unknown : unknown = validatable.value;
 

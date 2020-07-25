@@ -1,4 +1,4 @@
-import Type from "../../../../dist/validatable/list/boolean/record";
+import Type from "../../../../dist/validatable/list/boolean/list";
 import Validatable from "@dikac/t-validatable/validatable";
 
 it("force console log", () => { spyOn(console, 'log').and.callThrough();});

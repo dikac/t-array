@@ -1,5 +1,5 @@
 import ValidatorType from "@dikac/t-validator/boolean/validator";
-import RecursiveInferReturn from "./map";
+import RecursiveInferReturn from "./list";
 import ThrowableValue from "../../../validatable/list/assert/throwable/value";
 import Validator from "@dikac/t-validator/validator";
 import PartialUnion from "./partial-union";

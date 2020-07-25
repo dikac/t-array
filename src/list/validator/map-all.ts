@@ -3,7 +3,7 @@ import ValueInterface from "@dikac/t-value/value";
 import Function from "@dikac/t-function/function";
 import ValidatableInterface from "@dikac/t-validatable/validatable";
 import ValidateMap from "../../validator/validatable/list/standard";
-import RecursiveInferReturn from "../../validator/validatable/list/map";
+import RecursiveInferReturn from "../../validator/validatable/list/list";
 import MapCallback from "./map-callback";
 import RecordParameter from "./parameter/parameter";
 import Validatables from "../validatables/validatables";

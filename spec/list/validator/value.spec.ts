@@ -31,14 +31,13 @@ describe("compiler compatibility", function() {
 
             let key : Validatable = validatable[0];
 
-            // @ts-expect-error
-            let validatables : ValidatablesInterface = validatable;
+            let validatables : Validatables = validatable;
 
             // @ts-expect-error
             let record : Validatable[] = validatable.validatables;
 
             // @ts-expect-error
-            let and : Validatables = validatable;
+            let and : Validatables<Validatable[] > = validatable;
 
             let unknown : unknown = validatable.value;
 
@@ -54,14 +53,13 @@ describe("compiler compatibility", function() {
 
             let key : Validatable = validatable[0];
 
-            // @ts-expect-error
             let validatables : ValidatablesInterface = validatable;
 
             // @ts-expect-error
             let record : Validatable[] = validatable.validatables;
 
             // @ts-expect-error
-            let and : Validatables = validatable;
+            let and : Validatables<Validatable[]> = validatable;
 
             let unknown : unknown = validatable.value;
 
@@ -80,20 +78,19 @@ describe("compiler compatibility", function() {
 
         describe("complete", function() {
 
-            let property = new Value<string>(validator, (v)=>And(<Validatable[]>v));
+            let property = new Value<string>(validator, (v)=>And(v));
 
             let validatable = property.validate('data');
 
             let key : Validatable = validatable[0];
 
-            // @ts-expect-error
-            let validatables : ValidatablesInterface = validatable;
+            let validatables : Validatables = validatable;
 
             // @ts-expect-error
             let record : Validatable[] = validatable.validatables;
 
             // @ts-expect-error
-            let and : Validatables = validatable;
+            let and : Validatables<Validatable[]> = validatable;
 
             let unknown : unknown = validatable.value;
 
@@ -103,20 +100,19 @@ describe("compiler compatibility", function() {
 
         describe("auto", function() {
 
-            let property = new Value(validator, (v)=>And(<Validatable[]>v));
+            let property = new Value(validator, (v)=>And(v));
 
             let validatable = property.validate('data');
 
             let key : Validatable = validatable[0];
 
-            // @ts-expect-error
-            let validatables : ValidatablesInterface = validatable;
+            let validatables : Validatables = validatable;
 
             // @ts-expect-error
             let record : Validatable[] = validatable.validatables;
 
             // @ts-expect-error
-            let and : Validatables = validatable;
+            let and : Validatables<Validatable[]> = validatable;
 
             let unknown : unknown = validatable.value;
 

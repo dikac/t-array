@@ -15,7 +15,7 @@ export default function MapCallback<Replace, Value, Key extends PropertyKey, Obj
     object : Object,
     validation : Guard<unknown, Value>,
     replace : Function<[Value], Replace>
-) : Map<Object, Value, Replace> {
+) : Map<Object, Replace> {
 
     let result : any[] = [];
 

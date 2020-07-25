@@ -1,15 +1,15 @@
 {
   "name": "@dikac/t-array",
-  "version": "0.20.0",
+  "version": "0.20.1",
   "description": "Typescript array",
   "dependencies": {
     "@dikac/deployer": "^0.1.5",
-    "@dikac/t-boolean": "^0.8.0",
-    "@dikac/t-function": "^0.10.0",
+    "@dikac/t-boolean": "^0.8.1",
+    "@dikac/t-function": "^0.10.1",
     "@dikac/t-iterable": "^0.3.2",
     "@dikac/t-message": "^0.6.3",
-    "@dikac/t-validatable": "^0.17.3",
-    "@dikac/t-validator": "^0.9.3",
+    "@dikac/t-validatable": "^0.17.4",
+    "@dikac/t-validator": "^0.9.4",
     "@dikac/t-value": "^0.9.1",
     "ts-toolbelt": "^6.13.28"
   },

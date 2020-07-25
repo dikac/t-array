@@ -1,5 +1,5 @@
 import RecursiveInferArgument from "../../../list/validator/parameter/parameter";
-import RecursiveInferReturn from "./map";
+import RecursiveInferReturn from "./list";
 import Validator from "@dikac/t-validator/validator";
 import PartialUnion from "./partial-union";
 

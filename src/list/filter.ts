@@ -14,14 +14,28 @@ import Guard from "@dikac/t-function/boolean/guard";
  *
  */
 export default function Filter<
+    Type extends List.UnionOf<Object>,
+    Object extends any[]
+    >(
+    list : Object,
+    filter : Guard<Type, Type>,
+) : List.Select<Object, Type>;
+
+export default function Filter<
+    Object extends any[]
+    >(
+    list : Object,
+    filter : Fn<[List.UnionOf<Object>], boolean>,
+) : List.Partial<Object>;
+
+
+export default function Filter<
     Type,
     Object extends List.List<Type>
 >(
     list : Object,
-    validation : Guard<unknown, Type>,
     filter : Fn<[Type], boolean>,
-    empty : boolean = false
-) : List.Partial<Object> {
+) : List.Partial<Object> | List.Select<Object, Type> {
 
     let result : [] = [];
 
@@ -29,29 +43,10 @@ export default function Filter<
 
         const value : Type = <Type>list[property];
 
-        if(validation(value)) {
+        if(filter(value)) {
 
-            if(filter(value)) {
-
-                // @ts-ignore
-                result[property] = value;
-            }
-
-        } else if(Array.isArray(value)) {
-
-            const results = Filter(value, validation, filter);
-
-            if(!empty) {
-
-                if(!Empty(results, true)) {
-
-                    result[property] = results;
-                }
-
-            } else {
-
-                result[property] = results;
-            }
+            // @ts-ignore
+            result[property] = value;
         }
     }
 

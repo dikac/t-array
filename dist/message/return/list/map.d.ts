@@ -1,6 +1,3 @@
-import Message from "@dikac/t-message/message";
-import InferMessage from "@dikac/t-message/return/return";
-declare type Map<Schema extends Message<unknown>[]> = {
-    [Key in keyof Schema]: InferMessage<Schema[Key]>;
-};
-export default Map;
+import MessageInterface from "@dikac/t-message/message";
+import RecordInfer from "./list";
+export default function Map<Instance extends MessageInterface<unknown>[]>(list: Instance): RecordInfer<Instance>;

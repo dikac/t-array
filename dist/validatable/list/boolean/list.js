@@ -14,9 +14,9 @@
     /**
      * Check if {@param list} is array of {@link Validatable}
      */
-    function Record(list) {
+    function List(list) {
         return list_1.default(list, validatable_1.default);
     }
-    exports.default = Record;
+    exports.default = List;
 });
-//# sourceMappingURL=record.js.map
+//# sourceMappingURL=list.js.map

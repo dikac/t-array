@@ -15,7 +15,7 @@
      * filter all invalid {@link Validatable} while retain its original structure
      */
     function Invalid(list) {
-        return filter_1.default(list, validatable_1.default, (v) => !v.valid);
+        return filter_1.default(list, (v) => validatable_1.default(v) && !v.valid);
     }
     exports.default = Invalid;
 });

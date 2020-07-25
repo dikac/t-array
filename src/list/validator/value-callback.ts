@@ -1,6 +1,6 @@
 import Validator from "@dikac/t-validator/validator";
 import ValueInterface from "@dikac/t-value/value";
-import RecordValidatable from "../../validator/validatable/list/map";
+import RecordValidatable from "../../validator/validatable/list/list";
 import Function from "@dikac/t-function/function";
 import ValidatableInterface from "@dikac/t-validatable/validatable";
 import ValidatableValue from "../validatable/value-callback";

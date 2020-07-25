@@ -15,7 +15,7 @@
      * filter all valid {@link Validatable} while retain its original structure
      */
     function Valid(list) {
-        let filter = filter_1.default(list, validatable_1.default, (v) => v.valid);
+        let filter = filter_1.default(list, (v) => validatable_1.default(v) && v.valid);
         return filter;
     }
     exports.default = Valid;

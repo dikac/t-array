@@ -1,9 +1,12 @@
-import Message from "@dikac/t-message/message";
-import InferMessage from "@dikac/t-message/return/return";
+import MessageInterface from "@dikac/t-message/message";
+import RecordInfer from "./list";
+import MapCallback from "../../../list/map-callback";
+import MessageGuard from "@dikac/t-message/boolean/message";
+import ValueMessage from "@dikac/t-message/return/value";
 
-type Map<Schema extends Message<unknown>[]> = {
-    [Key in keyof Schema] : InferMessage<Schema[Key]>
-};
+export default function Map<
+    Instance extends MessageInterface<unknown>[]
+>(list : Instance) : RecordInfer<Instance> {
 
-
-export default Map;
+    return <RecordInfer<Instance>> MapCallback(list, MessageGuard, ValueMessage);
+}
