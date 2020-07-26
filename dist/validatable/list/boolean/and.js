@@ -13,7 +13,7 @@
     const invalid_1 = require("../invalid");
     function And(object) {
         let filtered = invalid_1.default(object);
-        return empty_1.default(filtered, true);
+        return empty_1.default(filtered);
     }
     exports.default = And;
 });

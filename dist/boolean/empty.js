@@ -9,8 +9,8 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    function Empty(array, empty = true) {
-        return (array.length === 0) === empty;
+    function Empty(array) {
+        return (array.length === 0);
     }
     exports.default = Empty;
 });

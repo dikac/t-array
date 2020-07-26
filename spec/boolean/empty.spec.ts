@@ -7,24 +7,16 @@ describe('check empty', () => {
 
     it(`empty`, () => {
 
-        expect(Empty([], true)).toBe(true)
+        expect(Empty([])).toBe(true)
     });
 
-    it(`not empty`, () => {
-
-        expect(Empty([1], true)).toBe(false)
-    });
 })
 
 describe('check not empty', () => {
 
     it(`empty`, () => {
 
-        expect(Empty([], false)).toBe(false)
+        expect(Empty([1])).toBe(false)
     });
 
-    it(`not empty`, () => {
-
-        expect(Empty([1], false)).toBe(true)
-    });
 })

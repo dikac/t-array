@@ -4,21 +4,21 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../validatable/empty"], factory);
+        define(["require", "exports", "../validatable/not-empty"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const empty_1 = require("../validatable/empty");
-    class Empty {
+    const not_empty_1 = require("../validatable/not-empty");
+    class NotEmpty {
         constructor(empty, message) {
             this.empty = empty;
             this.message = message;
         }
         validate(value) {
-            return new empty_1.default(value, this.message);
+            return new not_empty_1.default(value, this.message);
         }
     }
-    exports.default = Empty;
+    exports.default = NotEmpty;
 });
-//# sourceMappingURL=empty.js.map
+//# sourceMappingURL=not-empty.js.map

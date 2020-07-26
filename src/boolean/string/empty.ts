@@ -1,29 +1,14 @@
 export default function Empty(
     valid : boolean,
-    empty : boolean,
     value : unknown[],
 ) : string {
 
-    if(empty) {
+    if(valid) {
 
-        if(valid) {
-
-            return `array is empty`;
-
-        } else {
-
-            return `array must empty`;
-        }
+        return `array is empty`;
 
     } else {
 
-        if(valid) {
-
-            return `array is not empty`;
-
-        } else {
-
-            return `array must not empty`;
-        }
+        return `array must empty`;
     }
 }

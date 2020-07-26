@@ -9,5 +9,5 @@ export default function Or<
 
     let filtered = Valid(object);
 
-    return !Empty(filtered, true);
+    return !Empty(filtered);
 }

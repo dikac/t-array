@@ -9,22 +9,12 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    function Empty(valid, empty, value) {
-        if (empty) {
-            if (valid) {
-                return `array is empty`;
-            }
-            else {
-                return `array must empty`;
-            }
+    function Empty(valid, value) {
+        if (valid) {
+            return `array is empty`;
         }
         else {
-            if (valid) {
-                return `array is not empty`;
-            }
-            else {
-                return `array must not empty`;
-            }
+            return `array must empty`;
         }
     }
     exports.default = Empty;

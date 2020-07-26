@@ -1,6 +1,6 @@
 import EmptyType from "../../boolean/string/empty";
 
-export default function Empty(empty : boolean, string : unknown[]) : Error {
+export default function Empty(string : unknown[]) : Error {
 
-    return new Error(EmptyType(false, empty, string))
+    return new Error(EmptyType(false, string))
 }

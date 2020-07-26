@@ -28,22 +28,22 @@ for(let [value, [valid, message]] of map) {
         });
 
     });
-
-    describe('not empty', () => {
-
-        it(message, ()=>{
-
-            let validator = new Empty(false, EmptyMessage);
-            let validatable = validator.validate(value);
-            expect(validatable.valid).toBe(!valid);
-            expect(validatable.value).toBe(value);
-
-            if(validatable.valid) {
-                expect(validatable.message).toBe(`array is not empty`);
-            } else {
-                expect(validatable.message).toBe(`array must not empty`);
-            }
-        });
-    });
+    //
+    // describe('not empty', () => {
+    //
+    //     it(message, ()=>{
+    //
+    //         let validator = new Empty(false, EmptyMessage);
+    //         let validatable = validator.validate(value);
+    //         expect(validatable.valid).toBe(!valid);
+    //         expect(validatable.value).toBe(value);
+    //
+    //         if(validatable.valid) {
+    //             expect(validatable.message).toBe(`array is not empty`);
+    //         } else {
+    //             expect(validatable.message).toBe(`array must not empty`);
+    //         }
+    //     });
+    // });
 
 }

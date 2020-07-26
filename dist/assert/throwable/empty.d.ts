@@ -1,1 +1,1 @@
-export default function Empty(empty: boolean, string: unknown[]): Error;
+export default function Empty(string: unknown[]): Error;

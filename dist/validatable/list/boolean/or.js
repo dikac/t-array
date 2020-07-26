@@ -13,7 +13,7 @@
     const empty_1 = require("../../../boolean/empty");
     function Or(object) {
         let filtered = valid_1.default(object);
-        return !empty_1.default(filtered, true);
+        return !empty_1.default(filtered);
     }
     exports.default = Or;
 });

@@ -4,10 +4,10 @@ import Message from "@dikac/t-message/message";
 import Function from "@dikac/t-function/function";
 import MergeWrapper from "@dikac/t-value/message/readonly-merge";
 import MessageCallback from "@dikac/t-value/message/callback";
-import EmptyArgument from "../boolean/empty";
+import NotEmptyArgument from "../boolean/not-empty";
 import {List} from "ts-toolbelt";
 
-export default class Empty<Msg, Val extends unknown[]>
+export default class NotEmpty<Msg, Val extends unknown[]>
     implements
         Readonly<Value<Val> & Message<Msg> & Validatable>, Iterable<List.UnionOf<Val>>
 
@@ -19,7 +19,7 @@ export default class Empty<Msg, Val extends unknown[]>
         private _message : Function<[Readonly<Value<Val> & Validatable>], Msg>,
     ) {
 
-        this.valid = EmptyArgument(value);
+        this.valid = NotEmptyArgument(value);
 
     }
 

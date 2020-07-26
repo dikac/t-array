@@ -9,5 +9,5 @@ export default function And<
 
     let filtered = Invalid(object);
 
-    return Empty(filtered, true);
+    return Empty(filtered);
 }

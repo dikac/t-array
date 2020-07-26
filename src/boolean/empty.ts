@@ -1,4 +1,4 @@
-export default function Empty(array : ReadonlyArray<unknown>, empty : boolean = true) : boolean {
+export default function Empty(array : ReadonlyArray<unknown>) : boolean {
 
-    return (array.length === 0) === empty;
+    return (array.length === 0);
 }
