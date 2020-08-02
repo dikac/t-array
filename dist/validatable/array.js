@@ -11,9 +11,9 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     const callback_1 = require("@dikac/t-value/message/callback");
     const array_1 = require("../boolean/array");
-    function Object_(value, message) {
+    function Array(value, message) {
         return callback_1.default(value, array_1.default, message);
     }
-    exports.default = Object_;
+    exports.default = Array;
 });
 //# sourceMappingURL=array.js.map

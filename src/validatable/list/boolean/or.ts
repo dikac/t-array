@@ -1,13 +1,12 @@
-import Valid from "../valid";
 import Validatable from "@dikac/t-validatable/validatable";
-import Empty from "../../../boolean/empty";
-import {List} from "ts-toolbelt";
+import IterableOr from "@dikac/t-iterable/validatable/boolean/or";
 
 export default function Or<
-    Object extends List.Partial<Validatable[]>
->(object : Object) : boolean {
+    Object extends Validatable[]
+>(
+    object : Object,
+    defaults : boolean = true
+) : boolean {
 
-    let filtered = Valid(object);
-
-    return !Empty(filtered);
+    return IterableOr(object, defaults);
 }

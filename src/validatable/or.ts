@@ -1,15 +1,12 @@
-import ValidatableInterface from "@dikac/t-validatable/validatable";
 import Validatable from "@dikac/t-validatable/validatable";
 import IterableOr from "@dikac/t-iterable/validatable/boolean/or";
-import Combine from "./combine";
+import Callback from "./callback";
 
-export default function Or<Validatables extends ValidatableInterface[]>(
+export default function Or<Validatables extends Validatable[]>(
     validatables : Validatables,
     defaults : boolean = true
-) : {validatables:Validatables} & Readonly<Validatable> & {defaults:boolean} {
+) : Callback<Validatables> {
 
-    let array = new Combine(validatables, IterableOr, defaults, null);
-    return  array;
-
+    return new Callback(validatables, (v)=>IterableOr(v, defaults));
 }
 

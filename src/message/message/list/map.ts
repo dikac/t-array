@@ -1,12 +1,14 @@
-import MessageInterface from "@dikac/t-message/message";
-import RecordInfer from "./list";
-import MapCallback from "../../../list/map-callback";
-import MessageGuard from "@dikac/t-message/boolean/message";
+import Message from "@dikac/t-message/message";
+import RecordInfer from "./infer";
+import EnsureMessage from "@dikac/t-message/ensure/message";
 import ValueMessage from "@dikac/t-message/message/value";
 
 export default function Map<
-    Instance extends MessageInterface<unknown>[]
->(list : Instance) : RecordInfer<Instance> {
+    Messages extends Message[]
+>(
+    list : Messages,
+) : RecordInfer<Messages> {
 
-    return <RecordInfer<Instance>> MapCallback(list, MessageGuard, ValueMessage);
+    return <RecordInfer<Messages>> list.map((v)=>EnsureMessage(v)).map(ValueMessage);
+
 }

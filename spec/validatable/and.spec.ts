@@ -32,26 +32,6 @@ describe('structure', function () {
         });
 
     });
-
-    describe('initial', function () {
-
-        let initial = true;
-        let and = And<Validatable[]>([], initial);
-
-        it("constructor", () => {
-            expect(initial === and.defaults).toBeTrue()
-        });
-
-
-        it("set", () => {
-            let initial2 = false;
-            and.defaults = initial2;
-            expect(initial === and.defaults).toBeFalse();
-            expect(initial2 === and.defaults).toBeTrue();
-        });
-
-    });
-
 });
 
 describe('empty', function () {
@@ -75,13 +55,7 @@ describe('empty', function () {
         let and = And<Validatable[]>([], true);
 
         it("true", () => {
-            and.defaults = true;
             expect(and.valid).toBe(true)
-        });
-
-        it("false", () => {
-            and.defaults = false;
-            expect(and.valid).toBe(false)
         });
 
     });
@@ -108,13 +82,11 @@ describe("single", function() {
         let and = And<Validatable[]>([], true);
 
         it("true", () => {
-            and.defaults = false;
             and.validatables.push({valid:true});
             expect(and.valid).toBe(true)
         });
 
         it("false", () => {
-            and.defaults = true;
             and.validatables.push({valid:false});
             expect(and.valid).toBe(false)
         });
@@ -128,7 +100,6 @@ describe("multi same", function() {
     let and = And<Validatable[]>([], false);
 
     it("valids", () => {
-        and.defaults = false;
         and.validatables.push({valid:true}, {valid:true});
         expect(and.valid).toBe(true)
     });
@@ -148,7 +119,6 @@ describe("multi same", function() {
     })
 
     it("invalids", () => {
-        and.defaults = true;
         and.validatables.push({valid:false}, {valid:false});
         expect(and.valid).toBe(false)
     });
@@ -174,7 +144,6 @@ describe("multi mixed", function() {
     let and = And<Validatable[]>([], false);
 
     it("valids", () => {
-        and.defaults = true;
         and.validatables.push({valid:true}, {valid:false});
         expect(and.valid).toBe(false)
     });
@@ -194,7 +163,6 @@ describe("multi mixed", function() {
     })
 
     it("invalids", () => {
-        and.defaults = false;
         and.validatables.push({valid:true}, {valid:false});
         expect(and.valid).toBe(false)
     });

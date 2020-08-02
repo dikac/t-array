@@ -52,10 +52,8 @@ describe("compiler compatibility property", function() {
             validatable = result[0];
         }
 
-        // @ts-expect-error
         validatable = result[1];
 
-        // @ts-expect-error
         validatable = result[2];
     });
 });
@@ -85,22 +83,22 @@ describe("check property", function() {
         }
     });
 
-    it("invalid", () => {
-
-        expect(result[1]).toBeUndefined();
-    });
-
     it("valid", () => {
 
-        if(result[2]) {
+        if(result[1]) {
 
-            expect(result[2].valid).toBe(true);
+            expect(result[1].valid).toBe(true);
 
         } else {
 
             fail('property is not exits')
         }
     });
+    it("invalid", () => {
+
+        expect(result[2]).toBeUndefined();
+    });
+
 
     it("invalid", () => {
 

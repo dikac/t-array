@@ -1,9 +1,8 @@
-import MessageInterface from "@dikac/t-message/message";
+import Message from "@dikac/t-message/message";
 import OrObject from "../or";
-import {List} from "ts-toolbelt";
 
-export default function Or<Message extends List.Partial<MessageInterface<string>[]>>(
-    messages : Message,
+export default function Or<MessageT extends Message<string>[]>(
+    messages : MessageT,
 ) : string {
 
     return OrObject(messages).message

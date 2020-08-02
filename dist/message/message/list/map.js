@@ -4,16 +4,15 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../../../list/map-callback", "@dikac/t-message/boolean/message", "@dikac/t-message/message/value"], factory);
+        define(["require", "exports", "@dikac/t-message/ensure/message", "@dikac/t-message/message/value"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const map_callback_1 = require("../../../list/map-callback");
-    const message_1 = require("@dikac/t-message/boolean/message");
+    const message_1 = require("@dikac/t-message/ensure/message");
     const value_1 = require("@dikac/t-message/message/value");
     function Map(list) {
-        return map_callback_1.default(list, message_1.default, value_1.default);
+        return list.map((v) => message_1.default(v)).map(value_1.default);
     }
     exports.default = Map;
 });

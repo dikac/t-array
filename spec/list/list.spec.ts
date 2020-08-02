@@ -1,4 +1,4 @@
-import Convert from "../../dist/list/map";
+import Convert from "../../dist/map";
 
 it("enable console log", () => { spyOn(console, 'log').and.callThrough()});
 

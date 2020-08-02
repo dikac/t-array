@@ -4,24 +4,22 @@ import Message from "@dikac/t-message/message";
 import Value from "@dikac/t-value/value";
 import ArrayValidatable from "../validatable/array";
 import Function from "@dikac/t-function/function";
+import Instamce from "@dikac/t-validator/parameter/instance/instance";
+import Return from "@dikac/t-validator/return/return";
 
-export type Return<Msg> =
-    Readonly<Validatable<true> & Message<Msg> & Value<unknown[]>> |
-    Readonly<Validatable<false> & Message<Msg> & Value<unknown>>;
-
-export default class Object_<Msg>
+export default class Array_<MessageT>
     implements
-        Validator<object, Return<Msg>>,
-        Message<Function<[Readonly<Value> & Readonly<Validatable>], Msg>>
+        Validator<unknown, Array<any>,  Readonly<Instamce<any, MessageT>>>,
+        Message<Function<[Readonly<Value> & Readonly<Validatable>], MessageT>>
 {
 
     constructor(
-       public message : Function<[Readonly<Value> & Readonly<Validatable>], Msg>
+       public message : Function<[Readonly<Value> & Readonly<Validatable>], MessageT>
     ) {
     }
 
-    validate(value: unknown): Return<Msg> {
+    validate<Argument extends unknown>(value: unknown) : Return<unknown, Argument, Array<any>, Readonly<Instamce<Argument, MessageT>>> {
 
-        return ArrayValidatable(value, this.message);
+        return <Return<unknown, Argument, Array<any>, Readonly<Instamce<Argument, MessageT>>>> ArrayValidatable(value, this.message);
     }
 }

@@ -1,9 +1,8 @@
-import MessageInterface from "@dikac/t-message/message";
+import Message from "@dikac/t-message/message";
 import AndObject from "../and";
-import {List} from "ts-toolbelt";
 
-export default function And<Message extends List.Partial<MessageInterface<string>[]>>(
-    messages : Message,
+export default function And<MessageT extends Message<string>[]>(
+    messages : MessageT,
 ) : string {
 
     return AndObject(messages).message

@@ -1,3 +1,2 @@
-import MessageInterface from "@dikac/t-message/message";
-import { List } from "ts-toolbelt";
-export default function Join<Message extends List.Partial<MessageInterface<string>[]>>(messages: Message, delimiter: string): string;
+import Message from "@dikac/t-message/message";
+export default function Join<MessageT extends Message<string>[]>(messages: MessageT, delimiter: string): string;

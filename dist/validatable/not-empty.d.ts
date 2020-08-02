@@ -3,11 +3,11 @@ import Validatable from "@dikac/t-validatable/validatable";
 import Message from "@dikac/t-message/message";
 import Function from "@dikac/t-function/function";
 import { List } from "ts-toolbelt";
-export default class NotEmpty<Msg, Val extends unknown[]> implements Readonly<Value<Val> & Message<Msg> & Validatable>, Iterable<List.UnionOf<Val>> {
-    readonly value: Val;
+export default class NotEmpty<MessageT, Values extends unknown[]> implements Readonly<Value<Values> & Message<MessageT> & Validatable>, Iterable<List.UnionOf<Values>> {
+    readonly value: Values;
     private _message;
     readonly valid: boolean;
-    constructor(value: Val, _message: Function<[Readonly<Value<Val> & Validatable>], Msg>);
-    [Symbol.iterator](): Iterator<List.UnionOf<Val>>;
-    get message(): Msg;
+    constructor(value: Values, _message: Function<[Readonly<Value<Values> & Validatable>], MessageT>);
+    [Symbol.iterator](): Iterator<List.UnionOf<Values>>;
+    get message(): MessageT;
 }

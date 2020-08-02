@@ -1,12 +1,11 @@
-import MessageInterface from "@dikac/t-message/message";
-import {List} from "ts-toolbelt";
-import Messages from "../list/messages/messages";
+import Message from "@dikac/t-message/message";
+import Messages from "./messages/messages";
 import Reset from "../reset";
 
-export default class Join<Message extends List.Partial<MessageInterface<string>[]>> implements Messages<Message>, MessageInterface <string> {
+export default class Join<MessageT extends Message<string>[]> implements Messages<MessageT>, Message <string> {
 
     constructor(
-        public messages : Message,
+        public messages : MessageT,
         public delimiter : string
     ) {
     }

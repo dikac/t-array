@@ -3,9 +3,10 @@ import Validatable from "@dikac/t-validatable/validatable";
 import Message from "@dikac/t-message/message";
 import Value from "@dikac/t-value/value";
 import Function from "@dikac/t-function/function";
-export declare type Return<Msg> = Readonly<Validatable<true> & Message<Msg> & Value<unknown[]>> | Readonly<Validatable<false> & Message<Msg> & Value<unknown>>;
-export default class Object_<Msg> implements Validator<object, Return<Msg>>, Message<Function<[Readonly<Value> & Readonly<Validatable>], Msg>> {
-    message: Function<[Readonly<Value> & Readonly<Validatable>], Msg>;
-    constructor(message: Function<[Readonly<Value> & Readonly<Validatable>], Msg>);
-    validate(value: unknown): Return<Msg>;
+import Instamce from "@dikac/t-validator/parameter/instance/instance";
+import Return from "@dikac/t-validator/return/return";
+export default class Array_<MessageT> implements Validator<unknown, Array<any>, Readonly<Instamce<any, MessageT>>>, Message<Function<[Readonly<Value> & Readonly<Validatable>], MessageT>> {
+    message: Function<[Readonly<Value> & Readonly<Validatable>], MessageT>;
+    constructor(message: Function<[Readonly<Value> & Readonly<Validatable>], MessageT>);
+    validate<Argument extends unknown>(value: unknown): Return<unknown, Argument, Array<any>, Readonly<Instamce<Argument, MessageT>>>;
 }

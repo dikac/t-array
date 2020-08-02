@@ -43,7 +43,7 @@ it('add value', ()=>{
 });
 
 
-it('aprtial', ()=>{
+it('paprtial', ()=>{
 
     delete messages[1];
     delete messages[4];
@@ -51,6 +51,7 @@ it('aprtial', ()=>{
 
     let partial : List.Partial<typeof messages> = messages;
 
+    // @ts-expect-error
     let join = And(partial);
 
    expect(join.message).toBe('a and c and d')

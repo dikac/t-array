@@ -1,16 +1,16 @@
 import Callback from "@dikac/t-value/message/callback";
 import ObjectGuard from "../boolean/array";
 import Validatable from "@dikac/t-validatable/validatable";
-import Message from "@dikac/t-message/message";
 import Value from "@dikac/t-value/value";
 import Function from "@dikac/t-function/function";
+import Construct from "@dikac/t-validator/return/return";
+import Instance from "@dikac/t-validator/parameter/instance/instance";
 
-type Return<Msg, Argument> = Readonly<Validatable<false> & Message<Msg> & Value<Argument>> | Readonly<Validatable<true> & Message<Msg> & Value<any[]>>;
 
-export default function Object_<Msg, Argument>(
+export default function Array<MessageT, Argument>(
     value : Argument,
-    message : Function<[Readonly<Value<Argument> & Validatable>], Msg>
-) : Return<Msg, Argument> {
+    message : Function<[Readonly<Value<Argument> & Validatable>], MessageT>
+) : Readonly<Construct<any, Argument, any[], Instance<unknown, MessageT>>> {
 
-    return <Return<Msg, Argument>> Callback(value, ObjectGuard, message);
+    return <Readonly<Construct<any, Argument, any[], Instance<unknown, MessageT>>>> Callback(value, ObjectGuard, message);
 }

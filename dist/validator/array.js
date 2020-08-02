@@ -10,7 +10,7 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const array_1 = require("../validatable/array");
-    class Object_ {
+    class Array_ {
         constructor(message) {
             this.message = message;
         }
@@ -18,6 +18,6 @@
             return array_1.default(value, this.message);
         }
     }
-    exports.default = Object_;
+    exports.default = Array_;
 });
 //# sourceMappingURL=array.js.map

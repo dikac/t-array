@@ -1,16 +1,16 @@
 import Validatable from "@dikac/t-validatable/validatable";
-import Filter from "../../list/filter";
-import GuardValidatable from "@dikac/t-validatable/boolean/validatable";
 import {List} from "ts-toolbelt";
+import EnsureValidatable from "@dikac/t-validatable/ensure/validatable";
+import ValidatableInValid from "@dikac/t-validatable/boolean/invalid";
 
 /**
  * filter all invalid {@link Validatable} while retain its original structure
  */
 export default function Invalid<
-    Object extends List.Partial<Validatable[]> = List.Partial<Validatable[]>
+    Object extends Validatable[] = Validatable[]
 >(
     list : Object
-) : List.Partial<Object> {
+) : List.UnionOf<Object>[]|Object {
 
-    return Filter(list, (v ) => GuardValidatable(v) && !v.valid);
+    return  list.map((v)=>EnsureValidatable(v)).filter(ValidatableInValid);
 }

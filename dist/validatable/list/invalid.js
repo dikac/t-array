@@ -4,18 +4,18 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../../list/filter", "@dikac/t-validatable/boolean/validatable"], factory);
+        define(["require", "exports", "@dikac/t-validatable/ensure/validatable", "@dikac/t-validatable/boolean/invalid"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const filter_1 = require("../../list/filter");
-    const validatable_1 = require("@dikac/t-validatable/boolean/validatable");
+    const validatable_1 = require("@dikac/t-validatable/ensure/validatable");
+    const invalid_1 = require("@dikac/t-validatable/boolean/invalid");
     /**
      * filter all invalid {@link Validatable} while retain its original structure
      */
     function Invalid(list) {
-        return filter_1.default(list, (v) => validatable_1.default(v) && !v.valid);
+        return list.map((v) => validatable_1.default(v)).filter(invalid_1.default);
     }
     exports.default = Invalid;
 });

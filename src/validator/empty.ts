@@ -4,21 +4,21 @@ import Message from "@dikac/t-message/message";
 import Value from "@dikac/t-value/value";
 import EmptyValidatable from "../validatable/empty";
 import Function from "@dikac/t-function/function";
+import Return from "@dikac/t-validator/return/return";
 
-export default class Empty<Msg, Val extends unknown[]>
+export default class Empty<MessageT>
     implements
-        Validator<Val, Readonly<Validatable<boolean> & Message<Msg> & Value<Val>>>,
-        Message<Function<[Readonly<Value<Val>> & Readonly<Validatable>], Msg>>
+        Validator<Array<any>, [], EmptyValidatable<MessageT, Array<any>>>,
+        Message<Function<[Readonly<Value<Array<any>>> & Readonly<Validatable>], MessageT>>
 {
 
     constructor(
-        public empty : boolean,
-        public message : Function<[Readonly<Value<Val>> & Readonly<Validatable>], Msg>
+        public message : Function<[Value<Array<any>> & Readonly<Validatable>], MessageT>
     ) {
     }
 
-    validate(value: Val): Readonly<Validatable<boolean> & Message<Msg> & Value<Val>> {
+    validate<Argument extends any[]>(value: Argument): Return<Array<any>, Argument, [], EmptyValidatable<MessageT, Argument>> {
 
-        return new EmptyValidatable(value, this.message);
+        return <Return<Array<any>, Argument, [], EmptyValidatable<MessageT, Argument>>> new EmptyValidatable<MessageT, Argument>(value, this.message);
     }
 }

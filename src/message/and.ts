@@ -1,11 +1,10 @@
-import MessageInterface from "@dikac/t-message/message";
+import Message from "@dikac/t-message/message";
 import Join from "./join";
-import {List} from "ts-toolbelt";
-import Messages from "../list/messages/messages";
+import Messages from "./messages/messages";
 
-export default function And<Message extends List.Partial<MessageInterface<string>[]>>(
-    messages : Message,
-) : Messages<Message> & MessageInterface <string>{
+export default function And<MessageT extends Message<string>[]>(
+    messages : MessageT,
+) : Messages<MessageT> & Message <string>{
 
     return new Join(messages, ' and ')
 }

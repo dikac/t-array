@@ -4,16 +4,14 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../../../boolean/empty", "../invalid"], factory);
+        define(["require", "exports", "@dikac/t-iterable/validatable/boolean/and"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const empty_1 = require("../../../boolean/empty");
-    const invalid_1 = require("../invalid");
-    function And(object) {
-        let filtered = invalid_1.default(object);
-        return empty_1.default(filtered);
+    const and_1 = require("@dikac/t-iterable/validatable/boolean/and");
+    function And(object, defaults = true) {
+        return and_1.default(object, defaults);
     }
     exports.default = And;
 });

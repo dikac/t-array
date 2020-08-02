@@ -32,22 +32,22 @@ describe("check property", function() {
         }
     });
 
-    it("valid", () => {
-
-        expect(result[1]).toBeUndefined();
-    });
-
     it("invalid", () => {
 
-        if(result[2]) {
+        if(result[1]) {
 
-            expect(result[2].valid).toBe(false);
+            expect(result[1].valid).toBe(false);
 
         } else {
 
             fail('property is not exits')
         }
     });
+    it("valid", () => {
+
+        expect(result[2]).toBeUndefined();
+    });
+
 
     it("valid", () => {
 

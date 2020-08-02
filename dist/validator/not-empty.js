@@ -11,8 +11,7 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     const not_empty_1 = require("../validatable/not-empty");
     class NotEmpty {
-        constructor(empty, message) {
-            this.empty = empty;
+        constructor(message) {
             this.message = message;
         }
         validate(value) {

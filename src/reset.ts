@@ -1,7 +1,7 @@
 import {List} from "ts-toolbelt";
 
 export default function Reset<
-    Argument extends List.Partial<unknown[]>
+    Argument extends unknown[]
 >(argument : Argument) : List.UnionOf<List.Required<Argument>>[] {
 
     let buffer : List.UnionOf<List.Required<Argument>>[] = [];
