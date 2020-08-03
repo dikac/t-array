@@ -6,7 +6,7 @@ import Message from "@dikac/t-message/message";
 import Construct from "@dikac/t-validator/return/return";
 import Value from "@dikac/t-value/value";
 
-export default class ValueCallbackClass<
+export default class ValueCallback<
     BaseT = unknown,
     ValueT extends BaseT = BaseT,
     MessageT = unknown,

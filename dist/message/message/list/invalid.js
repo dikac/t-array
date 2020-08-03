@@ -4,11 +4,16 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "./union"], factory);
+        define(["require", "exports", "../../../validatable/list/invalid", "./map"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const union_1 = require("./union");
+    const invalid_1 = require("../../../validatable/list/invalid");
+    const map_1 = require("./map");
+    function Invalid(list) {
+        return map_1.default(invalid_1.default(list));
+    }
+    exports.default = Invalid;
 });
-//# sourceMappingURL=map-union.js.map
+//# sourceMappingURL=invalid.js.map

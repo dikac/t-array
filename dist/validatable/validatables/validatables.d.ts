@@ -1,4 +1,4 @@
 import Validatable from "@dikac/t-validatable/validatable";
-export default interface Validatables<Record extends Validatable[] = Validatable[]> {
-    validatables: Record;
+export default interface Validatables<ValidatablesT extends Validatable[] = Validatable[]> {
+    validatables: ValidatablesT;
 }

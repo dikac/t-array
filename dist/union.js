@@ -4,11 +4,10 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "./union"], factory);
+        define(["require", "exports"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const union_1 = require("./union");
 });
-//# sourceMappingURL=map-union.js.map
+//# sourceMappingURL=union.js.map

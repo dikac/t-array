@@ -1,7 +1,6 @@
-import {List} from "ts-toolbelt";
+import MapUnion from "./union";
 
-type MapUnion<Schema extends unknown[]> =
-    Schema |
-    List.UnionOf<Schema>[];
-
+/**
+ * @deprecated use original instead
+ */
 export default MapUnion;

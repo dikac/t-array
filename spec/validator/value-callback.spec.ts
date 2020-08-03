@@ -1,4 +1,4 @@
-import Map from "../../dist/validator/value-callback";
+import ValueCallback from "../../dist/validator/value-callback";
 import ValidateValue from "../../dist/validator/return/list/value";
 import And from "../../dist/validatable/and";
 import Or from "../../dist/validatable/or";
@@ -32,7 +32,7 @@ describe("compiler compatibility", function() {
 
         describe("auto", function() {
 
-            let validator = new Map(validators,
+            let validator = new ValueCallback(validators,
                 (value, validators) => ValidateValue(value, validators, false),
                 And, (v)=>MessageMap(v)
             );
@@ -57,7 +57,7 @@ describe("compiler compatibility", function() {
 
             type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
-            let validator = new Map(validators,
+            let validator = new ValueCallback(validators,
                 (value, validators) => <[ValidatableBundle, ValidatableBundle]>ValidateValue(value, validators, true),
                 And, (v)=>MessageMap(v)
             );
@@ -91,7 +91,7 @@ describe("compiler compatibility", function() {
 
         describe("auto", function() {
 
-            let validator = new Map(validators,
+            let validator = new ValueCallback(validators,
                 (value, validators) => ValidateValue(value, validators, false),
                 And, (v)=>MessageMap(v)
             );
@@ -115,7 +115,7 @@ describe("compiler compatibility", function() {
 
         describe("auto partial", function() {
 
-            let validator = new Map(validators,
+            let validator = new ValueCallback(validators,
                 (value, validators) => <[ValidatableType, ValidatableType]>ValidateValue(value, validators, true),
                 And, (v)=>MessageMap(v)
             );
@@ -165,7 +165,7 @@ describe("explicit", function() {
 
             it(`and validation`, () => {
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) => ValidateValue(value, validators, false),
                     And, (v)=>MessageMap(v)
                 );
@@ -189,7 +189,7 @@ describe("explicit", function() {
 
             it(`or validation`, () => {
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) => ValidateValue(value, validators, false),
                     Or, (v)=>MessageMap(v)
                 );
@@ -220,7 +220,7 @@ describe("explicit", function() {
 
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) =>  <[ValidatableBundle, ValidatableBundle, ValidatableBundle]>ValidateValue(value, validators, true),
                     And, (v)=>MessageMap(v)
                 );
@@ -247,7 +247,7 @@ describe("explicit", function() {
 
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) =>  <[ValidatableBundle, ValidatableBundle, ValidatableBundle]>ValidateValue(value, validators, true),
                     Or, (v)=>MessageMap(v)
                 );
@@ -294,7 +294,7 @@ describe("explicit", function() {
 
             it(`and validation`, () => {
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) => ValidateValue(value, validators, false),
                     (v)=>And(v), (v)=>MessageMap(v)
                 );
@@ -320,7 +320,7 @@ describe("explicit", function() {
 
             it(`or validation `, () => {
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) => ValidateValue(value, validators, false),
                     (v)=>Or(v), (v)=>MessageMap(v)
                 );
@@ -352,7 +352,7 @@ describe("explicit", function() {
 
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) =>  <[ValidatableBundle, ValidatableBundle, ValidatableBundle]>ValidateValue(value, validators, true),
                     (v)=>And(v), (v)=>MessageMap(v)
                 );
@@ -379,7 +379,7 @@ describe("explicit", function() {
 
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) =>  <[ValidatableBundle, ValidatableBundle, ValidatableBundle]>ValidateValue(value, validators, true),
                     (v)=>Or(v), (v)=>MessageMap(v)
                 );
@@ -423,7 +423,7 @@ describe("explicit", function() {
         describe("complete", function() {
             it(`and validation`, () => {
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) => ValidateValue(value, validators, false),
                     (v)=>And(v), (v)=>MessageMap(v)
                 );
@@ -448,7 +448,7 @@ describe("explicit", function() {
 
             it(`or validation `, () => {
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) => ValidateValue(value, validators, false),
                     (v)=>Or(v), (v)=>MessageMap(v)
                 );
@@ -479,7 +479,7 @@ describe("explicit", function() {
 
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) => <[ValidatableBundle, ValidatableBundle, ValidatableBundle]>ValidateValue(value, validators, true),
                     (v)=>And(v), (v)=>MessageMap(v)
                 );
@@ -501,7 +501,7 @@ describe("explicit", function() {
 
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) => <[ValidatableBundle, ValidatableBundle, ValidatableBundle]>ValidateValue(value, validators, true),
                     (v)=>Or(v), MessageMap
                 );
@@ -534,7 +534,7 @@ describe("recursive", function() {
             ValidatorType('string'),
             ValidatorType('string'),
             ValidatorType('string'),
-            new Map([
+            new ValueCallback([
                     ValidatorType('string'),
                     ValidatorType('string'),
                 ],
@@ -548,7 +548,7 @@ describe("recursive", function() {
 
             describe(`and validation`, () => {
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) => ValidateValue(value, validators, false),
                     And, (v)=>MessageMap(v)
                 );
@@ -612,7 +612,7 @@ describe("recursive", function() {
 
             describe(`or validation`, () => {
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) => ValidateValue(value, validators, false),
                     Or, (v)=>MessageMap(v)
                 );
@@ -683,7 +683,7 @@ describe("recursive", function() {
 
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) =>  ValidateValue(value, validators, true),
                     And, (v)=>MessageMap(v)
                 );
@@ -750,7 +750,7 @@ describe("recursive", function() {
 
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) => ValidateValue(value, validators, true),
                     Or, (v)=>MessageMap(v)
                 );
@@ -822,7 +822,7 @@ describe("recursive", function() {
             ValidatorType('string'),
             ValidatorType('number'),
             ValidatorType('string'),
-            new Map([
+            new ValueCallback([
                     ValidatorType('number'),
                     ValidatorType('string'),
             ], (value, validators) => ValidateValue(value, validators, false), And, (v)=>MessageMap(v))
@@ -834,7 +834,7 @@ describe("recursive", function() {
 
             describe(`and validation`, () => {
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) => ValidateValue(value, validators, false),
                     (v)=>And(v), (v)=>MessageMap(v)
                 );
@@ -900,7 +900,7 @@ describe("recursive", function() {
 
             describe(`or validation `, () => {
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) => ValidateValue(value, validators, false),
                     (v)=>Or(v), (v)=>MessageMap(v)
                 );
@@ -972,7 +972,7 @@ describe("recursive", function() {
 
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) =>  ValidateValue(value, validators, true),
                     (v)=>And(v), (v)=>MessageMap(v)
                 );
@@ -999,7 +999,7 @@ describe("recursive", function() {
 
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) => ValidateValue(value, validators, true),
                     (v)=>Or(v), (v)=>MessageMap(v)
                 );
@@ -1029,7 +1029,7 @@ describe("recursive", function() {
             ValidatorType('string'),
             ValidatorType('number'),
             ValidatorType('string'),
-            new Map([
+            new ValueCallback([
                 ValidatorType('number'),
                 ValidatorType('string'),
             ], (value, validators) => ValidateValue(value, validators, false), And, (v)=>MessageMap(v))
@@ -1041,7 +1041,7 @@ describe("recursive", function() {
 
             describe(`and validation`, () => {
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) => ValidateValue(value, validators, false),
                     (v)=>And(v), (v)=>MessageMap(v)
                 );
@@ -1107,7 +1107,7 @@ describe("recursive", function() {
 
             describe(`or validation `, () => {
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) => ValidateValue(value, validators, false),
                     (v)=>Or(v), (v)=>MessageMap(v)
                 );
@@ -1178,7 +1178,7 @@ describe("recursive", function() {
 
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) => ValidateValue(value, validators, true),
                     (v)=>And(v), (v)=>MessageMap(v)
                 );
@@ -1201,7 +1201,7 @@ describe("recursive", function() {
 
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
-                let validator = new Map(validators,
+                let validator = new ValueCallback(validators,
                     (value, validators) => ValidateValue(value, validators, true),
                     (v)=>Or(v), MessageMap
                 );

@@ -1,6 +1,6 @@
 import Validatable from "@dikac/t-validatable/validatable";
-import { List } from "ts-toolbelt";
+import MapUnion from "../../map-union";
 /**
  * filter all valid {@link Validatable}
  */
-export default function Valid<Object extends Validatable[] = Validatable[]>(list: Object): List.UnionOf<Object>[] | Object;
+export default function Valid<Object extends Validatable[] = Validatable[]>(list: Object): MapUnion<Object>;

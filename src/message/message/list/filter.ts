@@ -1,5 +1,5 @@
 import Message from "@dikac/t-message/message";
-import RecordInfer from "./infer";
+import ListInfer from "./infer";
 import EnsureMessage from "@dikac/t-message/ensure/message";
 import ValueMessage from "@dikac/t-message/message/value";
 import Fn from "@dikac/t-function/function";
@@ -11,9 +11,9 @@ export default function Filter<
 >(
     list : MessagesT,
     filter : Fn<[List.UnionOf<MessagesT>], boolean>
-) : MapUnion<RecordInfer<MessagesT>> {
+) : MapUnion<ListInfer<MessagesT>> {
 
-    return <RecordInfer<MessagesT>> list.map((v)=>EnsureMessage(v)).
+    return <ListInfer<MessagesT>> list.map((v)=>EnsureMessage(v)).
         filter((v)=>filter(v)).
         map(ValueMessage);
 

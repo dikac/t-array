@@ -4,15 +4,15 @@ import FunctionSingle from "@dikac/t-function/function-single";
 import {List} from "ts-toolbelt";
 
 export default class Callback<
-    Record extends Validatable[] = Validatable[],
+    ValidatablesT extends Validatable[] = Validatable[],
     Boolean extends boolean = boolean
 > implements
     Validatable,
-    Validatables<Record>
+    Validatables<ValidatablesT>
 {
     constructor(
-        public validatables : Record,
-        public validation : FunctionSingle<Record, Boolean>
+        public validatables : ValidatablesT,
+        public validation : FunctionSingle<ValidatablesT, Boolean>
     ) {
     }
 
@@ -21,7 +21,7 @@ export default class Callback<
         return this.validation(this.validatables)
     }
 
-    * [Symbol.iterator](): Iterator<List.UnionOf<Record>> {
+    * [Symbol.iterator](): Iterator<List.UnionOf<ValidatablesT>> {
 
         yield * this.validatables;
     }

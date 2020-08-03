@@ -1,5 +1,5 @@
 import Message from "@dikac/t-message/message";
-import RecordInfer from "./infer";
+import ListInfer from "./infer";
 import EnsureMessage from "@dikac/t-message/ensure/message";
 import ValueMessage from "@dikac/t-message/message/value";
 
@@ -7,8 +7,7 @@ export default function Map<
     Messages extends Message[]
 >(
     list : Messages,
-) : RecordInfer<Messages> {
+) : ListInfer<Messages> {
 
-    return <RecordInfer<Messages>> list.map((v)=>EnsureMessage(v)).map(ValueMessage);
-
+    return <ListInfer<Messages>> list.map((v)=>EnsureMessage(v)).map(ValueMessage);
 }

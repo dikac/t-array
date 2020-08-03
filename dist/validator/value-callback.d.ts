@@ -5,7 +5,7 @@ import ValidatableValue from "../validatable/value-callback";
 import Message from "@dikac/t-message/message";
 import Construct from "@dikac/t-validator/return/return";
 import Value from "@dikac/t-value/value";
-export default class ValueCallbackClass<BaseT = unknown, ValueT extends BaseT = BaseT, MessageT = unknown, ValidatorsT extends Validator<BaseT, ValueT>[] = Validator<BaseT, ValueT>[], Result extends (Validatable & Message & Value)[] = (Validatable & Message & Value)[], ValidatableT extends Validatable = Validatable> implements Validator<BaseT, ValueT, ValidatableValue<BaseT, ValidatorsT, Result, MessageT, ValidatableT>> {
+export default class ValueCallback<BaseT = unknown, ValueT extends BaseT = BaseT, MessageT = unknown, ValidatorsT extends Validator<BaseT, ValueT>[] = Validator<BaseT, ValueT>[], Result extends (Validatable & Message & Value)[] = (Validatable & Message & Value)[], ValidatableT extends Validatable = Validatable> implements Validator<BaseT, ValueT, ValidatableValue<BaseT, ValidatorsT, Result, MessageT, ValidatableT>> {
     validators: ValidatorsT;
     handler: Function<[BaseT, ValidatorsT], Result>;
     validation: Function<[Result], ValidatableT>;
