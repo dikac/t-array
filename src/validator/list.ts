@@ -3,21 +3,19 @@ import Function from "@dikac/t-function/function";
 import Validatable from "@dikac/t-validatable/validatable";
 import InferReturn from "@dikac/t-validator/validatable/infer";
 import ListCallback, {Interface as ListCallbackInterface} from "./list-callback";
-import ValidateMapPartial from "./validatable/list/list-partial";
-import Union from "../union";
+import ValidateMap from "./validatable/list/list";
 
 export default function List<
     MessageT = unknown,
     ValidatorT extends Validator = Validator,
     ValidatableT extends Validatable  = Validatable
 >(
-     validator : ValidatorT,
-     validation : Function<[Union<InferReturn<ValidatorT>[]>], ValidatableT>,
-     message : Function<[Union<InferReturn<ValidatorT>[]>], MessageT>
+    validator : ValidatorT,
+    validation : Function<[InferReturn<ValidatorT>[]], ValidatableT>,
+    message : Function<[InferReturn<ValidatorT>[]], MessageT>
 
-) : ListCallbackInterface<MessageT, ValidatorT, Union<InferReturn<ValidatorT>[]>, ValidatableT> {
+) : ListCallbackInterface<MessageT, ValidatorT, InferReturn<ValidatorT>[], ValidatableT> {
 
-    return new ListCallback(validator, ValidateMapPartial, validation, message);
+    return new ListCallback<MessageT, ValidatorT, InferReturn<ValidatorT>[], ValidatableT>(validator, ValidateMap , validation, message);
 }
-
 

@@ -1,4 +1,4 @@
-import ValueAll from "../../dist/validator/value-all";
+import Value from "../../dist/validator/value-partial";
 import And from "../../dist/validatable/and";
 import ValidatablesInterface from "../../dist/validatable/validatables/validatables";
 import Validatables from "../../dist/validatable/validatables/validatables";
@@ -26,17 +26,17 @@ describe("compiler compatibility", function() {
 
         describe("complete", function() {
 
-            let property = ValueAll<any, string, TypeValidator>(validator, (v)=>And(<Validatable[]>v), MessageMap);
+            let property = Value<any, string, TypeValidator>(validator, (v)=>And(<Validatable[]>v), (v)=>MessageMap(v));
 
             let validatable = property.validate('data');
 
             let key : Validatable = validatable[0];
 
-            let validatables : ValidatablesInterface = validatable;
+            let validatables : Validatables = validatable;
 
             let record : Validatable[] = validatable.validatables;
 
-            let and : Validatables = validatable;
+            let and : Validatables<Validatable[] > = validatable;
 
             let unknown : unknown = validatable.value;
 
@@ -45,16 +45,17 @@ describe("compiler compatibility", function() {
             describe("recursive", function() {
 
                 let validator = ValidatorType('string');
-                let list1 = ValueAll([validator], And, MessageMap);
-                let list2 = ValueAll([list1], And, MessageMap);
-                let list3 = ValueAll([list2], And, MessageMap);
+                let list1 = Value([validator], And, MessageMap);
+                let list2 = Value([list1], And, MessageMap);
+                let list3 = Value([list2], And, MessageMap);
 
             });
+
         });
 
         describe("auto", function() {
 
-            let property = ValueAll(validator, (v)=>And(<Validatable[]>v), MessageMap);
+            let property = Value(validator, (v)=>And(v), (v)=>MessageMap(v));
 
             let validatable = property.validate('data');
 
@@ -64,7 +65,7 @@ describe("compiler compatibility", function() {
 
             let record : Validatable[] = validatable.validatables;
 
-            let and : Validatables = validatable;
+            let and : Validatables<Validatable[]> = validatable;
 
             let unknown : unknown = validatable.value;
 
@@ -82,17 +83,18 @@ describe("compiler compatibility", function() {
 
         describe("complete", function() {
 
-            let property = ValueAll<string>(validator, (v)=>And(<Validatable[]>v), MessageMap);
+            let property = Value(validator, (v)=>And(v), (v)=>MessageMap(v));
 
             let validatable = property.validate('data');
+            validatable.value
 
-            let key : Validatable = validatable[0];
+            let key : Validatable = validatable.validatables[0];
 
-            let validatables : ValidatablesInterface = validatable;
+            let validatables : Validatables = validatable;
 
             let record : Validatable[] = validatable.validatables;
 
-            let and : Validatables = validatable;
+            let and : Validatables<Validatable[]> = validatable;
 
             let unknown : unknown = validatable.value;
 
@@ -102,17 +104,18 @@ describe("compiler compatibility", function() {
 
         describe("auto", function() {
 
-            let property = ValueAll(validator, (v)=>And(<Validatable[]>v), MessageMap);
+            let property = Value(validator, (v)=>And(v), (v)=>MessageMap(v));
 
             let validatable = property.validate('data');
 
             let key : Validatable = validatable[0];
 
-            let validatables : ValidatablesInterface = validatable;
+            let validatables : Validatables = validatable;
+
 
             let record : Validatable[] = validatable.validatables;
 
-            let and : Validatables = validatable;
+            let and : Validatables<Validatable[]> = validatable;
 
             let unknown : unknown = validatable.value;
 
@@ -134,7 +137,7 @@ describe("all valid", function() {
 
     describe("complete", function() {
 
-        let property = ValueAll(validator, (v)=>And(<Validatable[]>v), MessageMap);
+        let property = Value(validator, (v)=>And(<Validatable[]>v), (v)=>MessageMap(v));
 
         let validatable = property.validate('data');
 
@@ -198,7 +201,10 @@ describe("mixed", function() {
 
     describe("complete", function() {
 
-        let property = ValueAll(validator, (v)=>And(<Validatable[]>v), MessageMap);
+        let property = Value(validator,
+            (v)=>And(v),
+            (v)=>MessageMap(v)
+        );
 
         let validatable = property.validate('data');
 
@@ -237,12 +243,7 @@ describe("mixed", function() {
 
             if(validatable.validatables[2]) {
 
-                expect(validatable.validatables[2].valid).toBe(true);
-                expect(validatable.validatables[2].message).toBe('value is type of "string"');
-
-            } else {
-
-                fail('index 2 should exits')
+                fail('index 2 should not exits')
             }
         });
 
@@ -258,7 +259,7 @@ describe("all invalid", function() {
         ValidatorType('number'),
     ];
 
-    let property = ValueAll(validator, (v)=>And(<Validatable[]>v), MessageMap);
+    let property = Value(validator, And, MessageMap);
 
     let validatable = property.validate('data');
 
@@ -283,51 +284,36 @@ describe("all invalid", function() {
     it('index 1', ()=>{
 
         if(validatable.validatables[1]) {
-
-            expect(validatable.validatables[1].valid).toBe(false);
-            expect(validatable.validatables[1].message).toBe('value is not type of "number"');
-
-        } else {
-
-            fail('index 0 should exits')
+            fail('index 1 should exits')
         }
     });
 
     it('index 2', ()=>{
-
         if(validatable.validatables[2]) {
-
-            expect(validatable.validatables[2].valid).toBe(false);
-            expect(validatable.validatables[2].message).toBe('value is not type of "number"');
-
-        } else {
-
-            fail('index 0 should exits')
+            fail('index 2 should not exits')
         }
     });
-
 });
+
 
 
 describe('recursive', ()=>{
 
-
     describe("all valid", function() {
-
 
         let validator  = [
             ValidatorType('string'),
             ValidatorType('string'),
             ValidatorType('string'),
-            ValueAll([
+            Value([
                 ValidatorType('string'),
                 ValidatorType('string'),
-            ], (v)=>And(v), MessageMap)
+            ], And, MessageMap)
         ];
 
         describe("complete", function() {
 
-            let property = ValueAll(validator, And, MessageMap);
+            let property = Value(validator, And, MessageMap);
 
             let validatable = property.validate('data');
 
@@ -375,7 +361,6 @@ describe('recursive', ()=>{
                 }
             });
 
-
             it('index 3.0', ()=>{
 
                 // @ts-expect-error
@@ -413,7 +398,7 @@ describe('recursive', ()=>{
                 // @ts-expect-error
                 if(validatable.validatables[3] && validatable.validatables[3].validatables[2]) {
 
-                    fail('should exits')
+                    fail('index 2 should not exits')
                 }
             });
 
@@ -424,20 +409,19 @@ describe('recursive', ()=>{
 
     describe("mixed", function() {
 
-
         let validator  = [
             ValidatorType('string'),
             ValidatorType('number'),
             ValidatorType('string'),
-            ValueAll([
+            Value([
                 ValidatorType('string'),
-                ValidatorType('number'),
+                ValidatorType('string'),
             ], And, MessageMap)
         ];
 
         describe("complete", function() {
 
-            let property = ValueAll(validator, (v)=>And(<Validatable[]>v), MessageMap);
+            let property = Value(validator, And, MessageMap);
 
             let validatable = property.validate('data');
 
@@ -476,12 +460,7 @@ describe('recursive', ()=>{
 
                 if(validatable.validatables[2]) {
 
-                    expect(validatable.validatables[2].valid).toBe(true);
-                    expect(validatable.validatables[2].message).toBe('value is type of "string"');
-
-                } else {
-
-                    fail('index 2 should exits')
+                    fail('index 2 should not exits')
                 }
             });
 
@@ -491,14 +470,7 @@ describe('recursive', ()=>{
                 // @ts-expect-error
                 if(validatable.validatables[3] && validatable.validatables[3].validatables[0]) {
 
-                    // @ts-expect-error
-                    expect(validatable.validatables[3].validatables[0].valid).toBe(true);
-                    // @ts-expect-error
-                    expect(typeof validatable.validatables[3].validatables[0].message).toBe('string');
-
-                } else {
-
-                    fail('index 2 should exits')
+                    fail('should no exits')
                 }
             });
 
@@ -507,14 +479,7 @@ describe('recursive', ()=>{
                 // @ts-expect-error
                 if(validatable.validatables[3] && validatable.validatables[3].validatables[1]) {
 
-                    // @ts-expect-error
-                    expect(validatable.validatables[3].validatables[1].valid).toBe(false);
-                    // @ts-expect-error
-                    expect(typeof validatable.validatables[3].validatables[1].message).toBe('string');
-
-                } else {
-
-                    fail('index 2 should exits')
+                    fail('should exits')
                 }
             });
 
@@ -523,11 +488,9 @@ describe('recursive', ()=>{
                 // @ts-expect-error
                 if(validatable.validatables[3] && validatable.validatables[3].validatables[2]) {
 
-                    fail('index 2 should exits')
+                    fail('should exits')
                 }
             });
-
-        });
 
     });
 
@@ -537,13 +500,13 @@ describe('recursive', ()=>{
             ValidatorType('number'),
             ValidatorType('number'),
             ValidatorType('number'),
-            ValueAll([
+            Value/*<unknown, number>*/([
                 ValidatorType('number'),
                 ValidatorType('number'),
             ], And, MessageMap)
         ];
 
-        let property = ValueAll(validator, And, MessageMap);
+        let property = Value/*<unknown, number>*/(validator, And, MessageMap);
 
         let validatable = property.validate('data');
 
@@ -568,72 +531,42 @@ describe('recursive', ()=>{
         it('index 1', ()=>{
 
             if(validatable.validatables[1]) {
-
-                expect(validatable.validatables[1].valid).toBe(false);
-                expect(validatable.validatables[1].message).toBe('value is not type of "number"');
-
-            } else {
-
-                fail('index 0 should exits')
+                fail('index 1 should exits')
             }
         });
 
         it('index 2', ()=>{
-
             if(validatable.validatables[2]) {
-
-                expect(validatable.validatables[2].valid).toBe(false);
-                expect(validatable.validatables[2].message).toBe('value is not type of "number"');
-
-            } else {
-
-                fail('index 0 should exits')
+                fail('index 2 should not exits')
             }
         });
 
 
         it('index 3.0', ()=>{
 
-            // @ts-expect-error
-            if(validatable.validatables[3] && validatable.validatables[3].validatables[0]) {
+            if(validatable.validatables[3]) {
 
-                // @ts-expect-error
-                expect(validatable.validatables[3].validatables[0].valid).toBe(false);
-                // @ts-expect-error
-                expect(typeof validatable.validatables[3].validatables[0].message).toBe('string');
-
-            } else {
-
-                fail('index 2 should exits')
+                fail('should not exits')
             }
         });
 
         it('index 3.1', ()=>{
 
-            // @ts-expect-error
-            if(validatable.validatables[3] && validatable.validatables[3].validatables[1]) {
+            if(validatable.validatables[3]) {
 
-                // @ts-expect-error
-                expect(validatable.validatables[3].validatables[1].valid).toBe(false);
-                // @ts-expect-error
-                expect(typeof validatable.validatables[3].validatables[1].message).toBe('string');
-
-            } else {
-
-                fail('index 2 should exits')
+                fail('should not exits')
             }
         });
 
         it('index 3.2', ()=>{
 
-            // @ts-expect-error
-            if(validatable.validatables[3] && validatable.validatables[3].validatables[2]) {
+            if(validatable.validatables[3]) {
 
-                fail('index 2 should exits')
+                fail('should not exists')
             }
         });
-
     });
 
+    });
 
 })

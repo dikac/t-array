@@ -1,19 +1,20 @@
 import Validator from "@dikac/t-validator/validator";
 import Function from "@dikac/t-function/function";
 import Validatable from "@dikac/t-validatable/validatable";
-import ValidateMap from "./validatable/list/map";
-import ListReturn from "./validatable/list/infer";
+import ValidateMap from "./validatable/list/map-partial";
 import MapCallback, {Interface as MapCallbackInterface} from "./map-callback";
+import ListStrict from "./validatable/list/infer";
+import Union from "../union";
 
-export default function  MapAll<
+export default function MapPartial<
     ValidatorsT extends Validator[] = Validator[],
     ValidatableT extends Validatable = Validatable,
     MessageT = unknown,
 >(
     validators : ValidatorsT,
-    validation : Function<[ListReturn<ValidatorsT>], ValidatableT>,
-    message : Function<[ListReturn<ValidatorsT>], MessageT>
-) : MapCallbackInterface<ValidatorsT, ListReturn<ValidatorsT>, MessageT, ValidatableT> {
+    validation : Function<[Union<ListStrict<ValidatorsT>>], ValidatableT>,
+    message : Function<[Union<ListStrict<ValidatorsT>>], MessageT>
+) : MapCallbackInterface<ValidatorsT, Union<ListStrict<ValidatorsT>>, MessageT, ValidatableT> {
+
     return new MapCallback(validators, ValidateMap, validation, message);
 }
-
