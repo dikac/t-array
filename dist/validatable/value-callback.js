@@ -10,15 +10,16 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     class ValueCallback {
-        constructor(value, validators, handler, validation, message) {
+        constructor(value, validators, map, validation, messageFactory) {
             this.value = value;
             this.validators = validators;
-            this.handler = handler;
+            this.map = map;
             this.validation = validation;
-            this.validatables = this.handler(value, this.validators);
+            this.messageFactory = messageFactory;
+            this.validatables = this.map(value, this.validators);
             this.validatable = validation(this.validatables);
             this.valid = this.validatable.valid;
-            this.message = message(this.validatables);
+            this.message = messageFactory(this.validatables);
             this.messages = this.validatables;
         }
     }

@@ -11,14 +11,14 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     const value_callback_1 = require("../validatable/value-callback");
     class ValueCallback {
-        constructor(validators, handler, validation, message) {
+        constructor(validators, map, validation, message) {
             this.validators = validators;
-            this.handler = handler;
+            this.map = map;
             this.validation = validation;
             this.message = message;
         }
         validate(value) {
-            return new value_callback_1.default(value, this.validators, this.handler, this.validation, this.message);
+            return new value_callback_1.default(value, this.validators, this.map, this.validation, this.message);
         }
     }
     exports.default = ValueCallback;

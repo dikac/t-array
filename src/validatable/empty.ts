@@ -5,10 +5,13 @@ import Function from "@dikac/t-function/function";
 import EmptyArgument from "../boolean/empty";
 import {List} from "ts-toolbelt";
 
+
 export default class Empty<MessageT, Values extends unknown[]>
     implements
-        Readonly<Value<Values> & Message<MessageT> & Validatable>, Iterable<List.UnionOf<Values>>
-
+        Readonly<Value<Values>>,
+        Readonly<Message<MessageT>>,
+        Readonly<Validatable>,
+        Iterable<List.UnionOf<Values>>
 {
     readonly valid : boolean;
 

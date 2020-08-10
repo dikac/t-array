@@ -2,18 +2,16 @@ import MapAll from "../../dist/validator/map-all";
 import And from "../../dist/validatable/and";
 import Or from "../../dist/validatable/or";
 import Validatable from "@dikac/t-validatable/validatable";
-import ValidatorInterface from "@dikac/t-validator/validator";
+import SimpleValidator from "@dikac/t-validator/simple";
 import Validatables from "../../dist/validatable/validatables/validatables";
 import ValidatablesInterface from "../../dist/validatable/validatables/validatables";
 import MessageMap from "../../dist/message/message/list/map";
 import ValidatorType from "@dikac/t-type/validator/type-standard";
-import Instance from "@dikac/t-validator/parameter/instance/instance";
-
+import Instance from "@dikac/t-validator/validatable/validatable";
 
 it("force console log", () => { spyOn(console, 'log').and.callThrough();});
 
 describe("compiler compatibility", function() {
-
 
     describe("implicit partial", function() {
 
@@ -50,14 +48,22 @@ describe("compiler compatibility", function() {
         // @ts-expect-error
         let string : Type = validatable.value;
 
+        describe("recursive", function() {
+
+            let validator = ValidatorType('string');
+            let list1 = MapAll([validator], And, MessageMap);
+            let list2 = MapAll([list1], And, MessageMap);
+            let list3 = MapAll([list2], And, MessageMap);
+
+        });
     });
 
     describe("explicit complete", function() {
 
 
         type TypeValidator = [
-            ValidatorInterface<any, string, Instance<any, string>>,
-            ValidatorInterface<any, string, Instance<any, string>>,
+            SimpleValidator<any, string, Instance<any, string>>,
+            SimpleValidator<any, string, Instance<any, string>>,
         ];
 
         let validator : TypeValidator = [
@@ -241,7 +247,7 @@ describe("mixed", function() {
         let property = MapAll(validator,(v)=>And(<Validatable[]>v), MessageMap);
         let validatable = property.validate(value);
 
-        expect(validatable.valid).toBe(false);
+        expect<boolean>(validatable.valid).toBe(false);
         expect(validatable.value).toBe(value);
     });
 

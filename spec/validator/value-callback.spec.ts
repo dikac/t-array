@@ -1,15 +1,16 @@
 import ValueCallback from "../../dist/validator/value-callback";
-import ValidateValue from "../../dist/validator/return/list/value";
+import ValidateValue from "../../dist/validator/validatable/list/value";
+import ValidateValuePartial from "../../dist/validator/validatable/list/value-partial";
 import And from "../../dist/validatable/and";
 import Or from "../../dist/validatable/or";
 import Validatable from "@dikac/t-validatable/validatable";
-import ValidatorInterface from "@dikac/t-validator/validator";
+import SimpleValidator from "@dikac/t-validator/simple";
 import Message from "@dikac/t-message/message";
 import MessageMap from "../../dist/message/message/list/map";
 import ValidatorType from "@dikac/t-type/validator/type-standard";
 import ValidatableType from "@dikac/t-type/validatable/type";
 import ValueInterface from "@dikac/t-value/value";
-import Instance from "@dikac/t-validator/parameter/instance/instance";
+import Instance from "@dikac/t-validator/validatable/validatable";
 
 it("force console log", () => { spyOn(console, 'log').and.callThrough();});
 
@@ -18,8 +19,8 @@ describe("compiler compatibility", function() {
     describe("explicit typed", function() {
 
         type TypeValidator = [
-            ValidatorInterface<any, string, Instance<any, string>>,
-            ValidatorInterface<any, string, Instance<any, string>>,
+            SimpleValidator<any, string, Instance<any, string>>,
+            SimpleValidator<any, string, Instance<any, string>>,
         ];
 
 
@@ -32,16 +33,12 @@ describe("compiler compatibility", function() {
 
         describe("auto", function() {
 
-            let validator = new ValueCallback(validators,
-                (value, validators) => ValidateValue(value, validators, false),
-                And, (v)=>MessageMap(v)
-            );
+            let validator = new ValueCallback(validators, ValidateValue, And, MessageMap);
 
             let validatable = validator.validate(value);
 
             let unknown : unknown = validatable.value;
 
-            // @ts-expect-error
             let record : string = validatable.value;
 
             let instance : Validatable;
@@ -51,6 +48,15 @@ describe("compiler compatibility", function() {
             instance = validatable.validatables[3];
             // @ts-expect-error
             instance = validatable.validatables[4];
+
+            describe("recursive", function() {
+
+                let validator = ValidatorType('string');
+                let list1 = new ValueCallback([validator], ValidateValue, And, MessageMap);
+                let list2 = new ValueCallback([list1], ValidateValue, And, MessageMap);
+                let list3 = new ValueCallback([list2], ValidateValue, And, MessageMap);
+
+            });
         });
 
         describe("auto partial", function() {
@@ -58,14 +64,14 @@ describe("compiler compatibility", function() {
             type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
             let validator = new ValueCallback(validators,
-                (value, validators) => <[ValidatableBundle, ValidatableBundle]>ValidateValue(value, validators, true),
+                (value, validators) => <[ValidatableBundle, ValidatableBundle]>ValidateValuePartial(value, validators),
                 And, (v)=>MessageMap(v)
             );
 
             let validatable = validator.validate(value);
 
             let unknown : unknown = validatable.value;
-            // @ts-expect-error
+
             let string : string = validatable.value;
 
             let instance : Validatable;
@@ -92,7 +98,7 @@ describe("compiler compatibility", function() {
         describe("auto", function() {
 
             let validator = new ValueCallback(validators,
-                (value, validators) => ValidateValue(value, validators, false),
+                (value, validators) => ValidateValue(value, validators),
                 And, (v)=>MessageMap(v)
             );
 
@@ -103,7 +109,6 @@ describe("compiler compatibility", function() {
             // @ts-expect-error
             let value1 : string[] = validatable.value;
 
-            // @ts-expect-error
             let value2 : string = validatable.value;
 
             let instance : Validatable;
@@ -116,7 +121,7 @@ describe("compiler compatibility", function() {
         describe("auto partial", function() {
 
             let validator = new ValueCallback(validators,
-                (value, validators) => <[ValidatableType, ValidatableType]>ValidateValue(value, validators, true),
+                (value, validators) => <[ValidatableType, ValidatableType]>ValidateValuePartial(value, validators),
                 And, (v)=>MessageMap(v)
             );
             let validatable = validator.validate(value);
@@ -148,9 +153,9 @@ describe("explicit", function() {
     describe("all valid", function() {
 
         type TypeValidator = [
-            ValidatorInterface<any, string, Instance<any, string>>,
-            ValidatorInterface<any, string, Instance<any, string>>,
-            ValidatorInterface<any, string, Instance<any, string>>,
+            SimpleValidator<any, string, Instance<any, string>>,
+            SimpleValidator<any, string, Instance<any, string>>,
+            SimpleValidator<any, string, Instance<any, string>>,
         ];
 
         let validators : TypeValidator = [
@@ -166,7 +171,7 @@ describe("explicit", function() {
             it(`and validation`, () => {
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) => ValidateValue(value, validators, false),
+                    (value, validators) => ValidateValue(value, validators),
                     And, (v)=>MessageMap(v)
                 );
                 let validatable = validator.validate(value);
@@ -190,7 +195,7 @@ describe("explicit", function() {
             it(`or validation`, () => {
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) => ValidateValue(value, validators, false),
+                    (value, validators) => ValidateValue(value, validators),
                     Or, (v)=>MessageMap(v)
                 );
 
@@ -221,7 +226,7 @@ describe("explicit", function() {
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) =>  <[ValidatableBundle, ValidatableBundle, ValidatableBundle]>ValidateValue(value, validators, true),
+                    (value, validators) =>  <[ValidatableBundle, ValidatableBundle, ValidatableBundle]>ValidateValuePartial(value, validators),
                     And, (v)=>MessageMap(v)
                 );
 
@@ -248,7 +253,7 @@ describe("explicit", function() {
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) =>  <[ValidatableBundle, ValidatableBundle, ValidatableBundle]>ValidateValue(value, validators, true),
+                    (value, validators) =>  <[ValidatableBundle, ValidatableBundle, ValidatableBundle]>ValidateValuePartial(value, validators),
                     Or, (v)=>MessageMap(v)
                 );
 
@@ -277,9 +282,9 @@ describe("explicit", function() {
 
 
         type TypeValidator = [
-            ValidatorInterface<any, string, Instance<any, string>>,
-            ValidatorInterface<any, number, Instance<any, string>>,
-            ValidatorInterface<any, string, Instance<any, string>>,
+            SimpleValidator<any, string, Instance<any, string>>,
+            SimpleValidator<any, number, Instance<any, string>>,
+            SimpleValidator<any, string, Instance<any, string>>,
         ];
 
         let validators : TypeValidator= [
@@ -295,13 +300,13 @@ describe("explicit", function() {
             it(`and validation`, () => {
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) => ValidateValue(value, validators, false),
+                    (value, validators) => ValidateValue(value, validators),
                     (v)=>And(v), (v)=>MessageMap(v)
                 );
 
                 let and = validator.validate(value);
 
-                expect(and.valid).toBe(false);
+                expect<boolean>(and.valid).toBe(false);
                 expect(and.value).toBe(value);
 
                 expect(and.validatables[0].valid).toBe(true);
@@ -321,7 +326,7 @@ describe("explicit", function() {
             it(`or validation `, () => {
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) => ValidateValue(value, validators, false),
+                    (value, validators) => ValidateValue(value, validators),
                     (v)=>Or(v), (v)=>MessageMap(v)
                 );
 
@@ -353,13 +358,13 @@ describe("explicit", function() {
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) =>  <[ValidatableBundle, ValidatableBundle, ValidatableBundle]>ValidateValue(value, validators, true),
+                    (value, validators) =>  <[ValidatableBundle, ValidatableBundle, ValidatableBundle]>ValidateValuePartial(value, validators),
                     (v)=>And(v), (v)=>MessageMap(v)
                 );
 
                 let and = validator.validate(value);
 
-                expect(and.valid).toBe(false);
+                expect<boolean>(and.valid).toBe(false);
                 expect(and.value).toBe(value);
 
                 expect(and.validatables[0].valid).toBe(true);
@@ -380,7 +385,7 @@ describe("explicit", function() {
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) =>  <[ValidatableBundle, ValidatableBundle, ValidatableBundle]>ValidateValue(value, validators, true),
+                    (value, validators) =>  <[ValidatableBundle, ValidatableBundle, ValidatableBundle]>ValidateValuePartial(value, validators),
                     (v)=>Or(v), (v)=>MessageMap(v)
                 );
 
@@ -407,9 +412,9 @@ describe("explicit", function() {
     describe("all invalid", function() {
 
         type TypeValidator = [
-            ValidatorInterface<any, string, Instance<any, string>>,
-            ValidatorInterface<any, number, Instance<any, string>>,
-            ValidatorInterface<any, string, Instance<any, string>>,
+            SimpleValidator<any, string, Instance<any, string>>,
+            SimpleValidator<any, number, Instance<any, string>>,
+            SimpleValidator<any, string, Instance<any, string>>,
         ];
 
         let validators : TypeValidator = [
@@ -424,13 +429,13 @@ describe("explicit", function() {
             it(`and validation`, () => {
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) => ValidateValue(value, validators, false),
+                    (value, validators) => ValidateValue(value, validators),
                     (v)=>And(v), (v)=>MessageMap(v)
                 );
 
                 let and = validator.validate(value);
 
-                expect(and.valid).toBe(false);
+                expect<boolean>(and.valid).toBe(false);
                 expect(and.value).toEqual(value);
 
                 expect(and.validatables[0].message).toBe('value is not type of "string"');
@@ -449,13 +454,13 @@ describe("explicit", function() {
             it(`or validation `, () => {
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) => ValidateValue(value, validators, false),
+                    (value, validators) => ValidateValue(value, validators),
                     (v)=>Or(v), (v)=>MessageMap(v)
                 );
 
                 let or = validator.validate(value);
 
-                expect(or.valid).toBe(false);
+                expect<boolean>(or.valid).toBe(false);
                 expect(or.value).toEqual(value);
 
                 expect(or.validatables[0].message).toBe('value is not type of "string"');
@@ -480,12 +485,12 @@ describe("explicit", function() {
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) => <[ValidatableBundle, ValidatableBundle, ValidatableBundle]>ValidateValue(value, validators, true),
+                    (value, validators) => <[ValidatableBundle, ValidatableBundle, ValidatableBundle]>ValidateValuePartial(value, validators),
                     (v)=>And(v), (v)=>MessageMap(v)
                 );
                 let and = validator.validate(value);
 
-                expect(and.valid).toBe(false);
+                expect<boolean>(and.valid).toBe(false);
                 expect(and.value).toEqual(value);
 
                 expect(and.validatables[0].valid).toBe(false);
@@ -502,12 +507,12 @@ describe("explicit", function() {
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) => <[ValidatableBundle, ValidatableBundle, ValidatableBundle]>ValidateValue(value, validators, true),
+                    (value, validators) => <[ValidatableBundle, ValidatableBundle, ValidatableBundle]>ValidateValuePartial(value, validators),
                     (v)=>Or(v), MessageMap
                 );
                 let or = validator.validate(value);
 
-                expect(or.valid).toBe(false);
+                expect<boolean>(or.valid).toBe(false);
                 expect(or.value).toEqual(value);
 
                 expect(or.validatables[0].message).toBe('value is not type of "string"');
@@ -538,7 +543,7 @@ describe("recursive", function() {
                     ValidatorType('string'),
                     ValidatorType('string'),
                 ],
-                (value, validators) => ValidateValue(value, validators, false),
+                (value, validators) => ValidateValue(value, validators),
                 And, (v)=>MessageMap(v))
         ];
 
@@ -549,7 +554,7 @@ describe("recursive", function() {
             describe(`and validation`, () => {
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) => ValidateValue(value, validators, false),
+                    (value, validators) => ValidateValue(value, validators),
                     And, (v)=>MessageMap(v)
                 );
                 let validatable = validator.validate(value);
@@ -613,7 +618,7 @@ describe("recursive", function() {
             describe(`or validation`, () => {
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) => ValidateValue(value, validators, false),
+                    (value, validators) => ValidateValue(value, validators),
                     Or, (v)=>MessageMap(v)
                 );
 
@@ -684,7 +689,7 @@ describe("recursive", function() {
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) =>  ValidateValue(value, validators, true),
+                    (value, validators) =>  ValidateValuePartial(value, validators),
                     And, (v)=>MessageMap(v)
                 );
 
@@ -751,7 +756,7 @@ describe("recursive", function() {
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) => ValidateValue(value, validators, true),
+                    (value, validators) => ValidateValuePartial(value, validators),
                     Or, (v)=>MessageMap(v)
                 );
 
@@ -825,7 +830,7 @@ describe("recursive", function() {
             new ValueCallback([
                     ValidatorType('number'),
                     ValidatorType('string'),
-            ], (value, validators) => ValidateValue(value, validators, false), And, (v)=>MessageMap(v))
+            ], (value, validators) => ValidateValue(value, validators), And, (v)=>MessageMap(v))
         ];
 
         let value : string = 'name';
@@ -835,14 +840,14 @@ describe("recursive", function() {
             describe(`and validation`, () => {
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) => ValidateValue(value, validators, false),
+                    (value, validators) => ValidateValue(value, validators),
                     (v)=>And(v), (v)=>MessageMap(v)
                 );
 
                 let and = validator.validate(value);
 
                 it(`top level`, () => {
-                    expect(and.valid).toBe(false);
+                    expect<boolean>(and.valid).toBe(false);
                     expect(and.value).toBe(value);
 
                     expect(and.validatables[0].valid).toBe(true);
@@ -901,7 +906,7 @@ describe("recursive", function() {
             describe(`or validation `, () => {
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) => ValidateValue(value, validators, false),
+                    (value, validators) => ValidateValue(value, validators),
                     (v)=>Or(v), (v)=>MessageMap(v)
                 );
 
@@ -973,14 +978,14 @@ describe("recursive", function() {
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) =>  ValidateValue(value, validators, true),
+                    (value, validators) =>  ValidateValuePartial(value, validators),
                     (v)=>And(v), (v)=>MessageMap(v)
                 );
 
                 let and = validator.validate(value);
 
                 it('top level', ()=> {
-                    expect(and.valid).toBe(false);
+                    expect<boolean>(and.valid).toBe(false);
                     expect(and.value).toBe(value);
 
                     expect(and.validatables[0].valid).toBe(true);
@@ -1000,7 +1005,7 @@ describe("recursive", function() {
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) => ValidateValue(value, validators, true),
+                    (value, validators) => ValidateValuePartial(value, validators),
                     (v)=>Or(v), (v)=>MessageMap(v)
                 );
 
@@ -1032,7 +1037,7 @@ describe("recursive", function() {
             new ValueCallback([
                 ValidatorType('number'),
                 ValidatorType('string'),
-            ], (value, validators) => ValidateValue(value, validators, false), And, (v)=>MessageMap(v))
+            ], (value, validators) => ValidateValue(value, validators), And, (v)=>MessageMap(v))
         ];
 
         let value : object = {};
@@ -1042,7 +1047,7 @@ describe("recursive", function() {
             describe(`and validation`, () => {
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) => ValidateValue(value, validators, false),
+                    (value, validators) => ValidateValue(value, validators),
                     (v)=>And(v), (v)=>MessageMap(v)
                 );
 
@@ -1050,7 +1055,7 @@ describe("recursive", function() {
 
                 it('top level', ()=> {
 
-                    expect(and.valid).toBe(false);
+                    expect<boolean>(and.valid).toBe(false);
                     expect(and.value).toEqual(value);
 
                     expect(typeof and.validatables[0].message).toBe('string');
@@ -1108,14 +1113,14 @@ describe("recursive", function() {
             describe(`or validation `, () => {
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) => ValidateValue(value, validators, false),
+                    (value, validators) => ValidateValue(value, validators),
                     (v)=>Or(v), (v)=>MessageMap(v)
                 );
 
                 let or = validator.validate(value);
 
                 it('top level', ()=> {
-                    expect(or.valid).toBe(false);
+                    expect<boolean>(or.valid).toBe(false);
                     expect(or.value).toEqual(value);
 
                     expect(typeof or.validatables[0].message).toBe('string');
@@ -1179,13 +1184,13 @@ describe("recursive", function() {
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) => ValidateValue(value, validators, true),
+                    (value, validators) => ValidateValuePartial(value, validators),
                     (v)=>And(v), (v)=>MessageMap(v)
                 );
                 let and = validator.validate(value);
 
                 it(`top level`, () => {
-                    expect(and.valid).toBe(false);
+                    expect<boolean>(and.valid).toBe(false);
                     expect(and.value).toEqual(value);
 
                     expect(and.validatables[0].valid).toBe(false);
@@ -1202,13 +1207,13 @@ describe("recursive", function() {
                 type ValidatableBundle = ValueInterface & Validatable & Message<string>;
 
                 let validator = new ValueCallback(validators,
-                    (value, validators) => ValidateValue(value, validators, true),
+                    (value, validators) => ValidateValuePartial(value, validators),
                     (v)=>Or(v), MessageMap
                 );
                 let or = validator.validate(value);
 
                 it('top level', ()=> {
-                    expect(or.valid).toBe(false);
+                    expect<boolean>(or.valid).toBe(false);
                     expect(or.value).toEqual(value);
 
                     expect(or.validatables[0].message).toBe('value is not type of "string"');

@@ -1,8 +1,7 @@
-import Value from "../../../../dist/validator/return/list/value";
+import Value from "../../../../dist/validator/validatable/list/value";
 import Validatable from "@dikac/t-validatable/validatable";
 import Validator from "@dikac/t-validator/validator";
 import ValidatorType from "@dikac/t-type/validator/type-standard";
-
 
 it("force console log", () => spyOn(console, 'log').and.callThrough());
 
@@ -29,7 +28,7 @@ describe("compiler compatibility", function() {
             Validator<any>,
             Validator<any>,
             Validator<any>
-        ]>(value, validator, false);
+        ]>(value, validator);
 
         let valdiatable : Validatable|undefined;
 
@@ -55,7 +54,7 @@ describe("compiler compatibility", function() {
 
         let value : any = 10;
 
-        let result = Value(value, validator, false);
+        let result = Value(value, validator);
 
         let valdiatable : Validatable|undefined;
 
@@ -87,7 +86,7 @@ describe("simple validatable", function() {
 
     let value = 10;
 
-    let result = Value<any, typeof validator>(value, validator, false);
+    let result = Value<any, typeof validator>(value, validator);
     it('match validator1', ()=> expect(result[0].valid).toBe(true));
     it('match validator2', ()=> expect(result[1].valid).toBe(true));
     it('match validator4', ()=> expect(result[2].valid).toBe(false));
@@ -115,7 +114,7 @@ describe("simple validatable", function() {
 
     let value = 'str';
 
-    let result = Value<any, typeof validator>(value, validator, false);
+    let result = Value<any, typeof validator>(value, validator);
     it('match validator1', ()=> expect(result[0].valid).toBe(false));
     it('match validator2', ()=> expect(result[1].valid).toBe(false));
     it('match validator4', ()=> expect(result[2].valid).toBe(true));
@@ -143,7 +142,7 @@ describe("extended validatable", function() {
 
     let value = 10;
 
-    let result = Value<any, typeof validator>(value, validator, false);
+    let result = Value<any, typeof validator>(value, validator);
 
     it('match validator1', ()=> expect(result[0].valid).toBe(true));
     it('match validator1', ()=> expect(result[0].message).toBe('value is type of "number"'));

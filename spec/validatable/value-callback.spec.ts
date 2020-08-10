@@ -1,17 +1,18 @@
 import Value from "../../dist/validatable/value-callback";
-import ValidateValue from "../../dist/validator/return/list/value";
+import ValidateValue from "../../dist/validator/validatable/list/value";
+import ValidateValuePartial from "../../dist/validator/validatable/list/value-partial";
 import And from "../../dist/validatable/and";
 import Or from "../../dist/validatable/or";
 import Validatables from "../../dist/validatable/callback";
 import Validatable from "@dikac/t-validatable/validatable";
 import ValidatableInterface from "@dikac/t-validatable/validatable";
-import ValidatorInterface from "@dikac/t-validator/validator";
+import SimpleValidator from "@dikac/t-validator/simple";
 import ValueInterface from "@dikac/t-value/value";
 import Message from "@dikac/t-message/message";
 import MessageMap from "../../dist/message/message/list/map";
 import MessageInterface from "@dikac/t-message/message";
 import ValidatorType from "@dikac/t-type/validator/type-standard";
-import Instance from "@dikac/t-validator/parameter/instance/instance";
+import Instance from "@dikac/t-validator/validatable/validatable";
 
 it("force console log", () => { spyOn(console, 'log').and.callThrough();});
 
@@ -24,7 +25,7 @@ describe("compiler compatibility", function() {
 
     describe("implicit complete", function() {
 
-        let validatable = new Value('data', validator, (value, validators) => ValidateValue(value, validators, false), And, (v)=>MessageMap(v));
+        let validatable = new Value('data', validator, (value, validators) => ValidateValue(value, validators), And, (v)=>MessageMap(v));
 
         let key : Validatable = validatable[0];
 
@@ -42,13 +43,13 @@ describe("compiler compatibility", function() {
 
         let validatable = new Value<
             string,
-            ValidatorInterface<any, string, Instance<any, string>>[],
+            SimpleValidator<any, string, Instance<any, string>>[],
             (ValidatableInterface & ValueInterface & Message<string>)[],
             string[],
             ValidatableInterface
             >
         ('data', validator, (value, validators) =>
-            ValidateValue(value, validators, false), And, (v)=>MessageMap(v));
+            ValidateValue(value, validators), And, (v)=>MessageMap(v));
 
         let unknown : unknown = validatable.value;
         let string : string = validatable.value;
@@ -58,7 +59,7 @@ describe("compiler compatibility", function() {
     describe("implicit partial", function() {
 
         let validatable = new Value('data', validator,
-            (value, validators) => <(ValidatableInterface & ValueInterface & Message<string>)[]> ValidateValue(value, validators, true),
+            (value, validators) => <(ValidatableInterface & ValueInterface & Message<string>)[]> ValidateValuePartial(value, validators),
             (v)=>And(<Validatable[]>v), (v)=>MessageMap(v)
         );
 
@@ -72,12 +73,12 @@ describe("compiler compatibility", function() {
 
         let validatable = new Value<
             string,
-            ValidatorInterface<any, string, Instance<any, string>>[],
+            SimpleValidator<any, string, Instance<any, string>>[],
             (ValidatableInterface & MessageInterface & ValueInterface)[],
             ValidatableInterface
             >
         ('data', validator,
-            (value, validators) => <(ValidatableInterface & ValueInterface & Message<string>)[]> ValidateValue(value, validators, true),
+            (value, validators) => <(ValidatableInterface & ValueInterface & Message<string>)[]> ValidateValuePartial(value, <any>validators),
             And, (v)=><any>MessageMap(v)
         );
 
@@ -103,7 +104,7 @@ describe("implicit complete", function() {
         it(`and validation`, () => {
 
             let validatable = new Value(value, validator,
-                (value, validators) => ValidateValue(value, validators, false),
+                (value, validators) => ValidateValue(value, validators),
                 And, MessageMap
             );
 
@@ -124,7 +125,7 @@ describe("implicit complete", function() {
         it(`or validation`, () => {
 
             let validatable = new Value(value, validator,
-                (value, validators) => ValidateValue(value, validators, false),
+                (value, validators) => ValidateValue(value, validators),
                 Or, (v)=>MessageMap(v)
             );
 
@@ -157,7 +158,7 @@ describe("implicit complete", function() {
         it(`and validation`, () => {
 
             let and = new Value(value, validator,
-                (value, validators) => <any>ValidateValue(value, <any>validators, false),
+                (value, validators) => <any>ValidateValue(value, <any>validators),
                 And, (v)=>MessageMap(v)
             );
 
@@ -179,7 +180,7 @@ describe("implicit complete", function() {
         it(`or validation `, () => {
 
             let or = new Value(value, validator,
-                (value, validators) => <any>ValidateValue(value, <any>validators, false),
+                (value, validators) => <any>ValidateValue(value, <any>validators),
                 Or, (v)=>MessageMap(v)
             );
 
@@ -210,7 +211,7 @@ describe("implicit complete", function() {
         ];
 
         let and = new Value(value, validator,
-            (value, validators) => ValidateValue(value, validators, false),
+            (value, validators) => ValidateValue(value, validators),
             And, (v)=>MessageMap(v)
         );
 
@@ -232,7 +233,7 @@ describe("implicit complete", function() {
         it(`or validation `, () => {
 
             let or = new Value(value, validator,
-                (value, validators) => ValidateValue(value, validators, false),
+                (value, validators) => ValidateValue(value, validators),
                 Or, (v)=>MessageMap(v)
             );
 
@@ -267,7 +268,7 @@ describe("implicit incomplete", function() {
         it(`and validation`, () => {
 
             let validatable = new Value(value, validator,
-                (value, validators) => <(ValidatableInterface & ValueInterface & Message<string>)[]>ValidateValue(value, validators, true),
+                (value, validators) => <(ValidatableInterface & ValueInterface & Message<string>)[]>ValidateValuePartial(value, validators),
                 And, (v)=>MessageMap(v)
             );
 
@@ -311,7 +312,7 @@ describe("implicit incomplete", function() {
         it(`or validation`, () => {
 
             let validatable = new Value(value, validator,
-                (value, validators) => <(ValidatableInterface & ValueInterface & Message<string>)[]>ValidateValue(value, validators, true),
+                (value, validators) => <(ValidatableInterface & ValueInterface & Message<string>)[]>ValidateValuePartial(value, validators),
                 Or, (v)=>MessageMap(v)
             );
 
@@ -364,7 +365,7 @@ describe("implicit incomplete", function() {
         it(`and validation`, () => {
 
             let and = new Value('data', validator,
-                (value, validators) => <(ValidatableInterface & ValueInterface & Message<string>)[]> ValidateValue(value, <any>validators, true),
+                (value, validators) => <(ValidatableInterface & ValueInterface & Message<string>)[]> ValidateValuePartial(value, <any>validators),
                 And, (v)=>MessageMap(v)
             );
 
@@ -396,7 +397,7 @@ describe("implicit incomplete", function() {
         it(`or validation `, () => {
 
             let or = new Value('data', validator,
-                (value, validators) => <(ValidatableInterface & ValueInterface & Message<string>)[]> ValidateValue(value, <any>validators, true),
+                (value, validators) => <(ValidatableInterface & ValueInterface & Message<string>)[]> ValidateValuePartial(value, <any>validators),
                 Or, (v)=>MessageMap(v)
             );
 
@@ -434,7 +435,7 @@ describe("implicit incomplete", function() {
         it(`and validation`, () => {
 
             let and = new Value({}, validator,
-                (value, validators) => <(ValidatableInterface & ValueInterface & Message<string>)[]> ValidateValue(value, validators, true),
+                (value, validators) => <(ValidatableInterface & ValueInterface & Message<string>)[]> ValidateValuePartial(value, validators),
                 And, (v)=>MessageMap(v)
             );
 
@@ -460,7 +461,7 @@ describe("implicit incomplete", function() {
         it(`or validation `, () => {
 
             let or = new Value({}, validator,
-                (value, validators) => <(ValidatableInterface & ValueInterface & Message<string>)[]> ValidateValue(value, validators, true),
+                (value, validators) => <(ValidatableInterface & ValueInterface & Message<string>)[]> ValidateValuePartial(value, validators),
                 Or, MessageMap
             );
 

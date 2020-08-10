@@ -1,42 +1,21 @@
 import Validator from "@dikac/t-validator/validator";
 import Function from "@dikac/t-function/function";
 import Validatable from "@dikac/t-validatable/validatable";
-import ValidateValue from "./return/list/value";
-import PartialUnion from "./return/list/partial-union";
-import ValidatableValue from "../validatable/value-callback";
-import Construct from "@dikac/t-validator/return/return";
+import ValidateValuePartial from "./validatable/list/value-partial";
+import ListReturn from "./validatable/list/infer";
+import ValueCallback, {Interface as ValueCallbackInterface} from "./value-callback";
+import Union from "../union";
 
-export default class Value<
+export default function Value<
     BaseT = unknown,
     ValueT extends BaseT = BaseT,
     ValidatorsT extends Validator<BaseT, ValueT>[] = Validator<BaseT, ValueT>[],
-    ValidatableT extends Validatable = Validatable,
+    ReturnT extends Validatable = Validatable,
     MessageT = unknown,
-> implements Validator<
-    BaseT,
-    ValueT,
-    ValidatableValue<BaseT, ValidatorsT, PartialUnion<ValidatorsT>, MessageT, ValidatableT>
-> {
-    constructor(
-        public validators : ValidatorsT,
-        public validation : Function<[PartialUnion<ValidatorsT>], ValidatableT>,
-        public message : Function<[PartialUnion<ValidatorsT>], MessageT>
-    ) {
-    }
-
-    validate<Argument extends BaseT>(value: Argument) : Construct<BaseT, Argument, ValueT, ValidatableValue<BaseT, ValidatorsT, PartialUnion<ValidatorsT>, MessageT, ValidatableT>> {
-
-        let validator = new ValidatableValue(
-            value,
-            this.validators,
-            (value, validators) => ValidateValue<BaseT, ValidatorsT>(value, validators, true),
-            this.validation,
-            this.message
-        );
-
-        return <Construct<BaseT, Argument, ValueT, ValidatableValue<BaseT, ValidatorsT, PartialUnion<ValidatorsT>, MessageT, ValidatableT>>> validator;
-    }
+>(
+    validators : ValidatorsT,
+    validation : Function<[Union<ListReturn<ValidatorsT>>], ReturnT>,
+    message : Function<[Union<ListReturn<ValidatorsT>>], MessageT>
+) : ValueCallbackInterface<BaseT, ValueT, MessageT, ValidatorsT, Union<ListReturn<ValidatorsT>>, ReturnT> {
+    return new ValueCallback(validators, ValidateValuePartial, validation, message);
 }
-
-
-

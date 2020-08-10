@@ -1,22 +1,22 @@
 {
   "name": "@dikac/t-array",
-  "version": "0.21.1",
+  "version": "0.20.0",
   "description": "Typescript array",
   "dependencies": {
     "@dikac/deployer": "^0.1.5",
-    "@dikac/t-boolean": "^0.8.3",
-    "@dikac/t-function": "^0.11.2",
+    "@dikac/t-boolean": "^0.8.5",
+    "@dikac/t-function": "^0.11.3",
     "@dikac/t-iterable": "^0.3.3",
     "@dikac/t-message": "^0.8.2",
-    "@dikac/t-validatable": "^0.18.1",
-    "@dikac/t-validator": "^0.13.4",
-    "@dikac/t-value": "^0.11.3",
-    "ts-toolbelt": "^6.13.39"
+    "@dikac/t-validatable": "^0.18.3",
+    "@dikac/t-validator": "^0.15.1",
+    "@dikac/t-value": "^0.12.0",
+    "ts-toolbelt": "^6.15.1"
   },
   "devDependencies": {
-    "@dikac/t-type": "^0.2.4",
+    "@dikac/t-type": "^0.2.7",
     "@types/jasmine": "^3.5.12",
-    "@types/node": "^12.12.53",
+    "@types/node": "^12.12.54",
     "cpy-cli": "^3.1.1",
     "jasmine": "^3.6.1",
     "jasmine-ts-console-reporter": "^3.1.1",

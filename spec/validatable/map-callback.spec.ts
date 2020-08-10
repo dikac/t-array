@@ -1,14 +1,15 @@
 import Map from "../../dist/validatable/map-callback";
-import Standard from "../../dist/validator/return/list/standard";
+import Standard from "../../dist/validator/validatable/list/map";
+import PartialStandard from "../../dist/validator/validatable/list/map-partial";
 import And from "../../dist/validatable/and";
 import Or from "../../dist/validatable/or";
 import Validatable from "@dikac/t-validatable/validatable";
-import ValidatorInterface from "@dikac/t-validator/validator";
+import ValidatorInterface from "@dikac/t-validator/simple";
 import ValueInterface from "@dikac/t-value/value";
 import Message from "@dikac/t-message/message";
 import MessageMap from "../../dist/message/message/list/map";
 import ValidatorType from "@dikac/t-type/validator/type-standard";
-import Instance from "@dikac/t-validator/parameter/instance/instance";
+import Instance from "@dikac/t-validator/validatable/validatable";
 
 it("force console log", () => { spyOn(console, 'log').and.callThrough();});
 
@@ -39,7 +40,7 @@ describe("compiler compatibility", function() {
         describe("auto", function() {
 
             let validatable = new Map(value, validator,
-                (value, validators) => Standard(value, validators, false),
+                (value, validators) => Standard(value, validators),
                 And,
                 (v)=>MessageMap(v)
             );
@@ -61,7 +62,7 @@ describe("compiler compatibility", function() {
 
             let validatable = new Map(value, validator,
                 (value, validators) =>
-                    <(Validatable & ValueInterface & Message<string>)[]>Standard(value, validators, true),
+                    <(Validatable & ValueInterface & Message<string>)[]>PartialStandard(value, validators),
                 And,
                 (v)=>MessageMap(v)
             );
@@ -94,7 +95,7 @@ describe("compiler compatibility", function() {
         describe("auto", function() {
 
             let validatable = new Map(value, validator,
-                (value, validators) => Standard(value, validators, false),
+                (value, validators) => Standard(value, validators),
                 And, (v)=>MessageMap(v)
             );
 
@@ -116,7 +117,7 @@ describe("compiler compatibility", function() {
 
             let validatable = new Map(value, validator,
                 (value, validators) =>
-                    <(Validatable & ValueInterface & Message<string>)[]>Standard(value, validators, true),
+                    <(Validatable & ValueInterface & Message<string>)[]>PartialStandard(value, validators),
                 And, (v)=>MessageMap(v)
             );
 
@@ -172,7 +173,7 @@ describe("explicit", function() {
             it(`and validation`, () => {
 
                 let validatable = new Map(value, validator,
-                    (value, validators) => Standard(value, validators, false),
+                    (value, validators) => Standard(value, validators),
                     And, (v)=>MessageMap(v)
                 );
 
@@ -195,7 +196,7 @@ describe("explicit", function() {
             it(`or validation`, () => {
 
                 let validatable = new Map(value, validator,
-                    (value, validators) => Standard(value, validators, false),
+                    (value, validators) => Standard(value, validators),
                     Or, (v)=>MessageMap(v)
                 );
 
@@ -223,7 +224,7 @@ describe("explicit", function() {
 
                 let validatable = new Map(value, validator,
                     (value, validators) =>
-                        <(Validatable & ValueInterface & Message<string>)[]>Standard(value, validators, true),
+                        <(Validatable & ValueInterface & Message<string>)[]>PartialStandard(value, validators),
                     And, (v)=>MessageMap(v)
                 );
 
@@ -247,7 +248,7 @@ describe("explicit", function() {
 
                 let validatable = new Map(value, validator,
                     (value, validators) =>
-                        <(Validatable & ValueInterface & Message<string>)[]>Standard(value, validators, true),
+                        <(Validatable & ValueInterface & Message<string>)[]>PartialStandard(value, validators),
                     Or, (v)=>MessageMap(v)
                 );
 
@@ -302,7 +303,7 @@ describe("explicit", function() {
             it(`and validation`, () => {
 
                 let and = new Map(value, validator,
-                    (value, validators) => Standard(value, validators, false),
+                    (value, validators) => Standard(value, validators),
                     (v)=>And(v), (v)=>MessageMap(v)
                 );
 
@@ -326,7 +327,7 @@ describe("explicit", function() {
             it(`or validation `, () => {
 
                 let or = new Map(value, validator,
-                    (value, validators) => Standard(value, validators, false),
+                    (value, validators) => Standard(value, validators),
                     (v)=>Or(v), (v)=>MessageMap(v)
                 );
 
@@ -354,7 +355,7 @@ describe("explicit", function() {
             it(`and validation`, () => {
 
                 let and = new Map(value, validator,
-                    (value, validators) => <(Validatable & ValueInterface & Message<string>)[]>Standard(value, validators, true),
+                    (value, validators) => <(Validatable & ValueInterface & Message<string>)[]>PartialStandard(value, validators),
                     (v)=>And(v), (v)=>MessageMap(v)
                 );
 
@@ -375,7 +376,7 @@ describe("explicit", function() {
             it(`or validation `, () => {
 
                 let or = new Map(value, validator,
-                    (value, validators) => <(Validatable & ValueInterface & Message<string>)[]>Standard(value, validators, true),
+                    (value, validators) => <(Validatable & ValueInterface & Message<string>)[]>PartialStandard(value, validators),
                     (v)=>Or(v), (v)=>MessageMap(v)
                 );
 
@@ -421,7 +422,7 @@ describe("explicit", function() {
             it(`and validation`, () => {
 
                 let and = new Map(value, validator,
-                    (value, validators) => Standard(value, validators, false),
+                    (value, validators) => Standard(value, validators),
                     (v)=>And(v),
                     (v)=>MessageMap(v)
                 );
@@ -445,7 +446,7 @@ describe("explicit", function() {
             it(`or validation `, () => {
 
                 let or = new Map(value, validator,
-                    (value, validators) => Standard(value, validators, false),
+                    (value, validators) => Standard(value, validators),
                     (v)=>Or(v),
                     (v)=>MessageMap(v)
                 );
@@ -472,7 +473,7 @@ describe("explicit", function() {
             it(`and validation`, () => {
 
                 let and = new Map(value, validator,
-                    (value, validators) => <(Validatable & ValueInterface & Message<string>)[]>Standard(value, validators, true),
+                    (value, validators) => <(Validatable & ValueInterface & Message<string>)[]>PartialStandard(value, validators),
                     (v)=>And(v),
                     (v)=>MessageMap(v)
                 );
@@ -492,7 +493,7 @@ describe("explicit", function() {
 
                 let or = new Map(value, validator,
                     (value, validators) =>
-                        <(Validatable & ValueInterface & Message<string>)[]>Standard(value, validators, true),
+                        <(Validatable & ValueInterface & Message<string>)[]>PartialStandard(value, validators),
                     (v)=>Or(v),
                     MessageMap
                 );

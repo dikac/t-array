@@ -1,66 +1,63 @@
 import Validator from "@dikac/t-validator/validator";
+import SimpleValidator from "@dikac/t-validator/simple";
 import Validatable from "@dikac/t-validatable/validatable";
 import Function from "@dikac/t-function/function";
 import Validators from "./validators/validators";
-import ValidatableMap from "../validatable/map-callback";
-import BaseList from "./parameter/base/list/infer";
-import TypeList from "./parameter/type/list/infer";
-import Construct from "@dikac/t-validator/return/return";
-import Instance from "@dikac/t-validator/parameter/instance/instance";
+import ValidatableMap, {Interface as ValidatableMapInterface} from "../validatable/map-callback";
+import BaseList from "./base/list/infer";
+import TypeList from "./type/list/infer";
+import Construct from "@dikac/t-validator/validatable/simple";
+import Instance from "@dikac/t-validator/validatable/validatable";
+import Validation from "@dikac/t-validatable/validation/validation";
+import Message from "@dikac/t-message/message";
+import Replace from "@dikac/t-validatable/boolean/replace";
 
-export interface MapInterface<
-    ValidatorsT extends Validator[] = Validator[],
-    Validatables extends Instance[] = Instance[],
-    MessageT = unknown,
-    ValidatableT extends Validatable = Validatable
-> extends
-    Validator<
+export type Interface<
+    ValidatorsT extends Validator[],
+    Validatables extends Instance[],
+    MessageT,
+    ValidatableT extends Validatable
+> =
+    SimpleValidator<
         BaseList<ValidatorsT>,
         TypeList<ValidatorsT>,
-        ValidatableMap<ValidatorsT, Validatables, MessageT, ValidatableT>
-    >, Validators<ValidatorsT> {
+        ValidatableMapInterface<ValidatorsT, Validatables, MessageT, ValidatableT, BaseList<ValidatorsT>>
+    > &
+    Validators<ValidatorsT> &
+    Message<Function<[Validatables], MessageT>> &
+    Validation<Function<[Validatables], ValidatableT>> &
+    {map : Function<[BaseList<ValidatorsT>, ValidatorsT], Validatables>};
 
-    validators : ValidatorsT,
-    handler : Function<[BaseList<ValidatorsT>, ValidatorsT], Validatables>,
-    validation : Function<[Validatables], ValidatableT>,
-    message : Function<[Validatables], MessageT>
-}
-
-export default function MapCallback<
+export default class MapCallback<
     ValidatorsT extends Validator[] = Validator[],
     Validatables extends Instance[] = Instance[],
     MessageT = unknown,
     ValidatableT extends Validatable = Validatable
->(
-    validators : ValidatorsT,
-    handler : Function<[BaseList<ValidatorsT>, ValidatorsT], Validatables>,
-    validation : Function<[Validatables], ValidatableT>,
-    message : Function<[Validatables], MessageT>
-) : MapInterface<ValidatorsT, Validatables, MessageT, ValidatableT> {
+> implements Interface<ValidatorsT,     Validatables, MessageT, ValidatableT> {
 
-    return new MapCallbackClass(validators, handler, validation, message);
-}
-
-export class MapCallbackClass<
-    ValidatorsT extends Validator[] = Validator[],
-    Validatables extends Instance[] = Instance[],
-    MessageT = unknown,
-    ValidatableT extends Validatable = Validatable
-> implements MapInterface<ValidatorsT, Validatables, MessageT, ValidatableT> {
     constructor(
         public validators : ValidatorsT,
-        public handler : Function<[BaseList<ValidatorsT>, ValidatorsT], Validatables>,
+        public map : Function<[BaseList<ValidatorsT>, ValidatorsT], Validatables>,
         public validation : Function<[Validatables], ValidatableT>,
         public message : Function<[Validatables], MessageT>
     ) {
     }
 
+    validate<Argument extends TypeList<ValidatorsT>>(
+        value: Argument
+    ) : Replace<ValidatableMapInterface<ValidatorsT, Validatables, MessageT, ValidatableT, Argument>, true>
+
     validate<Argument extends BaseList<ValidatorsT>>(
         value: Argument
-    ) :Construct<BaseList<ValidatorsT>, Argument, TypeList<ValidatorsT>, ValidatableMap<ValidatorsT, Validatables, MessageT, ValidatableT>> {
+    ) : Construct<BaseList<ValidatorsT>, Argument, TypeList<ValidatorsT>, ValidatableMapInterface<ValidatorsT, Validatables, MessageT, ValidatableT, Argument>>
 
-        return <Construct<BaseList<ValidatorsT>, Argument, TypeList<ValidatorsT>, ValidatableMap<ValidatorsT, Validatables, MessageT, ValidatableT>>>
-            new ValidatableMap(value, this.validators, this.handler, this.validation, this.message);
+    validate<Argument extends BaseList<ValidatorsT>>(
+        value: Argument
+    ) {
+
+        return new ValidatableMap(value, this.validators, this.map, this.validation, this.message) as
+            Replace<ValidatableMapInterface<ValidatorsT, Validatables, MessageT, ValidatableT, Argument>, true> |
+            Construct<BaseList<ValidatorsT>, Argument, TypeList<ValidatorsT>, ValidatableMapInterface<ValidatorsT, Validatables, MessageT, ValidatableT, Argument>>;
 
     }
 }

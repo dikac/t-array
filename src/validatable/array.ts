@@ -1,10 +1,10 @@
-import Callback from "@dikac/t-value/message/callback";
+import Callback from "@dikac/t-validator/validatable/callback";
 import ObjectGuard from "../boolean/array";
 import Validatable from "@dikac/t-validatable/validatable";
 import Value from "@dikac/t-value/value";
 import Function from "@dikac/t-function/function";
-import Construct from "@dikac/t-validator/return/return";
-import Instance from "@dikac/t-validator/parameter/instance/instance";
+import Construct from "@dikac/t-validator/validatable/simple";
+import Instance from "@dikac/t-validator/validatable/validatable";
 
 
 export default function Array<MessageT, Argument>(

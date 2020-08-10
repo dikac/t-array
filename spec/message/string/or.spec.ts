@@ -1,4 +1,4 @@
-import Or from "../../../dist/message/string//or";
+import Or from "../../../dist/message/string/or";
 
 it("force console log", () => { spyOn(console, 'log').and.callThrough();});
 

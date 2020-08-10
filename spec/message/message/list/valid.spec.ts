@@ -3,16 +3,15 @@ import ValueAll from "../../../../dist/validator/value-all";
 import And from "../../../../dist/validatable/and";
 import MessageMapValid from "../../../../dist/message/message/list/valid";
 import Value from "../../../../dist/validator/value";
-import ValidateValue from "../../../../dist/validator/return/list/value";
+import ValidateValue from "../../../../dist/validator/validatable/list/value";
 import MapAll from "../../../../dist/validator/map-all";
 import Map from "../../../../dist/validator/map";
 import Validatable from "@dikac/t-validatable/validatable";
 import ValueCallback from "../../../../dist/validator/value-callback";
-import MapMessage from "../../../../dist/validator/map-callback";
-import Standard from "../../../../dist/validator/return/list/standard";
+import MapCallbackFunction from "../../../../dist/validator/map-callback-function";
+import Standard from "../../../../dist/validator/validatable/list/map";
 
 it("enable console log", () => { spyOn(console, 'log').and.callThrough();});
-
 
 describe('value all', ()=>{
 
@@ -20,13 +19,13 @@ describe('value all', ()=>{
         ValidatorType('string'),
         ValidatorType('string'),
         ValidatorType('string'),
-        new ValueAll([
+        ValueAll([
             ValidatorType('string'),
             ValidatorType('string'),
-        ], (v)=>And(v), MessageMapValid)
+        ], And, MessageMapValid)
     ];
 
-    let property = new ValueAll(validator, And, MessageMapValid);
+    let property = ValueAll(validator, And, MessageMapValid);
 
 });
 
@@ -36,13 +35,13 @@ describe('value', ()=>{
         ValidatorType('string'),
         ValidatorType('string'),
         ValidatorType('string'),
-        new Value([
+        Value([
             ValidatorType('string'),
             ValidatorType('string'),
         ], And, MessageMapValid)
     ];
 
-        let property = new Value(validator, And, MessageMapValid);
+        let property = Value(validator, And, MessageMapValid);
 
 });
 
@@ -56,14 +55,10 @@ describe('value callback', ()=>{
                 ValidatorType('string'),
                 ValidatorType('string'),
             ],
-            (value, validators) => ValidateValue(value, validators, false),
-            And, (v)=>MessageMapValid(v))
+            ValidateValue, And, (v)=>MessageMapValid(v))
     ];
 
-    let validator = new ValueCallback(validators,
-        (value, validators) => ValidateValue(value, validators, false),
-        And, MessageMapValid
-    );
+    let validator = new ValueCallback(validators, ValidateValue, And, MessageMapValid);
 
 });
 
@@ -117,16 +112,12 @@ describe('map callback', ()=>{
         ValidatorType('string'),
         ValidatorType('number'),
         ValidatorType('string'),
-        MapMessage([
+        MapCallbackFunction([
             ValidatorType('string'),
             ValidatorType('number'),
-        ], (value, validators) => Standard(value, validators, false), And, MessageMapValid)
+        ], Standard, And, MessageMapValid)
     ];
 
-    let validator = MapMessage(validators,
-        (value, validators) => Standard(value, validators, false),
-        (v)=>And(v),
-        (v)=>MessageMapValid(v)
-    );
+    let validator = MapCallbackFunction(validators, Standard, And, MessageMapValid);
 
 });
