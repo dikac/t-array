@@ -9,6 +9,10 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    /**
+     * reset array index
+     * @param argument
+     */
     function Reset(argument) {
         let buffer = [];
         argument.forEach(function (v, i) {

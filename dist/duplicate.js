@@ -9,6 +9,15 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    /**
+     * pick a duplicate value from {@param values}
+     *
+     * @param values
+     *
+     * @param compare
+     * to compare value equality
+     *
+     */
     function Duplicate(values, compare = (value1, value2) => value1 === value2) {
         let duplicates = [];
         for (let [index1, value1] of values.entries()) {

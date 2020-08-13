@@ -15,7 +15,6 @@
      *
      * @param array
      * @param random
-     * @constructor
      */
     function Random(array, random = random_1.default) {
         let gets = [];

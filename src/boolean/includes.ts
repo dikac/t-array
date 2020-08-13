@@ -1,5 +1,4 @@
 import Function from "@dikac/t-function/function";
-import {throws} from "assert";
 import StringIncludes from "./string/includes";
 
 

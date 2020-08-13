@@ -9,6 +9,15 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    /**
+     * pick a unique value from {@param values}
+     *
+     * @param values
+     *
+     * @param compare
+     * to compare value equality
+     *
+     */
     function Unique(values, compare = (value1, value2) => value1 === value2) {
         let results = [];
         PARENT: for (let index1 in values) {
