@@ -5,7 +5,23 @@ import ValidateMap from "./validatable/list/map-partial";
 import MapCallback, {Interface as MapCallbackInterface} from "./map-callback";
 import ListStrict from "./validatable/list/infer";
 import Union from "../union";
+import Message from "@dikac/t-message/message";
 
+/**
+ * more specific implementation of {@link MapCallback}
+ *
+ * Validate list of value with list of {@link Validator}, according to their indexes
+ * stop on encounter invalid result from {@link Validator}
+ *
+ * @param validators
+ * list of {@link Validator} to be used against list of value
+ *
+ * @param validation
+ * process partial result from {@link Validator} list into {@link Validatable}
+ *
+ * @param message
+ * process partial result from {@link Validator} list into {@link Message} value
+ */
 export default function MapPartial<
     ValidatorsT extends Validator[] = Validator[],
     ValidatableT extends Validatable = Validatable,
@@ -14,7 +30,7 @@ export default function MapPartial<
     validators : ValidatorsT,
     validation : Function<[Union<ListStrict<ValidatorsT>>], ValidatableT>,
     message : Function<[Union<ListStrict<ValidatorsT>>], MessageT>
-) : MapCallbackInterface<ValidatorsT, Union<ListStrict<ValidatorsT>>, MessageT, ValidatableT> {
+) : Omit<MapCallbackInterface<ValidatorsT, Union<ListStrict<ValidatorsT>>, MessageT, ValidatableT>, 'map'>  {
 
     return new MapCallback(validators, ValidateMap, validation, message);
 }

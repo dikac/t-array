@@ -10,8 +10,13 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const map_callback_1 = require("./map-callback");
-    function MapCallbackFunction(validators, handler, validation, message) {
-        return new map_callback_1.default(validators, handler, validation, message);
+    /**
+     * function factory for {@link MapCallback}
+     *
+     * type return has better handling by typescript
+     */
+    function MapCallbackFunction(validators, map, validation, message) {
+        return new map_callback_1.default(validators, map, validation, message);
     }
     exports.default = MapCallbackFunction;
 });

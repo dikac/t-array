@@ -5,6 +5,11 @@ import Instance from "@dikac/t-validator/validatable/validatable";
 import ListCallback, {Interface as ListCallbackInterface} from "./list-callback";
 import BaseInfer from "@dikac/t-validator/base/infer";
 
+/**
+ * function factory for {@link ListCallback}
+ *
+ * type return has better handling by typescript
+ */
 export default function  ListCallbackFunction<
     MessageT = unknown,
     ValidatorT extends Validator = Validator,
@@ -12,12 +17,12 @@ export default function  ListCallbackFunction<
     ValidatableT extends Validatable  = Validatable
 >  (
      validator : ValidatorT,
-     handler : Function<[BaseInfer<ValidatorT>[], ValidatorT], Result>,
+     map : Function<[BaseInfer<ValidatorT>[], ValidatorT], Result>,
      validation : Function<[Result], ValidatableT>,
      message : Function<[Result], MessageT>
 ) : ListCallbackInterface<MessageT, ValidatorT, Result, ValidatableT> {
 
-    return new ListCallback(validator, handler, validation, message);
+    return new ListCallback(validator, map, validation, message);
 }
 
 

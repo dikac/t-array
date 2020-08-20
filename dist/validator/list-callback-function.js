@@ -10,8 +10,13 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const list_callback_1 = require("./list-callback");
-    function ListCallbackFunction(validator, handler, validation, message) {
-        return new list_callback_1.default(validator, handler, validation, message);
+    /**
+     * function factory for {@link ListCallback}
+     *
+     * type return has better handling by typescript
+     */
+    function ListCallbackFunction(validator, map, validation, message) {
+        return new list_callback_1.default(validator, map, validation, message);
     }
     exports.default = ListCallbackFunction;
 });

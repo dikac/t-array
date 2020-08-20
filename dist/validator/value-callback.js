@@ -10,7 +10,23 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const value_callback_1 = require("../validatable/value-callback");
+    /**
+     * implementation of {@link Interface}
+     */
     class ValueCallback {
+        /**
+         * @param validators
+         * list of {@link Validator}
+         *
+         * @param map
+         * process value and {@param validators} to list of {@link Instance}
+         *
+         * @param validation
+         * process result of {@param map} to single {@link Validatable}
+         *
+         * @param message
+         * process result of {@param map} to single {@link Message}
+         */
         constructor(validators, map, validation, message) {
             this.validators = validators;
             this.map = map;

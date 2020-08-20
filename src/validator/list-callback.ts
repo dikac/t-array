@@ -12,47 +12,79 @@ import Replace from "@dikac/t-validatable/boolean/replace";
 import BaseInfer from "@dikac/t-validator/base/infer";
 import TypeInfer from "@dikac/t-validator/type/infer";
 
+/**
+ * Base {@link Validator} for validating list of value with {@link Validator}
+ *
+ * @template ValueT
+ * see {@link Validator}
+ *
+ * @template MessageT
+ * see {@link Validator}
+ *
+ * @template ValidatorsT
+ * to be used against list of value
+ *
+ * @template Validatables
+ * result after processing {@template ValidatorsT} with {@template BaseT} or {@template ValueT}
+ *
+ * @template ValidatableT
+ * final result after processing {@template Result}
+ */
 export type Interface<
     MessageT,
     ValidatorT extends Validator,
-    ResultT extends Instance[],
+    Validatables extends Instance[],
     ValidatableT extends Validatable
 > =
     SimpleValidator<
         BaseInfer<ValidatorT>[],
         TypeInfer<ValidatorT>[],
-        ValidatableListCallbackInterface<TypeInfer<ValidatorT>[], ValidatorT, ResultT, MessageT, ValidatableT>
+        ValidatableListCallbackInterface<TypeInfer<ValidatorT>[], ValidatorT, Validatables, MessageT, ValidatableT>
     > &
     ValidatorContainer<ValidatorT> &
-    Message<Function<[ResultT], MessageT>> &
-    Validation<Function<[ResultT], ValidatableT>> &
-    {handler : Function<[BaseInfer<ValidatorT>[], ValidatorT], ResultT>}
+    Message<Function<[Validatables], MessageT>> &
+    Validation<Function<[Validatables], ValidatableT>> &
+    {map : Function<[BaseInfer<ValidatorT>[], ValidatorT], Validatables>}
 ;
-
+/**
+ * implementation of {@link Interface}
+ */
 export default class ValueCallback<
     MessageT = unknown,
     ValidatorT extends Validator = Validator,
-    ResultT extends Instance[] = Instance[],
+    Validatables extends Instance[] = Instance[],
     ValidatableT extends Validatable  = Validatable
-> implements Interface<MessageT, ValidatorT, ResultT, ValidatableT> {
+> implements Interface<MessageT, ValidatorT, Validatables, ValidatableT> {
 
+    /**
+     * @param validator
+     *
+     * @param map
+     * process list of value and {@param validator} to list of {@link Instance}
+     *
+     * @param validation
+     * process result of {@param map} to single {@link Validatable}
+     *
+     * @param message
+     * process result of {@param map} to single {@link Message}
+     */
     constructor(
         public validator : ValidatorT,
-        public handler : Function<[BaseInfer<ValidatorT>[], ValidatorT], ResultT>,
-        public validation : Function<[ResultT], ValidatableT>,
-        public message : Function<[ResultT], MessageT>
+        public map : Function<[BaseInfer<ValidatorT>[], ValidatorT], Validatables>,
+        public validation : Function<[Validatables], ValidatableT>,
+        public message : Function<[Validatables], MessageT>
     ) {
     }
 
     validate<Argument extends TypeInfer<ValidatorT>[]>(value: Argument) :
-        Replace<ValidatableListCallbackInterface<Argument, ValidatorT, ResultT, MessageT, ValidatableT>, true>
+        Replace<ValidatableListCallbackInterface<Argument, ValidatorT, Validatables, MessageT, ValidatableT>, true>
 
     validate<Argument extends BaseInfer<ValidatorT>[]>(value: Argument) :
-        Construct<BaseInfer<ValidatorT>[], Argument, TypeInfer<ValidatorT>[], ValidatableListCallbackInterface<TypeInfer<ValidatorT>[], ValidatorT, ResultT, MessageT, ValidatableT>>
+        Construct<BaseInfer<ValidatorT>[], Argument, TypeInfer<ValidatorT>[], ValidatableListCallbackInterface<TypeInfer<ValidatorT>[], ValidatorT, Validatables, MessageT, ValidatableT>>
 
     validate<Argument extends BaseInfer<ValidatorT>[]>(value: Argument) {
 
-        return new ValidatableListCallback(value, this.validator, this.handler, this.validation, this.message);
+        return new ValidatableListCallback(value, this.validator, this.map, this.validation, this.message);
     }
 }
 

@@ -10,49 +10,86 @@ import Validators from "./validators/validators";
 import Validation from "@dikac/t-validatable/validation/validation";
 import Replace from "@dikac/t-validatable/boolean/replace";
 
+/**
+ * Base {@link Validator} for validating value with list of {@link Validator}
+ *
+ * @template BaseT
+ * see {@link Validator}
+ *
+ * @template ValueT
+ * see {@link Validator}
+ *
+ * @template MessageT
+ * see {@link Validator}
+ *
+ * @template ValidatorsT
+ * list of {@link Validator} to be used against {@template BaseT} or {@template ValueT}
+ *
+ * @template Validatables
+ * result after processing {@template ValidatorsT} with {@template BaseT} or {@template ValueT}
+ *
+ * @template ValidatableT
+ * final result after processing {@template Result}
+ */
 export interface Interface<
     BaseT,
     ValueT extends BaseT,
     MessageT,
     ValidatorsT extends Validator<BaseT, ValueT>[],
-    Result extends Instance[],
+    Validatables extends Instance[],
     ValidatableT extends Validatable
 > extends
     SimpleValidator<
         BaseT,
         ValueT,
-        ValidatableValueInterface<BaseT, ValidatorsT, Result, MessageT, ValidatableT>
+        ValidatableValueInterface<BaseT, ValidatorsT, Validatables, MessageT, ValidatableT>
     >,
-    Message<Function<[Result], MessageT>>,
+    Message<Function<[Validatables], MessageT>>,
     Validators<ValidatorsT>,
-    Validation<Function<[Result], ValidatableT>> {
-    map : Function<[BaseT, ValidatorsT], Result>
+    Validation<Function<[Validatables], ValidatableT>> {
+    map : Function<[BaseT, ValidatorsT], Validatables>
 }
 
+/**
+ * implementation of {@link Interface}
+ */
 export default class ValueCallback<
     BaseT = unknown,
     ValueT extends BaseT = BaseT,
     MessageT = unknown,
     ValidatorsT extends Validator<BaseT, ValueT>[] = Validator<BaseT, ValueT>[],
-    Result extends Instance[] = Instance[],
+    Validatables extends Instance[] = Instance[],
     ValidatableT extends Validatable  = Validatable
-> implements Interface<BaseT, ValueT, MessageT, ValidatorsT, Result, ValidatableT> {
+> implements Interface<BaseT, ValueT, MessageT, ValidatorsT, Validatables, ValidatableT> {
 
+    /**
+     * @param validators
+     * list of {@link Validator}
+     *
+     * @param map
+     * process value and {@param validators} to list of {@link Instance}
+     *
+     * @param validation
+     * process result of {@param map} to single {@link Validatable}
+     *
+     * @param message
+     * process result of {@param map} to single {@link Message}
+     */
     constructor(
         public validators : ValidatorsT,
-        public map : Function<[BaseT, ValidatorsT], Result>,
-        public validation : Function<[Result], ValidatableT>,
-        public message : Function<[Result], MessageT>
+        public map : Function<[BaseT, ValidatorsT], Validatables>,
+        public validation : Function<[Validatables], ValidatableT>,
+        public message : Function<[Validatables], MessageT>
     ) {
     }
 
-    validate<Argument extends ValueT>(value: Argument) : Replace<ValidatableValueInterface<Argument, ValidatorsT, Result, MessageT, ValidatableT>, true>
-    validate<Argument extends BaseT>(value: Argument) : Construct<BaseT, Argument, ValueT, ValidatableValueInterface<Argument, ValidatorsT, Result, MessageT, ValidatableT>>
+    validate<Argument extends ValueT>(value: Argument) : Replace<ValidatableValueInterface<Argument, ValidatorsT, Validatables, MessageT, ValidatableT>, true>
+    validate<Argument extends BaseT>(value: Argument) : Construct<BaseT, Argument, ValueT, ValidatableValueInterface<Argument, ValidatorsT, Validatables, MessageT, ValidatableT>>
     validate<Argument extends BaseT>(value: Argument) {
 
         return new ValidatableValue(value, this.validators, this.map, this.validation, this.message) as
-            Replace<ValidatableValueInterface<BaseT, ValidatorsT, Result, MessageT, ValidatableT>, true> |
-            Construct<BaseT, Argument, ValueT, ValidatableValueInterface<BaseT, ValidatorsT, Result, MessageT, ValidatableT>>;
+            Replace<ValidatableValueInterface<BaseT, ValidatorsT, Validatables, MessageT, ValidatableT>, true> |
+            Construct<BaseT, Argument, ValueT, ValidatableValueInterface<BaseT, ValidatorsT, Validatables, MessageT, ValidatableT>>;
     }
 }
 

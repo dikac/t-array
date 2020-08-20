@@ -12,6 +12,25 @@ import Validation from "@dikac/t-validatable/validation/validation";
 import Message from "@dikac/t-message/message";
 import Replace from "@dikac/t-validatable/boolean/replace";
 
+/**
+ * Base {@link Validator} for validating list of value with list of  {@link Validator}
+ *
+ * @template MessageT
+ * see {@link Validator}
+ *
+ *
+ * @template ValidatorsT
+ * list of {@link Validator} to be used against list of value
+ *
+ * @template ValidatorsT
+ * list of {@link Validator} result
+ *
+ * @template MessageT
+ * message type for {@link Message} value
+ *
+ * @template ValidatableT
+ * result {@link Validatable} from {@template Validatables}
+ */
 export type Interface<
     ValidatorsT extends Validator[],
     Validatables extends Instance[],
@@ -28,6 +47,9 @@ export type Interface<
     Validation<Function<[Validatables], ValidatableT>> &
     {map : Function<[BaseList<ValidatorsT>, ValidatorsT], Validatables>};
 
+/**
+ * implementation of {@link Interface}
+ */
 export default class MapCallback<
     ValidatorsT extends Validator[] = Validator[],
     Validatables extends Instance[] = Instance[],
@@ -35,6 +57,19 @@ export default class MapCallback<
     ValidatableT extends Validatable = Validatable
 > implements Interface<ValidatorsT,     Validatables, MessageT, ValidatableT> {
 
+    /**
+     * @param validators
+     * list of {@link Validator}
+     *
+     * @param map
+     * process list of value and {@param validators} to list of {@link Instance}
+     *
+     * @param validation
+     * process result of {@param map} to single {@link Validatable}
+     *
+     * @param message
+     * process result of {@param map} to single {@link Message}
+     */
     constructor(
         public validators : ValidatorsT,
         public map : Function<[BaseList<ValidatorsT>, ValidatorsT], Validatables>,
