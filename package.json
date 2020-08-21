@@ -1,14 +1,14 @@
 {
   "name": "@dikac/t-array",
-  "version": "0.22.4",
+  "version": "0.22.5",
   "description": "Typescript array",
   "dependencies": {
     "@dikac/deployer": "^0.1.5",
     "@dikac/t-boolean": "^0.9.0",
     "@dikac/t-function": "^0.11.5",
     "@dikac/t-iterable": "^0.3.3",
-    "@dikac/t-message": "^0.8.5",
-    "@dikac/t-validatable": "^0.18.4",
+    "@dikac/t-message": "^0.8.6",
+    "@dikac/t-validatable": "^0.18.5",
     "@dikac/t-validator": "^0.15.2",
     "@dikac/t-value": "^0.12.1",
     "ts-toolbelt": "^6.15.5"
