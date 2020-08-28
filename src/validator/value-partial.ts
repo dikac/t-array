@@ -1,5 +1,4 @@
 import Validator from "@dikac/t-validator/validator";
-import Function from "@dikac/t-function/function";
 import Validatable from "@dikac/t-validatable/validatable";
 import ValidateValuePartial from "./validatable/list/value-partial";
 import ListReturn from "./validatable/list/infer";
@@ -30,9 +29,9 @@ export default function ValuePartial<
     MessageT = unknown,
 >(
     validators : ValidatorsT,
-    validation : Function<[Union<ListReturn<ValidatorsT>>], ReturnT>,
-    message : Function<[Union<ListReturn<ValidatorsT>>], MessageT>
-) : Omit<ValueCallbackInterface<BaseT, ValueT, MessageT, ValidatorsT, Union<ListReturn<ValidatorsT>>, ReturnT>, 'map'>  {
+    validation : (result:Union<ListReturn<ValidatorsT>>)=>ReturnT,
+    message : (result:Union<ListReturn<ValidatorsT>>)=>MessageT
+) : Omit<ValueCallbackInterface<BaseT, ValueT, MessageT, ValidatorsT, Union<ListReturn<ValidatorsT>>, ReturnT>, 'map'> {
 
     return new ValueCallback(validators, ValidateValuePartial, validation, message);
 }

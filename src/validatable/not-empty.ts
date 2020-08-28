@@ -1,7 +1,6 @@
 import Value from "@dikac/t-value/value";
 import Validatable from "@dikac/t-validatable/validatable";
 import Message from "@dikac/t-message/message";
-import Function from "@dikac/t-function/function";
 import NotEmptyArgument from "../boolean/not-empty";
 import {List} from "ts-toolbelt";
 
@@ -14,7 +13,7 @@ export default class NotEmpty<MessageT, Values extends unknown[]>
 
     constructor(
         readonly value : Values,
-        private _message : Function<[Readonly<Value<Values> & Validatable>], MessageT>,
+        private _message : (result:Readonly<Value<Values> & Validatable>)=>MessageT,
     ) {
 
         this.valid = NotEmptyArgument(value);

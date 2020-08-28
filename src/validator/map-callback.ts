@@ -1,7 +1,6 @@
 import Validator from "@dikac/t-validator/validator";
 import SimpleValidator from "@dikac/t-validator/simple";
 import Validatable from "@dikac/t-validatable/validatable";
-import Function from "@dikac/t-function/function";
 import Validators from "./validators/validators";
 import ValidatableMap, {Interface as ValidatableMapInterface} from "../validatable/map-callback";
 import BaseList from "./base/list/infer";
@@ -43,9 +42,9 @@ export type Interface<
         ValidatableMapInterface<ValidatorsT, Validatables, MessageT, ValidatableT, BaseList<ValidatorsT>>
     > &
     Validators<ValidatorsT> &
-    Message<Function<[Validatables], MessageT>> &
-    Validation<Function<[Validatables], ValidatableT>> &
-    {map : Function<[BaseList<ValidatorsT>, ValidatorsT], Validatables>};
+    Message<(results:Validatables)=>MessageT> &
+    Validation<(results:Validatables)=>ValidatableT> &
+    {map : (value:BaseList<ValidatorsT>, validators:ValidatorsT)=>Validatables};
 
 /**
  * implementation of {@link Interface}
@@ -72,9 +71,9 @@ export default class MapCallback<
      */
     constructor(
         public validators : ValidatorsT,
-        public map : Function<[BaseList<ValidatorsT>, ValidatorsT], Validatables>,
-        public validation : Function<[Validatables], ValidatableT>,
-        public message : Function<[Validatables], MessageT>
+        public map : (value:BaseList<ValidatorsT>, validators:ValidatorsT)=>Validatables,
+        public validation : (result:Validatables)=>ValidatableT,
+        public message : (result:Validatables)=>MessageT
     ) {
     }
 

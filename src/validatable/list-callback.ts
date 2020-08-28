@@ -1,6 +1,5 @@
 import Validator from "@dikac/t-validator/validator";
 import Value from "@dikac/t-value/value";
-import Function from "@dikac/t-function/function";
 import Validatable from "@dikac/t-validatable/validatable";
 import ValidatableContainer from "@dikac/t-validatable/validatable/validatable";
 import ValidatableValidation from "@dikac/t-validatable/validation/validation";
@@ -25,8 +24,8 @@ export type Interface<
     Readonly<Messages<Results>>   &
     Readonly<Validatables<Results>>  &
     Readonly<ValidatableContainer<ValidatableT>>  &
-    Readonly<ValidatableValidation<Function<[Results], ValidatableT>>>  &
-    Readonly<{map : Function<[ValueT, ValidatorT], Results>}>
+    Readonly<ValidatableValidation<(results:Results)=>ValidatableT>>  &
+    Readonly<{map : (value:ValueT, validator:ValidatorT)=>Results}>
 ;
 
 export default class ListCallback<
@@ -46,9 +45,9 @@ export default class ListCallback<
     constructor(
         readonly value: ValueT,
         readonly validator : ValidatorT,
-        readonly map : Function<[ValueT, ValidatorT], Results>,
-        readonly validation : Function<[Results], ValidatableT>,
-        message : Function<[Results], MessageT>,
+        readonly map : (value:ValueT, validator:ValidatorT)=>Results,
+        readonly validation : (results:Results)=>ValidatableT,
+        message : (results:Results)=>MessageT,
     ) {
 
         this.validatables = this.map(value, this.validator);

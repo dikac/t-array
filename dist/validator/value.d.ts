@@ -1,5 +1,4 @@
 import Validator from "@dikac/t-validator/validator";
-import Function from "@dikac/t-function/function";
 import Validatable from "@dikac/t-validatable/validatable";
 import ListReturn from "./validatable/list/infer";
 import { Interface as ValueCallbackInterface } from "./value-callback";
@@ -17,4 +16,4 @@ import { Interface as ValueCallbackInterface } from "./value-callback";
  * @param message
  * combined all result from {@link Validator} list into {@link Message} value
  */
-export default function Value<BaseT = unknown, ValueT extends BaseT = BaseT, ValidatorsT extends Validator<BaseT, ValueT>[] = Validator<BaseT, ValueT>[], ReturnT extends Validatable = Validatable, MessageT = unknown>(validators: ValidatorsT, validation: Function<[ListReturn<ValidatorsT>], ReturnT>, message: Function<[ListReturn<ValidatorsT>], MessageT>): Omit<ValueCallbackInterface<BaseT, ValueT, MessageT, ValidatorsT, ListReturn<ValidatorsT>, ReturnT>, 'map'>;
+export default function Value<BaseT = unknown, ValueT extends BaseT = BaseT, ValidatorsT extends Validator<BaseT, ValueT>[] = Validator<BaseT, ValueT>[], ReturnT extends Validatable = Validatable, MessageT = unknown>(validators: ValidatorsT, validation: (result: ListReturn<ValidatorsT>) => ReturnT, message: (result: ListReturn<ValidatorsT>) => MessageT): Omit<ValueCallbackInterface<BaseT, ValueT, MessageT, ValidatorsT, ListReturn<ValidatorsT>, ReturnT>, 'map'>;

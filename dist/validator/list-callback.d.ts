@@ -1,7 +1,6 @@
 import Validator from "@dikac/t-validator/validator";
 import SimpleValidator from "@dikac/t-validator/simple";
 import ValidatorContainer from "@dikac/t-validator/validator/validator";
-import Function from "@dikac/t-function/function";
 import Validatable from "@dikac/t-validatable/validatable";
 import { Interface as ValidatableListCallbackInterface } from "../validatable/list-callback";
 import Message from "@dikac/t-message/message";
@@ -29,17 +28,17 @@ import TypeInfer from "@dikac/t-validator/type/infer";
  * @template ValidatableT
  * final result after processing {@template Result}
  */
-export declare type Interface<MessageT, ValidatorT extends Validator, Validatables extends Instance[], ValidatableT extends Validatable> = SimpleValidator<BaseInfer<ValidatorT>[], TypeInfer<ValidatorT>[], ValidatableListCallbackInterface<TypeInfer<ValidatorT>[], ValidatorT, Validatables, MessageT, ValidatableT>> & ValidatorContainer<ValidatorT> & Message<Function<[Validatables], MessageT>> & Validation<Function<[Validatables], ValidatableT>> & {
-    map: Function<[BaseInfer<ValidatorT>[], ValidatorT], Validatables>;
+export declare type Interface<MessageT, ValidatorT extends Validator, Validatables extends Instance[], ValidatableT extends Validatable> = SimpleValidator<BaseInfer<ValidatorT>[], TypeInfer<ValidatorT>[], ValidatableListCallbackInterface<TypeInfer<ValidatorT>[], ValidatorT, Validatables, MessageT, ValidatableT>> & ValidatorContainer<ValidatorT> & Message<(result: Validatables) => MessageT> & Validation<(result: Validatables) => ValidatableT> & {
+    map: (value: BaseInfer<ValidatorT>[], validator: ValidatorT) => Validatables;
 };
 /**
  * implementation of {@link Interface}
  */
 export default class ValueCallback<MessageT = unknown, ValidatorT extends Validator = Validator, Validatables extends Instance[] = Instance[], ValidatableT extends Validatable = Validatable> implements Interface<MessageT, ValidatorT, Validatables, ValidatableT> {
     validator: ValidatorT;
-    map: Function<[BaseInfer<ValidatorT>[], ValidatorT], Validatables>;
-    validation: Function<[Validatables], ValidatableT>;
-    message: Function<[Validatables], MessageT>;
+    map: (value: BaseInfer<ValidatorT>[], validator: ValidatorT) => Validatables;
+    validation: (result: Validatables) => ValidatableT;
+    message: (result: Validatables) => MessageT;
     /**
      * @param validator
      *
@@ -52,7 +51,7 @@ export default class ValueCallback<MessageT = unknown, ValidatorT extends Valida
      * @param message
      * process result of {@param map} to single {@link Message}
      */
-    constructor(validator: ValidatorT, map: Function<[BaseInfer<ValidatorT>[], ValidatorT], Validatables>, validation: Function<[Validatables], ValidatableT>, message: Function<[Validatables], MessageT>);
+    constructor(validator: ValidatorT, map: (value: BaseInfer<ValidatorT>[], validator: ValidatorT) => Validatables, validation: (result: Validatables) => ValidatableT, message: (result: Validatables) => MessageT);
     validate<Argument extends TypeInfer<ValidatorT>[]>(value: Argument): Replace<ValidatableListCallbackInterface<Argument, ValidatorT, Validatables, MessageT, ValidatableT>, true>;
     validate<Argument extends BaseInfer<ValidatorT>[]>(value: Argument): Construct<BaseInfer<ValidatorT>[], Argument, TypeInfer<ValidatorT>[], ValidatableListCallbackInterface<TypeInfer<ValidatorT>[], ValidatorT, Validatables, MessageT, ValidatableT>>;
 }

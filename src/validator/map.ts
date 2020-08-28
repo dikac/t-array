@@ -1,5 +1,4 @@
 import Validator from "@dikac/t-validator/validator";
-import Function from "@dikac/t-function/function";
 import Validatable from "@dikac/t-validatable/validatable";
 import ValidateMap from "./validatable/list/map";
 import ListReturn from "./validatable/list/infer";
@@ -26,8 +25,8 @@ export default function  Map<
     MessageT = unknown,
 >(
     validators : ValidatorsT,
-    validation : Function<[ListReturn<ValidatorsT>], ValidatableT>,
-    message : Function<[ListReturn<ValidatorsT>], MessageT>
+    validation : (result:ListReturn<ValidatorsT>)=>ValidatableT,
+    message : (result:ListReturn<ValidatorsT>)=>MessageT
 ) : Omit<MapCallbackInterface<ValidatorsT, ListReturn<ValidatorsT>, MessageT, ValidatableT>, 'map'>  {
 
     return new MapCallback(validators, ValidateMap, validation, message);

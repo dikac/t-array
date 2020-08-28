@@ -4,7 +4,6 @@ import Validation from "@dikac/t-validatable/validation/validation";
 import ValidatableContainer from "@dikac/t-validatable/validatable/validatable";
 import ListParameter from "../validator/base/list/infer";
 import Value from "@dikac/t-value/value";
-import Function from "@dikac/t-function/function";
 import Validators from "../validator/validators/validators";
 import Message from "@dikac/t-message/message";
 import Messages from "../message/messages/messages";
@@ -26,8 +25,8 @@ export type Interface<
     Readonly<Message<MessageT>> &
     Readonly<ValidatableContainer<ValidatableT>> &
     Readonly<Messages<Result>> &
-    Readonly<Validation<Function<[Result], ValidatableT>>> &
-    Readonly<{map : Function<[ListParameter<ValidatorsT>, ValidatorsT], Result>}>
+    Readonly<Validation<(result:Result)=>ValidatableT>> &
+    Readonly<{map : (value:ListParameter<ValidatorsT>, validators:ValidatorsT)=>Result}>
 ;
 
 
@@ -48,9 +47,9 @@ export default class MapCallback<
     constructor(
         readonly value : ValueT,
         readonly validators : ValidatorsT,
-        readonly map : Function<[ListParameter<ValidatorsT>, ValidatorsT], Result>,
-        readonly validation : Function<[Result], ValidatableT>,
-        message : Function<[Result], MessageT>,
+        readonly map : (value:ListParameter<ValidatorsT>, validators:ValidatorsT)=>Result,
+        readonly validation : (result:Result)=>ValidatableT,
+        message : (result:Result)=>MessageT,
     ) {
 
         this.validatables = this.map(value, this.validators);

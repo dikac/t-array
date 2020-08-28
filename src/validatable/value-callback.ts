@@ -1,6 +1,5 @@
 import Validator from "@dikac/t-validator/validator";
 import Value from "@dikac/t-value/value";
-import Function from "@dikac/t-function/function";
 import Validatable from "@dikac/t-validatable/validatable";
 import Validation from "@dikac/t-validatable/validation/validation";
 import ValidatableContainer from "@dikac/t-validatable/validatable/validatable";
@@ -24,11 +23,11 @@ export interface Interface<
     Message<MessageT> ,
     Messages<Results> ,
     ValidatableContainer<ValidatableT> ,
-    Validation<Function<[Results], ValidatableT>>,
+    Validation<(results:Results)=>ValidatableT>,
     Validatables<Results>
 {
-    readonly messageFactory : Function<[Results], MessageT>
-    readonly map : Function<[ValueT, Container], Results>
+    readonly messageFactory : (results:Results)=>MessageT
+    readonly map : (value:ValueT, validators:Container)=>Results
 }
 
 
@@ -49,9 +48,9 @@ export default class ValueCallback<
     constructor(
         readonly value: ValueT,
         readonly validators : Container,
-        readonly map : Function<[ValueT, Container], Results>,
-        readonly validation : Function<[Results], ValidatableT>,
-        readonly messageFactory : Function<[Results], MessageT>,
+        readonly map : (value:ValueT, validators:Container)=>Results,
+        readonly validation : (results:Results)=>ValidatableT,
+        readonly messageFactory : (results:Results)=>MessageT,
     ) {
 
         this.validatables = this.map(value, this.validators);

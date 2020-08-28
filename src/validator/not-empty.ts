@@ -3,17 +3,16 @@ import Validatable from "@dikac/t-validatable/validatable";
 import Message from "@dikac/t-message/message";
 import Value from "@dikac/t-value/value";
 import NotEmptyValidatable from "../validatable/not-empty";
-import Function from "@dikac/t-function/function";
 import Construct from "@dikac/t-validator/validatable/simple";
 
 export default class NotEmpty<MessageT>
     implements
         Validator<Array<any>, Array<any>, boolean, boolean, NotEmptyValidatable<MessageT, Array<any>>>,
-        Message<Function<[Readonly<Value<Array<any>>> & Readonly<Validatable>], MessageT>>
+        Message<(result:Readonly<Value<Array<any>>> & Readonly<Validatable>)=>MessageT>
 {
 
     constructor(
-        public message : Function<[Readonly<Value<Array<any>>> & Readonly<Validatable>], MessageT>
+        public message : (result:Readonly<Value<Array<any>>> & Readonly<Validatable>)=>MessageT
     ) {
 
     }

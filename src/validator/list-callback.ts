@@ -1,7 +1,6 @@
 import Validator from "@dikac/t-validator/validator";
 import SimpleValidator from "@dikac/t-validator/simple";
 import ValidatorContainer from "@dikac/t-validator/validator/validator";
-import Function from "@dikac/t-function/function";
 import Validatable from "@dikac/t-validatable/validatable";
 import ValidatableListCallback, {Interface as ValidatableListCallbackInterface} from "../validatable/list-callback";
 import Message from "@dikac/t-message/message";
@@ -42,9 +41,9 @@ export type Interface<
         ValidatableListCallbackInterface<TypeInfer<ValidatorT>[], ValidatorT, Validatables, MessageT, ValidatableT>
     > &
     ValidatorContainer<ValidatorT> &
-    Message<Function<[Validatables], MessageT>> &
-    Validation<Function<[Validatables], ValidatableT>> &
-    {map : Function<[BaseInfer<ValidatorT>[], ValidatorT], Validatables>}
+    Message<(result:Validatables)=>MessageT> &
+    Validation<(result:Validatables)=>ValidatableT> &
+    {map : (value:BaseInfer<ValidatorT>[], validator:ValidatorT)=>Validatables}
 ;
 /**
  * implementation of {@link Interface}
@@ -70,9 +69,9 @@ export default class ValueCallback<
      */
     constructor(
         public validator : ValidatorT,
-        public map : Function<[BaseInfer<ValidatorT>[], ValidatorT], Validatables>,
-        public validation : Function<[Validatables], ValidatableT>,
-        public message : Function<[Validatables], MessageT>
+        public map : (value:BaseInfer<ValidatorT>[], validator:ValidatorT)=>Validatables,
+        public validation : (result:Validatables)=>ValidatableT,
+        public message : (result:Validatables)=>MessageT
     ) {
     }
 

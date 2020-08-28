@@ -1,5 +1,4 @@
 import Validator from "@dikac/t-validator/validator";
-import Function from "@dikac/t-function/function";
 import Validatable from "@dikac/t-validatable/validatable";
 import { Interface as MapCallbackInterface } from "./map-callback";
 import ListStrict from "./validatable/list/infer";
@@ -19,4 +18,4 @@ import Union from "../union";
  * @param message
  * process partial result from {@link Validator} list into {@link Message} value
  */
-export default function MapPartial<ValidatorsT extends Validator[] = Validator[], ValidatableT extends Validatable = Validatable, MessageT = unknown>(validators: ValidatorsT, validation: Function<[Union<ListStrict<ValidatorsT>>], ValidatableT>, message: Function<[Union<ListStrict<ValidatorsT>>], MessageT>): Omit<MapCallbackInterface<ValidatorsT, Union<ListStrict<ValidatorsT>>, MessageT, ValidatableT>, 'map'>;
+export default function MapPartial<ValidatorsT extends Validator[] = Validator[], ValidatableT extends Validatable = Validatable, MessageT = unknown>(validators: ValidatorsT, validation: (result: Union<ListStrict<ValidatorsT>>) => ValidatableT, message: (result: Union<ListStrict<ValidatorsT>>) => MessageT): Omit<MapCallbackInterface<ValidatorsT, Union<ListStrict<ValidatorsT>>, MessageT, ValidatableT>, 'map'>;

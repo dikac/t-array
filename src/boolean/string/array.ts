@@ -1,9 +1,7 @@
-import FunctionSingle from "@dikac/t-function/function-single";
-
 export default function Array(
     valid : boolean,
     value : unknown,
-    conversion : FunctionSingle<unknown, string> = (v) => typeof v
+    conversion : (value:unknown)=>string = (v) => typeof v
 ) : string {
 
     let string = conversion(value);

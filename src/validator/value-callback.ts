@@ -1,6 +1,5 @@
 import Validator from "@dikac/t-validator/validator";
 import SimpleValidator from "@dikac/t-validator/simple";
-import Function from "@dikac/t-function/function";
 import Validatable from "@dikac/t-validatable/validatable";
 import ValidatableValue, {Interface as ValidatableValueInterface} from "../validatable/value-callback";
 import Message from "@dikac/t-message/message";
@@ -44,10 +43,10 @@ export interface Interface<
         ValueT,
         ValidatableValueInterface<BaseT, ValidatorsT, Validatables, MessageT, ValidatableT>
     >,
-    Message<Function<[Validatables], MessageT>>,
+    Message<(result:Validatables)=>MessageT>,
     Validators<ValidatorsT>,
-    Validation<Function<[Validatables], ValidatableT>> {
-    map : Function<[BaseT, ValidatorsT], Validatables>
+    Validation<(result:Validatables)=>ValidatableT> {
+    map : (value:BaseT, validators:ValidatorsT)=>Validatables
 }
 
 /**
@@ -77,9 +76,9 @@ export default class ValueCallback<
      */
     constructor(
         public validators : ValidatorsT,
-        public map : Function<[BaseT, ValidatorsT], Validatables>,
-        public validation : Function<[Validatables], ValidatableT>,
-        public message : Function<[Validatables], MessageT>
+        public map : (value:BaseT, validators:ValidatorsT)=>Validatables,
+        public validation : (result:Validatables)=>ValidatableT,
+        public message : (result:Validatables)=>MessageT
     ) {
     }
 

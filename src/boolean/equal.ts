@@ -1,9 +1,9 @@
-import Function from "@dikac/t-function/function";
+import EqualBoolean from "@dikac/t-boolean/equal";
 
 export default function Equal<Value>(
     array1 : Value[],
     array2 : Value[],
-    compare : Function<[Value, Value], boolean> = (value1 : Value, value2 : Value) => value1 === value2
+    compare : (value1:Value, value2:Value) => boolean = EqualBoolean
 ) : boolean {
 
     if(array1.length !== array2.length) {

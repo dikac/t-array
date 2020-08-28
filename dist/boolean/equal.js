@@ -4,12 +4,13 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports"], factory);
+        define(["require", "exports", "@dikac/t-boolean/equal"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    function Equal(array1, array2, compare = (value1, value2) => value1 === value2) {
+    const equal_1 = require("@dikac/t-boolean/equal");
+    function Equal(array1, array2, compare = equal_1.default) {
         if (array1.length !== array2.length) {
             return false;
         }

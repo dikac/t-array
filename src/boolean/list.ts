@@ -1,8 +1,5 @@
-import Guard from "@dikac/t-function/boolean/guard";
-import Fns from "@dikac/t-function/function-single";
-
 /**
- * Check if {@param list} is {@link Recursive} with {@template Value} value
+ * Check if {@param list} is list of {@template Value}
  *
  * {@param validation} is use to validate for {@template Value}
  */
@@ -12,21 +9,21 @@ export default function List<
     Argument extends unknown,
 >(
     list : Argument[],
-    validation : Guard<Argument,  Value>,
+    validation : (value:Argument)=>value is Value,
 ) : list is Value[]
 
 export default function List<
     Assumption extends [],
 >(
     list : unknown[],
-    validation : Fns<unknown,  boolean>,
+    validation : (value:unknown)=>boolean,
 ) : boolean;
 
 export default function List<
     Assumption extends [],
     >(
     list : unknown[],
-    validation : Fns<unknown,  boolean>,
+    validation : (value:unknown)=>boolean,
 ) : boolean {
 
     for(let value of list) {

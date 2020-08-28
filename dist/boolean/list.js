@@ -1,3 +1,8 @@
+/**
+ * Check if {@param list} is list of {@template Value}
+ *
+ * {@param validation} is use to validate for {@template Value}
+ */
 (function (factory) {
     if (typeof module === "object" && typeof module.exports === "object") {
         var v = factory(require, exports);
