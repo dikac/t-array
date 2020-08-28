@@ -2,7 +2,8 @@ import Validator from "@dikac/t-validator/simple";
 import Validatable from "@dikac/t-validatable/validatable";
 import BaseList from "./base/list/infer";
 import Instance from "@dikac/t-validator/validatable/validatable";
-import MapCallback, {Interface as MapCallbackInterface} from "./map-callback";
+import MapCallback from "./map-callback";
+import MapCallbackInterface from "./map";
 /**
  * function factory for {@link MapCallback}
  *

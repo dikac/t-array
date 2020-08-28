@@ -1,15 +1,14 @@
 import Validator from "@dikac/t-validator/validator";
-import SimpleValidator from "@dikac/t-validator/simple";
-import ValidatorContainer from "@dikac/t-validator/validator/validator";
 import Validatable from "@dikac/t-validatable/validatable";
-import ValidatableListCallback, {Interface as ValidatableListCallbackInterface} from "../validatable/list-callback";
+import ValidatableListCallback from "../validatable/list-callback";
+import ValidatableListCallbackInterface from "../validatable/list-callback";
 import Message from "@dikac/t-message/message";
 import Construct from "@dikac/t-validator/validatable/simple";
 import Instance from "@dikac/t-validator/validatable/validatable";
-import Validation from "@dikac/t-validatable/validation/validation";
 import Replace from "@dikac/t-validatable/boolean/replace";
 import BaseInfer from "@dikac/t-validator/base/infer";
 import TypeInfer from "@dikac/t-validator/type/infer";
+import List from "./list";
 
 /**
  * Base {@link Validator} for validating list of value with {@link Validator}
@@ -29,31 +28,13 @@ import TypeInfer from "@dikac/t-validator/type/infer";
  * @template ValidatableT
  * final result after processing {@template Result}
  */
-export type Interface<
-    MessageT,
-    ValidatorT extends Validator,
-    Validatables extends Instance[],
-    ValidatableT extends Validatable
-> =
-    SimpleValidator<
-        BaseInfer<ValidatorT>[],
-        TypeInfer<ValidatorT>[],
-        ValidatableListCallbackInterface<TypeInfer<ValidatorT>[], ValidatorT, Validatables, MessageT, ValidatableT>
-    > &
-    ValidatorContainer<ValidatorT> &
-    Message<(result:Validatables)=>MessageT> &
-    Validation<(result:Validatables)=>ValidatableT> &
-    {map : (value:BaseInfer<ValidatorT>[], validator:ValidatorT)=>Validatables}
-;
-/**
- * implementation of {@link Interface}
- */
+
 export default class ValueCallback<
     MessageT = unknown,
     ValidatorT extends Validator = Validator,
     Validatables extends Instance[] = Instance[],
     ValidatableT extends Validatable  = Validatable
-> implements Interface<MessageT, ValidatorT, Validatables, ValidatableT> {
+> implements List<MessageT, ValidatorT, Validatables, ValidatableT> {
 
     /**
      * @param validator

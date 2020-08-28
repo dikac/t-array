@@ -1,19 +1,31 @@
 import Validator from "@dikac/t-validator/validator";
+import SimpleValidator from "@dikac/t-validator/simple";
 import Validatable from "@dikac/t-validatable/validatable";
-import ListReturn from "./validatable/list/infer";
-import { Interface as MapCallbackInterface } from "./map-callback";
+import Validators from "./validators/validators";
+import ValidatableMapInterface from "../validatable/map";
+import BaseList from "./base/list/infer";
+import TypeList from "./type/list/infer";
+import Instance from "@dikac/t-validator/validatable/validatable";
+import Validation from "@dikac/t-validatable/validation/validation";
+import Message from "@dikac/t-message/message";
 /**
- * more specific implementation of {@link MapCallback}
+ * Base {@link Validator} for validating list of value with list of  {@link Validator}
  *
- * Validate list of value with list of {@link Validator}, according to their indexes
+ * @template MessageT
+ * see {@link Validator}
  *
- * @param validators
+ *
+ * @template ValidatorsT
  * list of {@link Validator} to be used against list of value
  *
- * @param validation
- * process all result from {@link Validator} list into {@link Validatable}
+ * @template ValidatorsT
+ * list of {@link Validator} result
  *
- * @param message
- * process all result from {@link Validator} list into {@link Message} value
+ * @template MessageT
+ * message type for {@link Message} value
+ *
+ * @template ValidatableT
+ * result {@link Validatable} from {@template Validatables}
  */
-export default function Map<ValidatorsT extends Validator[] = Validator[], ValidatableT extends Validatable = Validatable, MessageT = unknown>(validators: ValidatorsT, validation: (result: ListReturn<ValidatorsT>) => ValidatableT, message: (result: ListReturn<ValidatorsT>) => MessageT): Omit<MapCallbackInterface<ValidatorsT, ListReturn<ValidatorsT>, MessageT, ValidatableT>, 'map'>;
+export default interface Map<ValidatorsT extends Validator[], Validatables extends Instance[], MessageT, ValidatableT extends Validatable> extends SimpleValidator<BaseList<ValidatorsT>, TypeList<ValidatorsT>, ValidatableMapInterface<ValidatorsT, Validatables, MessageT, ValidatableT, BaseList<ValidatorsT>>>, Validators<ValidatorsT>, Message<(results: Validatables) => MessageT>, Validation<(results: Validatables) => ValidatableT> {
+}

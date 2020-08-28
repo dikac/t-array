@@ -1,4 +1,4 @@
-import ValueAll from "../../dist/validator/value";
+import ValueAll from "../../dist/validator/value-all";
 import And from "../../dist/validatable/and";
 import ValidatablesInterface from "../../dist/validatable/validatables/validatables";
 import Validatables from "../../dist/validatable/validatables/validatables";

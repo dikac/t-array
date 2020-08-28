@@ -1,4 +1,4 @@
-import ValueAll from "../../dist/validator/value";
+import ValueAll from "../../dist/validator/value-all";
 import ListReturn from "../../dist/validator/validatable/list/list";
 import ListReturnPartial from "../../dist/validator/validatable/list/list-partial";
 import And from "../../dist/validatable/and";

@@ -4,23 +4,24 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports"], factory);
+        define(["require", "exports", "@dikac/t-object/value/value/memoize-getter"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    const memoize_getter_1 = require("@dikac/t-object/value/value/memoize-getter");
     class ValueCallback {
-        constructor(value, validators, map, validation, messageFactory) {
+        constructor(value, validators, map, validation, message) {
             this.value = value;
             this.validators = validators;
-            this.map = map;
-            this.validation = validation;
-            this.messageFactory = messageFactory;
-            this.validatables = this.map(value, this.validators);
+            this.messageFactory = message;
+            this.validatables = map(value, this.validators);
             this.validatable = validation(this.validatables);
             this.valid = this.validatable.valid;
-            this.message = messageFactory(this.validatables);
             this.messages = this.validatables;
+        }
+        get message() {
+            return memoize_getter_1.default(this, 'message', this.messageFactory(this.validatables));
         }
     }
     exports.default = ValueCallback;

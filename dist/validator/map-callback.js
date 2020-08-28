@@ -11,7 +11,23 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     const map_callback_1 = require("../validatable/map-callback");
     /**
-     * implementation of {@link Interface}
+     * Base {@link Validator} for validating list of value with list of  {@link Validator}
+     *
+     * @template MessageT
+     * see {@link Validator}
+     *
+     *
+     * @template ValidatorsT
+     * list of {@link Validator} to be used against list of value
+     *
+     * @template ValidatorsT
+     * list of {@link Validator} result
+     *
+     * @template MessageT
+     * message type for {@link Message} value
+     *
+     * @template ValidatableT
+     * result {@link Validatable} from {@template Validatables}
      */
     class MapCallback {
         /**

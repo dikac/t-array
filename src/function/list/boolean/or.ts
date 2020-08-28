@@ -1,5 +1,5 @@
 import {Guard, Validation} from "./and";
-import {List, Union} from "ts-toolbelt";
+import {List} from "ts-toolbelt";
 
 /**
  *

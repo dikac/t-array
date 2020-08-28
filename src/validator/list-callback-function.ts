@@ -1,8 +1,9 @@
 import Validator from "@dikac/t-validator/validator";
 import Validatable from "@dikac/t-validatable/validatable";
 import Instance from "@dikac/t-validator/validatable/validatable";
-import ListCallback, {Interface as ListCallbackInterface} from "./list-callback";
+import ListCallback from "./list-callback";
 import BaseInfer from "@dikac/t-validator/base/infer";
+import List from "./list";
 
 /**
  * function factory for {@link ListCallback}
@@ -19,7 +20,7 @@ export default function  ListCallbackFunction<
      map : (value:BaseInfer<ValidatorT>[], validator:ValidatorT)=>Result,
      validation : (results:Result)=>ValidatableT,
      message : (results:Result)=>MessageT
-) : ListCallbackInterface<MessageT, ValidatorT, Result, ValidatableT> {
+) : List<MessageT, ValidatorT, Result, ValidatableT> {
 
     return new ListCallback(validator, map, validation, message);
 }

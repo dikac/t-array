@@ -1,19 +1,30 @@
 import Validator from "@dikac/t-validator/validator";
+import SimpleValidator from "@dikac/t-validator/simple";
+import ValidatorContainer from "@dikac/t-validator/validator/validator";
 import Validatable from "@dikac/t-validatable/validatable";
-import InferReturn from "@dikac/t-validator/validatable/infer";
-import { Interface as ListCallbackInterface } from "./list-callback";
+import ValidatableListCallbackInterface from "../validatable/list-callback";
+import Message from "@dikac/t-message/message";
+import Instance from "@dikac/t-validator/validatable/validatable";
+import Validation from "@dikac/t-validatable/validation/validation";
+import BaseInfer from "@dikac/t-validator/base/infer";
+import TypeInfer from "@dikac/t-validator/type/infer";
 /**
- * more specific implementation of {@link ListCallback}
+ * Base {@link Validator} for validating list of value with {@link Validator}
  *
- * Validate list of value with {@link Validator}
+ * @template ValueT
+ * see {@link Validator}
  *
- * @param validator
+ * @template MessageT
+ * see {@link Validator}
+ *
+ * @template ValidatorsT
  * to be used against list of value
  *
- * @param validation
- * process all result from {@link Validator} list into {@link Validatable}
+ * @template Validatables
+ * result after processing {@template ValidatorsT} with {@template BaseT} or {@template ValueT}
  *
- * @param message
- * process all result from {@link Validator} list into {@link Message} value
+ * @template ValidatableT
+ * final result after processing {@template Result}
  */
-export default function List<MessageT = unknown, ValidatorT extends Validator = Validator, ValidatableT extends Validatable = Validatable>(validator: ValidatorT, validation: (result: InferReturn<ValidatorT>[]) => ValidatableT, message: (result: InferReturn<ValidatorT>[]) => MessageT): Omit<ListCallbackInterface<MessageT, ValidatorT, InferReturn<ValidatorT>[], ValidatableT>, 'map'>;
+export default interface List<MessageT, ValidatorT extends Validator, Validatables extends Instance[], ValidatableT extends Validatable> extends SimpleValidator<BaseInfer<ValidatorT>[], TypeInfer<ValidatorT>[], ValidatableListCallbackInterface<TypeInfer<ValidatorT>[], ValidatorT, Validatables, MessageT, ValidatableT>>, ValidatorContainer<ValidatorT>, Message<(result: Validatables) => MessageT>, Validation<(result: Validatables) => ValidatableT> {
+}

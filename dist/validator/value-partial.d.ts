@@ -1,8 +1,8 @@
 import Validator from "@dikac/t-validator/validator";
 import Validatable from "@dikac/t-validatable/validatable";
 import ListReturn from "./validatable/list/infer";
-import { Interface as ValueCallbackInterface } from "./value-callback";
 import Union from "../union";
+import Value from "./value";
 /**
  * more specific implementation of {@link ValueCallback}
  *
@@ -18,4 +18,4 @@ import Union from "../union";
  * @param message
  * combined partial result from {@link Validator} list into {@link Message} value
  */
-export default function ValuePartial<BaseT = unknown, ValueT extends BaseT = BaseT, ValidatorsT extends Validator<BaseT, ValueT>[] = Validator<BaseT, ValueT>[], ReturnT extends Validatable = Validatable, MessageT = unknown>(validators: ValidatorsT, validation: (result: Union<ListReturn<ValidatorsT>>) => ReturnT, message: (result: Union<ListReturn<ValidatorsT>>) => MessageT): Omit<ValueCallbackInterface<BaseT, ValueT, MessageT, ValidatorsT, Union<ListReturn<ValidatorsT>>, ReturnT>, 'map'>;
+export default function ValuePartial<BaseT = unknown, ValueT extends BaseT = BaseT, ValidatorsT extends Validator<BaseT, ValueT>[] = Validator<BaseT, ValueT>[], ReturnT extends Validatable = Validatable, MessageT = unknown>(validators: ValidatorsT, validation: (result: Union<ListReturn<ValidatorsT>>) => ReturnT, message: (result: Union<ListReturn<ValidatorsT>>) => MessageT): Value<BaseT, ValueT, MessageT, ValidatorsT, Union<ListReturn<ValidatorsT>>, ReturnT>;

@@ -1,19 +1,31 @@
 import Validator from "@dikac/t-validator/validator";
+import SimpleValidator from "@dikac/t-validator/simple";
 import Validatable from "@dikac/t-validatable/validatable";
-import ListReturn from "./validatable/list/infer";
-import { Interface as ValueCallbackInterface } from "./value-callback";
+import ValidatableValueInterface from "../validatable/value";
+import Message from "@dikac/t-message/message";
+import Instance from "@dikac/t-validator/validatable/validatable";
+import Validators from "./validators/validators";
+import Validation from "@dikac/t-validatable/validation/validation";
 /**
- * more specific implementation of {@link ValueCallback}
+ * Base {@link Validator} for validating value with list of {@link Validator}
  *
- * Validate value with all list of {@link Validator}
+ * @template BaseT
+ * see {@link Validator}
  *
- * @param validators
- * list of {@link Validator} to be used against value
+ * @template ValueT
+ * see {@link Validator}
  *
- * @param validation
- * combined all result from {@link Validator} list into {@link Validatable}
+ * @template MessageT
+ * see {@link Validator}
  *
- * @param message
- * combined all result from {@link Validator} list into {@link Message} value
+ * @template ValidatorsT
+ * list of {@link Validator} to be used against {@template BaseT} or {@template ValueT}
+ *
+ * @template Validatables
+ * result after processing {@template ValidatorsT} with {@template BaseT} or {@template ValueT}
+ *
+ * @template ValidatableT
+ * final result after processing {@template Result}
  */
-export default function Value<BaseT = unknown, ValueT extends BaseT = BaseT, ValidatorsT extends Validator<BaseT, ValueT>[] = Validator<BaseT, ValueT>[], ReturnT extends Validatable = Validatable, MessageT = unknown>(validators: ValidatorsT, validation: (result: ListReturn<ValidatorsT>) => ReturnT, message: (result: ListReturn<ValidatorsT>) => MessageT): Omit<ValueCallbackInterface<BaseT, ValueT, MessageT, ValidatorsT, ListReturn<ValidatorsT>, ReturnT>, 'map'>;
+export default interface Value<BaseT, ValueT extends BaseT, MessageT, ValidatorsT extends Validator<BaseT, ValueT>[], Validatables extends Instance[], ValidatableT extends Validatable> extends SimpleValidator<BaseT, ValueT, ValidatableValueInterface<BaseT, ValidatorsT, Validatables, MessageT, ValidatableT>>, Message<(result: Validatables) => MessageT>, Validators<ValidatorsT>, Validation<(result: Validatables) => ValidatableT> {
+}

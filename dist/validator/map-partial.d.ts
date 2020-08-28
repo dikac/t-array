@@ -1,6 +1,6 @@
 import Validator from "@dikac/t-validator/validator";
 import Validatable from "@dikac/t-validatable/validatable";
-import { Interface as MapCallbackInterface } from "./map-callback";
+import MapCallbackInterface from "./map";
 import ListStrict from "./validatable/list/infer";
 import Union from "../union";
 /**

@@ -5,6 +5,7 @@
   "dependencies": {
     "@dikac/deployer": "^0.1.5",
     "@dikac/t-boolean": "^0.9.2",
+    "@dikac/t-object": "^0.32.0",
     "@dikac/t-function": "^0.12.1",
     "@dikac/t-iterable": "^0.3.3",
     "@dikac/t-message": "^0.8.8",
