@@ -1,3 +1,5 @@
+import Equal from "@dikac/t-boolean/equal";
+
 /**
  * pick a unique value from {@param values}
  *
@@ -9,8 +11,7 @@
  */
 export default function Unique<Value>(
     values : Value[],
-    compare : (value1 : Value, value2 : Value) => boolean
-    = (value1 : Value, value2 : Value) => value1 === value2
+    compare : (value1 : Value, value2 : Value) => boolean = Equal
 ) : Value[] {
 
     let results : Value[] = [];

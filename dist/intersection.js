@@ -4,11 +4,12 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports"], factory);
+        define(["require", "exports", "@dikac/t-boolean/equal"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    const equal_1 = require("@dikac/t-boolean/equal");
     /**
      * return data which exists in all array
      *
@@ -16,7 +17,7 @@
      * @param arrays
      * @constructor
      */
-    function Intersection(compare = (target, comparison) => target === comparison, ...arrays) {
+    function Intersection(compare = equal_1.default, ...arrays) {
         switch (arrays.length) {
             case 0: return [];
             case 1: return arrays.shift();

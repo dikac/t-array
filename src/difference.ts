@@ -1,3 +1,5 @@
+import Equal from "@dikac/t-boolean/equal";
+
 /**
  * return all data from targets that does not exists in comparison
  *
@@ -9,8 +11,7 @@
 export default function Difference<Value>(
     targets: Value[],
     comparisons : Value[],
-    compare : (target : Value, comparison : Value) => boolean
-        = (target : Value, comparison : Value) => target === comparison
+    compare : (target : Value, comparison : Value) => boolean = Equal
 ) : Value[] {
     let results : Value[] = [];
 

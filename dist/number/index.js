@@ -4,11 +4,12 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports"], factory);
+        define(["require", "exports", "@dikac/t-boolean/equal"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    const equal_1 = require("@dikac/t-boolean/equal");
     /**
      * get index of first match values
      *
@@ -26,7 +27,7 @@
      *
      * @constructor
      */
-    function Index(array, value, validator = (value, argument) => value === argument, start = 0, end = Infinity) {
+    function Index(array, value, validator = equal_1.default, start = 0, end = Infinity) {
         let direct = array.indexOf(value, start);
         if (direct !== -1) {
             return direct;

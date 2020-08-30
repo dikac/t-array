@@ -1,10 +1,10 @@
 import RemovesValue from "./removes-value";
+import Equal from "@dikac/t-boolean/equal";
 
 export default function RemovesValues<Value>(
     array : Value[],
     values : Iterable<Value>,
-    validator : (arrayValue : Value, valueArgument : Value) => boolean
-        = (arrayValue : Value, valueArgument : Value) => arrayValue === valueArgument,
+    validator : (arrayValue : Value, valueArgument : Value) => boolean = Equal,
     start : number = 0,
     end : number = Infinity,
     limit : number = Infinity

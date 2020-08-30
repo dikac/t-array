@@ -1,3 +1,5 @@
+import Equal from "@dikac/t-boolean/equal";
+
 /**
  * pick a duplicate value from {@param values}
  *
@@ -9,7 +11,7 @@
  */
 export default function Duplicate<Value>(
     values : Value[],
-    compare : (value1 : Value, value2 : Value)=>boolean = (value1 : Value, value2 : Value) => value1 === value2
+    compare : (value1 : Value, value2 : Value) => boolean = Equal
 ) : Value[] {
 
     let duplicates : Value[] = [];

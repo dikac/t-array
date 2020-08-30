@@ -4,14 +4,15 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "./value/value/extract", "./number"], factory);
+        define(["require", "exports", "./value/value/extract", "./number", "@dikac/t-boolean/equal"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const extract_1 = require("./value/value/extract");
     const number_1 = require("./number");
-    function RemovesValue(array, value, validator = (arrayValue, valueArgument) => arrayValue === valueArgument, start = 0, end = Infinity, limit = Infinity) {
+    const equal_1 = require("@dikac/t-boolean/equal");
+    function RemovesValue(array, value, validator = equal_1.default, start = 0, end = Infinity, limit = Infinity) {
         let removed = [];
         while (limit > 0) {
             let index = number_1.default(array, value, validator, start, end);

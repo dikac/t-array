@@ -1,3 +1,5 @@
+import Equal from "@dikac/t-boolean/equal";
+
 /**
  * return data which exists in all array
  *
@@ -6,7 +8,7 @@
  * @constructor
  */
 export default function Intersection<Value>(
-    compare : (target : Value, comparison : Value) => boolean = (target : Value, comparison : Value) => target === comparison,
+    compare : (target : Value, comparison : Value) => boolean = Equal,
     ...arrays : Value[][]
 ) : Value[] {
 

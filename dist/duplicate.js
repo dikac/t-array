@@ -4,11 +4,12 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports"], factory);
+        define(["require", "exports", "@dikac/t-boolean/equal"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    const equal_1 = require("@dikac/t-boolean/equal");
     /**
      * pick a duplicate value from {@param values}
      *
@@ -18,7 +19,7 @@
      * to compare value equality
      *
      */
-    function Duplicate(values, compare = (value1, value2) => value1 === value2) {
+    function Duplicate(values, compare = equal_1.default) {
         let duplicates = [];
         for (let [index1, value1] of values.entries()) {
             for (let [index2, value2] of values.entries()) {
