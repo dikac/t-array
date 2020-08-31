@@ -160,21 +160,21 @@ describe("all valid", function() {
 
         if(validatable.validatables[0]) {
             expect(validatable.validatables[0].valid).toBe(true);
-            expect(validatable.validatables[0].message).toBe('value is type of "string"');
+            expect(typeof validatable.validatables[0].message).toBe('string');
         } else {
             fail('index 0 should exits')
         }
 
         if(validatable.validatables[1]) {
             expect(validatable.validatables[1].valid).toBe(true);
-            expect(validatable.validatables[1].message).toBe('value is type of "string"');
+            expect(typeof validatable.validatables[1].message).toBe('string');
         } else {
             fail('index 1 should exits')
         }
 
         if(validatable.validatables[2]) {
             expect(validatable.validatables[2].valid).toBe(true);
-            expect(validatable.validatables[2].message).toBe('value is type of "string"');
+            expect(typeof validatable.validatables[2].message).toBe('string');
         } else {
             fail('index 2 should exits')
         }
@@ -221,21 +221,21 @@ describe("mixed", function() {
 
         if(validatable.validatables[0]) {
             expect(validatable.validatables[0].valid).toBe(true);
-            expect(validatable.validatables[0].message).toBe('value is type of "string"');
+            expect(typeof validatable.validatables[0].message).toBe('string');
         } else {
             fail('index 0 should exits')
         }
 
         if(validatable.validatables[1]) {
             expect(validatable.validatables[1].valid).toBe(false);
-            expect(validatable.validatables[1].message).toBe('value is not type of "number"');
+            expect(typeof validatable.validatables[1].message).toBe('string');
         } else {
             fail('index 1 should exits')
         }
 
         if(validatable.validatables[2]) {
             expect(validatable.validatables[2].valid).toBe(true);
-            expect(validatable.validatables[2].message).toBe('value is type of "string"');
+            expect(typeof validatable.validatables[2].message).toBe('string');
         } else {
             fail('index 2 should exits')
         }
@@ -283,21 +283,21 @@ describe("all invalid", function() {
 
         if(validatable.validatables[0]) {
             expect(validatable.validatables[0].valid).toBe(false);
-            expect(validatable.validatables[0].message).toBe('value is not type of "number"');
+            expect(typeof validatable.validatables[0].message).toBe('string');
         } else {
             fail('index 1 should exits')
         }
 
         if(validatable.validatables[1]) {
             expect(validatable.validatables[1].valid).toBe(false);
-            expect(validatable.validatables[1].message).toBe('value is not type of "number"');
+            expect(typeof validatable.validatables[1].message).toBe('string');
         } else {
             fail('index 2 should not exits')
         }
 
         if(validatable.validatables[2]) {
             expect(validatable.validatables[2].valid).toBe(false);
-            expect(validatable.validatables[2].message).toBe('value is not type of "number"');
+            expect(typeof validatable.validatables[2].message).toBe('string');
         } else {
             fail('index 3 should not exits')
         }
@@ -356,21 +356,21 @@ describe("recursive", function() {
 
             if(validatable.validatables[0]) {
                 expect(validatable.validatables[0].valid).toBe(false);
-                expect(validatable.validatables[0].message).toBe('value is not type of "number"');
+                expect(typeof validatable.validatables[0].message).toBe('string');
             } else {
                 fail('index 1 should exits')
             }
 
             if(validatable.validatables[1]) {
                 expect(validatable.validatables[1].valid).toBe(false);
-                expect(validatable.validatables[1].message).toBe('value is not type of "number"');
+                expect(typeof validatable.validatables[1].message).toBe('string');
             } else {
                 fail('index 2 should not exits')
             }
 
             if(validatable.validatables[2]) {
                 expect(validatable.validatables[2].valid).toBe(false);
-                expect(validatable.validatables[2].message).toBe('value is not type of "number"');
+                expect(typeof validatable.validatables[2].message).toBe('string');
             } else {
                 fail('index 3 should not exits')
             }
@@ -382,7 +382,7 @@ describe("recursive", function() {
                      // @ts-expect-error
                     expect(validatable.validatables[3].validatables[0].valid).toBe(false);
                      // @ts-expect-error
-                    expect(validatable.validatables[3].validatables[0].message).toBe('value is not type of "number"');
+                    expect(typeof validatable.validatables[3].validatables[0].message).toBe('string');
                 } else {
                     fail('index 3.0 should exits')
                 }
@@ -392,7 +392,7 @@ describe("recursive", function() {
                      // @ts-expect-error
                     expect(validatable.validatables[3].validatables[1].valid).toBe(false);
                      // @ts-expect-error
-                    expect(validatable.validatables[3].validatables[1].message).toBe('value is not type of "number"');
+                    expect(typeof validatable.validatables[3].validatables[1].message).toBe('string');
                 } else {
                     fail('index 3.1 should exits')
                 }

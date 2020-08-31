@@ -181,13 +181,13 @@ describe("explicit", function() {
                 expect(validatable.value).toBe(value);
 
                 expect(validatable.validatables[0].valid).toBe(true);
-                expect(validatable.validatables[0].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[0].message).toBe('string');
 
                 expect(validatable.validatables[1].valid).toBe(true);
-                expect(validatable.validatables[1].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[1].message).toBe('string');
 
                 expect(validatable.validatables[2].valid).toBe(true);
-                expect(validatable.validatables[2].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[2].message).toBe('string');
 
                 // @ts-expect-error
                 expect(validatable.validatables[3]).toBe(undefined);
@@ -204,13 +204,13 @@ describe("explicit", function() {
                 expect(validatable.value).toBe(value);
 
                 expect(validatable.validatables[0].valid).toBe(true);
-                expect(validatable.validatables[0].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[0].message).toBe('string');
 
                 expect(validatable.validatables[1].valid).toBe(true);
-                expect(validatable.validatables[1].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[1].message).toBe('string');
 
                 expect(validatable.validatables[2].valid).toBe(true);
-                expect(validatable.validatables[2].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[2].message).toBe('string');
 
                 // @ts-expect-error
                 expect(validatable.validatables[3]).toBe(undefined);
@@ -232,13 +232,13 @@ describe("explicit", function() {
                 expect(validatable.value).toBe(value);
 
                 expect(validatable.validatables[0].valid).toBe(true);
-                expect(validatable.validatables[0].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[0].message).toBe('string');
 
                 expect(validatable.validatables[1].valid).toBe(true);
-                expect(validatable.validatables[1].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[1].message).toBe('string');
 
                 expect(validatable.validatables[2].valid).toBe(true);
-                expect(validatable.validatables[2].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[2].message).toBe('string');
 
                 // @ts-expect-error
                 expect(validatable.validatables[3]).toBe(undefined);
@@ -256,13 +256,13 @@ describe("explicit", function() {
                 expect(validatable.value).toBe(value);
 
                 expect(validatable.validatables[0].valid).toBe(true);
-                expect(validatable.validatables[0].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[0].message).toBe('string');
 
                 expect(validatable.validatables[1].valid).toBe(true);
-                expect(validatable.validatables[1].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[1].message).toBe('string');
 
                 expect(validatable.validatables[2].valid).toBe(true);
-                expect(validatable.validatables[2].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[2].message).toBe('string');
 
                 // @ts-expect-error
                 expect(validatable.validatables[3]).toBe(undefined);
@@ -311,13 +311,13 @@ describe("explicit", function() {
                 expect(and.value).toBe(value);
 
                 expect(and.validatables[0].valid).toBe(true);
-                expect(and.validatables[0].message).toBe('value is type of "string"');
+                expect(typeof and.validatables[0].message).toBe('string');
 
                 expect(and.validatables[1].valid).toBe(false);
-                expect(and.validatables[1].message).toBe('value is not type of "number"');
+                expect(typeof and.validatables[1].message).toBe('string');
 
                 expect(and.validatables[2].valid).toBe(true);
-                expect(and.validatables[2].message).toBe('value is type of "string"');
+                expect(typeof and.validatables[2].message).toBe('string');
 
                 // @ts-expect-error
                 expect(and.validatables[3]).toBe(undefined);
@@ -334,13 +334,13 @@ describe("explicit", function() {
                 expect(or.valid).toBe(true);
                 expect(or.value).toBe(value);
 
-                expect(or.validatables[0].message).toBe('value is type of "string"');
+                expect(typeof or.validatables[0].message).toBe('string');
                 expect(or.validatables[0].valid).toBe(true);
 
-                expect(or.validatables[1].message).toBe('value is not type of "number"');
+                expect(typeof or.validatables[1].message).toBe('string');
                 expect(or.validatables[1].valid).toBe(false);
 
-                expect(or.validatables[2].message).toBe('value is type of "string"');
+                expect(typeof or.validatables[2].message).toBe('string');
                 expect(or.validatables[2].valid).toBe(true);
 
                 // @ts-expect-error
@@ -363,10 +363,10 @@ describe("explicit", function() {
                 expect(and.value).toBe(value);
 
                 expect(and.validatables[0].valid).toBe(true);
-                expect(and.validatables[0].message).toBe('value is type of "string"');
+                expect(typeof and.validatables[0].message).toBe('string');
 
                 expect(and.validatables[1].valid).toBe(false);
-                expect(and.validatables[1].message).toBe('value is not type of "number"');
+                expect(typeof and.validatables[1].message).toBe('string');
 
                 expect(and.validatables[2]).toBe(<any>undefined);
                 expect(and.validatables[3]).toBe(<any>undefined);
@@ -383,10 +383,10 @@ describe("explicit", function() {
                 expect(or.valid).toBe(true);
                 expect(or.value).toBe(value);
 
-                expect(or.validatables[0].message).toBe('value is type of "string"');
+                expect(typeof or.validatables[0].message).toBe('string');
                 expect(or.validatables[0].valid).toBe(true);
 
-                expect(or.validatables[1].message).toBe('value is not type of "number"');
+                expect(typeof or.validatables[1].message).toBe('string');
                 expect(or.validatables[1].valid).toBe(false);
 
                 expect(or.validatables[2]).toBe(<any>undefined);
@@ -430,13 +430,13 @@ describe("explicit", function() {
                 expect(and.valid).toBe(false);
                 expect(and.value).toEqual(value);
 
-                expect(and.validatables[0].message).toBe('value is not type of "string"');
+                expect(typeof and.validatables[0].message).toBe('string');
                 expect(and.validatables[0].valid).toBe(false);
 
-                expect(and.validatables[1].message).toBe('value is not type of "number"');
+                expect(typeof and.validatables[1].message).toBe('string');
                 expect(and.validatables[1].valid).toBe(false);
 
-                expect(and.validatables[2].message).toBe('value is not type of "string"');
+                expect(typeof and.validatables[2].message).toBe('string');
                 expect(and.validatables[2].valid).toBe(false);
 
                 // @ts-expect-error
@@ -454,13 +454,13 @@ describe("explicit", function() {
                 expect(or.valid).toBe(false);
                 expect(or.value).toEqual(value);
 
-                expect(or.validatables[0].message).toBe('value is not type of "string"');
+                expect(typeof or.validatables[0].message).toBe('string');
                 expect(or.validatables[0].valid).toBe(false);
 
-                expect(or.validatables[1].message).toBe('value is not type of "number"');
+                expect(typeof or.validatables[1].message).toBe('string');
                 expect(or.validatables[1].valid).toBe(false);
 
-                expect(or.validatables[2].message).toBe('value is not type of "string"');
+                expect(typeof or.validatables[2].message).toBe('string');
                 expect(or.validatables[2].valid).toBe(false);
 
                 // @ts-expect-error
@@ -482,7 +482,7 @@ describe("explicit", function() {
                 expect(and.value).toEqual(value);
 
                 expect(and.validatables[0].valid).toBe(false);
-                expect(and.validatables[0].message).toBe('value is not type of "string"');
+                expect(typeof and.validatables[0].message).toBe('string');
 
                 expect(and.validatables[1]).toBe(<any>undefined);
                 expect(and.validatables[2]).toBe(<any>undefined);
@@ -501,7 +501,7 @@ describe("explicit", function() {
                 expect(or.valid).toBe(false);
                 expect(or.value).toEqual(value);
 
-                expect(or.validatables[0].message).toBe('value is not type of "string"');
+                expect(typeof or.validatables[0].message).toBe('string');
                 expect(or.validatables[0].valid).toBe(false);
 
                 expect(or.validatables[1]).toBe(<any>undefined);

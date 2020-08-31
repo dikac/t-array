@@ -1,14 +1,25 @@
-export default function NotEmpty(
-    valid : boolean,
-    value : unknown[],
-) : string {
+import Sentence from "@dikac/t-message/sentence";
+import Name from "@dikac/t-object/string/name";
 
-    if(valid) {
+const sentence = new Sentence(
+    false,
+    '',
+    {
+        invalid:'is',
+        valid:'is not',
+    }, 'empty array'
+);
 
-        return `array is not empty`;
+/**
+ * string intended for not empty array
+ *
+ * @param valid
+ * @param value
+ */
 
-    } else {
+export default function NotEmpty(valid : boolean, value : any[]) : string {
 
-        return `array must not empty`;
-    }
+    sentence.subject = '"' + Name(value) + '"';
+    sentence.valid = valid;
+    return sentence.message;
 }

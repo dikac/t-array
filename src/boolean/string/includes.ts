@@ -1,16 +1,22 @@
+import Sentence from "@dikac/t-message/sentence";
+
+const sentence = new Sentence(
+    false,
+    '',
+    {
+        valid : 'is exists in',
+        invalid : 'is not exists in',
+    }, 'array'
+);
+
+
 export default function Includes<Type>(
     valid : boolean,
-    value : Type,
-    trues : Type[],
-    falses : Type[],
+    subject : string = '',
 ) : string {
 
-    if(valid) {
+    sentence.subject = subject;
+    sentence.valid = valid;
 
-        return `value is exists in entries`;
-
-    } else {
-
-        return `value is not exists in entries`;
-    }
+    return sentence.message;
 }

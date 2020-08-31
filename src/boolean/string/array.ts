@@ -1,17 +1,20 @@
+import Sentence from "@dikac/t-message/sentence";
+
+const sentence = new Sentence(
+    false,
+    '',
+    {
+        invalid:'is not',
+        valid:'is',
+    }, 'array'
+);
+
 export default function Array(
     valid : boolean,
-    value : unknown,
-    conversion : (value:unknown)=>string = (v) => typeof v
+    subject : string = ''
 ) : string {
 
-    let string = conversion(value);
-
-    if(valid) {
-
-        return `value "${string}" is array`;
-
-    } else {
-
-        return `value "${string}" is not array`;
-    }
+    sentence.subject = subject;
+    sentence.valid = valid;
+    return sentence.message;
 }

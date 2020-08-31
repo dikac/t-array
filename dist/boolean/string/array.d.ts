@@ -1,1 +1,1 @@
-export default function Array(valid: boolean, value: unknown, conversion?: (value: unknown) => string): string;
+export default function Array(valid: boolean, subject?: string): string;

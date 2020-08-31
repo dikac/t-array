@@ -148,7 +148,7 @@ describe("all valid", function() {
             if(validatable.validatables[0]) {
 
                 expect(validatable.validatables[0].valid).toBe(true);
-                expect(validatable.validatables[0].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[0].message).toBe('string');
 
             } else {
 
@@ -161,7 +161,7 @@ describe("all valid", function() {
             if(validatable.validatables[1]) {
 
                 expect(validatable.validatables[1].valid).toBe(true);
-                expect(validatable.validatables[1].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[1].message).toBe('string');
 
             } else {
 
@@ -174,7 +174,7 @@ describe("all valid", function() {
             if(validatable.validatables[2]) {
 
                 expect(validatable.validatables[2].valid).toBe(true);
-                expect(validatable.validatables[2].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[2].message).toBe('string');
 
             } else {
 
@@ -212,7 +212,7 @@ describe("mixed", function() {
             if(validatable.validatables[0]) {
 
                 expect(validatable.validatables[0].valid).toBe(true);
-                expect(validatable.validatables[0].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[0].message).toBe('string');
 
             } else {
 
@@ -225,7 +225,7 @@ describe("mixed", function() {
             if(validatable.validatables[1]) {
 
                 expect(validatable.validatables[1].valid).toBe(false);
-                expect(validatable.validatables[1].message).toBe('value is not type of "number"');
+                expect(typeof validatable.validatables[1].message).toBe('string');
 
             } else {
 
@@ -238,7 +238,7 @@ describe("mixed", function() {
             if(validatable.validatables[2]) {
 
                 expect(validatable.validatables[2].valid).toBe(true);
-                expect(validatable.validatables[2].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[2].message).toBe('string');
 
             } else {
 
@@ -272,7 +272,7 @@ describe("all invalid", function() {
         if(validatable.validatables[0]) {
 
             expect(validatable.validatables[0].valid).toBe(false);
-            expect(validatable.validatables[0].message).toBe('value is not type of "number"');
+            expect(typeof validatable.validatables[0].message).toBe('string');
 
         } else {
 
@@ -285,7 +285,7 @@ describe("all invalid", function() {
         if(validatable.validatables[1]) {
 
             expect(validatable.validatables[1].valid).toBe(false);
-            expect(validatable.validatables[1].message).toBe('value is not type of "number"');
+            expect(typeof validatable.validatables[1].message).toBe('string');
 
         } else {
 
@@ -298,7 +298,7 @@ describe("all invalid", function() {
         if(validatable.validatables[2]) {
 
             expect(validatable.validatables[2].valid).toBe(false);
-            expect(validatable.validatables[2].message).toBe('value is not type of "number"');
+            expect(typeof validatable.validatables[2].message).toBe('string');
 
         } else {
 
@@ -341,7 +341,7 @@ describe('recursive', ()=>{
                 if(validatable.validatables[0]) {
 
                     expect(validatable.validatables[0].valid).toBe(true);
-                    expect(validatable.validatables[0].message).toBe('value is type of "string"');
+                    expect(typeof validatable.validatables[0].message).toBe('string');
 
                 } else {
 
@@ -354,7 +354,7 @@ describe('recursive', ()=>{
                 if(validatable.validatables[1]) {
 
                     expect(validatable.validatables[1].valid).toBe(true);
-                    expect(validatable.validatables[1].message).toBe('value is type of "string"');
+                    expect(typeof validatable.validatables[1].message).toBe('string');
 
                 } else {
 
@@ -367,7 +367,7 @@ describe('recursive', ()=>{
                 if(validatable.validatables[2]) {
 
                     expect(validatable.validatables[2].valid).toBe(true);
-                    expect(validatable.validatables[2].message).toBe('value is type of "string"');
+                    expect(typeof validatable.validatables[2].message).toBe('string');
 
                 } else {
 
@@ -384,7 +384,7 @@ describe('recursive', ()=>{
                     // @ts-expect-error
                     expect(validatable.validatables[3].validatables[0].valid).toBe(true);
                     // @ts-expect-error
-                    expect(validatable.validatables[3].validatables[0].message).toBe('value is type of "string"');
+                    expect(typeof validatable.validatables[3].validatables[0].message).toBe('string');
 
                 } else {
 
@@ -400,7 +400,7 @@ describe('recursive', ()=>{
                     // @ts-expect-error
                     expect(validatable.validatables[3].validatables[1].valid).toBe(true);
                     // @ts-expect-error
-                    expect(validatable.validatables[3].validatables[1].message).toBe('value is type of "string"');
+                    expect(typeof validatable.validatables[3].validatables[1].message).toBe('string');
 
                 } else {
 
@@ -451,7 +451,7 @@ describe('recursive', ()=>{
                 if(validatable.validatables[0]) {
 
                     expect(validatable.validatables[0].valid).toBe(true);
-                    expect(validatable.validatables[0].message).toBe('value is type of "string"');
+                    expect(typeof validatable.validatables[0].message).toBe('string');
 
                 } else {
 
@@ -464,7 +464,7 @@ describe('recursive', ()=>{
                 if(validatable.validatables[1]) {
 
                     expect(validatable.validatables[1].valid).toBe(false);
-                    expect(validatable.validatables[1].message).toBe('value is not type of "number"');
+                    expect(typeof validatable.validatables[1].message).toBe('string');
 
                 } else {
 
@@ -477,7 +477,7 @@ describe('recursive', ()=>{
                 if(validatable.validatables[2]) {
 
                     expect(validatable.validatables[2].valid).toBe(true);
-                    expect(validatable.validatables[2].message).toBe('value is type of "string"');
+                    expect(typeof validatable.validatables[2].message).toBe('string');
 
                 } else {
 
@@ -557,7 +557,7 @@ describe('recursive', ()=>{
             if(validatable.validatables[0]) {
 
                 expect(validatable.validatables[0].valid).toBe(false);
-                expect(validatable.validatables[0].message).toBe('value is not type of "number"');
+                expect(typeof validatable.validatables[0].message).toBe('string');
 
             } else {
 
@@ -570,7 +570,7 @@ describe('recursive', ()=>{
             if(validatable.validatables[1]) {
 
                 expect(validatable.validatables[1].valid).toBe(false);
-                expect(validatable.validatables[1].message).toBe('value is not type of "number"');
+                expect(typeof validatable.validatables[1].message).toBe('string');
 
             } else {
 
@@ -583,7 +583,7 @@ describe('recursive', ()=>{
             if(validatable.validatables[2]) {
 
                 expect(validatable.validatables[2].valid).toBe(false);
-                expect(validatable.validatables[2].message).toBe('value is not type of "number"');
+                expect(typeof validatable.validatables[2].message).toBe('string');
 
             } else {
 

@@ -4,19 +4,20 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports"], factory);
+        define(["require", "exports", "@dikac/t-message/sentence"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    function Array(valid, value, conversion = (v) => typeof v) {
-        let string = conversion(value);
-        if (valid) {
-            return `value "${string}" is array`;
-        }
-        else {
-            return `value "${string}" is not array`;
-        }
+    const sentence_1 = require("@dikac/t-message/sentence");
+    const sentence = new sentence_1.default(false, '', {
+        invalid: 'is not',
+        valid: 'is',
+    }, 'array');
+    function Array(valid, subject = '') {
+        sentence.subject = subject;
+        sentence.valid = valid;
+        return sentence.message;
     }
     exports.default = Array;
 });

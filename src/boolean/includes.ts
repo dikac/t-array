@@ -5,7 +5,7 @@ export default function Includes<Type>(
     value : Type,
     trues : Type[],
     falses : Type[],
-    defaults : (value:Type, trues:Type[], falses:Type[])=>boolean = (value, trues, falses) => {throw new Error(StringIncludes(false, value, trues, falses))},
+    defaults : (value:Type, trues:Type[], falses:Type[])=>boolean = (value, trues, falses) => {throw new Error(StringIncludes(false))},
     compare : (value:Type, compare:Type)=>boolean = Equal,
 ) : boolean {
 

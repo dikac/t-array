@@ -112,13 +112,13 @@ describe("implicit complete", function() {
             expect(validatable.value).toBe(value);
 
             expect(validatable.validatables[0].valid).toBe(true);
-            expect(validatable.validatables[0].message).toBe('value is type of "string"');
+            expect(typeof validatable.validatables[0].message).toBe('string');
 
             expect(validatable.validatables[1].valid).toBe(true);
-            expect(validatable.validatables[1].message).toBe('value is type of "string"');
+            expect(typeof validatable.validatables[1].message).toBe('string');
 
             expect(validatable.validatables[2].valid).toBe(true);
-            expect(validatable.validatables[2].message).toBe('value is type of "string"');
+            expect(typeof validatable.validatables[2].message).toBe('string');
         });
 
 
@@ -133,13 +133,13 @@ describe("implicit complete", function() {
             expect(validatable.value).toBe(value);
 
             expect(validatable.validatables[0].valid).toBe(true);
-            expect(validatable.validatables[0].message).toBe('value is type of "string"');
+            expect(typeof validatable.validatables[0].message).toBe('string');
 
             expect(validatable.validatables[1].valid).toBe(true);
-            expect(validatable.validatables[1].message).toBe('value is type of "string"');
+            expect(typeof validatable.validatables[1].message).toBe('string');
 
             expect(validatable.validatables[2].valid).toBe(true);
-            expect(validatable.validatables[2].message).toBe('value is type of "string"');
+            expect(typeof validatable.validatables[2].message).toBe('string');
         });
 
     });
@@ -165,13 +165,13 @@ describe("implicit complete", function() {
             expect(and.valid).toBe(false);
 
             expect(and.validatables[0].valid).toBe(true);
-            expect(and.validatables[0].message).toBe('value is type of "string"');
+            expect(typeof and.validatables[0].message).toBe('string');
 
             expect(and.validatables[1].valid).toBe(false);
-            expect(and.validatables[1].message).toBe('value is not type of "number"');
+            expect(typeof and.validatables[1].message).toBe('string');
 
             expect(and.validatables[2].valid).toBe(true);
-            expect(and.validatables[2].message).toBe('value is type of "string"');
+            expect(typeof and.validatables[2].message).toBe('string');
 
             expect(and.value).toBe('data');
         });
@@ -187,13 +187,13 @@ describe("implicit complete", function() {
             expect(or.valid).toBe(true);
             expect(or.value).toBe('data');
 
-            expect(or.validatables[0].message).toBe('value is type of "string"');
+            expect(typeof or.validatables[0].message).toBe('string');
             expect(or.validatables[0].valid).toBe(true);
 
-            expect(or.validatables[1].message).toBe('value is not type of "number"');
+            expect(typeof or.validatables[1].message).toBe('string');
             expect(or.validatables[1].valid).toBe(false);
 
-            expect(or.validatables[2].message).toBe('value is type of "string"');
+            expect(typeof or.validatables[2].message).toBe('string');
             expect(or.validatables[2].valid).toBe(true);
 
         });
@@ -221,13 +221,13 @@ describe("implicit complete", function() {
             expect(and.value).toEqual({});
 
             expect(and.validatables[0].valid).toBe(false);
-            expect(and.validatables[0].message).toBe('value is not type of "string"');
+            expect(typeof and.validatables[0].message).toBe('string');
 
             expect(and.validatables[1].valid).toBe(false);
-            expect(and.validatables[1].message).toBe('value is not type of "number"');
+            expect(typeof and.validatables[1].message).toBe('string');
 
             expect(and.validatables[2].valid).toBe(false);
-            expect(and.validatables[2].message).toBe('value is not type of "string"');
+            expect(typeof and.validatables[2].message).toBe('string');
         });
 
         it(`or validation `, () => {
@@ -240,13 +240,13 @@ describe("implicit complete", function() {
             expect(or.valid).toBe(false);
             expect(or.value).toEqual({});
 
-            expect(or.validatables[0].message).toBe('value is not type of "string"');
+            expect(typeof or.validatables[0].message).toBe('string');
             expect(or.validatables[0].valid).toBe(false);
 
-            expect(or.validatables[1].message).toBe('value is not type of "number"');
+            expect(typeof or.validatables[1].message).toBe('string');
             expect(or.validatables[1].valid).toBe(false);
 
-            expect(or.validatables[2].message).toBe('value is not type of "string"');
+            expect(typeof or.validatables[2].message).toBe('string');
             expect(or.validatables[2].valid).toBe(false);
         });
     });
@@ -278,7 +278,7 @@ describe("implicit incomplete", function() {
             if(validatable.validatables[0]) {
 
                 expect(validatable.validatables[0].valid).toBe(true);
-                expect(validatable.validatables[0].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[0].message).toBe('string');
 
             } else {
 
@@ -289,7 +289,7 @@ describe("implicit incomplete", function() {
             if(validatable.validatables[1]) {
 
                 expect(validatable.validatables[1].valid).toBe(true);
-                expect(validatable.validatables[1].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[1].message).toBe('string');
 
             } else {
 
@@ -300,7 +300,7 @@ describe("implicit incomplete", function() {
             if(validatable.validatables[2]) {
 
                 expect(validatable.validatables[2].valid).toBe(true);
-                expect(validatable.validatables[2].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[2].message).toBe('string');
 
             } else {
 
@@ -322,7 +322,7 @@ describe("implicit incomplete", function() {
             if(validatable.validatables[0]) {
 
                 expect(validatable.validatables[0].valid).toBe(true);
-                expect(validatable.validatables[0].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[0].message).toBe('string');
 
             } else {
 
@@ -333,7 +333,7 @@ describe("implicit incomplete", function() {
             if(validatable.validatables[1]) {
 
                 expect(validatable.validatables[1].valid).toBe(true);
-                expect(validatable.validatables[1].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[1].message).toBe('string');
 
             } else {
 
@@ -344,7 +344,7 @@ describe("implicit incomplete", function() {
             if(validatable.validatables[2]) {
 
                 expect(validatable.validatables[2].valid).toBe(true);
-                expect(validatable.validatables[2].message).toBe('value is type of "string"');
+                expect(typeof validatable.validatables[2].message).toBe('string');
 
             } else {
 
@@ -374,7 +374,7 @@ describe("implicit incomplete", function() {
 
             if(and.validatables[0]) {
                 expect(and.validatables[0].valid).toBe(true);
-                expect(and.validatables[0].message).toBe('value is type of "string"');
+                expect(typeof and.validatables[0].message).toBe('string');
 
             } else {
                 fail('validatable.validatables.name should exist');
@@ -382,7 +382,7 @@ describe("implicit incomplete", function() {
 
             if(and.validatables[1]) {
                 expect(and.validatables[1].valid).toBe(false);
-                expect(and.validatables[1].message).toBe('value is not type of "number"');
+                expect(typeof and.validatables[1].message).toBe('string');
 
             } else {
                 fail('validatable.validatables.age should exist');
@@ -405,14 +405,14 @@ describe("implicit incomplete", function() {
             expect(or.valid).toBe(true);
 
             if(or.validatables[0]) {
-                expect(or.validatables[0].message).toBe('value is type of "string"');
+                expect(typeof or.validatables[0].message).toBe('string');
                 expect(or.validatables[0].valid).toBe(true);
             } else {
                 fail('validatable.validatables.name should exist');
             }
 
             if(or.validatables[1]) {
-                expect(or.validatables[1].message).toBe('value is not type of "number"');
+                expect(typeof or.validatables[1].message).toBe('string');
                 expect(or.validatables[1].valid).toBe(false);
             } else {
                 fail('validatable.validatables.age should exist');
@@ -443,8 +443,10 @@ describe("implicit incomplete", function() {
             expect(and.value).toEqual({});
 
             if(and.validatables[0]) {
+
                 expect(and.validatables[0].valid).toBe(false);
-                expect(and.validatables[0].message).toBe('value is not type of "string"');
+                expect(typeof and.validatables[0].message).toBe('string');
+
             } else {
                 fail('validatable.validatables.name should exist');
             }
@@ -469,7 +471,7 @@ describe("implicit incomplete", function() {
             expect(or.valid).toBe(false);
 
             if(or.validatables[0]) {
-                expect(or.validatables[0].message).toBe('value is not type of "string"');
+                expect(typeof or.validatables[0].message).toBe('string');
                 expect(or.validatables[0].valid).toBe(false);
             } else {
                 fail('validatable.validatables.name should exist');

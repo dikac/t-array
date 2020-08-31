@@ -21,9 +21,9 @@ for(let [value, [valid, message]] of map) {
             expect(validatable.value).toBe(value);
 
             if(validatable.valid) {
-                expect(validatable.message).toBe(`array is not empty`);
+                expect(validatable.message).toBe(`"Array" is not empty array`);
             } else {
-                expect(validatable.message).toBe(`array must not empty`);
+                expect(validatable.message).toBe(`"Array" is empty array`);
             }
         });
     });
