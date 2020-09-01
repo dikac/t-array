@@ -11,7 +11,7 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     const array_1 = require("../../boolean/string/array");
     function Array(object) {
-        return array_1.default(object.valid);
+        return array_1.default(object.valid, object.value);
     }
     exports.default = Array;
 });

@@ -3,5 +3,6 @@
  *
  * @param valid
  * @param value
+ * @param subject
  */
-export default function NotEmpty(valid: boolean, value: any[]): string;
+export default function NotEmpty(valid: boolean, value: any[], subject?: string): string;

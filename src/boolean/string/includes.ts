@@ -1,22 +1,18 @@
-import Sentence from "@dikac/t-message/sentence";
+import Sentence from "@dikac/t-string/message/sentence";
+import Name from "@dikac/t-object/string/name";
 
-const sentence = new Sentence(
-    false,
-    '',
-    {
-        valid : 'is exists in',
-        invalid : 'is not exists in',
-    }, 'array'
-);
-
-
-export default function Includes<Type>(
+export default function Includes(
     valid : boolean,
     subject : string = '',
 ) : string {
 
-    sentence.subject = subject;
-    sentence.valid = valid;
-
+    const sentence = new Sentence(valid);
+    sentence.value = subject;
+    sentence.expectation = {
+        valid : 'is exists in',
+        invalid : 'is not exists in',
+    };
+    sentence.type = 'array';
     return sentence.message;
+
 }

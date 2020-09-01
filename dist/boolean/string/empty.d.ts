@@ -3,5 +3,6 @@
  *
  * @param valid
  * @param value
+ * @param subject
  */
-export default function Empty(valid: boolean, value: unknown[]): string;
+export default function Empty(valid: boolean, value: unknown[], subject?: string): string;
