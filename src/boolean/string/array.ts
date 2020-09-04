@@ -7,13 +7,13 @@ export default function Array(
     conversion : (value:unknown)=>string = value=>typeof value
 ) : string {
 
-    let sentence = new SentencesIs(valid);
-    sentence.type.push('array');
-    sentence.value.push(subject);
+    let sentence = SentencesIs(valid);
+    sentence.object.push('array');
+    sentence.subject.push(subject);
 
     if(!valid) {
 
-        sentence.value.push(conversion(value));
+        sentence.subject.push(conversion(value));
     }
 
     return sentence.message;

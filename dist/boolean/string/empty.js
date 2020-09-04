@@ -4,13 +4,13 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "@dikac/t-object/string/name", "@dikac/t-string/message/sentence"], factory);
+        define(["require", "exports", "@dikac/t-object/string/name", "@dikac/t-string/message/sentences-is"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const name_1 = require("@dikac/t-object/string/name");
-    const sentence_1 = require("@dikac/t-string/message/sentence");
+    const sentences_is_1 = require("@dikac/t-string/message/sentences-is");
     /**
      * string intended for empty array
      *
@@ -19,9 +19,9 @@
      * @param subject
      */
     function Empty(valid, value, subject = '') {
-        const sentence = new sentence_1.default(valid);
-        sentence.value = [subject, name_1.default(value)].join(' ');
-        sentence.type = 'empty array';
+        const sentence = sentences_is_1.default(valid);
+        sentence.subject = [subject, name_1.default(value)];
+        sentence.object = ['empty array'];
         return sentence.message;
     }
     exports.default = Empty;

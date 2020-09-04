@@ -8,7 +8,7 @@ import ValidatorInterface from "@dikac/t-validator/simple";
 import Message from "@dikac/t-message/message";
 import MessageMap from "../../dist/message/message/list/map";
 import ValidatorType from "@dikac/t-type/validator/type-standard";
-import ValidatorInstance from "@dikac/t-type/validator/instance-standard";
+import ValidatorInstance from "@dikac/t-class/validator/instance-standard";
 import Value from "@dikac/t-value/value";
 import Instance from "@dikac/t-validator/validatable/validatable";
 import ListCallbackFunction from "../../dist/validator/list-callback-function";

@@ -12,12 +12,12 @@
     const sentence_1 = require("@dikac/t-string/message/sentence");
     function Includes(valid, subject = '') {
         const sentence = new sentence_1.default(valid);
-        sentence.value = subject;
-        sentence.expectation = {
+        sentence.subject = subject;
+        sentence.predicate = {
             valid: 'is exists in',
             invalid: 'is not exists in',
         };
-        sentence.type = 'array';
+        sentence.object = 'array';
         return sentence.message;
     }
     exports.default = Includes;

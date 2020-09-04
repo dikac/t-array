@@ -1,5 +1,4 @@
 import Sentence from "@dikac/t-string/message/sentence";
-import Name from "@dikac/t-object/string/name";
 
 export default function Includes(
     valid : boolean,
@@ -7,12 +6,12 @@ export default function Includes(
 ) : string {
 
     const sentence = new Sentence(valid);
-    sentence.value = subject;
-    sentence.expectation = {
+    sentence.subject = subject;
+    sentence.predicate = {
         valid : 'is exists in',
         invalid : 'is not exists in',
     };
-    sentence.type = 'array';
+    sentence.object = 'array';
     return sentence.message;
 
 }
