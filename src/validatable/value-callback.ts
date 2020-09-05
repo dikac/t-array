@@ -2,7 +2,7 @@ import Validator from "@dikac/t-validator/validator";
 import Validatable from "@dikac/t-validatable/validatable";
 import Instance from "@dikac/t-validator/validatable/validatable";
 import Value from "./value";
-import MemoizeGetter from "@dikac/t-object/value/value/memoize-getter";
+import MemoizeGetter from "@dikac/t-object/value/set-getter";
 
 export default class ValueCallback<
     ValueT,
