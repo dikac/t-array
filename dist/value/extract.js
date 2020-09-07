@@ -4,18 +4,23 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../../boolean/empty"], factory);
+        define(["require", "exports"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const empty_1 = require("../../boolean/empty");
     /**
-     * @deprecated
+     * get and remove selected value
+     *
+     * @param array
+     * @param index
+     * if negative will start at the end
+     *
+     * @constructor
      */
-    function Empty(object) {
-        return empty_1.default(object.value);
+    function Extract(array, index) {
+        return array.splice(index, 1)[0];
     }
-    exports.default = Empty;
+    exports.default = Extract;
 });
-//# sourceMappingURL=empty.js.map
+//# sourceMappingURL=extract.js.map

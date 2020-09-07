@@ -1,4 +1,7 @@
-export default function First <Value>(value : Value[]) : Value|undefined {
+/**
+ * @deprecated
+ * use original instead
+ */
+import First from "../first";
 
-     return value[0];
-}
+export default First;

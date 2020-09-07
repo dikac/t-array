@@ -1,4 +1,7 @@
-export default function Last <Value>(value : Value[]) : Value|undefined {
+/**
+ * @deprecated
+ * use original instead
+ */
+import Last from "../last";
 
-        return value[value.length - 1];
-}
+export default Last;

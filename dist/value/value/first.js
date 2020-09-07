@@ -4,14 +4,16 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports"], factory);
+        define(["require", "exports", "../first"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    function First(value) {
-        return value[0];
-    }
-    exports.default = First;
+    /**
+     * @deprecated
+     * use original instead
+     */
+    const first_1 = require("../first");
+    exports.default = first_1.default;
 });
 //# sourceMappingURL=first.js.map
