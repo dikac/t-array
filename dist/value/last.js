@@ -20,7 +20,7 @@
             let clone = value.slice(0);
             do {
                 last = clone.pop();
-            } while (last === undefined);
+            } while (last === undefined && clone.length);
         }
         return last;
     }

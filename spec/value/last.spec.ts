@@ -24,3 +24,10 @@ it("skipped", () => {
 
     expect(Last(array)).toBe(5);
 });
+
+it("empty", () => {
+
+    let array : number[] = [];
+
+    expect(Last(array)).toBe(undefined);
+});

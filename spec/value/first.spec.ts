@@ -23,3 +23,9 @@ it("skipped", () => {
 
     expect(First(array)).toBe(1);
 });
+
+it("empty", () => {
+
+    let array : number[] = [];
+    expect(First(array)).toBe(undefined);
+});

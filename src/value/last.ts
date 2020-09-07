@@ -15,7 +15,7 @@ export default function Last <Value>(value : Value[]) : Value|undefined {
 
             last = clone.pop();
 
-        } while (last === undefined)
+        } while (last === undefined && clone.length)
 
     }
 
