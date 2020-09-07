@@ -6,25 +6,25 @@ import Map from "./map";
 import MemoizeGetter from "@dikac/t-object/value/set-getter";
 
 export default class MapCallback<
-    ValidatorsT extends Validator[] = Validator[],
+    Validators extends Validator[] = Validator[],
     Result extends Instance[] = Instance[],
-    MessageT = unknown,
-    ValidatableT extends Validatable = Validatable,
-    ValueT extends ListParameter<ValidatorsT> = ListParameter<ValidatorsT>
-> implements Map<ValidatorsT, Result, MessageT, ValidatableT, ValueT> {
+    MessageType = unknown,
+    ValidatableType extends Validatable = Validatable,
+    ValueType extends ListParameter<Validators> = ListParameter<Validators>
+> implements Map<Validators, Result, MessageType, ValidatableType, ValueType> {
 
     readonly validatables : Result;
-    readonly validatable : ValidatableT;
+    readonly validatable : ValidatableType;
     readonly valid : boolean;
     readonly messages : Result;
-    private messageFactory : (result:Result)=>MessageT
+    private messageFactory : (result:Result)=>MessageType
 
     constructor(
-        readonly value : ValueT,
-        readonly validators : ValidatorsT,
-        map : (value:ListParameter<ValidatorsT>, validators:ValidatorsT)=>Result,
-        validation : (result:Result)=>ValidatableT,
-        message : (result:Result)=>MessageT,
+        readonly value : ValueType,
+        readonly validators : Validators,
+        map : (value:ListParameter<Validators>, validators:Validators)=>Result,
+        validation : (result:Result)=>ValidatableType,
+        message : (result:Result)=>MessageType,
     ) {
 
         this.messageFactory = message;
@@ -35,7 +35,7 @@ export default class MapCallback<
         this.valid = this.validatable.valid;
     }
 
-    get message() : MessageT {
+    get message() : MessageType {
 
         return MemoizeGetter(this, 'message', this.messageFactory(this.validatables));
     }

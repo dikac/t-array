@@ -27,5 +27,5 @@ import Message from "@dikac/t-message/message";
  * @template ValidatableT
  * result {@link Validatable} from {@template Validatables}
  */
-export default interface Map<ValidatorsT extends Validator[], Validatables extends Instance[], MessageT, ValidatableT extends Validatable> extends SimpleValidator<BaseList<ValidatorsT>, TypeList<ValidatorsT>, ValidatableMapInterface<ValidatorsT, Validatables, MessageT, ValidatableT, BaseList<ValidatorsT>>>, Validators<ValidatorsT>, Message<(results: Validatables) => MessageT>, Validation<(results: Validatables) => ValidatableT> {
+export default interface Map<ValidatorsType extends Validator[], Validatables extends Instance[], MessageType, ValidatableType extends Validatable> extends SimpleValidator<BaseList<ValidatorsType>, TypeList<ValidatorsType>, ValidatableMapInterface<ValidatorsType, Validatables, MessageType, ValidatableType, BaseList<ValidatorsType>>>, Validators<ValidatorsType>, Message<(results: Validatables) => MessageType>, Validation<(results: Validatables) => ValidatableType> {
 }

@@ -6,13 +6,13 @@ import {List} from "ts-toolbelt";
 import MapUnion from "../../../map-union";
 
 export default function Filter<
-    MessagesT extends Message[]
+    MessagesType extends Message[]
 >(
-    list : MessagesT,
-    filter : (messages:List.UnionOf<MessagesT>)=>boolean
-) : MapUnion<ListInfer<MessagesT>> {
+    list : MessagesType,
+    filter : (messages:List.UnionOf<MessagesType>)=>boolean
+) : MapUnion<ListInfer<MessagesType>> {
 
-    return <ListInfer<MessagesT>> list.map((v)=>EnsureMessage(v)).
+    return <ListInfer<MessagesType>> list.map((v)=>EnsureMessage(v)).
         filter((v)=>filter(v)).
         map(ValueMessage);
 

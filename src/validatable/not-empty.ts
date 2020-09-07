@@ -4,16 +4,16 @@ import Message from "@dikac/t-message/message";
 import NotEmptyArgument from "../boolean/not-empty";
 import {List} from "ts-toolbelt";
 
-export default class NotEmpty<MessageT, Values extends unknown[]>
+export default class NotEmpty<MessageType, Values extends unknown[]>
     implements
-        Readonly<Value<Values> & Message<MessageT> & Validatable>, Iterable<List.UnionOf<Values>>
+        Readonly<Value<Values> & Message<MessageType> & Validatable>, Iterable<List.UnionOf<Values>>
 
 {
     readonly valid : boolean;
 
     constructor(
         readonly value : Values,
-        private _message : (result:Readonly<Value<Values> & Validatable>)=>MessageT,
+        private _message : (result:Readonly<Value<Values> & Validatable>)=>MessageType,
     ) {
 
         this.valid = NotEmptyArgument(value);
@@ -25,7 +25,7 @@ export default class NotEmpty<MessageT, Values extends unknown[]>
         yield * this.value;
     }
 
-    get message() : MessageT {
+    get message() : MessageType {
 
         return this._message(this);
     }

@@ -26,11 +26,11 @@ import Value from "./value";
  * @template ValidatableT
  * final result after processing {@template Result}
  */
-export default class ValueCallback<BaseT = unknown, ValueT extends BaseT = BaseT, MessageT = unknown, ValidatorsT extends Validator<BaseT, ValueT>[] = Validator<BaseT, ValueT>[], Validatables extends Instance[] = Instance[], ValidatableT extends Validatable = Validatable> implements Value<BaseT, ValueT, MessageT, ValidatorsT, Validatables, ValidatableT> {
-    validators: ValidatorsT;
-    map: (value: BaseT, validators: ValidatorsT) => Validatables;
-    validation: (result: Validatables) => ValidatableT;
-    message: (result: Validatables) => MessageT;
+export default class ValueCallback<BaseType = unknown, ValueType extends BaseType = BaseType, MessageType = unknown, Validators extends Validator<BaseType, ValueType>[] = Validator<BaseType, ValueType>[], Validatables extends Instance[] = Instance[], ValidatableType extends Validatable = Validatable> implements Value<BaseType, ValueType, MessageType, Validators, Validatables, ValidatableType> {
+    validators: Validators;
+    map: (value: BaseType, validators: Validators) => Validatables;
+    validation: (result: Validatables) => ValidatableType;
+    message: (result: Validatables) => MessageType;
     /**
      * @param validators
      * list of {@link Validator}
@@ -44,7 +44,7 @@ export default class ValueCallback<BaseT = unknown, ValueT extends BaseT = BaseT
      * @param message
      * process result of {@param map} to single {@link Message}
      */
-    constructor(validators: ValidatorsT, map: (value: BaseT, validators: ValidatorsT) => Validatables, validation: (result: Validatables) => ValidatableT, message: (result: Validatables) => MessageT);
-    validate<Argument extends ValueT>(value: Argument): Replace<ValidatableValueInterface<Argument, ValidatorsT, Validatables, MessageT, ValidatableT>, true>;
-    validate<Argument extends BaseT>(value: Argument): Construct<BaseT, Argument, ValueT, ValidatableValueInterface<Argument, ValidatorsT, Validatables, MessageT, ValidatableT>>;
+    constructor(validators: Validators, map: (value: BaseType, validators: Validators) => Validatables, validation: (result: Validatables) => ValidatableType, message: (result: Validatables) => MessageType);
+    validate<Argument extends ValueType>(value: Argument): Replace<ValidatableValueInterface<Argument, Validators, Validatables, MessageType, ValidatableType>, true>;
+    validate<Argument extends BaseType>(value: Argument): Construct<BaseType, Argument, ValueType, ValidatableValueInterface<Argument, Validators, Validatables, MessageType, ValidatableType>>;
 }

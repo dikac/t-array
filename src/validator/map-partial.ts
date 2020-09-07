@@ -23,14 +23,14 @@ import Message from "@dikac/t-message/message";
  * process partial result from {@link Validator} list into {@link Message} value
  */
 export default function MapPartial<
-    ValidatorsT extends Validator[] = Validator[],
-    ValidatableT extends Validatable = Validatable,
-    MessageT = unknown,
+    Validators extends Validator[] = Validator[],
+    ValidatableType extends Validatable = Validatable,
+    MessageType = unknown,
 >(
-    validators : ValidatorsT,
-    validation : (result:Union<ListStrict<ValidatorsT>>)=>ValidatableT,
-    message : (result:Union<ListStrict<ValidatorsT>>)=>MessageT
-) : Omit<MapCallbackInterface<ValidatorsT, Union<ListStrict<ValidatorsT>>, MessageT, ValidatableT>, 'map'>  {
+    validators : Validators,
+    validation : (result:Union<ListStrict<Validators>>)=>ValidatableType,
+    message : (result:Union<ListStrict<Validators>>)=>MessageType
+) : Omit<MapCallbackInterface<Validators, Union<ListStrict<Validators>>, MessageType, ValidatableType>, 'map'>  {
 
     return new MapCallback(validators, ValidateMap, validation, message);
 }

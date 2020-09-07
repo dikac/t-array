@@ -6,10 +6,10 @@ import Construct from "@dikac/t-validator/validatable/simple";
 import Instance from "@dikac/t-validator/validatable/validatable";
 
 
-export default function Array<MessageT, Argument>(
+export default function Array<Message, Argument>(
     value : Argument,
-    message : (result:Readonly<Value<Argument> & Validatable>)=>MessageT
-) : Readonly<Construct<any, Argument, any[], Instance<unknown, MessageT>>> {
+    message : (result:Readonly<Value<Argument> & Validatable>)=>Message
+) : Readonly<Construct<any, Argument, any[], Instance<unknown, Message>>> {
 
-    return <Readonly<Construct<any, Argument, any[], Instance<unknown, MessageT>>>> Callback(value, ObjectGuard, message);
+    return <Readonly<Construct<any, Argument, any[], Instance<unknown, Message>>>> Callback(value, ObjectGuard, message);
 }

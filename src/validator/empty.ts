@@ -7,17 +7,17 @@ import Return from "@dikac/t-validator/validatable/simple";
 
 
 export default class Empty<
-    MessageT
-> implements Validator<Array<any>, [], boolean, boolean, EmptyValidatable<MessageT, Array<any>>>,
-    Message<(result:Readonly<Value<Array<any>>> & Readonly<Validatable>)=>MessageT> {
+    MessageType
+> implements Validator<Array<any>, [], boolean, boolean, EmptyValidatable<MessageType, Array<any>>>,
+    Message<(result:Readonly<Value<Array<any>>> & Readonly<Validatable>)=>MessageType> {
 
     constructor(
-        public message : (result:Value<Array<any>> & Readonly<Validatable>)=>MessageT
+        public message : (result:Value<Array<any>> & Readonly<Validatable>)=>MessageType
     ) {
     }
 
-    validate<Argument extends any[]>(value: Argument): Return<Array<any>, Argument, [], EmptyValidatable<MessageT, Argument>> {
+    validate<Argument extends any[]>(value: Argument): Return<Array<any>, Argument, [], EmptyValidatable<MessageType, Argument>> {
 
-        return <Return<Array<any>, Argument, [], EmptyValidatable<MessageT, Argument>>> new EmptyValidatable<MessageT, Argument>(value, this.message);
+        return <Return<Array<any>, Argument, [], EmptyValidatable<MessageType, Argument>>> new EmptyValidatable<MessageType, Argument>(value, this.message);
     }
 }

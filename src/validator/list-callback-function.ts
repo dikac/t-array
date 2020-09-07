@@ -11,16 +11,16 @@ import List from "./list";
  * type return has better handling by typescript
  */
 export default function  ListCallbackFunction<
-    MessageT = unknown,
-    ValidatorT extends Validator = Validator,
+    MessageType = unknown,
+    ValidatorType extends Validator = Validator,
     Result extends Instance[] = Instance[],
-    ValidatableT extends Validatable  = Validatable
+    ValidatableType extends Validatable  = Validatable
 >  (
-     validator : ValidatorT,
-     map : (value:BaseInfer<ValidatorT>[], validator:ValidatorT)=>Result,
-     validation : (results:Result)=>ValidatableT,
-     message : (results:Result)=>MessageT
-) : List<MessageT, ValidatorT, Result, ValidatableT> {
+     validator : ValidatorType,
+     map : (value:BaseInfer<ValidatorType>[], validator:ValidatorType)=>Result,
+     validation : (results:Result)=>ValidatableType,
+     message : (results:Result)=>MessageType
+) : List<MessageType, ValidatorType, Result, ValidatableType> {
 
     return new ListCallback(validator, map, validation, message);
 }

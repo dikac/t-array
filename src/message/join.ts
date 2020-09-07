@@ -2,10 +2,10 @@ import Message from "@dikac/t-message/message";
 import Messages from "./messages/messages";
 import Reset from "../reset";
 
-export default class Join<MessageT extends Message<string>[]> implements Messages<MessageT>, Message <string> {
+export default class Join<MessageType extends Message<string>[]> implements Messages<MessageType>, Message <string> {
 
     constructor(
-        public messages : MessageT,
+        public messages : MessageType,
         public delimiter : string
     ) {
     }

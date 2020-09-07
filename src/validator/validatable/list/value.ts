@@ -5,10 +5,10 @@ import ListStrict from "./infer";
 import Union from "../../../union";
 
 export default function Value<
-    ValueT,
-    Validators extends Validator<unknown, ValueT>[]
+    ValueType,
+    Validators extends Validator<unknown, ValueType>[]
 >(
-    value : ValueT,
+    value : ValueType,
     validators : Validators,
 ) : ListReturn<Validators> {
 

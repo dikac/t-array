@@ -16,4 +16,4 @@ import Value from "./value";
  * @param message
  * combined all result from {@link Validator} list into {@link Message} value
  */
-export default function ValueAll<BaseT = unknown, ValueT extends BaseT = BaseT, ValidatorsT extends Validator<BaseT, ValueT>[] = Validator<BaseT, ValueT>[], ReturnT extends Validatable = Validatable, MessageT = unknown>(validators: ValidatorsT, validation: (result: ListReturn<ValidatorsT>) => ReturnT, message: (result: ListReturn<ValidatorsT>) => MessageT): Value<BaseT, ValueT, MessageT, ValidatorsT, ListReturn<ValidatorsT>, ReturnT>;
+export default function ValueAll<BaseType = unknown, ValueType extends BaseType = BaseType, Validators extends Validator<BaseType, ValueType>[] = Validator<BaseType, ValueType>[], ReturnType extends Validatable = Validatable, MessageType = unknown>(validators: Validators, validation: (result: ListReturn<Validators>) => ReturnType, message: (result: ListReturn<Validators>) => MessageType): Value<BaseType, ValueType, MessageType, Validators, ListReturn<Validators>, ReturnType>;

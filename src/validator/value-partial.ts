@@ -23,16 +23,16 @@ import Value from "./value";
  * combined partial result from {@link Validator} list into {@link Message} value
  */
 export default function ValuePartial<
-    BaseT = unknown,
-    ValueT extends BaseT = BaseT,
-    ValidatorsT extends Validator<BaseT, ValueT>[] = Validator<BaseT, ValueT>[],
-    ReturnT extends Validatable = Validatable,
-    MessageT = unknown,
+    BaseType = unknown,
+    ValueType extends BaseType = BaseType,
+    Validators extends Validator<BaseType, ValueType>[] = Validator<BaseType, ValueType>[],
+    ReturnType extends Validatable = Validatable,
+    MessageType = unknown,
 >(
-    validators : ValidatorsT,
-    validation : (result:Union<ListReturn<ValidatorsT>>)=>ReturnT,
-    message : (result:Union<ListReturn<ValidatorsT>>)=>MessageT
-) : Value<BaseT, ValueT, MessageT, ValidatorsT, Union<ListReturn<ValidatorsT>>, ReturnT> {
+    validators : Validators,
+    validation : (result:Union<ListReturn<Validators>>)=>ReturnType,
+    message : (result:Union<ListReturn<Validators>>)=>MessageType
+) : Value<BaseType, ValueType, MessageType, Validators, Union<ListReturn<Validators>>, ReturnType> {
 
     return new ValueCallback(validators, ValidateValuePartial, validation, message);
 }

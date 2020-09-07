@@ -23,15 +23,15 @@ import List from "./list";
  * process all result from {@link Validator} list into {@link Message} value
  */
 export default function ListPartial<
-    MessageT = unknown,
-    ValidatorT extends Validator = Validator,
-    ValidatableT extends Validatable  = Validatable
+    MessageType = unknown,
+    ValidatorType extends Validator = Validator,
+    ValidatableType extends Validatable  = Validatable
 >(
-     validator : ValidatorT,
-     validation : (result:Union<InferReturn<ValidatorT>[]>)=>ValidatableT,
-     message : (result:Union<InferReturn<ValidatorT>[]>)=>MessageT
+     validator : ValidatorType,
+     validation : (result:Union<InferReturn<ValidatorType>[]>)=>ValidatableType,
+     message : (result:Union<InferReturn<ValidatorType>[]>)=>MessageType
 
-) : List<MessageT, ValidatorT, Union<InferReturn<ValidatorT>[]>, ValidatableT> {
+) : List<MessageType, ValidatorType, Union<InferReturn<ValidatorType>[]>, ValidatableType> {
 
     return new ListCallback(validator, ValidateMapPartial, validation, message);
 }

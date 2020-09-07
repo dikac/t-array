@@ -16,4 +16,4 @@ import List from "./list";
  * @param message
  * process all result from {@link Validator} list into {@link Message} value
  */
-export default function ListAll<MessageT = unknown, ValidatorT extends Validator = Validator, ValidatableT extends Validatable = Validatable>(validator: ValidatorT, validation: (result: InferReturn<ValidatorT>[]) => ValidatableT, message: (result: InferReturn<ValidatorT>[]) => MessageT): List<MessageT, ValidatorT, InferReturn<ValidatorT>[], ValidatableT>;
+export default function ListAll<MessageType = unknown, ValidatorType extends Validator = Validator, ValidatableType extends Validatable = Validatable>(validator: ValidatorType, validation: (result: InferReturn<ValidatorType>[]) => ValidatableType, message: (result: InferReturn<ValidatorType>[]) => MessageType): List<MessageType, ValidatorType, InferReturn<ValidatorType>[], ValidatableType>;

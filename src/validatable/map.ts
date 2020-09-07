@@ -11,18 +11,18 @@ import Instance from "@dikac/t-validator/validatable/validatable";
 import BaseList from "../validator/base/list/infer";
 
 export default interface Map<
-    ValidatorsT extends Validator[],
+    ValidatorsType extends Validator[],
     Result extends Instance[],
-    MessageT,
-    ValidatableT extends Validatable,
-    ValueT extends BaseList<ValidatorsT>
+    MessageType,
+    ValidatableType extends Validatable,
+    ValueT extends BaseList<ValidatorsType>
 > extends
-    Readonly<Validators<ValidatorsT>>,
-    Readonly<Value<ListParameter<ValidatorsT>>>,
+    Readonly<Validators<ValidatorsType>>,
+    Readonly<Value<ListParameter<ValidatorsType>>>,
     Readonly<Validatable>,
     Readonly<Validatables<Result>>,
-    Readonly<Message<MessageT>>,
-    Readonly<ValidatableContainer<ValidatableT>>,
+    Readonly<Message<MessageType>>,
+    Readonly<ValidatableContainer<ValidatableType>>,
     Readonly<Messages<Result>> {
 
 }

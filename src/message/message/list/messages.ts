@@ -5,10 +5,10 @@ import Messages from "../../../message/messages/messages";
 import Map from "./map";
 
 export default function Messages<
-    MessagesT extends Message[]
+    MessagesType extends Message[]
 >(
-    list : Messages<MessagesT>,
-) : MapUnion<ListInfer<MessagesT>> {
+    list : Messages<MessagesType>,
+) : MapUnion<ListInfer<MessagesType>> {
 
     return Map(list.messages);
 }

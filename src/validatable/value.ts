@@ -10,18 +10,18 @@ import Validatables from "./validatables/validatables";
 
 
 export default interface Value<
-    ValueT,
+    ValueType,
     Container extends Validator[],
     Results extends Instance[],
-    MessageT,
-    ValidatableT extends Validatable
+    MessageType,
+    ValidatableType extends Validatable
 > extends
-    BaseValue<ValueT> ,
+    BaseValue<ValueType> ,
     Validatable ,
     Validators<Container> ,
-    Message<MessageT> ,
+    Message<MessageType> ,
     Messages<Results> ,
-    ValidatableContainer<ValidatableT> ,
+    ValidatableContainer<ValidatableType> ,
     Validatables<Results>
 {
 

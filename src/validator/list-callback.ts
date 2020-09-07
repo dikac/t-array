@@ -30,11 +30,11 @@ import List from "./list";
  */
 
 export default class ValueCallback<
-    MessageT = unknown,
-    ValidatorT extends Validator = Validator,
+    MessageType = unknown,
+    ValidatorType extends Validator = Validator,
     Validatables extends Instance[] = Instance[],
-    ValidatableT extends Validatable  = Validatable
-> implements List<MessageT, ValidatorT, Validatables, ValidatableT> {
+    ValidatableType extends Validatable  = Validatable
+> implements List<MessageType, ValidatorType, Validatables, ValidatableType> {
 
     /**
      * @param validator
@@ -49,20 +49,20 @@ export default class ValueCallback<
      * process result of {@param map} to single {@link Message}
      */
     constructor(
-        public validator : ValidatorT,
-        public map : (value:BaseInfer<ValidatorT>[], validator:ValidatorT)=>Validatables,
-        public validation : (result:Validatables)=>ValidatableT,
-        public message : (result:Validatables)=>MessageT
+        public validator : ValidatorType,
+        public map : (value:BaseInfer<ValidatorType>[], validator:ValidatorType)=>Validatables,
+        public validation : (result:Validatables)=>ValidatableType,
+        public message : (result:Validatables)=>MessageType
     ) {
     }
 
-    validate<Argument extends TypeInfer<ValidatorT>[]>(value: Argument) :
-        Replace<ValidatableListCallbackInterface<Argument, ValidatorT, Validatables, MessageT, ValidatableT>, true>
+    validate<Argument extends TypeInfer<ValidatorType>[]>(value: Argument) :
+        Replace<ValidatableListCallbackInterface<Argument, ValidatorType, Validatables, MessageType, ValidatableType>, true>
 
-    validate<Argument extends BaseInfer<ValidatorT>[]>(value: Argument) :
-        Construct<BaseInfer<ValidatorT>[], Argument, TypeInfer<ValidatorT>[], ValidatableListCallbackInterface<TypeInfer<ValidatorT>[], ValidatorT, Validatables, MessageT, ValidatableT>>
+    validate<Argument extends BaseInfer<ValidatorType>[]>(value: Argument) :
+        Construct<BaseInfer<ValidatorType>[], Argument, TypeInfer<ValidatorType>[], ValidatableListCallbackInterface<TypeInfer<ValidatorType>[], ValidatorType, Validatables, MessageType, ValidatableType>>
 
-    validate<Argument extends BaseInfer<ValidatorT>[]>(value: Argument) {
+    validate<Argument extends BaseInfer<ValidatorType>[]>(value: Argument) {
 
         return new ValidatableListCallback(value, this.validator, this.map, this.validation, this.message);
     }

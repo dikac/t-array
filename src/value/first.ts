@@ -5,19 +5,19 @@
  */
 export default function First <Value>(values : Value[]) : Value|undefined {
 
-     let first = values[0];
+    let first = values[0];
 
-     if(first === undefined) {
+    if(first === undefined) {
 
-          for(const value of values) {
+        for(const value of values) {
 
-               if(value !== undefined) {
+            if(value !== undefined) {
 
-                    return value;
-               }
+                return value;
+            }
 
-          }
-     }
+        }
+    }
 
-     return first;
+    return first;
 }

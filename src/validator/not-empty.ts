@@ -5,21 +5,21 @@ import Value from "@dikac/t-value/value";
 import NotEmptyValidatable from "../validatable/not-empty";
 import Construct from "@dikac/t-validator/validatable/simple";
 
-export default class NotEmpty<MessageT>
+export default class NotEmpty<MessageType>
     implements
-        Validator<Array<any>, Array<any>, boolean, boolean, NotEmptyValidatable<MessageT, Array<any>>>,
-        Message<(result:Readonly<Value<Array<any>>> & Readonly<Validatable>)=>MessageT>
+        Validator<Array<any>, Array<any>, boolean, boolean, NotEmptyValidatable<MessageType, Array<any>>>,
+        Message<(result:Readonly<Value<Array<any>>> & Readonly<Validatable>)=>MessageType>
 {
 
     constructor(
-        public message : (result:Readonly<Value<Array<any>>> & Readonly<Validatable>)=>MessageT
+        public message : (result:Readonly<Value<Array<any>>> & Readonly<Validatable>)=>MessageType
     ) {
 
     }
 
-    validate<Argument extends Array<any>>(value: Argument) : Construct<Array<any>, Argument, Array<any>, NotEmptyValidatable<MessageT, Array<any>>> {
+    validate<Argument extends Array<any>>(value: Argument) : Construct<Array<any>, Argument, Array<any>, NotEmptyValidatable<MessageType, Array<any>>> {
 
-        return <Construct<Array<any>, Argument, Array<any>, NotEmptyValidatable<MessageT, Array<any>>> > new NotEmptyValidatable(value, this.message);
+        return <Construct<Array<any>, Argument, Array<any>, NotEmptyValidatable<MessageType, Array<any>>> > new NotEmptyValidatable(value, this.message);
     }
 }
 

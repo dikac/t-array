@@ -3,15 +3,15 @@ import Validatables from "./validatables/validatables";
 import {List} from "ts-toolbelt";
 
 export default class Callback<
-    ValidatablesT extends Validatable[] = Validatable[],
+    ValidatablesType extends Validatable[] = Validatable[],
     Boolean extends boolean = boolean
 > implements
     Validatable,
-    Validatables<ValidatablesT>
+    Validatables<ValidatablesType>
 {
     constructor(
-        public validatables : ValidatablesT,
-        public validation : (results:ValidatablesT)=>Boolean
+        public validatables : ValidatablesType,
+        public validation : (results:ValidatablesType)=>Boolean
     ) {
     }
 
@@ -20,7 +20,7 @@ export default class Callback<
         return this.validation(this.validatables)
     }
 
-    * [Symbol.iterator](): Iterator<List.UnionOf<ValidatablesT>> {
+    * [Symbol.iterator](): Iterator<List.UnionOf<ValidatablesType>> {
 
         yield * this.validatables;
     }

@@ -21,16 +21,16 @@ import List from "./list";
  * process all result from {@link Validator} list into {@link Message} value
  */
 export default function ListAll<
-    MessageT = unknown,
-    ValidatorT extends Validator = Validator,
-    ValidatableT extends Validatable  = Validatable
+    MessageType = unknown,
+    ValidatorType extends Validator = Validator,
+    ValidatableType extends Validatable  = Validatable
 >(
-    validator : ValidatorT,
-    validation : (result:InferReturn<ValidatorT>[])=>ValidatableT,
-    message : (result:InferReturn<ValidatorT>[])=>MessageT
+    validator : ValidatorType,
+    validation : (result:InferReturn<ValidatorType>[])=>ValidatableType,
+    message : (result:InferReturn<ValidatorType>[])=>MessageType
 
-) : List<MessageT, ValidatorT, InferReturn<ValidatorT>[], ValidatableT> {
+) : List<MessageType, ValidatorType, InferReturn<ValidatorType>[], ValidatableType> {
 
-    return new ListCallback<MessageT, ValidatorT, InferReturn<ValidatorT>[], ValidatableT>(validator, ValidateMap , validation, message);
+    return new ListCallback<MessageType, ValidatorType, InferReturn<ValidatorType>[], ValidatableType>(validator, ValidateMap , validation, message);
 }
 

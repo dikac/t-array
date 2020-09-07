@@ -10,19 +10,19 @@ import MapCallbackInterface from "./map";
  * type return has better handling by typescript
  */
 export default function MapCallbackFunction<
-    ValidatorsT extends Validator[] = Validator[],
+    Validators extends Validator[] = Validator[],
     Validatables extends Instance[] = Instance[],
-    MessageT = unknown,
-    ValidatableT extends Validatable = Validatable
+    MessageType = unknown,
+    ValidatableType extends Validatable = Validatable
 >(
-    validators : ValidatorsT,
-    map : (value:BaseList<ValidatorsT>, validators:ValidatorsT)=>Validatables,
-    validation : (result:Validatables)=>ValidatableT,
-    message : (result:Validatables)=>MessageT
-) : MapCallbackInterface<ValidatorsT, Validatables, MessageT, ValidatableT> {
+    validators : Validators,
+    map : (value:BaseList<Validators>, validators:Validators)=>Validatables,
+    validation : (result:Validatables)=>ValidatableType,
+    message : (result:Validatables)=>MessageType
+) : MapCallbackInterface<Validators, Validatables, MessageType, ValidatableType> {
 
     return new MapCallback(validators, map, validation, message) as
-        MapCallbackInterface<ValidatorsT, Validatables, MessageT, ValidatableT>;
+        MapCallbackInterface<Validators, Validatables, MessageType, ValidatableType>;
 }
 
 

@@ -9,19 +9,19 @@ import Instance from "@dikac/t-validator/validatable/validatable";
 import Validatables from "./validatables/validatables";
 
 export default interface List<
-    ValueT extends unknown[],
-    ValidatorT extends Validator = Validator,
+    ValueType extends unknown[],
+    ValidatorType extends Validator = Validator,
     Results extends Instance[] = Instance[],
-    MessageT = unknown,
-    ValidatableT extends Validatable = Validatable
+    MessageType = unknown,
+    ValidatableType extends Validatable = Validatable
 > extends
-    Readonly<Value<ValueT>>,
+    Readonly<Value<ValueType>>,
     Readonly<Validatable> ,
-    Readonly<ValidatorContainer<ValidatorT>>,
-    Readonly<Message<MessageT>>,
+    Readonly<ValidatorContainer<ValidatorType>>,
+    Readonly<Message<MessageType>>,
     Readonly<Messages<Results>>,
     Readonly<Validatables<Results>>,
-    Readonly<ValidatableContainer<ValidatableT>> {
+    Readonly<ValidatableContainer<ValidatableType>> {
 }
 
 

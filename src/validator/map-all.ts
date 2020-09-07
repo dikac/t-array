@@ -21,14 +21,14 @@ import Message from "@dikac/t-message/message";
  * process all result from {@link Validator} list into {@link Message} value
  */
 export default function  MapAll<
-    ValidatorsT extends Validator[] = Validator[],
-    ValidatableT extends Validatable = Validatable,
-    MessageT = unknown,
+    Validators extends Validator[] = Validator[],
+    ValidatableType extends Validatable = Validatable,
+    MessageType = unknown,
 >(
-    validators : ValidatorsT,
-    validation : (result:ListReturn<ValidatorsT>)=>ValidatableT,
-    message : (result:ListReturn<ValidatorsT>)=>MessageT
-) : Omit<MapCallbackInterface<ValidatorsT, ListReturn<ValidatorsT>, MessageT, ValidatableT>, 'map'>  {
+    validators : Validators,
+    validation : (result:ListReturn<Validators>)=>ValidatableType,
+    message : (result:ListReturn<Validators>)=>MessageType
+) : Omit<MapCallbackInterface<Validators, ListReturn<Validators>, MessageType, ValidatableType>, 'map'>  {
 
     return new MapCallback(validators, ValidateMap, validation, message);
 }

@@ -18,4 +18,4 @@ import Union from "../union";
  * @param message
  * process partial result from {@link Validator} list into {@link Message} value
  */
-export default function MapPartial<ValidatorsT extends Validator[] = Validator[], ValidatableT extends Validatable = Validatable, MessageT = unknown>(validators: ValidatorsT, validation: (result: Union<ListStrict<ValidatorsT>>) => ValidatableT, message: (result: Union<ListStrict<ValidatorsT>>) => MessageT): Omit<MapCallbackInterface<ValidatorsT, Union<ListStrict<ValidatorsT>>, MessageT, ValidatableT>, 'map'>;
+export default function MapPartial<Validators extends Validator[] = Validator[], ValidatableType extends Validatable = Validatable, MessageType = unknown>(validators: Validators, validation: (result: Union<ListStrict<Validators>>) => ValidatableType, message: (result: Union<ListStrict<Validators>>) => MessageType): Omit<MapCallbackInterface<Validators, Union<ListStrict<Validators>>, MessageType, ValidatableType>, 'map'>;

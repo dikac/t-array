@@ -5,21 +5,21 @@ import {List as ListHelper} from "ts-toolbelt";
 import InferReturn from "@dikac/t-validator/validatable/infer";
 
 export default function List<
-    ValueT extends unknown[],
-    ValidatorT extends Validator<ListHelper.UnionOf<ValueT>>
+    ValueType extends unknown[],
+    ValidatorType extends Validator<ListHelper.UnionOf<ValueType>>
 >(
-    values : ValueT,
-    validator : ValidatorT,
-) : Map<ValueT, InferReturn<ValidatorT>> {
+    values : ValueType,
+    validator : ValidatorType,
+) : Map<ValueType, InferReturn<ValidatorType>> {
 
-    const result : Map<ValueT, InferReturn<ValidatorT>> | Union<Map<ValueT, InferReturn<ValidatorT>>> = [];
+    const result : Map<ValueType, InferReturn<ValidatorType>> | Union<Map<ValueType, InferReturn<ValidatorType>>> = [];
 
     for(const [property, value] of values.entries()) {
 
         const validatable = validator.validate(value);
 
-        result[property] = <InferReturn<ValidatorT>> validatable;
+        result[property] = <InferReturn<ValidatorType>> validatable;
     }
 
-    return <Map<ValueT, InferReturn<ValidatorT>>> result;
+    return <Map<ValueType, InferReturn<ValidatorType>>> result;
 }

@@ -18,4 +18,4 @@ import List from "./list";
  * @param message
  * process all result from {@link Validator} list into {@link Message} value
  */
-export default function ListPartial<MessageT = unknown, ValidatorT extends Validator = Validator, ValidatableT extends Validatable = Validatable>(validator: ValidatorT, validation: (result: Union<InferReturn<ValidatorT>[]>) => ValidatableT, message: (result: Union<InferReturn<ValidatorT>[]>) => MessageT): List<MessageT, ValidatorT, Union<InferReturn<ValidatorT>[]>, ValidatableT>;
+export default function ListPartial<MessageType = unknown, ValidatorType extends Validator = Validator, ValidatableType extends Validatable = Validatable>(validator: ValidatorType, validation: (result: Union<InferReturn<ValidatorType>[]>) => ValidatableType, message: (result: Union<InferReturn<ValidatorType>[]>) => MessageType): List<MessageType, ValidatorType, Union<InferReturn<ValidatorType>[]>, ValidatableType>;

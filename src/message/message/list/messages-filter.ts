@@ -6,11 +6,11 @@ import Messages from "../../../message/messages/messages";
 import Filter from "./filter";
 
 export default function MessagesFilter<
-    MessagesT extends Message[]
+    MessagesType extends Message[]
 >(
-    list : Messages<MessagesT>,
-    filter : (messages:List.UnionOf<MessagesT>)=>boolean = ()=>true
-) : MapUnion<ListInfer<MessagesT>> {
+    list : Messages<MessagesType>,
+    filter : (messages:List.UnionOf<MessagesType>)=>boolean = ()=>true
+) : MapUnion<ListInfer<MessagesType>> {
 
     return Filter(list.messages, filter);
 }
