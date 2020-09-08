@@ -25,9 +25,12 @@
      *
      * @param message
      * process all result from {@link Validator} list into {@link Message} value
+     *
+     * @param stop
+     * stop validation operation condition
      */
-    function ListPartial(validator, validation, message) {
-        return new list_callback_1.default(validator, list_partial_1.default, validation, message);
+    function ListPartial(validator, validation, message, stop = false) {
+        return new list_callback_1.default(validator, (value, validators) => list_partial_1.default(value, validators, stop), validation, message);
     }
     exports.default = ListPartial;
 });

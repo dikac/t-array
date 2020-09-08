@@ -17,5 +17,8 @@ import Union from "../union";
  *
  * @param message
  * process partial result from {@link Validator} list into {@link Message} value
+ *
+ * @param stop
+ * stop validation operation condition
  */
-export default function MapPartial<Validators extends Validator[] = Validator[], ValidatableType extends Validatable = Validatable, MessageType = unknown>(validators: Validators, validation: (result: Union<ListStrict<Validators>>) => ValidatableType, message: (result: Union<ListStrict<Validators>>) => MessageType): Omit<MapCallbackInterface<Validators, Union<ListStrict<Validators>>, MessageType, ValidatableType>, 'map'>;
+export default function MapPartial<Validators extends Validator[] = Validator[], ValidatableType extends Validatable = Validatable, MessageType = unknown>(validators: Validators, validation: (result: Union<ListStrict<Validators>>) => ValidatableType, message: (result: Union<ListStrict<Validators>>) => MessageType, stop?: boolean): Omit<MapCallbackInterface<Validators, Union<ListStrict<Validators>>, MessageType, ValidatableType>, 'map'>;

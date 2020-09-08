@@ -9,12 +9,12 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    function ValuePartial(value, validators) {
+    function ValuePartial(value, validators, stop = false) {
         const result = [];
         for (const [property, validator] of validators.entries()) {
             const validatable = validator.validate(value);
             result[property] = validatable;
-            if (!validatable.valid) {
+            if (validatable.valid === stop) {
                 return result;
             }
         }

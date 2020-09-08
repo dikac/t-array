@@ -9,6 +9,7 @@ export default function ValuePartial<
 >(
     value : ValueType,
     validators : Validators,
+    stop : boolean = false
 ) : Union<ListStrict<Validators>> {
 
     const result : Union<ListStrict<Validators>> = [];
@@ -19,7 +20,7 @@ export default function ValuePartial<
 
         result[property] = <List.UnionOf<ListStrict<Validators>>> validatable;
 
-        if(!validatable.valid) {
+        if(validatable.valid === stop) {
 
             return result;
         }

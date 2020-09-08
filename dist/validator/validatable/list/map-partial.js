@@ -9,13 +9,13 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    function Map(values, validators) {
+    function Map(values, validators, stop = false) {
         const result = [];
         for (let [property, validator] of validators.entries()) {
             const value = values[property];
             const validatable = validator.validate(value);
             result[property] = validatable;
-            if (!validatable.valid) {
+            if (validatable.valid === stop) {
                 return result;
             }
         }

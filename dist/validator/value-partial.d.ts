@@ -17,5 +17,8 @@ import Value from "./value";
  *
  * @param message
  * combined partial result from {@link Validator} list into {@link Message} value
+ *
+ * @param stop
+ * stop validation operation condition
  */
-export default function ValuePartial<BaseType = unknown, ValueType extends BaseType = BaseType, Validators extends Validator<BaseType, ValueType>[] = Validator<BaseType, ValueType>[], ReturnType extends Validatable = Validatable, MessageType = unknown>(validators: Validators, validation: (result: Union<ListReturn<Validators>>) => ReturnType, message: (result: Union<ListReturn<Validators>>) => MessageType): Value<BaseType, ValueType, MessageType, Validators, Union<ListReturn<Validators>>, ReturnType>;
+export default function ValuePartial<BaseType = unknown, ValueType extends BaseType = BaseType, Validators extends Validator<BaseType, ValueType>[] = Validator<BaseType, ValueType>[], ReturnType extends Validatable = Validatable, MessageType = unknown>(validators: Validators, validation: (result: Union<ListReturn<Validators>>) => ReturnType, message: (result: Union<ListReturn<Validators>>) => MessageType, stop?: boolean): Value<BaseType, ValueType, MessageType, Validators, Union<ListReturn<Validators>>, ReturnType>;

@@ -17,5 +17,8 @@ import List from "./list";
  *
  * @param message
  * process all result from {@link Validator} list into {@link Message} value
+ *
+ * @param stop
+ * stop validation operation condition
  */
-export default function ListPartial<MessageType = unknown, ValidatorType extends Validator = Validator, ValidatableType extends Validatable = Validatable>(validator: ValidatorType, validation: (result: Union<InferReturn<ValidatorType>[]>) => ValidatableType, message: (result: Union<InferReturn<ValidatorType>[]>) => MessageType): List<MessageType, ValidatorType, Union<InferReturn<ValidatorType>[]>, ValidatableType>;
+export default function ListPartial<MessageType = unknown, ValidatorType extends Validator = Validator, ValidatableType extends Validatable = Validatable>(validator: ValidatorType, validation: (result: Union<InferReturn<ValidatorType>[]>) => ValidatableType, message: (result: Union<InferReturn<ValidatorType>[]>) => MessageType, stop?: boolean): List<MessageType, ValidatorType, Union<InferReturn<ValidatorType>[]>, ValidatableType>;

@@ -21,6 +21,9 @@ import List from "./list";
  *
  * @param message
  * process all result from {@link Validator} list into {@link Message} value
+ *
+ * @param stop
+ * stop validation operation condition
  */
 export default function ListPartial<
     MessageType = unknown,
@@ -29,11 +32,12 @@ export default function ListPartial<
 >(
      validator : ValidatorType,
      validation : (result:Union<InferReturn<ValidatorType>[]>)=>ValidatableType,
-     message : (result:Union<InferReturn<ValidatorType>[]>)=>MessageType
+     message : (result:Union<InferReturn<ValidatorType>[]>)=>MessageType,
+     stop : boolean = false,
 
 ) : List<MessageType, ValidatorType, Union<InferReturn<ValidatorType>[]>, ValidatableType> {
 
-    return new ListCallback(validator, ValidateMapPartial, validation, message);
+    return new ListCallback(validator, (value, validators)=>ValidateMapPartial(value, validators, stop), validation, message);
 }
 
 

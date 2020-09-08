@@ -25,9 +25,12 @@
      *
      * @param message
      * combined partial result from {@link Validator} list into {@link Message} value
+     *
+     * @param stop
+     * stop validation operation condition
      */
-    function ValuePartial(validators, validation, message) {
-        return new value_callback_1.default(validators, value_partial_1.default, validation, message);
+    function ValuePartial(validators, validation, message, stop = false) {
+        return new value_callback_1.default(validators, (value, validators) => value_partial_1.default(value, validators, stop), validation, message);
     }
     exports.default = ValuePartial;
 });

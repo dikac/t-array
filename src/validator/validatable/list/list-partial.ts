@@ -10,6 +10,7 @@ export default function ListPartial<
 >(
     values : ValueType,
     validator : ValidatorType,
+    stop : boolean = false
 ) : Union<Map<ValueType, InferReturn<ValidatorType>>> {
 
     const result : Union<Map<ValueType, InferReturn<ValidatorType>>> = [];
@@ -20,7 +21,7 @@ export default function ListPartial<
 
         result[property] = <InferReturn<ValidatorType>> validatable;
 
-        if(!validatable.valid) {
+        if(validatable.valid === stop) {
 
             return result;
         }

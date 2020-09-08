@@ -21,6 +21,9 @@ import Value from "./value";
  *
  * @param message
  * combined partial result from {@link Validator} list into {@link Message} value
+ *
+ * @param stop
+ * stop validation operation condition
  */
 export default function ValuePartial<
     BaseType = unknown,
@@ -31,8 +34,9 @@ export default function ValuePartial<
 >(
     validators : Validators,
     validation : (result:Union<ListReturn<Validators>>)=>ReturnType,
-    message : (result:Union<ListReturn<Validators>>)=>MessageType
+    message : (result:Union<ListReturn<Validators>>)=>MessageType,
+    stop : boolean = false,
 ) : Value<BaseType, ValueType, MessageType, Validators, Union<ListReturn<Validators>>, ReturnType> {
 
-    return new ValueCallback(validators, ValidateValuePartial, validation, message);
+    return new ValueCallback(validators, (value, validators)=>ValidateValuePartial(value, validators, stop), validation, message);
 }

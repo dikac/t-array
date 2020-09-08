@@ -10,6 +10,7 @@ export default function Map<
 >(
     values : ListArgument<Validators>,
     validators : Validators,
+    stop : boolean = false
 ) : Union<ListStrict<Validators>> {
 
     const result : ListReturn<Validators>|Union<ListStrict<Validators>> = [];
@@ -21,7 +22,7 @@ export default function Map<
 
         result[property] = <List.UnionOf<ListStrict<Validators>>> validatable;
 
-        if(!validatable.valid) {
+        if(validatable.valid === stop) {
 
             return result;
         }

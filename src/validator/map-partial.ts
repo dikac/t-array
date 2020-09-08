@@ -21,6 +21,9 @@ import Message from "@dikac/t-message/message";
  *
  * @param message
  * process partial result from {@link Validator} list into {@link Message} value
+ *
+ * @param stop
+ * stop validation operation condition
  */
 export default function MapPartial<
     Validators extends Validator[] = Validator[],
@@ -29,8 +32,9 @@ export default function MapPartial<
 >(
     validators : Validators,
     validation : (result:Union<ListStrict<Validators>>)=>ValidatableType,
-    message : (result:Union<ListStrict<Validators>>)=>MessageType
+    message : (result:Union<ListStrict<Validators>>)=>MessageType,
+    stop : boolean = false,
 ) : Omit<MapCallbackInterface<Validators, Union<ListStrict<Validators>>, MessageType, ValidatableType>, 'map'>  {
 
-    return new MapCallback(validators, ValidateMap, validation, message);
+    return new MapCallback(validators, (value, validators)=>ValidateMap(value, validators, stop), validation, message);
 }

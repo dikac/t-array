@@ -9,12 +9,12 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    function ListPartial(values, validator) {
+    function ListPartial(values, validator, stop = false) {
         const result = [];
         for (const [property, value] of values.entries()) {
             const validatable = validator.validate(value);
             result[property] = validatable;
-            if (!validatable.valid) {
+            if (validatable.valid === stop) {
                 return result;
             }
         }

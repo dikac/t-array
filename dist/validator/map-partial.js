@@ -25,9 +25,12 @@
      *
      * @param message
      * process partial result from {@link Validator} list into {@link Message} value
+     *
+     * @param stop
+     * stop validation operation condition
      */
-    function MapPartial(validators, validation, message) {
-        return new map_callback_1.default(validators, map_partial_1.default, validation, message);
+    function MapPartial(validators, validation, message, stop = false) {
+        return new map_callback_1.default(validators, (value, validators) => map_partial_1.default(value, validators, stop), validation, message);
     }
     exports.default = MapPartial;
 });

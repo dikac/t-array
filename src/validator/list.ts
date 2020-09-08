@@ -2,7 +2,6 @@ import Validator from "@dikac/t-validator/validator";
 import SimpleValidator from "@dikac/t-validator/simple";
 import ValidatorContainer from "@dikac/t-validator/validator/validator";
 import Validatable from "@dikac/t-validatable/validatable";
-import ValidatableListCallbackInterface from "../validatable/list-callback";
 import Message from "@dikac/t-message/message";
 import Instance from "@dikac/t-validator/validatable/validatable";
 import Validation from "@dikac/t-validatable/validation/validation";
