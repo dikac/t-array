@@ -12,7 +12,7 @@
     const name_1 = require("@dikac/t-object/string/name");
     const sentences_1 = require("@dikac/t-string/message/sentences");
     /**
-     * string intended for not empty array
+     * string intended for not empty array message
      *
      * @param valid
      * @param value
@@ -20,12 +20,10 @@
      */
     function NotEmpty(valid, value, subject = '') {
         const sentence = new sentences_1.default(valid);
-        sentence.predicate = {
-            invalid: ['is'],
-            valid: ['is not'],
-        };
+        sentence.accept = ['is not'];
+        sentence.reject = ['is'];
         sentence.subject = [subject, name_1.default(value)];
-        sentence.object = ['empty array'];
+        sentence.expect = ['empty array'];
         return sentence.message;
     }
     exports.default = NotEmpty;

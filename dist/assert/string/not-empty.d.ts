@@ -1,5 +1,5 @@
 /**
- * string intended for not empty array
+ * string intended for not empty array message
  *
  * @param valid
  * @param value

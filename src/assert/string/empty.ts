@@ -1,5 +1,5 @@
 import Name from "@dikac/t-object/string/name";
-import SentencesIs from "@dikac/t-string/message/sentences-is";
+import SentencesMust from "@dikac/t-string/message/sentences-must";
 
 /**
  * string intended for empty array
@@ -15,8 +15,8 @@ export default function Empty(
     subject : string = ''
 ) : string {
 
-    const sentence = SentencesIs(valid);
-    sentence.subject = [subject,  Name(value)];
-    sentence.object = ['empty array'];
+    const sentence = SentencesMust(valid);
+    sentence.subject = [subject, `"${Name(value)}"`];
+    sentence.expect = ['empty array'];
     return sentence.message;
 }

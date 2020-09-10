@@ -6,12 +6,13 @@ export default function Includes(
 ) : string {
 
     const sentence = new Sentence(valid);
+
     sentence.subject = subject;
-    sentence.predicate = {
-        valid : 'is exists in',
-        invalid : 'is not exists in',
-    };
-    sentence.object = 'array';
+    sentence.accept =  'is exists in';
+    sentence.reject =  'is not exists in';
+
+
+    sentence.expect = 'array';
     return sentence.message;
 
 }

@@ -13,11 +13,9 @@
     function Includes(valid, subject = '') {
         const sentence = new sentence_1.default(valid);
         sentence.subject = subject;
-        sentence.predicate = {
-            valid: 'is exists in',
-            invalid: 'is not exists in',
-        };
-        sentence.object = 'array';
+        sentence.accept = 'is exists in';
+        sentence.reject = 'is not exists in';
+        sentence.expect = 'array';
         return sentence.message;
     }
     exports.default = Includes;

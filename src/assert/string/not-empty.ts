@@ -2,7 +2,7 @@ import Name from "@dikac/t-object/string/name";
 import Sentences from "@dikac/t-string/message/sentences";
 
 /**
- * string intended for not empty array
+ * string intended for not empty array message
  *
  * @param valid
  * @param value
@@ -16,11 +16,10 @@ export default function NotEmpty(
 ) : string {
 
     const sentence = new Sentences(valid);
-    sentence.predicate = {
-        invalid:['is'],
-        valid:['is not'],
-    };
+    sentence.accept = ['is not'];
+    sentence.reject = ['is'];
     sentence.subject = [subject,  Name(value)];
-    sentence.object = ['empty array'];
+
+    sentence.expect = ['empty array'];
     return sentence.message;
 }
