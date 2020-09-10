@@ -1,1 +1,1 @@
-export default function Array<Assumption extends unknown[]>(values: unknown): values is Assumption;
+export default function Array(values: unknown): values is unknown[];
