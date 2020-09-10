@@ -1,8 +1,5 @@
+import Empty from "../../assert/string/empty";
 /**
- * string intended for empty array
- *
- * @param valid
- * @param value
- * @param subject
+ * @deprecated use original instead
  */
-export default function Empty(valid: boolean, value: unknown[], subject?: string): string;
+export default Empty;

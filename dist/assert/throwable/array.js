@@ -4,15 +4,15 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../../assert/string/includes"], factory);
+        define(["require", "exports", "../string/array"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const includes_1 = require("../../assert/string/includes");
-    /**
-     * @deprecated use original instead
-     */
-    exports.default = includes_1.default;
+    const array_1 = require("../string/array");
+    function Array(string, subject = 'type', conversion = value => typeof value) {
+        return new Error(array_1.default(false, string, subject, conversion));
+    }
+    exports.default = Array;
 });
-//# sourceMappingURL=includes.js.map
+//# sourceMappingURL=array.js.map

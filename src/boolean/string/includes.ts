@@ -1,17 +1,6 @@
-import Sentence from "@dikac/t-string/message/sentence";
+import Includes from "../../assert/string/includes";
 
-export default function Includes(
-    valid : boolean,
-    subject : string = '',
-) : string {
-
-    const sentence = new Sentence(valid);
-    sentence.subject = subject;
-    sentence.predicate = {
-        valid : 'is exists in',
-        invalid : 'is not exists in',
-    };
-    sentence.object = 'array';
-    return sentence.message;
-
-}
+/**
+ * @deprecated use original instead
+ */
+export default Includes;

@@ -1,8 +1,5 @@
+import NotEmpty from "../../assert/string/not-empty";
 /**
- * string intended for not empty array
- *
- * @param valid
- * @param value
- * @param subject
+ * @deprecated use original instead
  */
-export default function NotEmpty(valid: boolean, value: any[], subject?: string): string;
+export default NotEmpty;

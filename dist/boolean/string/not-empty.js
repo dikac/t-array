@@ -4,30 +4,15 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "@dikac/t-object/string/name", "@dikac/t-string/message/sentences"], factory);
+        define(["require", "exports", "../../assert/string/not-empty"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const name_1 = require("@dikac/t-object/string/name");
-    const sentences_1 = require("@dikac/t-string/message/sentences");
+    const not_empty_1 = require("../../assert/string/not-empty");
     /**
-     * string intended for not empty array
-     *
-     * @param valid
-     * @param value
-     * @param subject
+     * @deprecated use original instead
      */
-    function NotEmpty(valid, value, subject = '') {
-        const sentence = new sentences_1.default(valid);
-        sentence.predicate = {
-            invalid: ['is'],
-            valid: ['is not'],
-        };
-        sentence.subject = [subject, name_1.default(value)];
-        sentence.object = ['empty array'];
-        return sentence.message;
-    }
-    exports.default = NotEmpty;
+    exports.default = not_empty_1.default;
 });
 //# sourceMappingURL=not-empty.js.map

@@ -1,1 +1,5 @@
-export default function Includes(valid: boolean, subject?: string): string;
+import Includes from "../../assert/string/includes";
+/**
+ * @deprecated use original instead
+ */
+export default Includes;

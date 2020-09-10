@@ -1,1 +1,5 @@
-export default function Array(valid: boolean, value: unknown, subject?: string, conversion?: (value: unknown) => string): string;
+import Array from "../../assert/string/array";
+/**
+ * @deprecated use original instead
+ */
+export default Array;

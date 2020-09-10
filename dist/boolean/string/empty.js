@@ -4,26 +4,15 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "@dikac/t-object/string/name", "@dikac/t-string/message/sentences-is"], factory);
+        define(["require", "exports", "../../assert/string/empty"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const name_1 = require("@dikac/t-object/string/name");
-    const sentences_is_1 = require("@dikac/t-string/message/sentences-is");
+    const empty_1 = require("../../assert/string/empty");
     /**
-     * string intended for empty array
-     *
-     * @param valid
-     * @param value
-     * @param subject
+     * @deprecated use original instead
      */
-    function Empty(valid, value, subject = '') {
-        const sentence = sentences_is_1.default(valid);
-        sentence.subject = [subject, name_1.default(value)];
-        sentence.object = ['empty array'];
-        return sentence.message;
-    }
-    exports.default = Empty;
+    exports.default = empty_1.default;
 });
 //# sourceMappingURL=empty.js.map
