@@ -5,7 +5,7 @@ import Instance from "@dikac/t-validator/validatable/validatable";
 import Map from "./map";
 import ValueMap from "../value/value/list/map";
 import InferValueMap from "../value/value/list/infer";
-import MemoizeGetter from "@dikac/t-object/value/set-getter";
+import MemoizeGetter from "@dikac/t-object/value/value/set-getter";
 
 export default class MapCallback<
     Validators extends Validator[] = Validator[],

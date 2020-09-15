@@ -2,7 +2,7 @@ import Validator from "@dikac/t-validator/validator";
 import Validatable from "@dikac/t-validatable/validatable";
 import Instance from "@dikac/t-validator/validatable/validatable";
 import List from "./list";
-import MemoizeGetter from "@dikac/t-object/value/set-getter";
+import MemoizeGetter from "@dikac/t-object/value/value/set-getter";
 
 export default class ListCallback<
     ValueType extends unknown[],
