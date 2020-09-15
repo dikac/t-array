@@ -13,22 +13,22 @@
     /**
      * Base {@link Validator} for validating value with list of {@link Validator}
      *
-     * @template BaseT
+     * @template BaseType
      * see {@link Validator}
      *
-     * @template ValueT
+     * @template ValueType
      * see {@link Validator}
      *
-     * @template MessageT
+     * @template MessageType
      * see {@link Validator}
      *
-     * @template ValidatorsT
-     * list of {@link Validator} to be used against {@template BaseT} or {@template ValueT}
+     * @template ValidatorsType
+     * list of {@link Validator} to be used against {@template BaseType} or {@template ValueType}
      *
      * @template Validatables
-     * result after processing {@template ValidatorsT} with {@template BaseT} or {@template ValueT}
+     * result after processing {@template ValidatorsType} with {@template BaseType} or {@template ValueType}
      *
-     * @template ValidatableT
+     * @template ValidatableType
      * final result after processing {@template Result}
      */
     class ValueCallback {

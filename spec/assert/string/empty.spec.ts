@@ -1,5 +1,4 @@
 import EmptyMessage from "../../../dist/assert/string/empty";
-import Name from "@dikac/t-object/string/name";
 
 
 it("enable console log", () => {spyOn(console, 'log').and.callThrough()});

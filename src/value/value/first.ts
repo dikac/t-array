@@ -15,7 +15,6 @@ export default function First <Value>(values : Value[]) : Value|undefined {
 
                 return value;
             }
-
         }
     }
 

@@ -1,4 +1,3 @@
-import Extract from "../../../dist/value/value/extract";
 import First from "../../../dist/value/value/first";
 
 it("force console log", () => { spyOn(console, 'log').and.callThrough();});
