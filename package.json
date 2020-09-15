@@ -12,7 +12,7 @@
     "@dikac/t-string": "^0.14.0",
     "@dikac/t-validatable": "^0.18.8",
     "@dikac/t-validator": "^0.16.5",
-    "@dikac/t-value": "^0.12.6",
+    "@dikac/t-value": "^0.12.7",
     "ts-toolbelt": "^6.15.5"
   },
   "devDependencies": {

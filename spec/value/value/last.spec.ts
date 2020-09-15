@@ -1,5 +1,5 @@
-import Extract from "../../dist/value/value/extract";
-import Last from "../../dist/value/last";
+import Extract from "../../../dist/value/value/extract";
+import Last from "../../../dist/value/value/last";
 
 it("force console log", () => { spyOn(console, 'log').and.callThrough();});
 

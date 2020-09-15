@@ -1,7 +1,12 @@
 /**
- * @deprecated
- * use original instead
+ * get and remove selected value
+ *
+ * @param array
+ * @param index
+ * if negative will start at the end
+ *
  */
-import Extract from "../extract";
+export default function Extract<Data>(array : Data[], index: number): Data | undefined {
 
-export default Extract;
+    return array.splice(index, 1)[0];
+}

@@ -1,6 +1,6 @@
 /**
- * @deprecated
- * use original instead
+ * get the last non 'undefined' value
+ *
+ * @param value
  */
-import Last from "../last";
-export default Last;
+export default function Last<Value>(value: Value[]): Value | undefined;

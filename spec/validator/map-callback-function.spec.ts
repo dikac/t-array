@@ -218,7 +218,7 @@ describe("explicit", function() {
                 let validatable = validator.validate(value);
 
                 expect(validatable.valid).toBe(true);
-                expect(validatable.value).toBe(value);
+                expect(validatable.value).toEqual(value);
 
                 expect(validatable.validatables[0].valid).toBe(true);
                 expect(typeof validatable.validatables[0].message).toBe('string');
@@ -248,7 +248,7 @@ describe("explicit", function() {
                 let validatable = validator.validate(value);
 
                 expect(validatable.valid).toBe(true);
-                expect(validatable.value).toBe(value);
+                expect(validatable.value).toEqual(value);
 
                 expect(validatable.validatables[0].valid).toBe(true);
                 expect(typeof validatable.validatables[0].message).toBe('string');
@@ -282,7 +282,7 @@ describe("explicit", function() {
                 let validatable = validator.validate(value);
 
                 expect(validatable.valid).toBe(true);
-                expect(validatable.value).toBe(value);
+                expect(validatable.value).toEqual(value);
 
                 expect(validatable.validatables[0].valid).toBe(true);
                 expect(typeof validatable.validatables[0].message).toBe('string');
@@ -312,7 +312,7 @@ describe("explicit", function() {
                 let validatable = validator.validate(value);
 
                 expect(validatable.valid).toBe(true);
-                expect(validatable.value).toBe(value);
+                expect(validatable.value).toEqual(value);
 
                 expect(validatable.validatables[0].valid).toBe(true);
                 expect(typeof validatable.validatables[0].message).toBe('string');
@@ -375,7 +375,7 @@ describe("explicit", function() {
                 let and = validator.validate(value);
 
                 expect(and.valid).toBe(false);
-                expect(and.value).toBe(value);
+                expect(and.value).toEqual(value);
 
                 expect(and.validatables[0].valid).toBe(true);
                 expect(typeof and.validatables[0].message).toBe('string');
@@ -407,7 +407,7 @@ describe("explicit", function() {
                 let or = validator.validate(value);
 
                 expect(or.valid).toBe(true);
-                expect(or.value).toBe(value);
+                expect(or.value).toEqual(value);
 
                 expect(typeof or.validatables[0].message).toBe('string');
                 expect(or.message[0]).toBe(or.validatables[0].message);
@@ -443,7 +443,7 @@ describe("explicit", function() {
                 let and = validator.validate(value);
 
                 expect(and.valid).toBe(false);
-                expect(and.value).toBe(value);
+                expect(and.value).toEqual(value);
 
                 expect(and.validatables[0].valid).toBe(true);
                 expect(typeof and.validatables[0].message).toBe('string');
@@ -472,7 +472,7 @@ describe("explicit", function() {
                 let or = validator.validate(value);
 
                 expect(or.valid).toBe(true);
-                expect(or.value).toBe(value);
+                expect(or.value).toEqual(value);
 
                 expect(typeof or.validatables[0].message).toBe('string');
                 expect(or.message[0]).toBe(or.validatables[0].message);
@@ -670,7 +670,7 @@ describe("recursive", function() {
                 let validatable = validator.validate(value);
 
                 expect(validatable.valid).toBe(true);
-                expect(validatable.value).toBe(value);
+                expect(validatable.value).toEqual(value);
 
                 expect(validatable.validatables[0].valid).toBe(true);
                 expect(typeof validatable.validatables[0].message).toBe('string');
@@ -709,7 +709,7 @@ describe("recursive", function() {
                 let validatable = validator.validate(value);
 
                 expect(validatable.valid).toBe(true);
-                expect(validatable.value).toBe(value);
+                expect(validatable.value).toEqual(value);
 
                 expect(validatable.validatables[0].valid).toBe(true);
                 expect(typeof validatable.validatables[0].message).toBe('string');
@@ -752,7 +752,7 @@ describe("recursive", function() {
                 let validatable = validator.validate(value);
 
                 expect(validatable.valid).toBe(true);
-                expect(validatable.value).toBe(value);
+                expect(validatable.value).toEqual(value);
 
                 expect(validatable.validatables[0].valid).toBe(true);
                 expect(typeof validatable.validatables[0].message).toBe('string');
@@ -791,7 +791,7 @@ describe("recursive", function() {
                 let validatable = validator.validate(value);
 
                 expect(validatable.valid).toBe(true);
-                expect(validatable.value).toBe(value);
+                expect(validatable.value).toEqual(value);
 
                 expect(validatable.validatables[0].valid).toBe(true);
                 expect(typeof validatable.validatables[0].message).toBe('string');
@@ -854,7 +854,7 @@ describe("recursive", function() {
                 let and = validator.validate(value);
 
                 expect<boolean>(and.valid).toBe(false);
-                expect(and.value).toBe(value);
+                expect(and.value).toEqual(value);
 
                 expect(and.validatables[0].valid).toBe(true);
                 expect(typeof and.validatables[0].message).toBe('string');
@@ -895,7 +895,7 @@ describe("recursive", function() {
                 let or = validator.validate(value);
 
                 expect(or.valid).toBe(true);
-                expect(or.value).toBe(value);
+                expect(or.value).toEqual(value);
 
                 expect(typeof or.validatables[0].message).toBe('string');
                 expect(or.message[0]).toBe(or.validatables[0].message);
@@ -940,7 +940,7 @@ describe("recursive", function() {
                 let and = validator.validate(value);
 
                 expect<boolean>(and.valid).toBe(false);
-                expect(and.value).toBe(value);
+                expect(and.value).toEqual(value);
 
                 expect(and.validatables[0].valid).toBe(true);
                 expect(typeof and.validatables[0].message).toBe('string');
@@ -966,7 +966,7 @@ describe("recursive", function() {
                 let or = validator.validate(value);
 
                 expect(or.valid).toBe(true);
-                expect(or.value).toBe(value);
+                expect(or.value).toEqual(value);
 
                 expect(typeof or.validatables[0].message).toBe("string");
                 expect(or.message[0]).toBe(or.validatables[0].message);

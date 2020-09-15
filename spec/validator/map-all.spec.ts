@@ -186,7 +186,7 @@ describe("all valid", function() {
         let validatable = property.validate(value);
 
         expect(validatable.valid).toBe(true);
-        expect(validatable.value).toBe(value);
+        expect(validatable.value).toEqual(value);
     });
 
     it(`check handler or`, () => {
@@ -195,7 +195,7 @@ describe("all valid", function() {
         let validatable = property.validate(value);
 
         expect(validatable.valid).toBe(true);
-        expect(validatable.value).toBe(value);
+        expect(validatable.value).toEqual(value);
     });
 
 });
@@ -248,7 +248,7 @@ describe("mixed", function() {
         let validatable = property.validate(value);
 
         expect<boolean>(validatable.valid).toBe(false);
-        expect(validatable.value).toBe(value);
+        expect(validatable.value).toEqual(value);
     });
 
     it(`check handler or`, () => {
@@ -257,7 +257,7 @@ describe("mixed", function() {
         let validatable = property.validate(value);
 
         expect(validatable.valid).toBe(true);
-        expect(validatable.value).toBe(value);
+        expect(validatable.value).toEqual(value);
     });
 
 });
@@ -309,7 +309,7 @@ describe("all invalid", function() {
         let validatable = property.validate(value);
 
         expect(validatable.valid).toBe(false);
-        expect(validatable.value).toBe(value);
+        expect(validatable.value).toEqual(value);
     });
 
     it(`check handler or`, () => {
@@ -318,7 +318,7 @@ describe("all invalid", function() {
         let validatable = property.validate(value);
 
         expect(validatable.valid).toBe(false);
-        expect(validatable.value).toBe(value);
+        expect(validatable.value).toEqual(value);
     });
 
 });

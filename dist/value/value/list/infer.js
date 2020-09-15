@@ -9,17 +9,5 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    /**
-     * get and remove selected value
-     *
-     * @param array
-     * @param index
-     * if negative will start at the end
-     *
-     */
-    function Extract(array, index) {
-        return array.splice(index, 1)[0];
-    }
-    exports.default = Extract;
 });
-//# sourceMappingURL=extract.js.map
+//# sourceMappingURL=infer.js.map

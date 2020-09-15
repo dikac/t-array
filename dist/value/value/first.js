@@ -4,16 +4,27 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../first"], factory);
+        define(["require", "exports"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     /**
-     * @deprecated
-     * use original instead
+     * get the first non 'undefined' value
+     *
+     * @param values
      */
-    const first_1 = require("../first");
-    exports.default = first_1.default;
+    function First(values) {
+        let first = values[0];
+        if (first === undefined) {
+            for (const value of values) {
+                if (value !== undefined) {
+                    return value;
+                }
+            }
+        }
+        return first;
+    }
+    exports.default = First;
 });
 //# sourceMappingURL=first.js.map

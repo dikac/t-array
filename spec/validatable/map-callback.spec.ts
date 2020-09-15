@@ -178,7 +178,7 @@ describe("explicit", function() {
                 );
 
                 expect(validatable.valid).toBe(true);
-                expect(validatable.value).toBe(value);
+                expect(validatable.value).toEqual(value);
 
                 expect(validatable.validatables[0].valid).toBe(true);
                 expect(typeof validatable.validatables[0].message).toBe('string');
@@ -201,7 +201,7 @@ describe("explicit", function() {
                 );
 
                 expect(validatable.valid).toBe(true);
-                expect(validatable.value).toBe(value);
+                expect(validatable.value).toEqual(value);
 
                 expect(validatable.validatables[0].valid).toBe(true);
                 expect(typeof validatable.validatables[0].message).toBe('string');
@@ -229,7 +229,7 @@ describe("explicit", function() {
                 );
 
                 expect(validatable.valid).toBe(true);
-                expect(validatable.value).toBe(value);
+                expect(validatable.value).toEqual(value);
 
                 expect(validatable.validatables[0].valid).toBe(true);
                 expect(typeof validatable.validatables[0].message).toBe('string');
@@ -253,7 +253,7 @@ describe("explicit", function() {
                 );
 
                 expect(validatable.valid).toBe(true);
-                expect(validatable.value).toBe(value);
+                expect(validatable.value).toEqual(value);
 
                 expect(validatable.validatables[0].valid).toBe(true);
                 expect(typeof validatable.validatables[0].message).toBe('string');
@@ -308,7 +308,7 @@ describe("explicit", function() {
                 );
 
                 expect(and.valid).toBe(false);
-                expect(and.value).toBe(value);
+                expect(and.value).toEqual(value);
 
                 expect(and.validatables[0].valid).toBe(true);
                 expect(typeof and.validatables[0].message).toBe('string');
@@ -332,7 +332,7 @@ describe("explicit", function() {
                 );
 
                 expect(or.valid).toBe(true);
-                expect(or.value).toBe(value);
+                expect(or.value).toEqual(value);
 
                 expect(typeof or.validatables[0].message).toBe('string');
                 expect(or.validatables[0].valid).toBe(true);
@@ -360,7 +360,7 @@ describe("explicit", function() {
                 );
 
                 expect(and.valid).toBe(false);
-                expect(and.value).toBe(value);
+                expect(and.value).toEqual(value);
 
                 expect(and.validatables[0].valid).toBe(true);
                 expect(typeof and.validatables[0].message).toBe('string');
@@ -381,7 +381,7 @@ describe("explicit", function() {
                 );
 
                 expect(or.valid).toBe(true);
-                expect(or.value).toBe(value);
+                expect(or.value).toEqual(value);
 
                 expect(typeof or.validatables[0].message).toBe('string');
                 expect(or.validatables[0].valid).toBe(true);

@@ -1,7 +1,23 @@
 /**
- * @deprecated
- * use original instead
+ * get the last non 'undefined' value
+ *
+ * @param value
  */
-import Last from "../last";
+export default function Last <Value>(value : Value[]) : Value|undefined {
 
-export default Last;
+    let last : Value|undefined = value[value.length - 1];
+
+    if(last === undefined) {
+
+        let clone = value.slice(0);
+
+        do {
+
+            last = clone.pop();
+
+        } while (last === undefined && clone.length)
+
+    }
+
+    return last;
+}
