@@ -10,6 +10,9 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const empty_1 = require("../validatable/empty");
+    /**
+     *  validate if array is empty
+     */
     class Empty {
         constructor(message) {
             this.message = message;

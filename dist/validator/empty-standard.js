@@ -11,6 +11,9 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     const empty_1 = require("./empty");
     const empty_2 = require("../validatable/string/empty");
+    /**
+     * create {@see Empty} with default message
+     */
     function EmptyStandard() {
         return new empty_1.default(empty_2.default);
     }

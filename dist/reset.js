@@ -14,7 +14,7 @@
      * @param argument
      */
     function Reset(argument) {
-        let buffer = [];
+        const buffer = [];
         argument.forEach(function (v, i) {
             buffer.push(v);
         });

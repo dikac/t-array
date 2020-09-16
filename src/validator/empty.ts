@@ -5,7 +5,9 @@ import Value from "@dikac/t-value/value";
 import EmptyValidatable from "../validatable/empty";
 import Return from "@dikac/t-validator/validatable/simple";
 
-
+/**
+ *  validate if array is empty
+ */
 export default class Empty<
     MessageType
 > implements Validator<Array<any>, [], boolean, boolean, EmptyValidatable<MessageType, Array<any>>>,

@@ -9,6 +9,9 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    /**
+     *  validate array length
+     */
     class Length {
         constructor(validator) {
             this.validator = validator;

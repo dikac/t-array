@@ -10,6 +10,9 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const array_1 = require("../validatable/array");
+    /**
+     *  validate if value is array
+     */
     class Array_ {
         constructor(message) {
             this.message = message;

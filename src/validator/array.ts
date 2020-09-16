@@ -6,6 +6,9 @@ import ArrayValidatable from "../validatable/array";
 import Instance from "@dikac/t-validator/validatable/validatable";
 import Return from "@dikac/t-validator/validatable/simple";
 
+/**
+ *  validate if value is array
+ */
 export default class Array_<MessageType>
     implements
         Validator<unknown, Array<any>, Readonly<Instance<unknown, MessageType>>>,

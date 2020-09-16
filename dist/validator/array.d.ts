@@ -4,6 +4,9 @@ import Message from "@dikac/t-message/message";
 import Value from "@dikac/t-value/value";
 import Instance from "@dikac/t-validator/validatable/validatable";
 import Return from "@dikac/t-validator/validatable/simple";
+/**
+ *  validate if value is array
+ */
 export default class Array_<MessageType> implements Validator<unknown, Array<any>, Readonly<Instance<unknown, MessageType>>>, Message<(result: Readonly<Value> & Readonly<Validatable>) => MessageType> {
     message: (result: Readonly<Value> & Readonly<Validatable>) => MessageType;
     constructor(message: (result: Readonly<Value> & Readonly<Validatable>) => MessageType);

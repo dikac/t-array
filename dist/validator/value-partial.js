@@ -15,7 +15,7 @@
      * more specific implementation of {@link ValueCallback}
      *
      * Validate value with list of {@link Validator}
-     * stop on encounter invalid result from {@link Validator}
+     * stop on encounter that match {@param stop} result from {@link Validator}
      *
      * @param validators
      * list of {@link Validator} to be used against value

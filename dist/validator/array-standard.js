@@ -11,6 +11,9 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     const array_1 = require("./array");
     const array_2 = require("../validatable/string/array");
+    /**
+     * create {@see Array} with default message
+     */
     function ArrayStandard() {
         return new array_1.default(array_2.default);
     }
