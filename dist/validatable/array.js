@@ -1,19 +1,6 @@
-(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(require, exports);
-        if (v !== undefined) module.exports = v;
-    }
-    else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "@dikac/t-validator/validatable/callback-function", "../boolean/array"], factory);
-    }
-})(function (require, exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    const callback_function_1 = require("@dikac/t-validator/validatable/callback-function");
-    const array_1 = require("../boolean/array");
-    function Array(value, message) {
-        return callback_function_1.default(value, array_1.default, message);
-    }
-    exports.default = Array;
-});
+import Callback from "@dikac/t-validator/validatable/callback-function";
+import ObjectGuard from "../boolean/array";
+export default function Array(value, message) {
+    return Callback(value, ObjectGuard, message);
+}
 //# sourceMappingURL=array.js.map

@@ -1,22 +1,9 @@
-(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(require, exports);
-        if (v !== undefined) module.exports = v;
-    }
-    else if (typeof define === "function" && define.amd) {
-        define(["require", "exports"], factory);
-    }
-})(function (require, exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    function And(value, validations) {
-        for (let validator of validations) {
-            if (!validator(value)) {
-                return false;
-            }
+export default function And(value, validations) {
+    for (let validator of validations) {
+        if (!validator(value)) {
+            return false;
         }
-        return true;
     }
-    exports.default = And;
-});
+    return true;
+}
 //# sourceMappingURL=and.js.map

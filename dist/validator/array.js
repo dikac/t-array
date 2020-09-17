@@ -1,26 +1,13 @@
-(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(require, exports);
-        if (v !== undefined) module.exports = v;
+import ArrayValidatable from "../validatable/array";
+/**
+ *  validate if value is array
+ */
+export default class Array_ {
+    constructor(message) {
+        this.message = message;
     }
-    else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../validatable/array"], factory);
+    validate(value) {
+        return ArrayValidatable(value, this.message);
     }
-})(function (require, exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    const array_1 = require("../validatable/array");
-    /**
-     *  validate if value is array
-     */
-    class Array_ {
-        constructor(message) {
-            this.message = message;
-        }
-        validate(value) {
-            return array_1.default(value, this.message);
-        }
-    }
-    exports.default = Array_;
-});
+}
 //# sourceMappingURL=array.js.map

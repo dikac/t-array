@@ -1,18 +1,5 @@
-(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(require, exports);
-        if (v !== undefined) module.exports = v;
-    }
-    else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../../boolean/string/empty"], factory);
-    }
-})(function (require, exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    const empty_1 = require("../../boolean/string/empty");
-    function Empty(string) {
-        return new Error(empty_1.default(false, string));
-    }
-    exports.default = Empty;
-});
+import EmptyType from "../../boolean/string/empty";
+export default function Empty(string) {
+    return new Error(EmptyType(false, string));
+}
 //# sourceMappingURL=empty.js.map

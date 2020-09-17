@@ -11,49 +11,36 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     }
     return privateMap.get(receiver);
 };
-(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(require, exports);
-        if (v !== undefined) module.exports = v;
+var _message, _value;
+import MemoizeGetter from "@dikac/t-object/value/value/set-getter";
+export default class MapCallback {
+    constructor(value, validators, map, validation, message) {
+        this.validators = validators;
+        this.map = map;
+        this.validation = validation;
+        _message.set(this, void 0);
+        _value.set(this, void 0);
+        __classPrivateFieldSet(this, _value, value);
+        __classPrivateFieldSet(this, _message, message);
     }
-    else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "@dikac/t-object/value/value/set-getter"], factory);
+    get value() {
+        return MemoizeGetter(this, 'value', __classPrivateFieldGet(this, _value).slice(0, this.validators.length));
     }
-})(function (require, exports) {
-    "use strict";
-    var _message, _value;
-    Object.defineProperty(exports, "__esModule", { value: true });
-    const set_getter_1 = require("@dikac/t-object/value/value/set-getter");
-    class MapCallback {
-        constructor(value, validators, map, validation, message) {
-            this.validators = validators;
-            this.map = map;
-            this.validation = validation;
-            _message.set(this, void 0);
-            _value.set(this, void 0);
-            __classPrivateFieldSet(this, _value, value);
-            __classPrivateFieldSet(this, _message, message);
-        }
-        get value() {
-            return set_getter_1.default(this, 'value', __classPrivateFieldGet(this, _value).slice(0, this.validators.length));
-        }
-        get valid() {
-            return this.validatable.valid;
-        }
-        get validatable() {
-            return set_getter_1.default(this, 'validatable', this.validation(this.validatables));
-        }
-        get messages() {
-            return this.validatables;
-        }
-        get validatables() {
-            return set_getter_1.default(this, 'validatables', this.map(this.value, this.validators));
-        }
-        get message() {
-            return set_getter_1.default(this, 'message', __classPrivateFieldGet(this, _message).call(this, this.validatables));
-        }
+    get valid() {
+        return this.validatable.valid;
     }
-    exports.default = MapCallback;
-    _message = new WeakMap(), _value = new WeakMap();
-});
+    get validatable() {
+        return MemoizeGetter(this, 'validatable', this.validation(this.validatables));
+    }
+    get messages() {
+        return this.validatables;
+    }
+    get validatables() {
+        return MemoizeGetter(this, 'validatables', this.map(this.value, this.validators));
+    }
+    get message() {
+        return MemoizeGetter(this, 'message', __classPrivateFieldGet(this, _message).call(this, this.validatables));
+    }
+}
+_message = new WeakMap(), _value = new WeakMap();
 //# sourceMappingURL=map-callback.js.map

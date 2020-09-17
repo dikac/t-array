@@ -1,39 +1,26 @@
-(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(require, exports);
-        if (v !== undefined) module.exports = v;
+/**
+ *  validate array length
+ */
+export default class Length {
+    constructor(validator) {
+        this.validator = validator;
     }
-    else if (typeof define === "function" && define.amd) {
-        define(["require", "exports"], factory);
+    validate(value) {
+        let validatable = this.validator.validate(value.length);
+        return {
+            get validatable() {
+                return validatable;
+            },
+            get value() {
+                return value;
+            },
+            get message() {
+                return validatable.message;
+            },
+            get valid() {
+                return validatable.valid;
+            }
+        };
     }
-})(function (require, exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    /**
-     *  validate array length
-     */
-    class Length {
-        constructor(validator) {
-            this.validator = validator;
-        }
-        validate(value) {
-            let validatable = this.validator.validate(value.length);
-            return {
-                get validatable() {
-                    return validatable;
-                },
-                get value() {
-                    return value;
-                },
-                get message() {
-                    return validatable.message;
-                },
-                get valid() {
-                    return validatable.valid;
-                }
-            };
-        }
-    }
-    exports.default = Length;
-});
+}
 //# sourceMappingURL=length.js.map

@@ -1,18 +1,5 @@
-(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(require, exports);
-        if (v !== undefined) module.exports = v;
-    }
-    else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "@dikac/t-iterable/validatable/boolean/and"], factory);
-    }
-})(function (require, exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    const and_1 = require("@dikac/t-iterable/validatable/boolean/and");
-    function And(object, defaults = true) {
-        return and_1.default(object, defaults);
-    }
-    exports.default = And;
-});
+import IterableAnd from "@dikac/t-iterable/validatable/boolean/and";
+export default function And(object, defaults = true) {
+    return IterableAnd(object, defaults);
+}
 //# sourceMappingURL=and.js.map

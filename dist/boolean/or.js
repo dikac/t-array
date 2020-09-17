@@ -1,27 +1,14 @@
-(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(require, exports);
-        if (v !== undefined) module.exports = v;
+export default function Or(booleans, defaults = true) {
+    if (!booleans.length) {
+        return defaults;
     }
-    else if (typeof define === "function" && define.amd) {
-        define(["require", "exports"], factory);
-    }
-})(function (require, exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    function Or(booleans, defaults = true) {
-        if (!booleans.length) {
-            return defaults;
+    let result = false;
+    for (let boolean of booleans) {
+        result = result || boolean;
+        if (boolean) {
+            return true;
         }
-        let result = false;
-        for (let boolean of booleans) {
-            result = result || boolean;
-            if (boolean) {
-                return true;
-            }
-        }
-        return false;
     }
-    exports.default = Or;
-});
+    return false;
+}
 //# sourceMappingURL=or.js.map

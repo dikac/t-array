@@ -1,1 +1,1 @@
-{"version":3,"file":"valid.js","sourceRoot":"","sources":["../../../../src/message/message/list/valid.ts"],"names":[],"mappings":";;;;;;;;;;;IAIA,2DAA0D;IAC1D,+BAAwB;IAExB,SAAwB,OAAO,CAG3B,IAAe;QAGf,OAAO,aAAG,CAAC,eAAW,CAAC,IAAI,CAAC,CAAC,CAAC;IAClC,CAAC;IAPD,0BAOC"}
+{"version":3,"file":"valid.js","sourceRoot":"","sources":["../../../../src/message/message/list/valid.ts"],"names":[],"mappings":"AAIA,OAAO,WAAW,MAAM,iCAAiC,CAAC;AAC1D,OAAO,GAAG,MAAM,OAAO,CAAC;AAExB,MAAM,CAAC,OAAO,UAAU,OAAO,CAG3B,IAAe;IAGf,OAAO,GAAG,CAAC,WAAW,CAAC,IAAI,CAAC,CAAC,CAAC;AAClC,CAAC"}
