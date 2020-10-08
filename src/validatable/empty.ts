@@ -20,7 +20,6 @@ export default class Empty<MessageType, Values extends unknown[]>
     ) {
 
         this.valid = EmptyArgument(value);
-
     }
 
     * [Symbol.iterator](): Iterator<List.UnionOf<Values>> {

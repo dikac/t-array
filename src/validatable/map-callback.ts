@@ -3,7 +3,7 @@ import Validatable from "@dikac/t-validatable/validatable";
 import ListParameter from "../validator/base/list/infer";
 import Instance from "@dikac/t-validator/validatable/validatable";
 import Map from "./map";
-import MemoizeGetter from "@dikac/t-object/value/value/set-getter";
+import MemoizeAccessor from "@dikac/t-object/function/memoize-accessor";
 
 export default class MapCallback<
     Validators extends Validator[] = Validator[],
@@ -28,9 +28,10 @@ export default class MapCallback<
         this.#message = message;
     }
 
+    @MemoizeAccessor()
     get value() : ValueType {
 
-        return MemoizeGetter(this, 'value', this.#value.slice(0, this.validators.length) as ValueType);
+        return this.#value.slice(0, this.validators.length) as ValueType;
     }
 
     get valid() : boolean {
@@ -38,9 +39,10 @@ export default class MapCallback<
         return this.validatable.valid;
     }
 
+    @MemoizeAccessor()
     get validatable() : ValidatableType {
 
-        return MemoizeGetter(this, 'validatable', this.validation(this.validatables));
+        return this.validation(this.validatables);
     }
 
     get messages() : Result {
@@ -48,14 +50,16 @@ export default class MapCallback<
         return this.validatables;
     }
 
+    @MemoizeAccessor()
     get validatables() : Result {
 
-        return MemoizeGetter(this, 'validatables', this.map(this.value, this.validators));
+        return this.map(this.value, this.validators);
     }
 
+    @MemoizeAccessor()
     get message() : MessageType {
 
-        return MemoizeGetter(this, 'message', this.#message(this.validatables));
+        return this.#message(this.validatables);
     }
 }
 

@@ -2,7 +2,7 @@ import Validator from "@dikac/t-validator/validator";
 import Validatable from "@dikac/t-validatable/validatable";
 import Instance from "@dikac/t-validator/validatable/validatable";
 import List from "./list";
-import MemoizeGetter from "@dikac/t-object/value/value/set-getter";
+import MemoizeAccessor from "@dikac/t-object/function/memoize-accessor";
 
 export default class ListCallback<
     ValueType extends unknown[],
@@ -34,9 +34,10 @@ export default class ListCallback<
         this.messages = this.validatables;
     }
 
+    @MemoizeAccessor()
     get message() : MessageType {
 
-        return MemoizeGetter(this, 'message', this.messageFactory(this.validatables));
+        return this.messageFactory(this.validatables);
     }
 }
 

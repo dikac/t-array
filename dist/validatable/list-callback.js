@@ -1,4 +1,10 @@
-import MemoizeGetter from "@dikac/t-object/value/value/set-getter";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+import MemoizeAccessor from "@dikac/t-object/function/memoize-accessor";
 export default class ListCallback {
     constructor(value, validator, map, validation, message) {
         this.value = value;
@@ -10,7 +16,10 @@ export default class ListCallback {
         this.messages = this.validatables;
     }
     get message() {
-        return MemoizeGetter(this, 'message', this.messageFactory(this.validatables));
+        return this.messageFactory(this.validatables);
     }
 }
+__decorate([
+    MemoizeAccessor()
+], ListCallback.prototype, "message", null);
 //# sourceMappingURL=list-callback.js.map
