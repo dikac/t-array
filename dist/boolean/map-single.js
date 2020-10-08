@@ -1,4 +1,4 @@
-export default function Map(values, validations) {
+export default function MapSingle(values, validations) {
     if (values.length === validations.length) {
         for (let [index, value] of values.entries()) {
             if (!validations[index](value)) {

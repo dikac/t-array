@@ -1,6 +1,6 @@
 import MapSingle from "../function/parameter/list/map-single";
 
-export default function Map<List extends unknown[]>(
+export default function MapSingle<List extends unknown[]>(
     values : List,
     validations : MapSingle<List>
 ) : boolean {
@@ -17,6 +17,6 @@ export default function Map<List extends unknown[]>(
 
         return true;
     }
-        
+
     return false;
 }
