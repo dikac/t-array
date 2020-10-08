@@ -9,8 +9,8 @@ import Equal from "@dikac/t-boolean/equal";
  * @constructor
  */
 export default function Difference<Value>(
-    targets: Value[],
-    comparisons : Value[],
+    targets: ReadonlyArray<Value>,
+    comparisons : ReadonlyArray<Value>,
     compare : (target : Value, comparison : Value) => boolean = Equal
 ) : Value[] {
     let results : Value[] = [];

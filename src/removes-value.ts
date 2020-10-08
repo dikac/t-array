@@ -23,6 +23,7 @@ export default function RemovesValue<Value>(
 
             if(value === undefined) {
 
+                // TODO ADD ERROR
                 throw new Error('TODO');
             }
 

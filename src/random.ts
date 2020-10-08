@@ -6,7 +6,7 @@ import RandomBoolean from "@dikac/t-boolean/random";
  * @param array
  * @param random
  */
-export default function Random<Value>(array : Value[], random : ()=> boolean = RandomBoolean) : Value[] {
+export default function Random<Value>(array : ReadonlyArray<Value>, random : ()=> boolean = RandomBoolean) : Value[] {
 
     let gets : Value[]= [];
 

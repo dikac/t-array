@@ -3,7 +3,7 @@
  *
  * @param values
  */
-export default function First <Value>(values : Value[]) : Value|undefined {
+export default function First <Value>(values : ReadonlyArray<Value>) : Value|undefined {
 
     let first = values[0];
 

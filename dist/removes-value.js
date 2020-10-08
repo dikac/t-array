@@ -8,6 +8,7 @@ export default function RemovesValue(array, value, validator = Equal, start = 0,
         if (index !== null) {
             let value = Extract(array, index);
             if (value === undefined) {
+                // TODO ADD ERROR
                 throw new Error('TODO');
             }
             removed.push(value);

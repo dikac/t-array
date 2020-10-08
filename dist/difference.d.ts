@@ -6,4 +6,4 @@
  * @param compare
  * @constructor
  */
-export default function Difference<Value>(targets: Value[], comparisons: Value[], compare?: (target: Value, comparison: Value) => boolean): Value[];
+export default function Difference<Value>(targets: ReadonlyArray<Value>, comparisons: ReadonlyArray<Value>, compare?: (target: Value, comparison: Value) => boolean): Value[];

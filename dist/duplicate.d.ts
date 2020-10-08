@@ -7,4 +7,4 @@
  * to compare value equality
  *
  */
-export default function Duplicate<Value>(values: Value[], compare?: (value1: Value, value2: Value) => boolean): Value[];
+export default function Duplicate<Value>(values: ReadonlyArray<Value>, compare?: (value1: Value, value2: Value) => boolean): Value[];

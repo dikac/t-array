@@ -5,4 +5,4 @@
  * @param arrays
  * @constructor
  */
-export default function Intersection<Value>(compare?: (target: Value, comparison: Value) => boolean, ...arrays: Value[][]): Value[];
+export default function Intersection<Value>(compare?: (target: Value, comparison: Value) => boolean, ...arrays: ReadonlyArray<Value>[]): Value[];

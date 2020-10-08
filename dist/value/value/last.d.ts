@@ -3,4 +3,4 @@
  *
  * @param value
  */
-export default function Last<Value>(value: Value[]): Value | undefined;
+export default function Last<Value>(value: ReadonlyArray<Value>): Value | undefined;

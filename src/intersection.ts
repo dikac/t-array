@@ -9,7 +9,7 @@ import Equal from "@dikac/t-boolean/equal";
  */
 export default function Intersection<Value>(
     compare : (target : Value, comparison : Value) => boolean = Equal,
-    ...arrays : Value[][]
+    ...arrays : ReadonlyArray<Value>[]
 ) : Value[] {
 
     switch(arrays.length) {

@@ -5,7 +5,7 @@
  * @return the same as argument {@param array}
  */
 
-export default function Shuffle<V>(array : V[]) : V[] {
+export default function Shuffle<Value>(array : Value[]) : Value[] {
 
     let j, x, i;
 

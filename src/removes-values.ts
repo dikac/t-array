@@ -20,5 +20,5 @@ export default function RemovesValues<Value>(
         removed.push(..._removed);
     }
 
-    return  removed;
+    return removed;
 }

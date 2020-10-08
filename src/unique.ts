@@ -10,7 +10,7 @@ import Equal from "@dikac/t-boolean/equal";
  *
  */
 export default function Unique<Value>(
-    values : Value[],
+    values : ReadonlyArray<Value>,
     compare : (value1 : Value, value2 : Value) => boolean = Equal
 ) : Value[] {
 

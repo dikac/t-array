@@ -4,4 +4,4 @@
  * @param array
  * @param random
  */
-export default function Random<Value>(array: Value[], random?: () => boolean): Value[];
+export default function Random<Value>(array: ReadonlyArray<Value>, random?: () => boolean): Value[];

@@ -1,7 +1,7 @@
 import Equal from "@dikac/t-boolean/equal";
 
 export default function  Indexes<Value> (
-    array : Value[],
+    array : ReadonlyArray<Value>,
     value : Value,
     validator : (value : Value, argument : Value) => boolean = Equal,
     start : number = 0,
