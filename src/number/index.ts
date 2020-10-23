@@ -17,15 +17,15 @@ import Equal from "@dikac/t-boolean/equal";
  *
  * @constructor
  */
-export default function Index<Value = unknown>(
+export default function Index<Value = unknown, Argument = unknown>(
     array : Value[],
-    value : Value,
-    validator : (value : Value, argument : Value) => boolean = Equal,
+    value : Argument,
+    validator : (value : Value, argument : Argument) => boolean = <(value : Value, argument : Argument) => boolean>Equal,
     start : number = 0,
     end : number = Infinity,
 ) : number|null {
 
-    let direct = array.indexOf(value, start);
+    let direct = array.indexOf(<any>value, start);
 
     if(direct !== -1) {
 
