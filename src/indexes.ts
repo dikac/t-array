@@ -1,9 +1,9 @@
 import Equal from "@dikac/t-boolean/equal";
 
-export default function  Indexes<Value> (
+export default function  Indexes<Value, Compare> (
     array : ReadonlyArray<Value>,
-    value : Value,
-    validator : (value : Value, argument : Value) => boolean = Equal,
+    value : Compare,
+    validator : (value : Value, argument : Compare) => boolean = <(value : Value, argument : Compare) => boolean>Equal,
     start : number = 0,
     end : number = Infinity,
 ) : number[] {
