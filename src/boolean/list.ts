@@ -8,21 +8,17 @@ export default function List<
     Value extends Argument,
     Argument extends unknown,
 >(
-    list : Argument[],
+    list : ReadonlyArray<Argument>,
     validation : (value:Argument)=>value is Value,
 ) : list is Value[]
 
-export default function List<
-    Assumption extends [],
->(
-    list : unknown[],
+export default function List(
+    list : ReadonlyArray<unknown>,
     validation : (value:unknown)=>boolean,
 ) : boolean;
 
-export default function List<
-    Assumption extends [],
-    >(
-    list : unknown[],
+export default function List(
+    list : ReadonlyArray<unknown>,
     validation : (value:unknown)=>boolean,
 ) : boolean {
 

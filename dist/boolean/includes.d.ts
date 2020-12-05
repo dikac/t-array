@@ -1,1 +1,1 @@
-export default function Includes<Type>(value: Type, trues: Type[], falses: Type[], defaults?: (value: Type, trues: Type[], falses: Type[]) => boolean, compare?: (value: Type, compare: Type) => boolean): boolean;
+export default function Includes<Type>(value: Type, trues: ReadonlyArray<Type>, falses: ReadonlyArray<Type>, defaults?: (value: Type, trues: ReadonlyArray<Type>, falses: ReadonlyArray<Type>) => boolean, compare?: (value: Type, compare: Type) => boolean): boolean;

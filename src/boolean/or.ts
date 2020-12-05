@@ -1,6 +1,6 @@
 
 export default function Or(
-    booleans : boolean[],
+    booleans : ReadonlyArray<boolean>,
     defaults : boolean = true
 ) : boolean {
 

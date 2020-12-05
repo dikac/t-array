@@ -1,1 +1,1 @@
-export default function Has<Value>(array: Value[], compare: Value, validator?: (value: Value, compare: Value) => boolean, fromIndex?: number): boolean;
+export default function Has<Value>(array: ReadonlyArray<Value>, compare: Value, validator?: (value: Value, compare: Value) => boolean, fromIndex?: number): boolean;

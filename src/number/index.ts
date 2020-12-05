@@ -18,7 +18,7 @@ import Equal from "@dikac/t-boolean/equal";
  * @constructor
  */
 export default function Index<Value = unknown, Argument = unknown>(
-    array : Value[],
+    array : ReadonlyArray<Value>,
     value : Argument,
     validator : (value : Value, argument : Argument) => boolean = <(value : Value, argument : Argument) => boolean>Equal,
     start : number = 0,

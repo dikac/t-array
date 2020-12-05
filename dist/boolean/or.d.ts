@@ -1,1 +1,1 @@
-export default function Or(booleans: boolean[], defaults?: boolean): boolean;
+export default function Or(booleans: ReadonlyArray<boolean>, defaults?: boolean): boolean;
