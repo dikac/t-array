@@ -1,20 +1,33 @@
 /**
  * randomize {@param array} array position
- * non cryptographic random
+ *
+ *
+ * @param random
+ * random factory to be used to reorder {@param array}
+ * non cryptographic random if not provided
  *
  * @return the same as argument {@param array}
  */
+import Random from "@dikac/t-boolean/random";
 
-export default function Shuffle<Value>(array : Value[]) : Value[] {
+export default function Shuffle<Value>(
+    array : Value[],
+    random : ()=>boolean = Random
+) : Value[] {
 
-    let j, x, i;
+    const result : Value[] = [];
 
-    for (i = array.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = array[i];
-        array[i] = array[j];
-        array[j] = x;
+    for (let value of array) {
+
+        switch (random()) {
+            case true :
+                result.push(value);
+                break;
+            case false :
+                result.unshift(value);
+                break;
+        }
     }
 
-    return array;
+    return result;
 }
