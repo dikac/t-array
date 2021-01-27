@@ -7,7 +7,6 @@ import TypeList from "./type/list/infer";
 import Construct from "@dikac/t-validator/validatable/simple";
 import Instance from "@dikac/t-validator/validatable/validatable";
 import Map from "./map";
-import Message from "@dikac/t-message/message";
 import Replace from "@dikac/t-validatable/boolean/replace";
 
 /**

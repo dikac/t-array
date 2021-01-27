@@ -2,7 +2,6 @@ import Validator from "@dikac/t-validator/validator";
 import Validatable from "@dikac/t-validatable/validatable";
 import InferReturn from "@dikac/t-validator/validatable/infer";
 import ListCallback from "./list-callback";
-import Message from "@dikac/t-message/message";
 import ValidateMap from "./validatable/list/list";
 import List from "./list";
 

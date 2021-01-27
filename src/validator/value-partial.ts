@@ -4,7 +4,6 @@ import ValidateValuePartial from "./validatable/list/value-partial";
 import ListReturn from "./validatable/list/infer";
 import ValueCallback from "./value-callback";
 import Union from "../union";
-import Message from "@dikac/t-message/message";
 import Value from "./value";
 
 /**

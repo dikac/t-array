@@ -3,7 +3,6 @@ import Validatable from "@dikac/t-validatable/validatable";
 import ValidateValue from "./validatable/list/value";
 import ListReturn from "./validatable/list/infer";
 import ValueCallback from "./value-callback";
-import Message from "@dikac/t-message/message";
 import Value from "./value";
 
 /**

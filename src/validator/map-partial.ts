@@ -5,7 +5,6 @@ import MapCallback from "./map-callback";
 import MapCallbackInterface from "./map";
 import ListStrict from "./validatable/list/infer";
 import Union from "../union";
-import Message from "@dikac/t-message/message";
 
 /**
  * more specific implementation of {@link MapCallback}

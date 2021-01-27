@@ -4,7 +4,6 @@ import InferReturn from "@dikac/t-validator/validatable/infer";
 import ListCallback from "./list-callback";
 import ValidateMapPartial from "./validatable/list/list-partial";
 import Union from "../union";
-import Message from "@dikac/t-message/message";
 import List from "./list";
 
 /**

@@ -4,7 +4,6 @@ import ValidateMap from "./validatable/list/map";
 import ListReturn from "./validatable/list/infer";
 import MapCallbackInterface from "./map";
 import MapCallback from "./map-callback";
-import Message from "@dikac/t-message/message";
 
 /**
  * more specific implementation of {@link MapCallback}

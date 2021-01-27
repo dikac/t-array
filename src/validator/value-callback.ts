@@ -2,7 +2,6 @@ import Validator from "@dikac/t-validator/validator";
 import Validatable from "@dikac/t-validatable/validatable";
 import ValidatableValue from "../validatable/value-callback";
 import ValidatableValueInterface from "../validatable/value";
-import Message from "@dikac/t-message/message";
 import Construct from "@dikac/t-validator/validatable/simple";
 import Instance from "@dikac/t-validator/validatable/validatable";
 import Replace from "@dikac/t-validatable/boolean/replace";
