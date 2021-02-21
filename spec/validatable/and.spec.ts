@@ -79,15 +79,15 @@ describe("single", function() {
 
     describe('set', function () {
 
-        let and = And<Validatable[]>([], true);
 
         it("true", () => {
-            and.validatables.push({valid:true});
+            let and = And<Validatable[]>([{valid:true}], true);
             expect(and.valid).toBe(true)
         });
 
         it("false", () => {
-            and.validatables.push({valid:false});
+            let and = And<Validatable[]>([{valid:false}], true);
+
             expect(and.valid).toBe(false)
         });
 
@@ -97,15 +97,15 @@ describe("single", function() {
 
 describe("multi same", function() {
 
-    let and = And<Validatable[]>([], false);
+
 
     it("valids", () => {
-        and.validatables.push({valid:true}, {valid:true});
+        let and = And<Validatable[]>([{valid:true}, {valid:true}], false);
         expect(and.valid).toBe(true)
     });
 
     it('iterator', ()=>{
-
+        let and = And<Validatable[]>([{valid:true}, {valid:true}], false);
         let number = 0;
 
         for(let value of and.validatables) {
@@ -119,12 +119,12 @@ describe("multi same", function() {
     })
 
     it("invalids", () => {
-        and.validatables.push({valid:false}, {valid:false});
+        let and = And<Validatable[]>([{valid:false}, {valid:false}], false);
         expect(and.valid).toBe(false)
     });
 
     it('iterator', ()=>{
-
+        let and = And<Validatable[]>([{valid:false}, {valid:false}], false);
         let number = 0;
 
         for(let value of and.validatables) {
@@ -133,7 +133,7 @@ describe("multi same", function() {
             expect(Guard(value)).toBeTrue();
         }
 
-        expect(number).toBe(4);
+        expect(number).toBe(2);
 
     })
 })

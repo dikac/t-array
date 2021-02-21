@@ -29,6 +29,14 @@ export default class Empty<MessageType, Values extends unknown[]>
 
     get message() : MessageType {
 
-        return this._message(this);
+        try {
+
+            return this._message(this);
+
+        } catch (e) {
+
+            throw new Error(`error on generating message, ${e}`)
+        }
+
     }
 }

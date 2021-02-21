@@ -16,7 +16,12 @@ export default class ListCallback {
         this.messages = this.validatables;
     }
     get message() {
-        return this.messageFactory(this.validatables);
+        try {
+            return this.messageFactory(this.validatables);
+        }
+        catch (e) {
+            throw new Error(`error on generating message, ${e}`);
+        }
     }
 }
 __decorate([

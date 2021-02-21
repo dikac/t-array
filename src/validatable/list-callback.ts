@@ -37,7 +37,15 @@ export default class ListCallback<
     @MemoizeAccessor()
     get message() : MessageType {
 
-        return this.messageFactory(this.validatables);
+        try {
+
+            return this.messageFactory(this.validatables);
+
+        } catch (e) {
+
+            throw new Error(`error on generating message, ${e}`)
+        }
+
     }
 }
 

@@ -9,7 +9,12 @@ export default class Empty {
         yield* this.value;
     }
     get message() {
-        return this._message(this);
+        try {
+            return this._message(this);
+        }
+        catch (e) {
+            throw new Error(`error on generating message, ${e}`);
+        }
     }
 }
 //# sourceMappingURL=empty.js.map
