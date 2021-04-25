@@ -1,2 +1,2 @@
-import MapUnion from "./union";
+export {};
 //# sourceMappingURL=map-union.js.map
