@@ -3,7 +3,6 @@
   "version": "0.25.13",
   "description": "Typescript array",
   "dependencies": {
-    "@dikac/deployer": "^0.1.8",
     "@dikac/t-boolean": "^0.10.1",
     "@dikac/t-function": "^0.14.1",
     "@dikac/t-iterable": "^0.4.3",
@@ -49,12 +48,10 @@
     "compile-script-watch": "tsc -w",
     "compile-watch": "npm-run-all --sequential compile-ensure-directory --parallel compile-script-watch cleanup-watch",
     "compile-ensure-directory": "mkdirp dist",
-    "release": "remove-json-properties dist/package.json private scripts.postinstall scripts.deploy dependencies.@dikac/deployer",
+    "release": "remove-json-properties dist/package.json private scripts.postinstall",
     "postrelease": "npm publish dist",
     "prerelease": "cpy     package.json package-lock.json LICENSE Readme.md .npmignore dist",
     "postpublish": "rimraf package.json package-lock.json LICENSE Readme.md .npmignore",
-    "postinstall": "npm run deploy",
-    "deploy": "deployer /.git /dist / /src /spec"
   },
   "author": "",
   "private": true,
